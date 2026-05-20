@@ -19,6 +19,7 @@ color:#0047FF;
 overflow-x:hidden;
 }
 
+
 /* NAVIGATIE */
 
 .top-nav{
@@ -45,6 +46,7 @@ background:#0047FF;
 color:white;
 }
 
+
 /* HERO */
 
 .hero{
@@ -58,12 +60,13 @@ text-align:center;
 overflow:hidden;
 }
 
-/* TITEL HOGER */
+
+/* TITEL GROEP */
 
 .hero-content{
 position:relative;
 z-index:5;
-transform:translateY(-90px);
+transform:translateY(-120px);
 }
 
 .small-title{
@@ -82,20 +85,24 @@ letter-spacing:-0.05em;
 }
 
 .tagline{
-margin-top:45px;
+margin-top:40px;
 font-size:1.1rem;
-max-width:720px;
+max-width:700px;
 line-height:1.5;
 }
+
 
 /* BILLY */
 
 .bottom-image{
+
 position:absolute;
-bottom:-120px;
+
+bottom:-140px;
 left:0;
+
 width:100%;
-height:55vh;
+height:60vh;
 
 background-image:url("billy.png");
 background-size:contain;
@@ -103,59 +110,95 @@ background-position:center bottom;
 background-repeat:no-repeat;
 
 z-index:1;
+
 pointer-events:none;
 }
+
 
 /* SPONSOREN */
 
 .sponsors{
-padding:120px 40px 100px;
+
+padding:120px 40px;
+
 text-align:center;
+
 opacity:0;
 transform:translateY(60px);
-transition:opacity 1s ease, transform 1s ease;
+
+transition:
+opacity 1s ease,
+transform 1s ease;
 }
 
 .sponsors.visible{
+
 opacity:1;
 transform:translateY(0);
 }
 
 .sponsors p{
+
 font-size:1.1rem;
 font-weight:bold;
-margin-bottom:40px;
+
+margin-bottom:50px;
 }
 
-.sponsor-logos{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:40px;
-flex-wrap:wrap;
+
+/* GRID */
+
+.sponsor-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:35px;
+
+max-width:1100px;
+
+margin:auto;
 }
 
-.sponsor-logos img{
-max-height:70px;
-max-width:180px;
+.sponsor-grid img{
+
+width:100%;
+height:90px;
+
 object-fit:contain;
+
+padding:25px;
+
+border:3px solid #0047FF;
+border-radius:25px;
+
+box-sizing:border-box;
 }
+
+
 
 /* MOBIEL */
 
 @media(max-width:800px){
 
 .top-nav{
+
 position:relative;
+
 right:0;
 top:20px;
+
 justify-content:center;
+
 flex-wrap:wrap;
+
 padding:0 20px;
 }
 
 .hero-content{
-transform:translateY(-60px);
+transform:translateY(-70px);
 }
 
 h1{
@@ -167,23 +210,38 @@ font-size:2.5rem;
 }
 
 .bottom-image{
-height:42vh;
-bottom:-80px;
+
+height:40vh;
+bottom:-100px;
+}
+
+.sponsor-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:20px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
+
 <div class="top-nav">
+
 <a href="over-ons.html">Over ons</a>
 <a href="de-film.html">De film</a>
 <a href="educatieprogramma.html">Educatie</a>
 <a href="contact.html">Contact</a>
+
 </div>
+
+
 
 <section class="hero">
 
@@ -191,26 +249,41 @@ bottom:-80px;
 
 <div class="hero-content">
 
-<div class="small-title">het</div>
+<div class="small-title">
+
+het
+
+</div>
 
 <h1>
+
 ONDERWATER<br>
 THEATER
+
 </h1>
 
 <p class="tagline">
+
 Een korte stop-motion kinderfilm en educatief project dat het label verlegenheid onderzoekt.
+
 </p>
 
 </div>
 
 </section>
 
+
+
 <section class="sponsors" id="sponsors">
 
 <p>
+
 Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
+
 </p>
+
+
+<div class="sponsor-grid">
 
 <div class="logo-grid">
 
@@ -231,22 +304,48 @@ Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 <img src="thrive.png" alt="Thrive">
 
 </div>
+  
+<div class="supporters-text">
+
+Wij willen graag al onze Voordekunst-supporters bedanken voor het mede mogelijk maken van de productie van Het Onderwater Theater. Een speciaal bedankje gaat uit naar onze associate producer en grootste vriend van de film; Marianne Boer, evenals Dominic Mulder, Fietje en Peter Frank, Iris van Orden, Jacqueline Beekman, Veronica van Dam, Freek van Arkel, Rei Kakiuchi, Soupenzo, Paul Hoekman, Frits Hoekman, Nathan Favot, Laura Grimm voor hun genereuze steun.
+
+<br><br>
+
+Ook willen wij de volgende supporters hartelijk bedanken: Hans Grimm, Marina Sakki, Lauren Squires, Livia Spies, Ezra van der Schaaf, Cami & Kim Peuling, Nikolaos van Dam, Floris Mast, Wilfred van Dongen van the Black Cat Theatre, Jurriaan Esmeijer, A & J deJong, Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
+
+
+
+</div>
 
 </section>
 
+
+
 <script>
 
-const sponsors = document.querySelector("#sponsors");
+const sponsors =
+document.querySelector("#sponsors");
 
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
 if(entry.isIntersecting){
+
 entry.target.classList.add("visible");
+
 }
+
 });
-}, {
-threshold: 0.2
-});
+
+},
+
+{threshold:0.2}
+
+);
 
 observer.observe(sponsors);
 
