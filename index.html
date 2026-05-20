@@ -15,265 +15,196 @@ body{
 margin:0;
 background:#FFFDF6;
 font-family:Arial,sans-serif;
-overflow-x:hidden;
 color:#0047FF;
+overflow-x:hidden;
+}
+
+/* LOGO LINKSBOVEN */
+
+.logo-icon{
+position:absolute;
+top:20px;
+left:30px;
+
+width:75px;
+height:75px;
+
+border:3px solid #0047FF;
+border-radius:20px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+z-index:100;
+}
+
+.logo-icon img{
+width:75%;
+height:75%;
+object-fit:contain;
 }
 
 
-/* NAV */
+/* NAVIGATIE */
 
 .top-nav{
-
 position:absolute;
-
-top:30px;
+top:20px;
 right:40px;
-
 display:flex;
-
 gap:15px;
-
 z-index:100;
-
 }
 
 .top-nav a{
-
 text-decoration:none;
-
 color:#0047FF;
-
 font-weight:bold;
-
 padding:10px 20px;
-
 border:3px solid #0047FF;
-
 border-radius:40px;
-
-transition:0.3s;
-
+transition:.3s;
 }
 
 .top-nav a:hover{
-
 background:#0047FF;
 color:white;
-
 }
 
 
 /* HERO */
 
-.container{
+.hero{
 
-min-height:100vh;
+height:100vh;
 
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 
 position:relative;
-
-padding:60px 30px 240px;
 
 text-align:center;
 
-box-sizing:border-box;
-
-}
-
-.content{
-
-position:relative;
-z-index:2;
-
-max-width:1100px;
-
-}
-
-h1{
-
-font-size:clamp(3.5rem,10vw,8rem);
-
-line-height:0.95;
-
-margin:0;
-
-text-transform:uppercase;
-
-font-weight:900;
-
-letter-spacing:-0.04em;
-
-}
-
-.small{
-
-font-size:0.50em;
-
-display:block;
-
-text-transform:lowercase;
-
-margin-bottom:8px;
-
-}
-
-p{
-
-max-width:700px;
-
-font-size:1.2rem;
-
-line-height:1.5;
-
-margin:45px auto 0;
-
+overflow:hidden;
 }
 
 
-/* ONDERSTE AFBEELDING */
+/* BILLY ACHTER TITEL */
 
 .bottom-image{
 
-position: absolute;
-bottom: -40;
-left: 0;
+position:absolute;
 
-width: 100%;
-height: 40vh;
-
-background-image: url("billy.png");
-background-size: contain;
-background-position: center bottom;
-background-repeat: no-repeat;
-
-z-index: 10;
-}
-
-/* PARTNERS */
-
-.partners{
-
-padding:120px 40px;
-
-text-align:center;
-
-}
-
-.partners h2{
-
-font-size:1rem;
-
-font-weight:normal;
-
-line-height:1.6;
-
-max-width:650px;
-
-margin:auto auto 50px auto;
-
-}
-
-
-.logo-grid{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:40px;
-
-max-width:900px;
-
-margin:auto;
-
-align-items:center;
-
-}
-
-.logo-grid img{
+bottom:-40px;
+left:0;
 
 width:100%;
-max-width:140px;
+height:45vh;
 
-height:80px;
+background-image:url("billy.png");
+background-size:contain;
+background-position:center bottom;
+background-repeat:no-repeat;
 
-object-fit:contain;
+z-index:1;
 
-margin:auto;
-
-}
-
-
-/* SUPPORTERS */
-
-.supporters-text{
-
-margin-top:100px;
-
-max-width:850px;
-
-margin-left:auto;
-margin-right:auto;
-
-font-size:0.7rem;
-
-line-height:1.8;
-
-opacity:0.65;
-
-padding-bottom:60px;
+pointer-events:none;
 
 }
 
 
+/* TITEL */
 
-/* MOBILE */
+.hero-title{
+position:relative;
+z-index:5;
+}
 
-@media(max-width:900px){
+.small-title{
+
+font-size:4rem;
+font-weight:700;
+
+margin-bottom:-10px;
+
+line-height:1;
+}
+
+.hero-title h1{
+
+font-size:clamp(5rem,10vw,9rem);
+
+line-height:.9;
+
+margin:0;
+
+font-weight:900;
+
+letter-spacing:-0.05em;
+}
+
+.tagline{
+
+margin-top:50px;
+
+font-size:1.1rem;
+
+max-width:700px;
+
+line-height:1.5;
+
+position:relative;
+
+z-index:5;
+}
+
+
+
+/* MOBIEL */
+
+@media(max-width:800px){
+
+.logo-icon{
+
+left:20px;
+top:20px;
+
+width:60px;
+height:60px;
+}
 
 .top-nav{
 
 position:relative;
 
-justify-content:center;
-
 right:0;
+top:20px;
 
-top:0;
-
-padding-top:30px;
+justify-content:center;
 
 flex-wrap:wrap;
 
+padding:0 20px;
 }
 
-.container{
+.hero-title h1{
 
-padding-bottom:180px;
-
+font-size:4rem;
 }
 
-h1{
+.small-title{
 
-font-size:clamp(3rem,16vw,5rem);
-
+font-size:2.5rem;
 }
 
-.logo-grid{
+.bottom-image{
 
-grid-template-columns:repeat(2,1fr);
-
-gap:30px;
-
-}
-
-.supporters-text{
-
-font-size:0.65rem;
-
+height:35vh;
 }
 
 }
@@ -285,106 +216,53 @@ font-size:0.65rem;
 <body>
 
 
+<!-- LOGO -->
+
+<a href="index.html" class="logo-icon">
+<img src="shell_pink.png" alt="logo">
+</a>
+
+
+<!-- MENU -->
+
 <div class="top-nav">
 
-<a href="over-ons.html">
-Over ons
-</a>
-
-<a href="de-film.html">
-De film
-</a>
-
-<a href="educatieprogramma.html">
-Educatie
-</a>
-
-<a href="contact.html">
-Contact
-</a>
+<a href="over-ons.html">Over ons</a>
+<a href="de-film.html">De film</a>
+<a href="educatieprogramma.html">Educatie</a>
+<a href="contact.html">Contact</a>
 
 </div>
 
 
 
-<section class="container">
-
-<div class="content">
-
-<h1>
-
-<span class="small">
-
-het
-
-</span>
-
-Onderwater<br>
-Theater
-
-</h1>
-
-
-<p>
-
-Een korte stop-motion kinderfilm en educatief project
-dat het label verlegenheid onderzoekt.
-
-</p>
-
-</div>
+<section class="hero">
 
 
 <div class="bottom-image"></div>
 
-</section>
 
+<div class="hero-title">
 
+<div class="small-title">
+het
+</div>
 
-<section class="partners">
-
-<h2>
-
-Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
-
-</h2>
-
-
-<div class="logo-grid">
-
-<img src="afk.png" alt="AFK">
-
-<img src="rotterdam.png" alt="Rotterdam">
-
-<img src="beautifuldistress.png" alt="Beautiful Distress">
-
-<img src="voordekunst.png" alt="Voordekunst">
-
-<img src="sol.png" alt="SOL">
-
-<img src="hetcultuurfonds.png" alt="Cultuurfonds">
-
-<img src="oba.png" alt="OBA">
-
-<img src="thrive.png" alt="Thrive">
+<h1>
+ONDERWATER<br>
+THEATER
+</h1>
 
 </div>
 
 
+<p class="tagline">
 
-<div class="supporters-text">
+Een korte stop-motion kinderfilm en educatief project dat het label verlegenheid onderzoekt.
 
-Wij willen graag al onze Voordekunst-supporters bedanken voor het mede mogelijk maken van de productie van Het Onderwater Theater. Een speciaal bedankje gaat uit naar onze associate producer en grootste vriend van de film; Marianne Boer, evenals Dominic Mulder, Fietje en Peter Frank, Iris van Orden, Jacqueline Beekman, Veronica van Dam, Freek van Arkel, Rei Kakiuchi, Soupenzo, Paul Hoekman, Frits Hoekman, Nathan Favot, Laura Grimm voor hun genereuze steun.
-
-<br><br>
-
-Ook willen wij de volgende supporters hartelijk bedanken: Hans Grimm, Marina Sakki, Lauren Squires, Livia Spies, Ezra van der Schaaf, Cami & Kim Peuling, Nikolaos van Dam, Floris Mast, Wilfred van Dongen van the Black Cat Theatre, Jurriaan Esmeijer, A & J deJong, Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
-
-
-</div>
+</p>
 
 </section>
 
 </body>
-
 </html>
