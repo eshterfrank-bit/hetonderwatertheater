@@ -1,76 +1,98 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Het Onderwater Theater</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Het Onderwater Theater</title>
 
-<style>
+  <style>
+    body {
+      margin: 0;
+      background: #fffdf7;
+      color: #0038b8;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#031926;
-color:white;
-text-align:center;
-}
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      overflow: hidden;
+    }
 
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
-background:linear-gradient(
-180deg,
-#02111d,
-#06334d,
-#0d5d7a
-);
-}
+    .shell {
+      width: 260px;
+      max-width: 80vw;
+      margin: 20px 0;
+    }
 
-h1{
-font-size:4rem;
-margin-bottom:10px;
-}
+    h1 {
+      font-family: Impact, Arial Black, sans-serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin: 20px 0;
+      color: #0038b8;
+      letter-spacing: 1px;
+    }
 
-p{
-font-size:1.3rem;
-max-width:700px;
-line-height:1.6;
-}
+    h1 span {
+      display: block;
+      font-size: 0.35em;
+      text-transform: lowercase;
+      letter-spacing: 0;
+    }
 
-.button{
-margin-top:30px;
-display:inline-block;
-padding:15px 30px;
-border-radius:30px;
-background:white;
-color:#06334d;
-text-decoration:none;
-font-weight:bold;
-}
+    p {
+      max-width: 620px;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #0038b8;
+      margin: 20px auto;
+    }
 
-</style>
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      border: 3px solid #0038b8;
+      border-radius: 999px;
+      color: #0038b8;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
+    .button:hover {
+      background: #0038b8;
+      color: #fffdf7;
+    }
+  </style>
 </head>
 
 <body>
+  <main class="page">
+    <img class="shell" src="3.jpg" alt="Schelpenvorm Het Onderwater Theater">
 
-<section class="hero">
+    <h1>
+      <span>het</span>
+      Onderwater<br>
+      Theater
+    </h1>
 
-<h1>Het Onderwater Theater</h1>
+    <p>
+      een korte stop motion animatie kinderfilm en educatief project die het label verlegenheid onderzoekt.
+    </p>
 
-<p>
-Een korte stop motion animatie kinderfilm en educatief project dat het label verlegenheid onderzoekt..
-</p>
+    <a class="button" href="mailto:eshterfrank@gmail.com">
+      Contact
+    </a>
 
-<a class="button" href="#">
-Volg het proces
-</a>
-
-</section>
-
+    <img class="shell" src="3.jpg" alt="">
+  </main>
 </body>
 </html>
