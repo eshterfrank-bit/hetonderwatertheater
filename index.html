@@ -1,178 +1,369 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Het Onderwater Theater</title>
 
 <style>
+
 body{
 margin:0;
 background:#FFFDF6;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 overflow-x:hidden;
+color:#0047FF;
 }
 
+
+/* HERO */
+
 .container{
+
 min-height:100vh;
+
 display:flex;
 justify-content:center;
 align-items:center;
+
 position:relative;
-text-align:center;
+
 padding:60px 30px 240px;
+
+text-align:center;
+
 box-sizing:border-box;
+
 }
 
 .content{
+
 position:relative;
 z-index:2;
 max-width:1100px;
+
 }
 
 h1{
-font-size:clamp(3.4rem,10vw,8rem);
-line-height:0.82;
-color:#0047FF;
+
+font-size:clamp(3.5rem,10vw,8rem);
+
+line-height:0.85;
+
 margin:0;
+
 text-transform:uppercase;
+
 font-weight:900;
+
 letter-spacing:-0.04em;
+
 }
 
 .small{
+
 font-size:0.28em;
+
 display:block;
+
 text-transform:lowercase;
-letter-spacing:0;
+
 margin-bottom:8px;
+
+letter-spacing:0;
+
 }
 
 p{
-max-width:680px;
+
+max-width:700px;
+
 font-size:1.2rem;
+
 line-height:1.5;
-color:#0047FF;
+
 margin:45px auto 0;
+
 }
 
 .button{
+
 display:inline-block;
+
 margin-top:45px;
+
 padding:14px 34px;
+
 border-radius:40px;
+
 border:3px solid #0047FF;
+
 text-decoration:none;
+
 color:#0047FF;
+
 font-weight:bold;
+
+transition:0.3s;
+
 }
 
 .button:hover{
+
 background:#0047FF;
+
 color:white;
+
 }
+
+
+/* BILLY */
 
 .bottom-image{
+
 position:absolute;
+
 bottom:0;
 left:0;
+
 width:100%;
+
 height:35vh;
+
 background-image:url("Billy-transparent.png");
+
 background-size:contain;
+
 background-position:center bottom;
+
 background-repeat:no-repeat;
+
 z-index:1;
+
 pointer-events:none;
+
 }
 
+
+
+/* PARTNERS */
+
 .partners{
+
 padding:120px 40px;
-background:#FFFDF6;
+
 text-align:center;
+
 }
 
 .partners h2{
+
 font-size:1rem;
+
 font-weight:normal;
-color:#0047FF;
-margin:0 auto 50px;
-max-width:620px;
+
 line-height:1.6;
+
+max-width:650px;
+
+margin:auto auto 50px auto;
+
 }
 
+
 .logo-grid{
+
 display:grid;
+
 grid-template-columns:repeat(4,1fr);
+
 gap:40px;
+
 max-width:900px;
+
 margin:auto;
+
 align-items:center;
+
 }
+
 
 .logo-grid img{
+
 width:100%;
+
 max-width:140px;
+
 height:80px;
+
 object-fit:contain;
+
 margin:auto;
+
 }
+
+
+
+/* SUPPORTERS */
+
+.supporters-text{
+
+margin-top:100px;
+
+max-width:850px;
+
+margin-left:auto;
+margin-right:auto;
+
+font-size:0.7rem;
+
+line-height:1.8;
+
+opacity:0.65;
+
+padding-bottom:60px;
+
+}
+
+
+
+/* MOBILE */
 
 @media(max-width:700px){
-.logo-grid{
-grid-template-columns:repeat(2,1fr);
-}
 
 .container{
+
 padding-bottom:180px;
+
 }
 
 h1{
+
 font-size:clamp(3rem,16vw,5rem);
+
 }
+
+.logo-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
 }
+
+.supporters-text{
+
+font-size:0.65rem;
+
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+
 <section class="container">
-  <div class="content">
-    <h1>
-      <span class="small">het</span>
-      Onderwater<br>
-      Theater
-    </h1>
 
-    <p>
-      Een korte stop-motion kinderfilm en educatief project
-      dat het label verlegenheid onderzoekt.
-    </p>
+<div class="content">
 
-    <a class="button" href="mailto:estherfrank@gmail.com">
-      Contact
-    </a>
-  </div>
+<h1>
 
-  <div class="bottom-image"></div>
+<span class="small">
+het
+</span>
+
+Onderwater<br>
+Theater
+
+</h1>
+
+
+<p>
+
+Een korte stop-motion kinderfilm en educatief project
+dat het label verlegenheid onderzoekt.
+
+</p>
+
+
+<a
+class="button"
+href="mailto:eshterfrank@gmail.com">
+
+Contact
+
+</a>
+
+
+</div>
+
+
+<div class="bottom-image"></div>
+
 </section>
+
+
+
+
 
 <section class="partners">
-  <h2>
-    Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
-  </h2>
 
-  <div class="logo-grid">
-    <img src="afk.png" alt="AFK">
-    <img src="rotterdam.png" alt="Rotterdam">
-    <img src="beautifuldistress.png" alt="Beautiful Distress">
-    <img src="voordekunst.png" alt="Voordekunst">
-    <img src="sol.png" alt="SOL">
-    <img src="hetcultuurfonds.png" alt="Cultuurfonds">
-    <img src="oba.png" alt="OBA">
-    <img src="thrive.png" alt="Thrive">
-  </div>
+<h2>
+
+Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
+
+</h2>
+
+
+
+<div class="logo-grid">
+
+<img src="afk.png" alt="AFK">
+
+<img src="rotterdam.png" alt="Rotterdam">
+
+<img src="beautifuldistress.png" alt="Beautiful Distress">
+
+<img src="voordekunst.png" alt="Voordekunst">
+
+<img src="sol.png" alt="SOL">
+
+<img src="hetcultuurfonds.png" alt="Cultuurfonds">
+
+<img src="oba.png" alt="OBA">
+
+<img src="thrive.png" alt="Thrive">
+
+</div>
+
+
+
+
+<div class="supporters-text">
+
+Wij willen graag al onze Voordekunst-supporters bedanken voor het mede mogelijk maken van de productie van Het Onderwater Theater. Een speciaal bedankje gaat uit naar onze associate producer en grootste vriend van de film; Marianne Boer, evenals Dominic Mulder, Fietje en Peter Frank, Iris van Orden, Jacqueline Beekman, Veronica van Dam, Freek van Arkel, Rei Kakiuchi, Soupenzo, Paul Hoekman, Frits Hoekman, Nathan Favot, Laura Grimm voor hun genereuze steun.
+
+<br><br>
+
+Ook willen wij de volgende supporters hartelijk bedanken: Hans Grimm, Marina Sakki, Lauren Squires, Livia Spies, Ezra van der Schaaf, Cami & Kim Peuling, Nikolaos van Dam, Floris Mast, Wilfred van Dongen van het Black Cat Theatre, Jurriaan Esmeijer, A & J deJong, Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
+
+<br><br>
+
+Dankzij uw steun is Het Onderwater Theater tot leven gekomen.
+
+</div>
+
 </section>
 
+
 </body>
+
 </html>
