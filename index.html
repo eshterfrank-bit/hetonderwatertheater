@@ -19,7 +19,6 @@ color:#0047FF;
 overflow-x:hidden;
 }
 
-
 /* NAVIGATIE */
 
 .top-nav{
@@ -46,37 +45,57 @@ background:#0047FF;
 color:white;
 }
 
-
 /* HERO */
 
 .hero{
-
-height:100vh;
-
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-
 position:relative;
-
 text-align:center;
-
 overflow:hidden;
 }
 
+/* TITEL HOGER */
+
+.hero-content{
+position:relative;
+z-index:5;
+transform:translateY(-90px);
+}
+
+.small-title{
+font-size:4rem;
+font-weight:700;
+line-height:1;
+margin-bottom:-10px;
+}
+
+h1{
+font-size:clamp(5rem,10vw,9rem);
+line-height:.9;
+margin:0;
+font-weight:900;
+letter-spacing:-0.05em;
+}
+
+.tagline{
+margin-top:45px;
+font-size:1.1rem;
+max-width:720px;
+line-height:1.5;
+}
 
 /* BILLY */
 
 .bottom-image{
-
 position:absolute;
-
-bottom:-40px;
+bottom:-120px;
 left:0;
-
 width:100%;
-height:45vh;
+height:55vh;
 
 background-image:url("billy.png");
 background-size:contain;
@@ -84,138 +103,154 @@ background-position:center bottom;
 background-repeat:no-repeat;
 
 z-index:1;
-
 pointer-events:none;
-
 }
 
+/* SPONSOREN */
 
-/* TITEL */
-
-.hero-title{
-position:relative;
-z-index:5;
+.sponsors{
+padding:120px 40px 100px;
+text-align:center;
+opacity:0;
+transform:translateY(60px);
+transition:opacity 1s ease, transform 1s ease;
 }
 
-.small-title{
-
-font-size:4rem;
-font-weight:700;
-
-margin-bottom:-10px;
-
-line-height:1;
+.sponsors.visible{
+opacity:1;
+transform:translateY(0);
 }
 
-.hero-title h1{
-
-font-size:clamp(5rem,10vw,9rem);
-
-line-height:.9;
-
-margin:0;
-
-font-weight:900;
-
-letter-spacing:-0.05em;
-}
-
-.tagline{
-
-margin-top:50px;
-
+.sponsors p{
 font-size:1.1rem;
-
-max-width:700px;
-
-line-height:1.5;
-
-position:relative;
-
-z-index:5;
+font-weight:bold;
+margin-bottom:40px;
 }
 
+.sponsor-logos{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+flex-wrap:wrap;
+}
 
+.sponsor-logos img{
+max-height:70px;
+max-width:180px;
+object-fit:contain;
+}
 
 /* MOBIEL */
 
 @media(max-width:800px){
 
 .top-nav{
-
 position:relative;
-
 right:0;
 top:20px;
-
 justify-content:center;
-
 flex-wrap:wrap;
-
 padding:0 20px;
 }
 
-.hero-title h1{
+.hero-content{
+transform:translateY(-60px);
+}
 
+h1{
 font-size:4rem;
 }
 
 .small-title{
-
 font-size:2.5rem;
 }
 
 .bottom-image{
-
-height:35vh;
+height:42vh;
+bottom:-80px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-
 <div class="top-nav">
-
 <a href="over-ons.html">Over ons</a>
 <a href="de-film.html">De film</a>
 <a href="educatieprogramma.html">Educatie</a>
 <a href="contact.html">Contact</a>
-
 </div>
-
-
 
 <section class="hero">
 
 <div class="bottom-image"></div>
 
+<div class="hero-content">
 
-<div class="hero-title">
-
-<div class="small-title">
-het
-</div>
+<div class="small-title">het</div>
 
 <h1>
 ONDERWATER<br>
 THEATER
 </h1>
 
-</div>
-
-
 <p class="tagline">
-
 Een korte stop-motion kinderfilm en educatief project dat het label verlegenheid onderzoekt.
-
 </p>
 
+</div>
+
 </section>
+
+<section class="sponsors" id="sponsors">
+
+<p>
+Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
+</p>
+
+<div class="logo-grid">
+
+<img src="afk.png" alt="AFK">
+
+<img src="rotterdam.png" alt="Rotterdam">
+
+<img src="beautifuldistress.png" alt="Beautiful Distress">
+
+<img src="voordekunst.png" alt="Voordekunst">
+
+<img src="sol.png" alt="SOL">
+
+<img src="hetcultuurfonds.png" alt="Cultuurfonds">
+
+<img src="oba.png" alt="OBA">
+
+<img src="thrive.png" alt="Thrive">
+
+</div>
+
+</section>
+
+<script>
+
+const sponsors = document.querySelector("#sponsors");
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+}, {
+threshold: 0.2
+});
+
+observer.observe(sponsors);
+
+</script>
 
 </body>
 </html>
