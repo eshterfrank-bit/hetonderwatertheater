@@ -18,6 +18,49 @@ color:#0047FF;
 }
 
 
+/* NAV */
+
+.top-nav{
+
+position:absolute;
+
+top:30px;
+right:40px;
+
+display:flex;
+
+gap:15px;
+
+z-index:100;
+
+}
+
+.top-nav a{
+
+text-decoration:none;
+
+color:#0047FF;
+
+font-weight:bold;
+
+padding:10px 20px;
+
+border:3px solid #0047FF;
+
+border-radius:40px;
+
+transition:0.3s;
+
+}
+
+.top-nav a:hover{
+
+background:#0047FF;
+color:white;
+
+}
+
+
 /* HERO */
 
 .container{
@@ -42,6 +85,7 @@ box-sizing:border-box;
 
 position:relative;
 z-index:2;
+
 max-width:1100px;
 
 }
@@ -72,8 +116,6 @@ text-transform:lowercase;
 
 margin-bottom:8px;
 
-letter-spacing:0;
-
 }
 
 p{
@@ -85,36 +127,6 @@ font-size:1.2rem;
 line-height:1.5;
 
 margin:45px auto 0;
-
-}
-
-.button{
-
-display:inline-block;
-
-margin-top:45px;
-
-padding:14px 34px;
-
-border-radius:40px;
-
-border:3px solid #0047FF;
-
-text-decoration:none;
-
-color:#0047FF;
-
-font-weight:bold;
-
-transition:0.3s;
-
-}
-
-.button:hover{
-
-background:#0047FF;
-
-color:white;
 
 }
 
@@ -145,7 +157,6 @@ z-index:1;
 pointer-events:none;
 
 }
-
 
 
 /* PARTNERS */
@@ -189,11 +200,9 @@ align-items:center;
 
 }
 
-
 .logo-grid img{
 
 width:100%;
-
 max-width:140px;
 
 height:80px;
@@ -203,7 +212,6 @@ object-fit:contain;
 margin:auto;
 
 }
-
 
 
 /* SUPPORTERS */
@@ -228,10 +236,25 @@ padding-bottom:60px;
 }
 
 
-
 /* MOBILE */
 
-@media(max-width:700px){
+@media(max-width:900px){
+
+.top-nav{
+
+position:relative;
+
+justify-content:center;
+
+right:0;
+
+top:0;
+
+padding-top:30px;
+
+flex-wrap:wrap;
+
+}
 
 .container{
 
@@ -265,8 +288,29 @@ font-size:0.65rem;
 
 </head>
 
-
 <body>
+
+
+
+<div class="top-nav">
+
+<a href="over-ons.html">
+Over ons
+</a>
+
+<a href="de-film.html">
+De film
+</a>
+
+<a href="educatieprogramma.html">
+Educatie
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+</div>
 
 
 
@@ -277,7 +321,9 @@ font-size:0.65rem;
 <h1>
 
 <span class="small">
+
 het
+
 </span>
 
 Onderwater<br>
@@ -293,23 +339,12 @@ dat het label verlegenheid onderzoekt.
 
 </p>
 
-
-<a
-class="button"
-href="mailto:eshterfrank@gmail.com">
-
-Contact
-
-</a>
-
-
 </div>
 
 
 <div class="bottom-image"></div>
 
 </section>
-
 
 
 
@@ -321,7 +356,6 @@ Contact
 Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 
 </h2>
-
 
 
 <div class="logo-grid">
@@ -336,14 +370,13 @@ Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 
 <img src="sol.png" alt="SOL">
 
-<img src="hetcultuurfonds.png" alt="Cultuurfonds">
+<img src="hetcultuurfonds.png" alt="Culttuurfonds">
 
 <img src="oba.png" alt="OBA">
 
 <img src="thrive.png" alt="Thrive">
 
 </div>
-
 
 
 
@@ -363,7 +396,5 @@ Dankzij uw steun is Het Onderwater Theater tot leven gekomen.
 
 </section>
 
-
 </body>
-
 </html>
