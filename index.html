@@ -78,7 +78,7 @@ height:35vh;
 
 background-image:url("images/Billy-transparent.png");
 
-background-size:cover;
+background-size:contain;
 background-position:center bottom;
 background-repeat:no-repeat;
 
@@ -123,3 +123,95 @@ Contact
 
 </body>
 </html>
+
+
+<div class="bottom-image"></div>
+
+</div>
+
+
+<section class="partners">
+
+<h2>
+Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
+</h2>
+
+<div class="logo-grid">
+
+<img src="images/afk.png" alt="">
+<img src="images/rotterdam.png" alt="">
+<img src="images/beautifuldistress.png" alt="">
+<img src="images/voordekunst.png" alt="">
+<img src="images/sol.png" alt="">
+<img src="images/hetcultuurfonds.png" alt="">
+<img src="images/oba.png" alt="">
+<img src="images/thrive.png" alt="">
+
+</div>
+
+</section>
+
+<style>
+
+.partners{
+padding:120px 40px;
+background:#FFFDF6;
+text-align:center;
+}
+
+.partners h2{
+font-size:1rem;
+font-weight:normal;
+color:#0047FF;
+margin-bottom:50px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.6;
+}
+
+.logo-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:40px;
+
+max-width:900px;
+
+margin:auto;
+
+align-items:center;
+
+}
+
+.logo-grid img{
+
+width:100%;
+max-width:140px;
+height:80px;
+
+object-fit:contain;
+
+margin:auto;
+
+}
+
+@media(max-width:700px){
+
+.logo-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+}
+
+</style>
+
+</body>
+</html>
+
