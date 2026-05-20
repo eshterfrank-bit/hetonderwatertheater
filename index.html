@@ -26,68 +26,70 @@ overflow-x:hidden;
 position:absolute;
 top:20px;
 right:40px;
+
 display:flex;
 gap:15px;
+
 z-index:100;
 }
 
 .top-nav a{
+
 text-decoration:none;
 color:#0047FF;
+
 font-weight:bold;
+
 padding:10px 20px;
+
 border:3px solid #0047FF;
 border-radius:40px;
+
 transition:.3s;
+
 }
 
 .top-nav a:hover{
+
 background:#0047FF;
 color:white;
+
 }
+
 
 
 /* HERO */
 
 .hero{
 
-min-height:100vh;
+min-height:85vh;
 
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 
-position:relative;
-
-overflow:hidden;
 text-align:center;
-}
 
-
-/* TITEL HOGER */
-
-.hero-content{
-
-position:relative;
-
-z-index:5;
-
-transform:translateY(-160px);
+padding:0 40px;
 
 }
+
+
+/* TITEL */
 
 .small-title{
 
-font-size:4rem;
+font-size:3.5rem;
 font-weight:700;
 
 margin-bottom:-10px;
 
 line-height:1;
+
 }
 
-.hero-content h1{
+.hero h1{
 
 font-size:clamp(5rem,10vw,9rem);
 
@@ -98,42 +100,18 @@ margin:0;
 font-weight:900;
 
 letter-spacing:-0.05em;
+
 }
 
 .tagline{
 
-margin-top:45px;
-
-font-size:1.1rem;
+margin-top:50px;
 
 max-width:700px;
 
-line-height:1.5;
-}
+font-size:1.2rem;
 
-
-
-/* BILLY */
-
-.bottom-image{
-
-position:absolute;
-
-bottom:-140px;
-left:0;
-
-width:100%;
-height:60vh;
-
-background-image:url("billy.png");
-
-background-size:contain;
-background-repeat:no-repeat;
-background-position:center bottom;
-
-z-index:1;
-
-pointer-events:none;
+line-height:1.6;
 
 }
 
@@ -143,7 +121,7 @@ pointer-events:none;
 
 .sponsors{
 
-padding:120px 40px;
+padding:80px 40px 120px;
 
 text-align:center;
 
@@ -160,20 +138,23 @@ transform 1s ease;
 
 opacity:1;
 transform:translateY(0);
+
 }
 
-.sponsors p{
+.sponsors-title{
 
-font-size:1.1rem;
+font-size:1rem;
 font-weight:bold;
 
-margin-bottom:70px;
+margin-bottom:60px;
+
 }
 
 
-/* 8 GRID */
 
-.sponsor-grid{
+/* LOGO GRID */
+
+.logo-grid{
 
 display:grid;
 
@@ -183,24 +164,39 @@ gap:60px 40px;
 
 max-width:1200px;
 
-margin:auto;
+margin:auto auto 80px;
 
 align-items:center;
 
 }
 
-.sponsor-grid img{
+.logo-grid img{
 
 width:100%;
 
-height:80px;
+height:70px;
 
 object-fit:contain;
 
 display:block;
 
-border:none;
-padding:0;
+}
+
+
+
+/* SUPPORTERS TEKST */
+
+.supporters-text{
+
+max-width:1200px;
+
+margin:auto;
+
+font-size:.8rem;
+
+line-height:1.5;
+
+opacity:.95;
 
 }
 
@@ -214,43 +210,51 @@ padding:0;
 
 position:relative;
 
-right:0;
-top:20px;
-
 justify-content:center;
+
+right:0;
+
+padding:30px 20px;
 
 flex-wrap:wrap;
 
-padding:0 20px;
 }
 
-.hero-content{
+.hero{
 
-transform:translateY(-70px);
+min-height:70vh;
 
-}
-
-.hero-content h1{
-
-font-size:4rem;
 }
 
 .small-title{
 
-font-size:2.5rem;
+font-size:2rem;
+
 }
 
-.bottom-image{
+.hero h1{
 
-height:42vh;
-bottom:-100px;
+font-size:4rem;
+
 }
 
-.sponsor-grid{
+.tagline{
+
+font-size:1rem;
+
+}
+
+.logo-grid{
 
 grid-template-columns:repeat(2,1fr);
 
-gap:30px;
+gap:35px;
+
+}
+
+.supporters-text{
+
+font-size:.7rem;
 
 }
 
@@ -263,11 +267,15 @@ gap:30px;
 <body>
 
 
+
 <div class="top-nav">
 
 <a href="over-ons.html">Over ons</a>
+
 <a href="de-film.html">De film</a>
+
 <a href="educatieprogramma.html">Educatie</a>
+
 <a href="contact.html">Contact</a>
 
 </div>
@@ -276,17 +284,17 @@ gap:30px;
 
 <section class="hero">
 
-<div class="bottom-image"></div>
-
-<div class="hero-content">
-
 <div class="small-title">
+
 het
+
 </div>
 
 <h1>
+
 ONDERWATER<br>
 THEATER
+
 </h1>
 
 <p class="tagline">
@@ -295,22 +303,21 @@ Een korte stop-motion kinderfilm en educatief project dat het label verlegenheid
 
 </p>
 
-</div>
-
 </section>
 
 
 
 <section class="sponsors" id="sponsors">
 
-<p>
+<p class="sponsors-title">
 
 Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 
 </p>
 
 
-<div class="sponsor-grid">
+
+<div class="logo-grid">
 
 <img src="afk.png" alt="AFK">
 
@@ -329,7 +336,9 @@ Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 <img src="thrive.png" alt="Thrive">
 
 </div>
-  
+
+
+
 <div class="supporters-text">
 
 Wij willen graag al onze Voordekunst-supporters bedanken voor het mede mogelijk maken van de productie van Het Onderwater Theater. Een speciaal bedankje gaat uit naar onze associate producer en grootste vriend van de film; Marianne Boer, evenals Dominic Mulder, Fietje en Peter Frank, Iris van Orden, Jacqueline Beekman, Veronica van Dam, Freek van Arkel, Rei Kakiuchi, Soupenzo, Paul Hoekman, Frits Hoekman, Nathan Favot, Laura Grimm voor hun genereuze steun.
@@ -346,11 +355,9 @@ Ook willen wij de volgende supporters hartelijk bedanken: Hans Grimm, Marina Sak
 
 <script>
 
-const sponsors =
-document.querySelector("#sponsors");
+const sponsors=document.querySelector("#sponsors");
 
-const observer =
-new IntersectionObserver(
+const observer=new IntersectionObserver(
 
 (entries)=>{
 
