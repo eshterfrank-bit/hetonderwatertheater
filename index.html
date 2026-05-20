@@ -50,46 +50,67 @@ color:white;
 /* HERO */
 
 .hero{
+
 min-height:100vh;
+
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+
 position:relative;
-text-align:center;
+
 overflow:hidden;
+text-align:center;
 }
 
 
-/* TITEL GROEP */
+/* TITEL HOGER */
 
 .hero-content{
+
 position:relative;
+
 z-index:5;
-transform:translateY(-120px);
+
+transform:translateY(-160px);
+
 }
 
 .small-title{
+
 font-size:4rem;
 font-weight:700;
-line-height:1;
+
 margin-bottom:-10px;
+
+line-height:1;
 }
 
-h1{
+.hero-content h1{
+
 font-size:clamp(5rem,10vw,9rem);
+
 line-height:.9;
+
 margin:0;
+
 font-weight:900;
+
 letter-spacing:-0.05em;
 }
 
 .tagline{
-margin-top:40px;
+
+margin-top:45px;
+
 font-size:1.1rem;
+
 max-width:700px;
+
 line-height:1.5;
 }
+
 
 
 /* BILLY */
@@ -105,14 +126,17 @@ width:100%;
 height:60vh;
 
 background-image:url("billy.png");
+
 background-size:contain;
-background-position:center bottom;
 background-repeat:no-repeat;
+background-position:center bottom;
 
 z-index:1;
 
 pointer-events:none;
+
 }
+
 
 
 /* SPONSOREN */
@@ -124,11 +148,12 @@ padding:120px 40px;
 text-align:center;
 
 opacity:0;
-transform:translateY(60px);
+transform:translateY(50px);
 
 transition:
 opacity 1s ease,
 transform 1s ease;
+
 }
 
 .sponsors.visible{
@@ -142,39 +167,41 @@ transform:translateY(0);
 font-size:1.1rem;
 font-weight:bold;
 
-margin-bottom:50px;
+margin-bottom:70px;
 }
 
 
-/* GRID */
+/* 8 GRID */
 
 .sponsor-grid{
 
 display:grid;
 
-grid-template-columns:
-repeat(4,1fr);
+grid-template-columns:repeat(4,1fr);
 
-gap:35px;
+gap:60px 40px;
 
-max-width:1100px;
+max-width:1200px;
 
 margin:auto;
+
+align-items:center;
+
 }
 
 .sponsor-grid img{
 
 width:100%;
-height:90px;
+
+height:80px;
 
 object-fit:contain;
 
-padding:25px;
+display:block;
 
-border:3px solid #0047FF;
-border-radius:25px;
+border:none;
+padding:0;
 
-box-sizing:border-box;
 }
 
 
@@ -198,29 +225,33 @@ padding:0 20px;
 }
 
 .hero-content{
+
 transform:translateY(-70px);
+
 }
 
-h1{
+.hero-content h1{
+
 font-size:4rem;
 }
 
 .small-title{
+
 font-size:2.5rem;
 }
 
 .bottom-image{
 
-height:40vh;
+height:42vh;
 bottom:-100px;
 }
 
 .sponsor-grid{
 
-grid-template-columns:
-repeat(2,1fr);
+grid-template-columns:repeat(2,1fr);
 
-gap:20px;
+gap:30px;
+
 }
 
 }
@@ -250,16 +281,12 @@ gap:20px;
 <div class="hero-content">
 
 <div class="small-title">
-
 het
-
 </div>
 
 <h1>
-
 ONDERWATER<br>
 THEATER
-
 </h1>
 
 <p class="tagline">
@@ -284,8 +311,6 @@ Dit project wordt mede mogelijk gemaakt door de volgende fondsen en partners:
 
 
 <div class="sponsor-grid">
-
-<div class="logo-grid">
 
 <img src="afk.png" alt="AFK">
 
@@ -312,8 +337,6 @@ Wij willen graag al onze Voordekunst-supporters bedanken voor het mede mogelijk 
 <br><br>
 
 Ook willen wij de volgende supporters hartelijk bedanken: Hans Grimm, Marina Sakki, Lauren Squires, Livia Spies, Ezra van der Schaaf, Cami & Kim Peuling, Nikolaos van Dam, Floris Mast, Wilfred van Dongen van the Black Cat Theatre, Jurriaan Esmeijer, A & J deJong, Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
-
-
 
 </div>
 
@@ -350,6 +373,7 @@ entry.target.classList.add("visible");
 observer.observe(sponsors);
 
 </script>
+
 
 </body>
 </html>
