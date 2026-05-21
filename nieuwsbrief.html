@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nieuwsbrief | Het Onderwater Theater</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#eef8ff;
+    color:#154a7d;
+}
+
+/* navigatie */
+
+nav{
+    background:#2f74c0;
+    padding:20px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 18px;
+    font-size:16px;
+}
+
+nav a:hover{
+    opacity:0.7;
+}
+
+
+/* inhoud */
+
+.page-content{
+    display:flex;
+    justify-content:center;
+    padding:60px 20px;
+}
+
+.content-block{
+    max-width:650px;
+    background:white;
+    padding:50px;
+    border-radius:35px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+h1{
+    font-size:42px;
+    margin-top:0;
+    color:#2f74c0;
+}
+
+p{
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+/* formulier */
+
+.newsletter-form{
+    display:flex;
+    flex-direction:column;
+    margin-top:35px;
+}
+
+label{
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input{
+    padding:16px;
+    margin-bottom:25px;
+    border:none;
+    border-radius:20px;
+    background:#f2f8fc;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    box-shadow:0 0 0 2px #8fc7ff;
+}
+
+button{
+    background:#2f74c0;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:0.9;
+}
+
+.small-text{
+    font-size:14px;
+    opacity:0.7;
+    margin-top:25px;
+}
+
+
+/* mobiel */
+
+@media(max-width:700px){
+
+.content-block{
+    padding:35px;
+}
+
+h1{
+    font-size:32px;
+}
+
+nav a{
+    display:block;
+    margin:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="de-film.html">De film</a>
+<a href="educatie.html">Educatie</a>
+<a href="over-ons.html">Over ons</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+
+<main class="page-content">
+
+<section class="content-block">
+
+<h1>Nieuwsbrief</h1>
+
+<p>
+Wil je op de hoogte blijven van Het Onderwater Theater? Schrijf je in voor onze kwartaalnieuwsbrief.
+</p>
+
+<p>
+We sturen af en toe een update over de voortgang van de film, het educatieprogramma, workshops en toekomstige activiteiten.
+</p>
+
+
+<form action="mailto:eshterfrank@gmail.com" method="post" enctype="text/plain" class="newsletter-form">
+
+<label for="name">Naam</label>
+<input type="text" id="name" name="naam" placeholder="Je naam">
+
+<label for="email">E-mailadres</label>
+<input type="email" id="email" name="email" placeholder="Je e-mailadres" required>
+
+<button type="submit">
+Inschrijven
+</button>
+
+</form>
+
+<p class="small-text">
+Je ontvangt maximaal vier keer per jaar een update. Afmelden kan altijd.
+</p>
+
+</section>
+
+</main>
+
+</body>
+</html>
