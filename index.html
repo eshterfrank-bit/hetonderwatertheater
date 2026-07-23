@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Het Onderwater Theater</title>
-
   <link rel="icon" type="image/png" href="shell_pink.png">
 
   <style>
@@ -15,93 +12,53 @@
       --blue: #0047ff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       position: relative;
       margin: 0;
       overflow-x: hidden;
-
       background: var(--background);
       color: var(--blue);
-
       font-family: Arial, sans-serif;
     }
 
-    /* --------------------------------
-       GEANIMEERDE SCHELP
-    -------------------------------- */
-
-    /*
-      De wrapper wordt met JavaScript over het scherm bewogen.
-      De afbeelding binnen de wrapper krijgt een afzonderlijke
-      dobberanimatie. Zo overschrijven de transformaties elkaar niet.
-    */
-
+    /* LEVENDE SCHELP */
     .shell-cursor {
       position: fixed;
       top: 0;
       left: 0;
-
       width: clamp(110px, 14vw, 230px);
       aspect-ratio: 1;
-
-      /*
-        Boven hero en sponsoren, maar onder de navigatie.
-      */
       z-index: 50;
-
       pointer-events: none;
       user-select: none;
-
       opacity: 0;
-
+      transition: opacity 0.8s ease;
+      transform-origin: center;
       will-change: transform, opacity;
-      transition: opacity 0.5s ease;
     }
 
-    .shell-cursor.is-visible {
-      opacity: 1;
-    }
+    .shell-cursor.is-visible { opacity: 1; }
 
     .shell-cursor img {
       display: block;
       width: 100%;
       height: auto;
-
       transform-origin: center;
       will-change: transform;
-
       animation: shell-float 3.8s ease-in-out infinite;
     }
 
     @keyframes shell-float {
-      0%,
-      100% {
-        transform:
-          translateY(-5px)
-          rotate(-3deg)
-          scale(1);
+      0%, 100% {
+        transform: translateY(-5px) rotate(-3deg) scale(1);
       }
-
       50% {
-        transform:
-          translateY(8px)
-          rotate(3deg)
-          scale(1.025);
+        transform: translateY(8px) rotate(3deg) scale(1.025);
       }
     }
-
-    /*
-      Automatische beweging voor touchscreens en apparaten
-      waarop geen nauwkeurige cursor beschikbaar is.
-    */
 
     @media (hover: none), (pointer: coarse) {
       .shell-cursor {
@@ -110,71 +67,33 @@
       }
 
       @keyframes shell-touch-swim {
-        0% {
-          transform:
-            translate3d(-30vw, 65vh, 0)
-            rotate(-12deg);
-        }
-
-        25% {
-          transform:
-            translate3d(18vw, 45vh, 0)
-            rotate(7deg);
-        }
-
-        50% {
-          transform:
-            translate3d(52vw, 62vh, 0)
-            rotate(-5deg);
-        }
-
-        75% {
-          transform:
-            translate3d(82vw, 28vh, 0)
-            rotate(8deg);
-        }
-
-        100% {
-          transform:
-            translate3d(125vw, 48vh, 0)
-            rotate(-10deg);
-        }
+        0% { transform: translate3d(-30vw, 65vh, 0) rotate(-12deg); }
+        25% { transform: translate3d(18vw, 45vh, 0) rotate(7deg); }
+        50% { transform: translate3d(52vw, 62vh, 0) rotate(-5deg); }
+        75% { transform: translate3d(82vw, 28vh, 0) rotate(8deg); }
+        100% { transform: translate3d(125vw, 48vh, 0) rotate(-10deg); }
       }
     }
 
-    /* --------------------------------
-       NAVIGATIE
-    -------------------------------- */
-
+    /* NAVIGATIE */
     .top-nav {
       position: absolute;
       top: 20px;
       right: 40px;
-
       display: flex;
       gap: 15px;
-
-      /*
-        De navigatie blijft boven de schelp.
-      */
       z-index: 100;
     }
 
     .top-nav a {
       padding: 10px 20px;
-
       color: var(--blue);
       font-weight: bold;
       text-decoration: none;
-
       border: 3px solid var(--blue);
       border-radius: 40px;
-
       background: rgba(255, 253, 246, 0.88);
-
-      transition:
-        background-color 0.3s,
-        color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .top-nav a:hover,
@@ -183,39 +102,24 @@
       background: var(--blue);
     }
 
-    /* --------------------------------
-       HERO
-    -------------------------------- */
-
+    /* HERO */
     .hero {
       position: relative;
-
-      /*
-        Geen verhoogde z-index meer.
-        Daardoor kan de schelp boven de hero en titel bewegen.
-      */
       z-index: 1;
-
       min-height: 85vh;
       padding: 100px 40px 40px;
-
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
       text-align: center;
     }
-
-    /* PNG-TITEL */
 
     .hero-title {
       position: relative;
       z-index: 1;
-
       width: min(92vw, 1500px);
       margin: 0;
-
       line-height: 0;
     }
 
@@ -228,31 +132,21 @@
     .tagline {
       position: relative;
       z-index: 1;
-
       max-width: 700px;
       margin: 35px auto 0;
-
       font-size: 1.2rem;
       line-height: 1.6;
     }
 
-    /* --------------------------------
-       SPONSOREN
-    -------------------------------- */
-
+    /* SPONSOREN */
     .sponsors {
       position: relative;
       z-index: 1;
-
       padding: 80px 40px 120px;
       text-align: center;
-
       opacity: 0;
       transform: translateY(50px);
-
-      transition:
-        opacity 1s ease,
-        transform 1s ease;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .sponsors.visible {
@@ -262,17 +156,13 @@
 
     .sponsors-title {
       margin-bottom: 60px;
-
       font-size: 1rem;
       font-weight: bold;
     }
 
-    /* LOGO GRID */
-
     .logo-grid {
       max-width: 1200px;
       margin: 0 auto 80px;
-
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
@@ -283,35 +173,24 @@
       display: block;
       width: 100%;
       height: 70px;
-
       object-fit: contain;
     }
-
-    /* SUPPORTERSTEKST */
 
     .supporters-text {
       max-width: 1200px;
       margin: auto;
-
       font-size: 0.8rem;
       line-height: 1.5;
-
       opacity: 0.95;
     }
-
-    /* --------------------------------
-       MOBIEL
-    -------------------------------- */
 
     @media (max-width: 800px) {
       .top-nav {
         position: relative;
         top: auto;
         right: auto;
-
         justify-content: center;
         flex-wrap: wrap;
-
         padding: 30px 20px 0;
       }
 
@@ -325,14 +204,11 @@
         padding: 40px 15px 60px;
       }
 
-      .hero-title {
-        width: 100%;
-      }
+      .hero-title { width: 100%; }
 
       .tagline {
         max-width: 90%;
         margin-top: 30px;
-
         font-size: 1rem;
       }
 
@@ -340,34 +216,19 @@
         width: clamp(85px, 25vw, 145px);
       }
 
-      .sponsors {
-        padding: 60px 25px 80px;
-      }
+      .sponsors { padding: 60px 25px 80px; }
 
       .logo-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 35px;
       }
 
-      .supporters-text {
-        font-size: 0.7rem;
-      }
+      .supporters-text { font-size: 0.7rem; }
     }
 
-    /* --------------------------------
-       MINDER BEWEGING
-    -------------------------------- */
-
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .shell-cursor {
-        display: none;
-        animation: none;
-      }
-
+      html { scroll-behavior: auto; }
+      .shell-cursor { display: none; animation: none; }
       .shell-cursor img,
       .sponsors,
       .top-nav a {
@@ -379,21 +240,8 @@
 </head>
 
 <body>
-
-  <!--
-    De wrapper volgt de cursor.
-    OT_shell.png moet in dezelfde map staan als index.html.
-  -->
-  <div
-    class="shell-cursor"
-    id="shellCursor"
-    aria-hidden="true"
-  >
-    <img
-      src="OT_shell.png"
-      alt=""
-      draggable="false"
-    >
+  <div class="shell-cursor" id="shellCursor" aria-hidden="true">
+    <img src="OT_shell.png" alt="" draggable="false">
   </div>
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
@@ -404,25 +252,18 @@
   </nav>
 
   <main>
-
     <section class="hero">
-
       <h1 class="hero-title">
-        <img
-          src="OT_LOGO_TRANSPARANT.png"
-          alt="Het Onderwater Theater"
-        >
+        <img src="OT_LOGO-TRANSPARANT.png" alt="Het Onderwater Theater">
       </h1>
 
       <p class="tagline">
         Een korte stop-motion kinderfilm en educatief project dat het
         label verlegenheid onderzoekt.
       </p>
-
     </section>
 
     <section class="sponsors" id="sponsors">
-
       <p class="sponsors-title">
         Dit project wordt mede mogelijk gemaakt door de volgende fondsen
         en partners:
@@ -456,16 +297,10 @@
         Dongen van the Black Cat Theatre, Jurriaan Esmeijer, A &amp; J de Jong,
         Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
       </div>
-
     </section>
-
   </main>
 
   <script>
-    /*
-      SPONSOREN LATEN VERSCHIJNEN
-    */
-
     const sponsors = document.querySelector("#sponsors");
 
     if ("IntersectionObserver" in window) {
@@ -478,9 +313,7 @@
             }
           });
         },
-        {
-          threshold: 0.2
-        }
+        { threshold: 0.2 }
       );
 
       observer.observe(sponsors);
@@ -488,103 +321,119 @@
       sponsors.classList.add("visible");
     }
 
-    /*
-      SCHELP VOLGT DE CURSOR
-    */
-
     const shell = document.querySelector("#shellCursor");
+    const canUsePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const canFollowPointer =
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    const reducedMotion =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (shell && canFollowPointer && !reducedMotion) {
-      let targetX = window.innerWidth * 0.5;
-      let targetY = window.innerHeight * 0.5;
-
-      let currentX = targetX;
-      let currentY = targetY;
-
+    if (shell && canUsePointer && !reducedMotion) {
+      const IDLE_DELAY = 3000;
+      let mode = "swimming";
+      let currentX = -120;
+      let currentY = window.innerHeight * 0.25;
+      let targetX = window.innerWidth * 0.2;
+      let targetY = window.innerHeight * 0.4;
       let previousX = currentX;
+      let previousY = currentY;
       let rotation = 0;
+      let idleTimer = null;
+      let nextSwimTargetTimer = null;
+      const followSpeed = 0.065;
+      const swimSpeed = 0.012;
 
-      /*
-        Hoe lager dit getal, hoe trager en vloeiender
-        de schelp achter de cursor aan beweegt.
-      */
-      const followSpeed = 0.075;
+      shell.classList.add("is-visible");
 
-      function updateTarget(event) {
+      function randomBetween(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function chooseSwimTarget() {
+        const shellSize = shell.offsetWidth;
+        const leaveScreen = Math.random() < 0.3;
+
+        if (leaveScreen) {
+          const side = Math.floor(Math.random() * 4);
+
+          if (side === 0) {
+            targetX = -shellSize * 0.55;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 1) {
+            targetX = window.innerWidth + shellSize * 0.55;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 2) {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = -shellSize * 0.55;
+          } else {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = window.innerHeight + shellSize * 0.55;
+          }
+        } else {
+          targetX = randomBetween(
+            shellSize * 0.25,
+            window.innerWidth - shellSize * 0.25
+          );
+
+          targetY = randomBetween(
+            shellSize * 0.25,
+            window.innerHeight - shellSize * 0.25
+          );
+        }
+
+        clearTimeout(nextSwimTargetTimer);
+        nextSwimTargetTimer = setTimeout(() => {
+          if (mode === "swimming") chooseSwimTarget();
+        }, randomBetween(4500, 8000));
+      }
+
+      function startSwimming() {
+        mode = "swimming";
+        chooseSwimTarget();
+      }
+
+      function followPointer(event) {
+        mode = "following";
         targetX = event.clientX;
         targetY = event.clientY;
-
         shell.classList.add("is-visible");
-      }
-
-      function hideShell() {
-        shell.classList.remove("is-visible");
-      }
-
-      function showShell() {
-        shell.classList.add("is-visible");
+        clearTimeout(idleTimer);
+        clearTimeout(nextSwimTargetTimer);
+        idleTimer = setTimeout(startSwimming, IDLE_DELAY);
       }
 
       function animateShell() {
-        currentX += (targetX - currentX) * followSpeed;
-        currentY += (targetY - currentY) * followSpeed;
+        const speed = mode === "following" ? followSpeed : swimSpeed;
+        currentX += (targetX - currentX) * speed;
+        currentY += (targetY - currentY) * speed;
 
         const movementX = currentX - previousX;
+        const movementY = currentY - previousY;
+        const movementAngle = Math.atan2(movementY, movementX) * (180 / Math.PI);
+        const targetRotation = Math.max(-18, Math.min(18, movementAngle * 0.18));
+        rotation += (targetRotation - rotation) * 0.04;
 
-        /*
-          Een kleine kanteling op basis van de horizontale beweging.
-        */
-        const targetRotation = Math.max(
-          -12,
-          Math.min(12, movementX * 1.8)
-        );
+        const x = currentX - shell.offsetWidth / 2;
+        const y = currentY - shell.offsetHeight / 2;
 
-        rotation += (targetRotation - rotation) * 0.08;
-
-        const shellWidth = shell.offsetWidth;
-        const shellHeight = shell.offsetHeight;
-
-        /*
-          De cursor bevindt zich ongeveer in het midden
-          van de schelp.
-        */
-        const x = currentX - shellWidth / 2;
-        const y = currentY - shellHeight / 2;
-
-        shell.style.transform = `
-          translate3d(${x}px, ${y}px, 0)
-          rotate(${rotation}deg)
-        `;
+        shell.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg)`;
 
         previousX = currentX;
+        previousY = currentY;
+
+        if (mode === "swimming") {
+          const distance = Math.hypot(targetX - currentX, targetY - currentY);
+          if (distance < 35) chooseSwimTarget();
+        }
 
         requestAnimationFrame(animateShell);
       }
 
-      window.addEventListener("pointermove", updateTarget, {
-        passive: true
-      });
+      window.addEventListener("pointermove", followPointer, { passive: true });
+      window.addEventListener("resize", () => {
+        if (mode === "swimming") chooseSwimTarget();
+      }, { passive: true });
 
-      document.documentElement.addEventListener(
-        "mouseleave",
-        hideShell
-      );
-
-      document.documentElement.addEventListener(
-        "mouseenter",
-        showShell
-      );
-
+      startSwimming();
       animateShell();
     }
   </script>
-
 </body>
 </html>
-```
