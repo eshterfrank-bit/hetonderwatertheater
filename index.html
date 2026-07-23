@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -10,15 +11,119 @@
   <link rel="icon" type="image/png" href="shell_pink.png">
 
   <style>
-    body {
-      margin: 0;
-      background: #FFFDF6;
-      font-family: Arial, sans-serif;
-      color: #0047FF;
-      overflow-x: hidden;
+    :root {
+      --background: #fffdf6;
+      --blue: #0047ff;
     }
 
-    /* NAVIGATIE */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      overflow-x: hidden;
+
+      background: var(--background);
+      color: var(--blue);
+
+      font-family: Arial, sans-serif;
+    }
+
+    /* --------------------------------
+       GEANIMEERDE SCHELP
+    -------------------------------- */
+
+    .shell-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: clamp(120px, 16vw, 260px);
+      height: auto;
+
+      pointer-events: none;
+      user-select: none;
+
+      z-index: 5;
+
+      transform-origin: center;
+      will-change: transform, opacity;
+
+      animation: shell-swim 22s linear infinite;
+    }
+
+    /*
+      De schelp beweegt van linksonder naar rechtsboven
+      en maakt onderweg een rustige golvende beweging.
+    */
+
+    @keyframes shell-swim {
+      0% {
+        transform:
+          translate(-30vw, 75vh)
+          rotate(-18deg)
+          scale(0.8);
+
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      20% {
+        transform:
+          translate(5vw, 58vh)
+          rotate(8deg)
+          scale(0.9);
+      }
+
+      40% {
+        transform:
+          translate(35vw, 68vh)
+          rotate(-7deg)
+          scale(1);
+      }
+
+      60% {
+        transform:
+          translate(62vw, 38vh)
+          rotate(10deg)
+          scale(0.95);
+      }
+
+      80% {
+        transform:
+          translate(88vw, 48vh)
+          rotate(-5deg)
+          scale(0.85);
+
+        opacity: 1;
+      }
+
+      94% {
+        opacity: 0;
+      }
+
+      100% {
+        transform:
+          translate(125vw, 18vh)
+          rotate(18deg)
+          scale(0.75);
+
+        opacity: 0;
+      }
+    }
+
+    /* --------------------------------
+       NAVIGATIE
+    -------------------------------- */
 
     .top-nav {
       position: absolute;
@@ -34,12 +139,14 @@
     .top-nav a {
       padding: 10px 20px;
 
-      color: #0047FF;
+      color: var(--blue);
       font-weight: bold;
       text-decoration: none;
 
-      border: 3px solid #0047FF;
+      border: 3px solid var(--blue);
       border-radius: 40px;
+
+      background: rgba(255, 253, 246, 0.85);
 
       transition:
         background-color 0.3s,
@@ -48,14 +155,18 @@
 
     .top-nav a:hover,
     .top-nav a:focus-visible {
-      background: #0047FF;
       color: white;
+      background: var(--blue);
     }
 
-    /* HERO */
+    /* --------------------------------
+       HERO
+    -------------------------------- */
 
     .hero {
-      box-sizing: border-box;
+      position: relative;
+      z-index: 10;
+
       min-height: 85vh;
       padding: 100px 40px 40px;
 
@@ -95,9 +206,14 @@
       line-height: 1.6;
     }
 
-    /* SPONSOREN */
+    /* --------------------------------
+       SPONSOREN
+    -------------------------------- */
 
     .sponsors {
+      position: relative;
+      z-index: 10;
+
       padding: 80px 40px 120px;
       text-align: center;
 
@@ -116,6 +232,7 @@
 
     .sponsors-title {
       margin-bottom: 60px;
+
       font-size: 1rem;
       font-weight: bold;
     }
@@ -136,6 +253,7 @@
       display: block;
       width: 100%;
       height: 70px;
+
       object-fit: contain;
     }
 
@@ -147,10 +265,13 @@
 
       font-size: 0.8rem;
       line-height: 1.5;
+
       opacity: 0.95;
     }
 
-    /* MOBIEL */
+    /* --------------------------------
+       MOBIEL
+    -------------------------------- */
 
     @media (max-width: 800px) {
       .top-nav {
@@ -181,7 +302,13 @@
       .tagline {
         max-width: 90%;
         margin-top: 30px;
+
         font-size: 1rem;
+      }
+
+      .shell-animation {
+        width: clamp(90px, 25vw, 150px);
+        animation-duration: 17s;
       }
 
       .sponsors {
@@ -198,9 +325,19 @@
       }
     }
 
-    /* ANIMATIE UITSCHAKELEN INDIEN GEWENST */
+    /* --------------------------------
+       MINDER BEWEGING
+    -------------------------------- */
 
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .shell-animation {
+        display: none;
+      }
+
       .sponsors,
       .top-nav a {
         transition: none;
@@ -210,6 +347,17 @@
 </head>
 
 <body>
+
+  <!--
+    Decoratieve geanimeerde schelp.
+    OT_shell.png moet in dezelfde map staan als index.html.
+  -->
+  <img
+    class="shell-animation"
+    src="OT_shell.png"
+    alt=""
+    aria-hidden="true"
+  >
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="over-ons.html">Over ons</a>
@@ -289,7 +437,9 @@
             }
           });
         },
-        { threshold: 0.2 }
+        {
+          threshold: 0.2
+        }
       );
 
       observer.observe(sponsors);
@@ -300,3 +450,4 @@
 
 </body>
 </html>
+```
