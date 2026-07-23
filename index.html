@@ -10,15 +10,6 @@
   <link rel="icon" type="image/png" href="shell_pink.png">
 
   <style>
-    /* EIGEN FONT */
-    @font-face {
-      font-family: "OT Font Capital";
-      src: url("./OT_font_capital.otf") format("opentype");
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
     body {
       margin: 0;
       background: #FFFDF6;
@@ -28,25 +19,31 @@
     }
 
     /* NAVIGATIE */
+
     .top-nav {
       position: absolute;
       top: 20px;
       right: 40px;
+
       display: flex;
       gap: 15px;
+
       z-index: 100;
     }
 
     .top-nav a {
       padding: 10px 20px;
-      border: 3px solid #0047FF;
-      border-radius: 40px;
 
       color: #0047FF;
       font-weight: bold;
       text-decoration: none;
 
-      transition: background-color 0.3s, color 0.3s;
+      border: 3px solid #0047FF;
+      border-radius: 40px;
+
+      transition:
+        background-color 0.3s,
+        color 0.3s;
     }
 
     .top-nav a:hover,
@@ -56,9 +53,11 @@
     }
 
     /* HERO */
+
     .hero {
+      box-sizing: border-box;
       min-height: 85vh;
-      padding: 0 40px;
+      padding: 100px 40px 40px;
 
       display: flex;
       justify-content: center;
@@ -68,43 +67,36 @@
       text-align: center;
     }
 
-    /*
-      Alleen deze titel gebruikt OT_font_capital.
-      Alle andere tekst blijft Arial gebruiken.
-    */
-    .custom-title {
-      margin: 0;
+    /* PNG-TITEL */
 
-      font-family: "OT Font Capital", Arial, sans-serif;
-      font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: normal;
-      font-style: normal;
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
+    .hero-title {
+      width: min(92vw, 1500px);
+      margin: 0;
+      line-height: 0;
     }
 
-   .custom-title .title-small {
-  display: block;
-  margin-bottom: 0.15em;
-  font-size: 1em;
-  line-height: 0.9;
-}
-
-    .custom-title .title-line {
+    .hero-title img {
       display: block;
+      width: 100%;
+      height: auto;
+
+      /*
+        De PNG heeft een witte achtergrond.
+        Multiply laat die samenvloeien met de crèmekleur.
+      */
+      mix-blend-mode: multiply;
     }
 
     .tagline {
       max-width: 700px;
-      margin-top: 50px;
+      margin: 35px auto 0;
 
-      font-family: Arial, sans-serif;
       font-size: 1.2rem;
       line-height: 1.6;
     }
 
     /* SPONSOREN */
+
     .sponsors {
       padding: 80px 40px 120px;
       text-align: center;
@@ -129,6 +121,7 @@
     }
 
     /* LOGO GRID */
+
     .logo-grid {
       max-width: 1200px;
       margin: 0 auto 80px;
@@ -147,6 +140,7 @@
     }
 
     /* SUPPORTERSTEKST */
+
     .supporters-text {
       max-width: 1200px;
       margin: auto;
@@ -157,31 +151,41 @@
     }
 
     /* MOBIEL */
+
     @media (max-width: 800px) {
       .top-nav {
         position: relative;
+        top: auto;
         right: auto;
 
         justify-content: center;
         flex-wrap: wrap;
 
-        padding: 30px 20px;
+        padding: 30px 20px 0;
+      }
+
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
       }
 
       .hero {
-        min-height: 70vh;
-        padding: 40px 20px;
+        min-height: 65vh;
+        padding: 40px 15px 60px;
       }
 
-      .custom-title {
-        font-size: clamp(3.2rem, 16vw, 5rem);
-        line-height: 0.95;
-        letter-spacing: -0.02em;
+      .hero-title {
+        width: 100%;
       }
 
       .tagline {
-        margin-top: 40px;
+        max-width: 90%;
+        margin-top: 30px;
         font-size: 1rem;
+      }
+
+      .sponsors {
+        padding: 60px 25px 80px;
       }
 
       .logo-grid {
@@ -194,7 +198,8 @@
       }
     }
 
-    /* Minder animatie als de bezoeker dit heeft ingesteld */
+    /* ANIMATIE UITSCHAKELEN INDIEN GEWENST */
+
     @media (prefers-reduced-motion: reduce) {
       .sponsors,
       .top-nav a {
@@ -205,6 +210,7 @@
 </head>
 
 <body>
+
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="over-ons.html">Over ons</a>
     <a href="de-film.html">De film</a>
@@ -213,20 +219,25 @@
   </nav>
 
   <main>
+
     <section class="hero">
-      <h1 class="custom-title">
-        <span class="title-small">HET</span>
-        <span class="title-line">ONDERWATER</span>
-        <span class="title-line">THEATER</span>
+
+      <h1 class="hero-title">
+        <img
+          src="OT_LOGO.png"
+          alt="Het Onderwater Theater"
+        >
       </h1>
 
       <p class="tagline">
         Een korte stop-motion kinderfilm en educatief project dat het
         label verlegenheid onderzoekt.
       </p>
+
     </section>
 
     <section class="sponsors" id="sponsors">
+
       <p class="sponsors-title">
         Dit project wordt mede mogelijk gemaakt door de volgende fondsen
         en partners:
@@ -260,7 +271,9 @@
         Dongen van the Black Cat Theatre, Jurriaan Esmeijer, A &amp; J deJong,
         Sandra Jansen, Tomoko Hasuwa en Fidel Kamiel Siebert.
       </div>
+
     </section>
+
   </main>
 
   <script>
@@ -284,6 +297,6 @@
       sponsors.classList.add("visible");
     }
   </script>
-</body>
 
+</body>
 </html>
