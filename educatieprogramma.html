@@ -2,168 +2,453 @@
 <html lang="nl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Educatie | Het Onderwater Theater</title>
+  <title>Educatie | Het Onderwater Theater</title>
 
-<link rel="icon" type="image/png" href="shell_pink.png">
+  <link rel="icon" type="image/png" href="shell_pink.png">
 
-<style>
+  <style>
+    :root {
+      --background: #fffdf6;
+      --blue: #0047ff;
+    }
 
-body{
-margin:0;
-background:#FFFDF6;
-font-family:Arial,sans-serif;
-color:#0047FF;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.top-nav{
-position:absolute;
-top:30px;
-right:40px;
-display:flex;
-gap:15px;
-z-index:100;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.top-nav a{
-text-decoration:none;
-color:#0047FF;
-font-weight:bold;
-padding:10px 20px;
-border:3px solid #0047FF;
-border-radius:40px;
-transition:.3s;
-}
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+    }
 
-.top-nav a:hover{
-background:#0047FF;
-color:white;
-}
+    /* --------------------------------
+       NAVIGATIE
+    -------------------------------- */
 
-.page{
-max-width:1050px;
-margin:auto;
-padding:140px 40px 100px;
-}
+    .top-nav {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      z-index: 100;
 
-h1{
-font-size:clamp(3rem,9vw,6rem);
-line-height:0.9;
-margin:0 0 50px;
-text-transform:uppercase;
-letter-spacing:-0.04em;
-}
+      display: flex;
+      gap: 15px;
+    }
 
-h2{
-font-size:2rem;
-margin-top:80px;
-}
+    .top-nav a {
+      padding: 10px 20px;
 
-p{
-font-size:1.1rem;
-line-height:1.8;
-max-width:780px;
-}
+      border: 3px solid var(--blue);
+      border-radius: 40px;
 
-.card-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:35px;
-margin-top:50px;
-}
+      color: var(--blue);
+      font-weight: bold;
+      text-decoration: none;
 
-.card{
-border:3px solid #0047FF;
-border-radius:30px;
-padding:30px;
-}
+      background: rgba(255, 253, 246, 0.88);
 
-.card h3{
-margin-top:0;
-font-size:1.4rem;
-text-transform:uppercase;
-}
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
 
-@media(max-width:900px){
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
 
-.top-nav{
-position:relative;
-justify-content:center;
-top:0;
-right:0;
-padding-top:30px;
-flex-wrap:wrap;
-}
+    /* --------------------------------
+       PAGINA
+    -------------------------------- */
 
-.card-grid{
-grid-template-columns:1fr;
-}
+    .page {
+      position: relative;
+      z-index: 2;
 
-}
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 140px 300px 120px 0;
+    }
 
-</style>
+    h1 {
+      margin: 0 0 50px;
+
+      font-size: clamp(3rem, 9vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-top: 80px;
+      font-size: 2rem;
+    }
+
+    p {
+      max-width: 780px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* --------------------------------
+       KAARTEN
+    -------------------------------- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+
+      margin-top: 50px;
+    }
+
+    .card {
+      padding: 30px;
+
+      border: 3px solid var(--blue);
+      border-radius: 30px;
+
+      background: rgba(255, 253, 246, 0.82);
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) rotate(-0.5deg);
+      box-shadow: 10px 12px 0 rgba(0, 71, 255, 0.12);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin-bottom: 0;
+    }
+
+    /* --------------------------------
+       ONDERWATERDIER
+    -------------------------------- */
+
+    /*
+      Het dier zweeft rechts in beeld en maakt af en toe
+      een rustige draai. De animatie pauzeert kort wanneer
+      de bezoeker er met de cursor overheen beweegt.
+    */
+
+    .creature {
+      position: fixed;
+      right: clamp(-65px, -3vw, -20px);
+      top: 50%;
+      z-index: 40;
+
+      width: clamp(190px, 23vw, 360px);
+
+      pointer-events: auto;
+      user-select: none;
+
+      opacity: 0;
+
+      transform:
+        translate3d(55%, -50%, 0)
+        rotate(-12deg)
+        scale(0.9);
+
+      transform-origin: 50% 50%;
+
+      transition:
+        opacity 1.1s ease,
+        transform 1.5s cubic-bezier(.2, .75, .25, 1);
+
+      will-change: transform, opacity;
+    }
+
+    .creature.is-visible {
+      opacity: 1;
+
+      transform:
+        translate3d(0, -50%, 0)
+        rotate(0deg)
+        scale(1);
+    }
+
+    .creature-inner {
+      transform-origin: 50% 50%;
+      animation:
+        creature-float 4.8s ease-in-out infinite,
+        creature-spin 14s ease-in-out infinite;
+    }
+
+    .creature img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.12));
+    }
+
+    .creature:hover .creature-inner {
+      animation-play-state: paused;
+    }
+
+    @keyframes creature-float {
+      0%,
+      100% {
+        transform: translateY(-8px) scale(1);
+      }
+
+      50% {
+        transform: translateY(10px) scale(1.015);
+      }
+    }
+
+    @keyframes creature-spin {
+      0%,
+      18% {
+        rotate: 0deg;
+      }
+
+      36% {
+        rotate: 18deg;
+      }
+
+      50% {
+        rotate: 360deg;
+      }
+
+      68% {
+        rotate: 342deg;
+      }
+
+      82%,
+      100% {
+        rotate: 360deg;
+      }
+    }
+
+    /* --------------------------------
+       TABLET
+    -------------------------------- */
+
+    @media (max-width: 1050px) {
+      .page {
+        width: min(920px, calc(100% - 56px));
+        padding-right: 220px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creature {
+        right: -70px;
+        width: clamp(200px, 29vw, 300px);
+      }
+    }
+
+    /* --------------------------------
+       MOBIEL
+    -------------------------------- */
+
+    @media (max-width: 800px) {
+      .top-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+
+        justify-content: center;
+        flex-wrap: wrap;
+
+        padding: 30px 20px 0;
+      }
+
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
+      }
+
+      .page {
+        width: auto;
+        padding: 80px 24px 300px;
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 15vw, 5rem);
+        overflow-wrap: anywhere;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creature {
+        top: auto;
+        right: -50px;
+        bottom: -25px;
+
+        width: clamp(190px, 54vw, 280px);
+
+        transform:
+          translate3d(50%, 30%, 0)
+          rotate(-12deg)
+          scale(0.9);
+      }
+
+      .creature.is-visible {
+        transform:
+          translate3d(0, 0, 0)
+          rotate(0deg)
+          scale(1);
+      }
+    }
+
+    /* --------------------------------
+       MINDER BEWEGING
+    -------------------------------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .top-nav a,
+      .card,
+      .creature {
+        transition: none;
+      }
+
+      .creature {
+        opacity: 1;
+        transform: translate3d(0, -50%, 0);
+      }
+
+      .creature-inner {
+        animation: none;
+      }
+
+      @media (max-width: 800px) {
+        .creature {
+          transform: none;
+        }
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="top-nav">
-<a href="index.html">Home</a>
-<a href="over-ons.html">Over ons</a>
-<a href="de-film.html">De film</a>
-<a href="contact.html">Contact</a>
-</div>
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="de-film.html">De film</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<section class="page">
+  <main class="page">
 
-<h1>Educatieprogramma</h1>
+    <h1>Educatieprogramma</h1>
 
-<p>
-Het educatieprogramma sluit aan bij de thema's van Het Onderwater Theater en verkent verschillende vormen van expressie. De lessen zijn opgebouwd vanuit theater, beeldende kunst, dans, schrijfkunst en muziek en bieden kinderen de mogelijkheid om op verschillende manieren te communiceren en zich uit te drukken.
-</p>
+    <p>
+      Het educatieprogramma sluit aan bij de thema's van Het Onderwater Theater
+      en verkent verschillende vormen van expressie. De lessen zijn opgebouwd
+      vanuit theater, beeldende kunst, dans, schrijfkunst en muziek en bieden
+      kinderen de mogelijkheid om op verschillende manieren te communiceren en
+      zich uit te drukken.
+    </p>
 
-<h2>Waar het programma over gaat</h2>
+    <h2>Waar het programma over gaat</h2>
 
-<div class="card-grid">
+    <div class="card-grid">
 
-<div class="card">
-<h3>Verbeelding</h3>
-<p>
-Kinderen maken hun binnenwereld zichtbaar via kunst.
-</p>
-</div>
+      <article class="card">
+        <h3>Verbeelding</h3>
+        <p>
+          Kinderen maken hun binnenwereld zichtbaar via kunst.
+        </p>
+      </article>
 
-<div class="card">
-<h3>Expressie</h3>
-<p>
-Het programma onderzoekt andere manieren van uiten, buiten praten om.
-</p>
-</div>
+      <article class="card">
+        <h3>Expressie</h3>
+        <p>
+          Het programma onderzoekt andere manieren van uiten, buiten praten om.
+        </p>
+      </article>
 
-<div class="card">
-<h3>Zelfbeeld</h3>
-<p>
-Kinderen worden uitgenodigd om met nieuwsgierigheid naar zichzelf te kijken.
-</p>
-</div>
+      <article class="card">
+        <h3>Zelfbeeld</h3>
+        <p>
+          Kinderen worden uitgenodigd om met nieuwsgierigheid naar zichzelf te
+          kijken.
+        </p>
+      </article>
 
-</div>
+    </div>
 
-<h2>Voor scholen, culturele plekken of thuis</h2>
+    <h2>Voor scholen, culturele plekken of thuis</h2>
 
-<p>
-Het educatieprogramma van Het Onderwater Theater is voor iedereen die met de thema’s uit het project aan de slag wil gaan. Samen met educators, kunstenaars en mensen uit het onderwijs werken we aan een programma dat eenvoudig in gebruik is en aansluit bij de praktijk.
-<p>
-We maken een afneembaar programma met toegankelijke opdrachten en materialen die je kunt gebruiken in de klas, in het buurthuis, op een culturele plek of thuis met je (oppas)kindje. Het programma biedt handvatten om met kinderen in gesprek te gaan over thema’s als zelfbeeld, verlegenheid, gevoeligheid en de verschillende manieren waarop kinderen zichzelf ervaren en uiten. Het gaat daarbij niet om het veranderen van kinderen, maar om ruimte te maken voor verschillende manieren van zijn.
-</p>
+    <p>
+      Het educatieprogramma van Het Onderwater Theater is voor iedereen die met
+      de thema’s uit het project aan de slag wil gaan. Samen met educators,
+      kunstenaars en mensen uit het onderwijs werken we aan een programma dat
+      eenvoudig in gebruik is en aansluit bij de praktijk.
+    </p>
 
-<h2>Workshops op locatie</h2>
+    <p>
+      We maken een afneembaar programma met toegankelijke opdrachten en
+      materialen die je kunt gebruiken in de klas, in het buurthuis, op een
+      culturele plek of thuis met je (oppas)kindje. Het programma biedt
+      handvatten om met kinderen in gesprek te gaan over thema’s als zelfbeeld,
+      verlegenheid, gevoeligheid en de verschillende manieren waarop kinderen
+      zichzelf ervaren en uiten. Het gaat daarbij niet om het veranderen van
+      kinderen, maar om ruimte te maken voor verschillende manieren van zijn.
+    </p>
 
-<p>
-Naast het educatieprogramma verzorgen we ook workshops waarbij de makers langskomen op locatie. Op een speelse en creatieve manier maken kinderen kennis met de thema’s van en technieken uit Het Onderwater Theater.
+    <h2>Workshops op locatie</h2>
 
-</section>
+    <p>
+      Naast het educatieprogramma verzorgen we ook workshops waarbij de makers
+      langskomen op locatie. Op een speelse en creatieve manier maken kinderen
+      kennis met de thema’s van en technieken uit Het Onderwater Theater.
+    </p>
+
+  </main>
+
+  <div class="creature" id="creature" aria-hidden="true">
+    <div class="creature-inner">
+      <img
+        src="OT_creature.png"
+        alt=""
+        draggable="false"
+      >
+    </div>
+  </div>
+
+  <script>
+    const creature = document.querySelector("#creature");
+
+    if (creature) {
+      window.setTimeout(() => {
+        creature.classList.add("is-visible");
+      }, 650);
+    }
+  </script>
 
 </body>
 </html>
