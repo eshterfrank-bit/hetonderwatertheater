@@ -78,9 +78,13 @@
       position: relative;
       z-index: 2;
 
-      max-width: 1050px;
-      margin: auto;
-      padding: 140px 40px 140px;
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+
+      /*
+        Op grotere schermen blijft rechts ruimte vrij voor Billy.
+      */
+      padding: 140px 340px 140px 0;
     }
 
     h1 {
@@ -97,16 +101,14 @@
       font-size: 2rem;
     }
 
+    /*
+      Alle lopende tekst heeft exact dezelfde grootte.
+    */
+
     p {
       max-width: 780px;
-
       font-size: 1.1rem;
       line-height: 1.8;
-    }
-
-    .lead {
-      font-size: clamp(1.2rem, 2vw, 1.45rem);
-      line-height: 1.7;
     }
 
     /* --------------------------------
@@ -148,7 +150,6 @@
 
     .card p {
       margin-bottom: 0;
-      font-size: 1rem;
     }
 
     /* --------------------------------
@@ -156,17 +157,17 @@
     -------------------------------- */
 
     /*
-      Billy staat vast rechtsonder, schuift rustig in beeld
-      en reageert subtiel op de cursor.
+      Billy blijft rechts in beeld en vult de lege ruimte
+      naast de eerste tekstblokken.
     */
 
     .billy {
       position: fixed;
-      right: clamp(-95px, -5vw, -45px);
-      bottom: -18px;
+      right: clamp(-85px, -4vw, -35px);
+      bottom: -16px;
       z-index: 40;
 
-      width: clamp(210px, 27vw, 440px);
+      width: clamp(260px, 26vw, 420px);
 
       pointer-events: none;
       user-select: none;
@@ -219,10 +220,6 @@
         billy-stopmotion 8s steps(2, end) infinite;
     }
 
-    /*
-      Heel subtiele ademhaling.
-    */
-
     @keyframes billy-breathe {
       0%,
       100% {
@@ -234,10 +231,6 @@
       }
     }
 
-    /*
-      Kleine stop-motionachtige verschuiving.
-    */
-
     @keyframes billy-stopmotion {
       0%,
       45%,
@@ -248,6 +241,26 @@
       50%,
       55% {
         margin-left: 2px;
+      }
+    }
+
+    /* --------------------------------
+       TABLET
+    -------------------------------- */
+
+    @media (max-width: 1050px) {
+      .page {
+        width: min(920px, calc(100% - 56px));
+        padding-right: 240px;
+      }
+
+      .billy {
+        right: -80px;
+        width: clamp(230px, 30vw, 340px);
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -273,7 +286,16 @@
       }
 
       .page {
-        padding: 80px 24px 300px;
+        width: auto;
+        padding: 80px 24px 320px;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        margin-top: 65px;
       }
 
       .card-grid {
@@ -338,7 +360,7 @@
 
     <h1>De film</h1>
 
-    <p class="lead">
+    <p>
       Het Onderwater Theater is een korte stop-motionfilm over Billy, een
       introvert meisje dat zich vaak onzeker voelt in sociale situaties. Op
       school blijft ze op de achtergrond, maar thuis deelt ze haar dromen,
@@ -455,10 +477,6 @@
         const deltaX = event.clientX - billyCenterX;
         const deltaY = event.clientY - billyCenterY;
 
-        /*
-          Billy helt maar een paar pixels richting de cursor.
-        */
-
         targetX = clamp(
           (deltaX / window.innerWidth) * 10,
           -3.5,
@@ -471,10 +489,6 @@
           2.5
         );
 
-        /*
-          Komt de cursor dichtbij, dan trekt Billy zich iets terug.
-        */
-
         const distance = Math.hypot(deltaX, deltaY);
         const shyDistance = Math.max(190, rect.width * 0.65);
 
@@ -484,10 +498,6 @@
         );
 
         clearTimeout(resetTimer);
-
-        /*
-          Na stilstand kijkt Billy weer recht vooruit.
-        */
 
         resetTimer = window.setTimeout(() => {
           targetX = 0;
