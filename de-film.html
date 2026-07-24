@@ -81,29 +81,30 @@
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
 
-      /*
-        Op grotere schermen blijft rechts ruimte vrij voor Billy.
-      */
       padding: 140px 340px 140px 0;
     }
 
-    h1 {
-      margin: 0 0 50px;
+    /* --------------------------------
+       TITEL ALS AFBEELDING
+    -------------------------------- */
 
-      font-size: clamp(3rem, 9vw, 6rem);
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
+    .page-title {
+      width: min(92vw, 950px);
+      margin: 0 0 50px;
+      line-height: 0;
+    }
+
+    .page-title picture,
+    .page-title img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     h2 {
       margin-top: 80px;
       font-size: 2rem;
     }
-
-    /*
-      Alle lopende tekst heeft exact dezelfde grootte.
-    */
 
     p {
       max-width: 780px;
@@ -155,11 +156,6 @@
     /* --------------------------------
        BILLY
     -------------------------------- */
-
-    /*
-      Billy blijft rechts in beeld en vult de lege ruimte
-      naast de eerste tekstblokken.
-    */
 
     .billy {
       position: fixed;
@@ -290,7 +286,8 @@
         padding: 80px 24px 320px;
       }
 
-      h1 {
+      .page-title {
+        width: 100%;
         margin-bottom: 40px;
       }
 
@@ -358,7 +355,19 @@
 
   <main class="page">
 
-    <h1>De film</h1>
+    <h1 class="page-title">
+      <picture>
+        <source
+          srcset="OT_FILM-lossless.webp"
+          type="image/webp">
+
+        <img
+          src="OT_FILM-optimized.png"
+          alt="De film"
+          loading="eager"
+          decoding="async">
+      </picture>
+    </h1>
 
     <p>
       Het Onderwater Theater is een korte stop-motionfilm over Billy, een
@@ -426,8 +435,7 @@
       <img
         src="OT_BILLY_TRANSPARANT.png"
         alt=""
-        draggable="false"
-      >
+        draggable="false">
     </div>
   </div>
 
@@ -441,19 +449,11 @@
     const precisePointer =
       window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    /*
-      Billy verschijnt rustig nadat de pagina geladen is.
-    */
-
     if (billy) {
       window.setTimeout(() => {
         billy.classList.add("is-visible");
       }, 650);
     }
-
-    /*
-      Op apparaten met een nauwkeurige cursor kijkt Billy mee.
-    */
 
     if (billy && billyLook && precisePointer && !reducedMotion) {
       let targetX = 0;
