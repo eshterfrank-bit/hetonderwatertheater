@@ -1,203 +1,323 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Over ons | Het Onderwater Theater</title>
-<link rel="icon" type="image/png" href="shell_pink.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root{
---background:#FFFDF6;
---blue:#0047FF;
-}
+  <title>Over ons | Het Onderwater Theater</title>
 
-*{box-sizing:border-box;}
+  <link rel="icon" type="image/png" href="shell_pink.png">
 
-html{scroll-behavior:smooth;}
+  <style>
+    :root {
+      --background: #fffdf6;
+      --blue: #0047ff;
+    }
 
-body{
-margin:0;
-background:var(--background);
-font-family:Arial,sans-serif;
-color:var(--blue);
-overflow-x:hidden;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.top-nav{
-position:absolute;
-top:30px;
-right:40px;
-display:flex;
-gap:15px;
-z-index:100;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.top-nav a{
-text-decoration:none;
-color:var(--blue);
-font-weight:bold;
-padding:10px 20px;
-border:3px solid var(--blue);
-border-radius:40px;
-background:rgba(255,253,246,.88);
-transition:.3s;
-}
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+    }
 
-.top-nav a:hover{
-background:var(--blue);
-color:#fff;
-transform:translateY(-2px);
-}
+    /* --------------------------------
+       NAVIGATIE
+    -------------------------------- */
 
-.page{
-max-width:1000px;
-margin:auto;
-padding:140px 40px 100px;
-}
+    .top-nav {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      z-index: 100;
+      display: flex;
+      gap: 15px;
+    }
 
-.page-title{
-width:min(92vw,950px);
-margin:0 0 50px;
-line-height:0;
-}
+    .top-nav a {
+      padding: 10px 20px;
+      border: 3px solid var(--blue);
+      border-radius: 40px;
+      color: var(--blue);
+      font-weight: bold;
+      text-decoration: none;
+      background: rgba(255, 253, 246, 0.88);
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
 
-.page-title picture,
-.page-title img{
-display:block;
-width:100%;
-height:auto;
-}
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
 
-h2{
-margin:64px 0 20px;
-font-size:2rem;
-}
+    /* --------------------------------
+       PAGINA
+    -------------------------------- */
 
-p{
-font-size:1.1rem;
-line-height:1.8;
-max-width:750px;
-margin:0 0 24px;
-}
+    .page {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 140px 300px 100px 0;
+    }
 
-.people{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-margin-top:40px;
-}
+    /* --------------------------------
+       TITEL ALS AFBEELDING
+    -------------------------------- */
 
-.person{
-padding:30px;
-border:3px solid var(--blue);
-border-radius:30px;
-}
+    .page-title {
+      width: min(92vw, 950px);
+      margin: 0 0 50px;
+      line-height: 0;
+    }
 
-.person h3{
-margin-top:0;
-font-size:2rem;
-}
+    .page-title picture,
+    .page-title img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-.site-footer{
-padding:0 24px 36px;
-text-align:center;
-font-size:.9rem;
-opacity:.75;
-}
+    /* --------------------------------
+       TEKST
+    -------------------------------- */
 
-@media(max-width:800px){
+    h2 {
+      margin: 64px 0 20px;
+      font-size: 2rem;
+    }
 
-.top-nav{
-position:relative;
-justify-content:center;
-top:0;
-right:0;
-padding-top:30px;
-flex-wrap:wrap;
-}
+    p {
+      max-width: 780px;
+      margin: 0 0 24px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-weight: 400;
+    }
 
-.page{
-padding:80px 24px;
-}
+    /* --------------------------------
+       INITIATIEFNEMERS
+    -------------------------------- */
 
-.page-title{
-width:100%;
-margin-bottom:40px;
-}
+    .people {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 35px;
+      margin-top: 36px;
+    }
 
-.people{
-grid-template-columns:1fr;
-}
+    .person {
+      padding: 30px;
+      border: 3px solid var(--blue);
+      border-radius: 30px;
+      background: rgba(255, 253, 246, 0.82);
+      transition: transform 0.3s ease;
+    }
 
-.site-footer{
-padding-bottom:28px;
-}
+    .person:hover {
+      transform: translateY(-5px);
+    }
 
-}
-</style>
+    .person h3 {
+      margin: 0 0 12px;
+      font-size: 1.6rem;
+    }
+
+    .person p {
+      margin: 0;
+    }
+
+    /* --------------------------------
+       FOOTER
+    -------------------------------- */
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      padding: 8px 24px 18px;
+      color: var(--blue);
+      font-size: 0.65rem;
+      line-height: 1.2;
+      text-align: center;
+      letter-spacing: 0.02em;
+      opacity: 0.5;
+    }
+
+    /* --------------------------------
+       TABLET
+    -------------------------------- */
+
+    @media (max-width: 1050px) {
+      .page {
+        width: min(920px, calc(100% - 56px));
+        padding-right: 220px;
+      }
+
+      .people {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* --------------------------------
+       MOBIEL
+    -------------------------------- */
+
+    @media (max-width: 800px) {
+      .top-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 30px 20px 0;
+      }
+
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
+      }
+
+      .page {
+        width: auto;
+        padding: 80px 24px 100px;
+      }
+
+      .page-title {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        margin-top: 56px;
+      }
+
+      .people {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        padding: 6px 24px 14px;
+        font-size: 0.6rem;
+      }
+    }
+
+    /* --------------------------------
+       MINDER BEWEGING
+    -------------------------------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .top-nav a,
+      .person {
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav class="top-nav">
-<a href="index.html">Home</a>
-<a href="de-film.html">De film</a>
-<a href="educatieprogramma.html">Educatie</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="de-film.html">De film</a>
+    <a href="educatieprogramma.html">Educatie</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<section class="page">
+  <main class="page">
 
-<div class="page-title">
-<picture>
-<source srcset="OT_OVER-ONS-lossless.webp" type="image/webp">
-<img src="OT_OVER-ONS-optimized.png"
-alt="Over ons"
-loading="eager"
-decoding="async">
-</picture>
-</div>
+    <div class="page-title">
+      <picture>
+        <source
+          srcset="OT_OVER-ONS-lossless.webp"
+          type="image/webp">
 
-<p>
-Het Onderwater Theater is een korte stop-motion kinderfilm en educatief project dat het label verlegenheid onderzoekt. In een wereld waarin extraversie vaak de norm is, nodigt het project kinderen uit om nieuwe, bij hun individu passende expressievormen te ontdekken.
-</p>
+        <img
+          src="OT_OVER-ONS-optimized.png"
+          alt="Over ons"
+          loading="eager"
+          decoding="async">
+      </picture>
+    </div>
 
-<p>
-Via een kleurrijke handgemaakte onderwaterwereld volgen we Billy, een meisje dat ontdekt dat ze zich niet hoeft aan te passen aan de norm om zichzelf te uiten en begrepen te worden. Het project wil ruimte maken voor verschillende manieren van zijn en biedt kinderen herkenning, verbeelding en nieuwe vormen van expressie.
-</p>
+    <p>
+      Het Onderwater Theater is een korte stop-motion kinderfilm en educatief
+      project dat het label verlegenheid onderzoekt. In een wereld waarin
+      extraversie vaak de norm is, nodigt het project kinderen uit om nieuwe,
+      bij hun individu passende expressievormen te ontdekken.
+    </p>
 
-<h2>De initiatiefnemers</h2>
+    <p>
+      Via een kleurrijke, handgemaakte onderwaterwereld volgen we Billy, een
+      meisje dat ontdekt dat ze zich niet hoeft aan te passen aan de norm om
+      zichzelf te uiten en begrepen te worden. Het project wil ruimte maken
+      voor verschillende manieren van zijn en biedt kinderen herkenning,
+      verbeelding en nieuwe vormen van expressie.
+    </p>
 
-<div class="people">
+    <h2>De initiatiefnemers</h2>
 
-<div class="person">
-<h3>Esther Frank</h3>
-<p>
-Esther is de schrijver en producer. Vanuit haar persoonlijke ervaringen onderzoekt zij hoe kunst kan bijdragen aan mentale gezondheid en bewustwording. Voor Het Onderwater Theater ontwikkelt zij eveneens het aansluitende educatieprogramma.
-</p>
-</div>
+    <div class="people">
 
-<div class="person">
-<h3>Sasha Herman</h3>
-<p>
-Sasha is de regisseur en stop-motion animator. Zijn werk kenmerkt zich door kleurrijke, handgemaakte beeldwerelden waarin kwetsbaarheid en verbeelding samenkomen. Voor Het Onderwater Theater ontwikkelt hij de visuele wereld en realiseert hij de animatie.
-</p>
-</div>
+      <article class="person">
+        <h3>Esther Frank</h3>
 
-</div>
+        <p>
+          Esther is de schrijver en producer. Vanuit haar persoonlijke
+          ervaringen onderzoekt zij hoe kunst kan bijdragen aan mentale
+          gezondheid en bewustwording. Voor Het Onderwater Theater ontwikkelt
+          zij eveneens het aansluitende educatieprogramma.
+        </p>
+      </article>
 
-<h2>Waarom dit project?</h2>
+      <article class="person">
+        <h3>Sasha Herman</h3>
 
-<p>
-Veel kinderen krijgen al vroeg labels zoals 'verlegen'. Hoewel dat onschuldig lijkt, beïnvloeden zulke woorden vaak hoe kinderen naar zichzelf kijken. Het Onderwater Theater wil het gesprek verschuiven: weg van tekort, richting nieuwsgierigheid, gevoeligheid en de kracht van de binnenwereld.
-</p>
+        <p>
+          Sasha is de regisseur en stop-motion animator. Zijn werk kenmerkt
+          zich door kleurrijke, handgemaakte beeldwerelden waarin
+          kwetsbaarheid en verbeelding samenkomen. Voor Het Onderwater Theater
+          ontwikkelt hij de visuele wereld en realiseert hij de animatie.
+        </p>
+      </article>
 
-</section>
+    </div>
 
-<footer class="site-footer">
-© Esther Frank 2026
-</footer>
+    <h2>Waarom dit project?</h2>
+
+    <p>
+      Veel kinderen krijgen al vroeg labels zoals ‘verlegen’. Hoewel dat
+      onschuldig lijkt, beïnvloeden zulke woorden vaak hoe kinderen naar
+      zichzelf kijken. Het Onderwater Theater wil het gesprek verschuiven:
+      weg van tekort, richting nieuwsgierigheid, gevoeligheid en de kracht van
+      de binnenwereld.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
 
 </body>
+
 </html>
