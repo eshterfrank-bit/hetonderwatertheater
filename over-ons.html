@@ -1,258 +1,203 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Over ons | Het Onderwater Theater</title>
-
 <link rel="icon" type="image/png" href="shell_pink.png">
 
 <style>
+:root{
+--background:#FFFDF6;
+--blue:#0047FF;
+}
+
+*{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
 
 body{
 margin:0;
-background:#FFFDF6;
+background:var(--background);
 font-family:Arial,sans-serif;
-color:#0047FF;
+color:var(--blue);
+overflow-x:hidden;
 }
 
 .top-nav{
-
 position:absolute;
 top:30px;
 right:40px;
-
 display:flex;
 gap:15px;
 z-index:100;
-
 }
 
 .top-nav a{
-
 text-decoration:none;
-color:#0047FF;
-
+color:var(--blue);
 font-weight:bold;
-
 padding:10px 20px;
-
-border:3px solid #0047FF;
-
+border:3px solid var(--blue);
 border-radius:40px;
-
+background:rgba(255,253,246,.88);
 transition:.3s;
-
 }
 
 .top-nav a:hover{
-
-background:#0047FF;
-color:white;
-
+background:var(--blue);
+color:#fff;
+transform:translateY(-2px);
 }
 
 .page{
-
 max-width:1000px;
-
 margin:auto;
-
 padding:140px 40px 100px;
-
 }
 
-h1{
+.page-title{
+width:min(92vw,950px);
+margin:0 0 50px;
+line-height:0;
+}
 
-font-size:clamp(3rem,9vw,6rem);
-
-line-height:0.9;
-
-margin-bottom:50px;
-
-text-transform:uppercase;
-
+.page-title picture,
+.page-title img{
+display:block;
+width:100%;
+height:auto;
 }
 
 h2{
-
-margin-top:80px;
-
+margin:64px 0 20px;
 font-size:2rem;
-
 }
 
 p{
-
 font-size:1.1rem;
-
 line-height:1.8;
-
 max-width:750px;
-
+margin:0 0 24px;
 }
 
 .people{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:60px;
-
-margin-top:50px;
-
+margin-top:40px;
 }
 
 .person{
-
 padding:30px;
-
-border:3px solid #0047FF;
-
+border:3px solid var(--blue);
 border-radius:30px;
-
 }
 
 .person h3{
-
 margin-top:0;
-
 font-size:2rem;
+}
 
+.site-footer{
+padding:0 24px 36px;
+text-align:center;
+font-size:.9rem;
+opacity:.75;
 }
 
 @media(max-width:800px){
 
 .top-nav{
-
 position:relative;
-
 justify-content:center;
-
 top:0;
 right:0;
-
 padding-top:30px;
-
 flex-wrap:wrap;
+}
 
+.page{
+padding:80px 24px;
+}
+
+.page-title{
+width:100%;
+margin-bottom:40px;
 }
 
 .people{
-
 grid-template-columns:1fr;
+}
 
+.site-footer{
+padding-bottom:28px;
 }
 
 }
-
 </style>
-
 </head>
 
 <body>
 
-
-<div class="top-nav">
-
+<nav class="top-nav">
 <a href="index.html">Home</a>
-
 <a href="de-film.html">De film</a>
-
 <a href="educatieprogramma.html">Educatie</a>
-
 <a href="contact.html">Contact</a>
-
-</div>
-
-
+</nav>
 
 <section class="page">
 
-<h1>
-
-Over ons
-
-</h1>
-
+<div class="page-title">
+<picture>
+<source srcset="OT_OVER-ONS-lossless.webp" type="image/webp">
+<img src="OT_OVER-ONS-optimized.png"
+alt="Over ons"
+loading="eager"
+decoding="async">
+</picture>
+</div>
 
 <p>
-
 Het Onderwater Theater is een korte stop-motion kinderfilm en educatief project dat het label verlegenheid onderzoekt. In een wereld waarin extraversie vaak de norm is, nodigt het project kinderen uit om nieuwe, bij hun individu passende expressievormen te ontdekken.
-
 </p>
-
 
 <p>
-
-Via een kleurrijke handgemaakte onderwaterwereld volgen we Billy; Via een kleurrijke handgemaakte onderwaterwereld volgen we Billy; een meisje dat ontdekt dat ze zich niet hoeft aan te passen aan de norm om zichzelf te uiten en begrepen te worden. Het project wil ruimte maken voor verschillende manieren van zijn en biedt kinderen herkenning, verbeelding en nieuwe vormen van expressie.
-
+Via een kleurrijke handgemaakte onderwaterwereld volgen we Billy, een meisje dat ontdekt dat ze zich niet hoeft aan te passen aan de norm om zichzelf te uiten en begrepen te worden. Het project wil ruimte maken voor verschillende manieren van zijn en biedt kinderen herkenning, verbeelding en nieuwe vormen van expressie.
 </p>
 
-
-
-<h2>
-
-De initiatiefnemers
-
-</h2>
-
-
+<h2>De initiatiefnemers</h2>
 
 <div class="people">
 
 <div class="person">
-
-<h3>
-Esther Frank
-</h3>
-
+<h3>Esther Frank</h3>
 <p>
-
-Esther is de schrijver en producer. Vanuit haar persoonlijke ervaringen onderzoekt zij hoe kunst kan bijdragen aan mentale gezondheid en bewustwording. Voor Het Onderwater Theater ontwikkelt zij eveneens het aansluitend educatieprogramma.
-
+Esther is de schrijver en producer. Vanuit haar persoonlijke ervaringen onderzoekt zij hoe kunst kan bijdragen aan mentale gezondheid en bewustwording. Voor Het Onderwater Theater ontwikkelt zij eveneens het aansluitende educatieprogramma.
 </p>
-
 </div>
-
-
 
 <div class="person">
-
-<h3>
-Sasha Herman
-</h3>
-
+<h3>Sasha Herman</h3>
 <p>
-
 Sasha is de regisseur en stop-motion animator. Zijn werk kenmerkt zich door kleurrijke, handgemaakte beeldwerelden waarin kwetsbaarheid en verbeelding samenkomen. Voor Het Onderwater Theater ontwikkelt hij de visuele wereld en realiseert hij de animatie.
-
 </p>
-
 </div>
 
 </div>
 
-
-
-<h2>
-
-Waarom dit project?
-
-</h2>
+<h2>Waarom dit project?</h2>
 
 <p>
-
-Veel kinderen krijgen al vroeg labels zoals "verlegen". Hoewel dat onschuldig lijkt, beïnvloeden zulke woorden vaak hoe kinderen naar zichzelf kijken. Het Onderwater Theater wil het gesprek verschuiven: weg van tekort, richting nieuwsgierigheid, gevoeligheid en de kracht van de binnenwereld.
-
+Veel kinderen krijgen al vroeg labels zoals 'verlegen'. Hoewel dat onschuldig lijkt, beïnvloeden zulke woorden vaak hoe kinderen naar zichzelf kijken. Het Onderwater Theater wil het gesprek verschuiven: weg van tekort, richting nieuwsgierigheid, gevoeligheid en de kracht van de binnenwereld.
 </p>
 
 </section>
 
-</body>
+<footer class="site-footer">
+© Esther Frank 2026
+</footer>
 
+</body>
 </html>
