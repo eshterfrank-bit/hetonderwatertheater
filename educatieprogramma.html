@@ -40,23 +40,18 @@
       top: 30px;
       right: 40px;
       z-index: 100;
-
       display: flex;
       gap: 15px;
     }
 
     .top-nav a {
       padding: 10px 20px;
-
       border: 3px solid var(--blue);
       border-radius: 40px;
-
       color: var(--blue);
       font-weight: bold;
       text-decoration: none;
-
       background: rgba(255, 253, 246, 0.88);
-
       transition:
         background-color 0.3s ease,
         color 0.3s ease,
@@ -77,30 +72,39 @@
     .page {
       position: relative;
       z-index: 2;
-
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
-      padding: 140px 300px 120px 0;
+      padding: 140px 300px 100px 0;
     }
 
-    h1 {
-      margin: 0 0 50px;
+    /* --------------------------------
+       TITEL ALS AFBEELDING
+    -------------------------------- */
 
-      font-size: clamp(3rem, 9vw, 6rem);
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
+    .page-title {
+      width: min(92vw, 950px);
+      margin: 0 0 50px;
+      line-height: 0;
+    }
+
+    .page-title picture,
+    .page-title img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     h2 {
-      margin-top: 80px;
+      margin: 64px 0 20px;
       font-size: 2rem;
     }
 
     p {
       max-width: 780px;
+      margin: 0;
       font-size: 1.1rem;
       line-height: 1.8;
+      font-weight: 400;
     }
 
     /* --------------------------------
@@ -111,18 +115,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 35px;
-
-      margin-top: 50px;
+      margin-top: 36px;
     }
 
     .card {
       padding: 30px;
-
       border: 3px solid var(--blue);
       border-radius: 30px;
-
       background: rgba(255, 253, 246, 0.82);
-
       transition:
         transform 0.35s ease,
         box-shadow 0.35s ease;
@@ -134,55 +134,55 @@
     }
 
     .card h3 {
-      margin-top: 0;
+      margin: 0 0 12px;
       font-size: 1.4rem;
       text-transform: uppercase;
     }
 
     .card p {
-      margin-bottom: 0;
+      margin: 0;
+    }
+
+    /* --------------------------------
+       FOOTER
+    -------------------------------- */
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px 36px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--blue);
+      opacity: 0.75;
     }
 
     /* --------------------------------
        ONDERWATERDIER
     -------------------------------- */
 
-    /*
-      Het dier zweeft rechts in beeld en maakt af en toe
-      een rustige draai. De animatie pauzeert kort wanneer
-      de bezoeker er met de cursor overheen beweegt.
-    */
-
     .creature {
       position: fixed;
       right: clamp(-65px, -3vw, -20px);
       top: 50%;
       z-index: 40;
-
       width: clamp(190px, 23vw, 360px);
-
       pointer-events: auto;
       user-select: none;
-
       opacity: 0;
-
       transform:
         translate3d(55%, -50%, 0)
         rotate(-12deg)
         scale(0.9);
-
       transform-origin: 50% 50%;
-
       transition:
         opacity 1.1s ease,
         transform 1.5s cubic-bezier(.2, .75, .25, 1);
-
       will-change: transform, opacity;
     }
 
     .creature.is-visible {
       opacity: 1;
-
       transform:
         translate3d(0, -50%, 0)
         rotate(0deg)
@@ -200,7 +200,6 @@
       display: block;
       width: 100%;
       height: auto;
-
       filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.12));
     }
 
@@ -272,10 +271,8 @@
         position: relative;
         top: 0;
         right: 0;
-
         justify-content: center;
         flex-wrap: wrap;
-
         padding: 30px 20px 0;
       }
 
@@ -286,25 +283,31 @@
 
       .page {
         width: auto;
-        padding: 80px 24px 300px;
+        padding: 80px 24px 280px;
       }
 
-      h1 {
-        font-size: clamp(2.8rem, 15vw, 5rem);
-        overflow-wrap: anywhere;
+      .page-title {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        margin-top: 56px;
       }
 
       .card-grid {
         grid-template-columns: 1fr;
       }
 
+      .site-footer {
+        padding-bottom: 28px;
+      }
+
       .creature {
         top: auto;
         right: -50px;
         bottom: -25px;
-
         width: clamp(190px, 54vw, 280px);
-
         transform:
           translate3d(50%, 30%, 0)
           rotate(-12deg)
@@ -363,7 +366,19 @@
 
   <main class="page">
 
-    <h1>Educatie</h1>
+    <div class="page-title">
+      <picture>
+        <source
+          srcset="OT_EDUCATIE-lossless.webp"
+          type="image/webp">
+
+        <img
+          src="OT_EDUCATIE-optimized.png"
+          alt="Educatie"
+          loading="eager"
+          decoding="async">
+      </picture>
+    </div>
 
     <p>
       Het educatieprogramma sluit aan bij de thema's van Het Onderwater Theater
@@ -404,7 +419,11 @@
     <h2>Lesprogramma voor scholen</h2>
 
     <p>
-     Het educatieprogramma wordt momenteel ontwikkeld als een afneembaar lesprogramma voor scholen. De lessen bieden toegankelijke opdrachten en materialen waarmee kinderen de thema's van Het Onderwater Theater kunnen verkennen en in gesprek gaan over zelfbeeld, verlegenheid, gevoeligheid en verschillende manieren van jezelf uiten.
+      Het educatieprogramma wordt momenteel ontwikkeld als een afneembaar
+      lesprogramma voor scholen. De lessen bieden toegankelijke opdrachten en
+      materialen waarmee kinderen de thema's van Het Onderwater Theater kunnen
+      verkennen en in gesprek gaan over zelfbeeld, verlegenheid, gevoeligheid en
+      verschillende manieren van jezelf uiten.
     </p>
 
     <h2>Workshops op locatie</h2>
@@ -412,18 +431,21 @@
     <p>
       Naast het educatieprogramma verzorgen we ook workshops waarbij de makers
       langskomen op locatie. Op een speelse en creatieve manier maken kinderen
-      kennis met de thema’s van en technieken uit Het Onderwater Theater.
+      kennis met de thema's en technieken uit Het Onderwater Theater.
     </p>
 
   </main>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
 
   <div class="creature" id="creature" aria-hidden="true">
     <div class="creature-inner">
       <img
         src="OT_creature.png"
         alt=""
-        draggable="false"
-      >
+        draggable="false">
     </div>
   </div>
 
