@@ -94,152 +94,108 @@
       height: auto;
     }
 
+    /* --------------------------------
+       TEKST
+    -------------------------------- */
+
     h2 {
       margin: 64px 0 20px;
       font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      line-height: 1.3;
     }
 
     p {
       max-width: 780px;
-      margin: 0;
+      margin: 0 0 24px;
       font-size: 1.1rem;
       line-height: 1.8;
       font-weight: 400;
     }
 
     /* --------------------------------
-       KAARTEN
+       PROGRAMMAONDERDELEN
     -------------------------------- */
 
-    .card-grid {
+    .program-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 35px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
       margin-top: 36px;
     }
 
-    .card {
-      padding: 30px;
+    .program-item {
+      padding: 28px;
       border: 3px solid var(--blue);
-      border-radius: 30px;
+      border-radius: 28px;
       background: rgba(255, 253, 246, 0.82);
-      transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
+      transition: transform 0.3s ease;
     }
 
-    .card:hover {
-      transform: translateY(-6px) rotate(-0.5deg);
-      box-shadow: 10px 12px 0 rgba(255, 234, 0, 1);
+    .program-item:hover {
+      transform: translateY(-4px);
     }
 
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-    }
-
-    .card p {
+    .program-item p {
       margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
     /* --------------------------------
-       FOOTER
+       PARTNERS
+    -------------------------------- */
+
+    .partners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 36px 0 70px;
+    }
+
+    .partners > div {
+      padding: 16px 22px;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      background: rgba(255, 253, 246, 0.9);
+      line-height: 1.45;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+    }
+
+    .partners > div:hover {
+      transform: scale(1.06);
+      background: white;
+      box-shadow: 0 8px 24px rgba(0, 71, 255, 0.12);
+    }
+
+    .partners strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 1rem;
+    }
+
+    /* --------------------------------
+       KLEINE FOOTER
     -------------------------------- */
 
     .site-footer {
       position: relative;
       z-index: 2;
-      padding: 0 24px 36px;
-      text-align: center;
-      font-size: 0.9rem;
+      padding: 8px 24px 18px;
       color: var(--blue);
-      opacity: 0.75;
-    }
-
-    /* --------------------------------
-       ONDERWATERDIER
-    -------------------------------- */
-
-    .creature {
-      position: fixed;
-      right: clamp(-65px, -3vw, -20px);
-      top: 50%;
-      z-index: 40;
-      width: clamp(190px, 23vw, 360px);
-      pointer-events: auto;
-      user-select: none;
-      opacity: 0;
-      transform:
-        translate3d(55%, -50%, 0)
-        rotate(-12deg)
-        scale(0.9);
-      transform-origin: 50% 50%;
-      transition:
-        opacity 1.1s ease,
-        transform 1.5s cubic-bezier(.2, .75, .25, 1);
-      will-change: transform, opacity;
-    }
-
-    .creature.is-visible {
-      opacity: 1;
-      transform:
-        translate3d(0, -50%, 0)
-        rotate(0deg)
-        scale(1);
-    }
-
-    .creature-inner {
-      transform-origin: 50% 50%;
-      animation:
-        creature-float 4.8s ease-in-out infinite,
-        creature-spin 14s ease-in-out infinite;
-    }
-
-    .creature img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.12));
-    }
-
-    .creature:hover .creature-inner {
-      animation-play-state: paused;
-    }
-
-    @keyframes creature-float {
-      0%,
-      100% {
-        transform: translateY(-8px) scale(1);
-      }
-
-      50% {
-        transform: translateY(10px) scale(1.015);
-      }
-    }
-
-    @keyframes creature-spin {
-      0%,
-      18% {
-        rotate: 0deg;
-      }
-
-      36% {
-        rotate: 18deg;
-      }
-
-      50% {
-        rotate: 360deg;
-      }
-
-      68% {
-        rotate: 342deg;
-      }
-
-      82%,
-      100% {
-        rotate: 360deg;
-      }
+      font-size: 0.65rem;
+      line-height: 1.2;
+      text-align: center;
+      letter-spacing: 0.02em;
+      opacity: 0.5;
     }
 
     /* --------------------------------
@@ -252,13 +208,8 @@
         padding-right: 220px;
       }
 
-      .card-grid {
+      .program-grid {
         grid-template-columns: 1fr;
-      }
-
-      .creature {
-        right: -70px;
-        width: clamp(200px, 29vw, 300px);
       }
     }
 
@@ -283,7 +234,7 @@
 
       .page {
         width: auto;
-        padding: 80px 24px 280px;
+        padding: 80px 24px 100px;
       }
 
       .page-title {
@@ -295,30 +246,26 @@
         margin-top: 56px;
       }
 
-      .card-grid {
+      .program-grid {
         grid-template-columns: 1fr;
       }
 
+      .partners {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .partners > div {
+        border-radius: 22px;
+      }
+
+      .partners > div:hover {
+        transform: scale(1.02);
+      }
+
       .site-footer {
-        padding-bottom: 28px;
-      }
-
-      .creature {
-        top: auto;
-        right: -50px;
-        bottom: -25px;
-        width: clamp(190px, 54vw, 280px);
-        transform:
-          translate3d(50%, 30%, 0)
-          rotate(-12deg)
-          scale(0.9);
-      }
-
-      .creature.is-visible {
-        transform:
-          translate3d(0, 0, 0)
-          rotate(0deg)
-          scale(1);
+        padding: 6px 24px 14px;
+        font-size: 0.6rem;
       }
     }
 
@@ -332,24 +279,9 @@
       }
 
       .top-nav a,
-      .card,
-      .creature {
+      .program-item,
+      .partners > div {
         transition: none;
-      }
-
-      .creature {
-        opacity: 1;
-        transform: translate3d(0, -50%, 0);
-      }
-
-      .creature-inner {
-        animation: none;
-      }
-
-      @media (max-width: 800px) {
-        .creature {
-          transform: none;
-        }
       }
     }
   </style>
@@ -359,8 +291,8 @@
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
-    <a href="over-ons.html">Over ons</a>
     <a href="de-film.html">De film</a>
+    <a href="over-ons.html">Over ons</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -381,58 +313,115 @@
     </div>
 
     <p>
-      Het educatieprogramma sluit aan bij de thema's van Het Onderwater Theater
-      en verkent verschillende vormen van expressie. De lessen zijn opgebouwd
-      vanuit theater, beeldende kunst, dans, schrijfkunst en muziek en bieden
-      kinderen de mogelijkheid om op verschillende manieren te communiceren en
-      zich uit te drukken.
+      Het educatieprogramma sluit aan bij de thema’s uit Het Onderwater
+      Theater en nodigt kinderen uit om na te denken over verlegenheid,
+      zelfexpressie en verschillende manieren van communiceren.
     </p>
 
-    <h2>Waar het programma over gaat</h2>
+    <p>
+      Door middel van film, gesprek en kunsteducatieve opdrachten ontdekken
+      kinderen dat er niet één juiste manier is om jezelf te laten zien.
+      Het programma biedt ruimte aan verbeelding, beweging, taal en spel.
+    </p>
 
-    <div class="card-grid">
+    <h2>Waar het over gaat</h2>
 
-      <article class="card">
-        <h3>Verbeelding</h3>
+    <p>
+      Kinderen krijgen al vroeg woorden en verwachtingen mee over hoe zij
+      zouden moeten zijn. Een kind dat stil, voorzichtig of observerend is,
+      wordt bijvoorbeeld al snel verlegen genoemd. Het educatieprogramma
+      onderzoekt wat zulke labels met kinderen kunnen doen en welke andere
+      kwaliteiten er achter stil gedrag kunnen schuilgaan.
+    </p>
+
+    <p>
+      De leerlingen worden aangemoedigd om hun eigen manier van communiceren
+      en creëren te onderzoeken. Daarbij staat niet het overwinnen van
+      verlegenheid centraal, maar het herkennen en waarderen van verschillende
+      vormen van expressie.
+    </p>
+
+    <h2>Het educatieprogramma</h2>
+
+    <div class="program-grid">
+
+      <article class="program-item">
+        <h3>Film en gesprek</h3>
+
         <p>
-          Kinderen maken hun binnenwereld zichtbaar via kunst.
+          Na het bekijken van de film gaan de kinderen met elkaar in gesprek
+          over Billy, haar onderwaterwereld en de manieren waarop zij leert
+          zichzelf te uiten.
         </p>
       </article>
 
-      <article class="card">
-        <h3>Expressie</h3>
+      <article class="program-item">
+        <h3>Creatieve opdrachten</h3>
+
         <p>
-          Het programma onderzoekt andere manieren van uiten, buiten praten om.
+          Met opdrachten rond taal, theater, dans en beeld ontdekken kinderen
+          welke expressievormen bij hen passen en hoe zij hun ideeën kunnen
+          delen.
         </p>
       </article>
 
-      <article class="card">
-        <h3>Zelfbeeld</h3>
+      <article class="program-item">
+        <h3>Voor scholen</h3>
+
         <p>
-          Kinderen worden uitgenodigd om met nieuwsgierigheid naar zichzelf te
-          kijken.
+          Het programma wordt ontwikkeld voor gebruik in het basisonderwijs
+          en kan worden aangepast aan de leeftijd, groepsgrootte en behoeften
+          van de klas.
+        </p>
+      </article>
+
+      <article class="program-item">
+        <h3>Workshops op locatie</h3>
+
+        <p>
+          Naast het lesprogramma bieden we workshops op locatie aan, waaronder
+          stop-motionanimatie. Kinderen maken daarin kennis met het proces van
+          bedenken, bouwen, bewegen en fotograferen.
         </p>
       </article>
 
     </div>
 
-    <h2>Lesprogramma voor scholen</h2>
+    <h2>Onze partners</h2>
 
     <p>
-      Het educatieprogramma wordt momenteel ontwikkeld als een afneembaar
-      lesprogramma voor scholen. De lessen bieden toegankelijke opdrachten en
-      materialen waarmee kinderen de thema's van Het Onderwater Theater kunnen
-      verkennen en in gesprek gaan over zelfbeeld, verlegenheid, gevoeligheid en
-      verschillende manieren van jezelf uiten.
+      Het educatieprogramma wordt ontwikkeld in samenwerking met
+      kunsteducatoren en culturele organisaties uit verschillende
+      disciplines. Hun expertise op het gebied van theater, dans en
+      schrijfkunst draagt bij aan een programma waarin kinderen worden
+      uitgenodigd om op verschillende manieren hun eigen stem te ontdekken.
     </p>
-
-    <h2>Workshops op locatie</h2>
 
     <p>
-      Naast het educatieprogramma verzorgen we ook workshops waarbij de makers
-      langskomen op locatie. Op een speelse en creatieve manier maken kinderen
-      kennis met de thema's en technieken uit Het Onderwater Theater.
+      In de zoektocht naar deze samenwerkingen zijn wij ondersteund door
+      <strong>Noordje</strong>, die ons hielp bij het vinden van
+      kunsteducatoren en culturele partners die aansluiten bij de visie van
+      Het Onderwater Theater.
     </p>
+
+    <div class="partners">
+
+      <div>
+        <strong>Sarah Oortgijs</strong>
+        Taalrijk Kunsteducatie · Lessen SCHRIJVEN
+      </div>
+
+      <div>
+        <strong>Dominique Leensen</strong>
+        Dwarswerk · Lessen THEATER
+      </div>
+
+      <div>
+        <strong>Kim Tuerlings</strong>
+        Lessen DANS
+      </div>
+
+    </div>
 
   </main>
 
@@ -440,24 +429,6 @@
     © Esther Frank 2026
   </footer>
 
-  <div class="creature" id="creature" aria-hidden="true">
-    <div class="creature-inner">
-      <img
-        src="OT_creature.png"
-        alt=""
-        draggable="false">
-    </div>
-  </div>
-
-  <script>
-    const creature = document.querySelector("#creature");
-
-    if (creature) {
-      window.setTimeout(() => {
-        creature.classList.add("is-visible");
-      }, 650);
-    }
-  </script>
-
 </body>
+
 </html>
