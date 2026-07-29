@@ -40,18 +40,23 @@
       top: 30px;
       right: 40px;
       z-index: 100;
+
       display: flex;
       gap: 15px;
     }
 
     .top-nav a {
       padding: 10px 20px;
+
       border: 3px solid var(--blue);
       border-radius: 40px;
+
       color: var(--blue);
       font-weight: bold;
       text-decoration: none;
+
       background: rgba(255, 253, 246, 0.88);
+
       transition:
         background-color 0.3s ease,
         color 0.3s ease,
@@ -72,6 +77,7 @@
     .page {
       position: relative;
       z-index: 2;
+
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
       padding: 140px 300px 100px 0;
@@ -99,7 +105,7 @@
     -------------------------------- */
 
     h2 {
-      margin: 64px 0 20px;
+      margin: 52px 0 20px;
       font-size: 2rem;
       line-height: 1.2;
     }
@@ -112,10 +118,15 @@
 
     p {
       max-width: 780px;
-      margin: 0 0 24px;
+      margin: 0 0 20px;
       font-size: 1.1rem;
-      line-height: 1.8;
+      line-height: 1.7;
       font-weight: 400;
+    }
+
+    .intro {
+      font-size: 1.25rem;
+      line-height: 1.65;
     }
 
     /* --------------------------------
@@ -124,16 +135,19 @@
 
     .program-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
-      margin-top: 36px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
     }
 
     .program-item {
-      padding: 28px;
+      padding: 24px;
+
       border: 3px solid var(--blue);
       border-radius: 28px;
+
       background: rgba(255, 253, 246, 0.82);
+
       transition: transform 0.3s ease;
     }
 
@@ -155,15 +169,18 @@
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
-      margin: 36px 0 70px;
+      margin: 30px 0 50px;
     }
 
     .partners > div {
       padding: 16px 22px;
+
       border: 2px solid var(--blue);
       border-radius: 999px;
+
       background: rgba(255, 253, 246, 0.9);
       line-height: 1.45;
+
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
@@ -189,12 +206,15 @@
     .site-footer {
       position: relative;
       z-index: 2;
+
       padding: 8px 24px 18px;
+
       color: var(--blue);
       font-size: 0.65rem;
       line-height: 1.2;
       text-align: center;
       letter-spacing: 0.02em;
+
       opacity: 0.5;
     }
 
@@ -222,8 +242,10 @@
         position: relative;
         top: 0;
         right: 0;
+
         justify-content: center;
         flex-wrap: wrap;
+
         padding: 30px 20px 0;
       }
 
@@ -243,7 +265,11 @@
       }
 
       h2 {
-        margin-top: 56px;
+        margin-top: 48px;
+      }
+
+      .intro {
+        font-size: 1.15rem;
       }
 
       .program-grid {
@@ -312,36 +338,27 @@
       </picture>
     </div>
 
-    <p>
+    <p class="intro">
       Het educatieprogramma sluit aan bij de thema’s uit Het Onderwater
       Theater en nodigt kinderen uit om na te denken over verlegenheid,
       zelfexpressie en verschillende manieren van communiceren.
     </p>
 
     <p>
-      Door middel van film, gesprek en kunsteducatieve opdrachten ontdekken
-      kinderen dat er niet één juiste manier is om jezelf te laten zien.
-      Het programma biedt ruimte aan verbeelding, beweging, taal en spel.
-    </p>
-
-    <h2>Waar het over gaat</h2>
-
-    <p>
       Kinderen krijgen al vroeg woorden en verwachtingen mee over hoe zij
       zouden moeten zijn. Een kind dat stil, voorzichtig of observerend is,
-      wordt bijvoorbeeld al snel verlegen genoemd. Het educatieprogramma
-      onderzoekt wat zulke labels met kinderen kunnen doen en welke andere
-      kwaliteiten er achter stil gedrag kunnen schuilgaan.
+      wordt bijvoorbeeld al snel verlegen genoemd. Het programma onderzoekt
+      wat zulke labels met kinderen kunnen doen en laat zien dat er niet één
+      juiste manier is om jezelf te laten zien.
     </p>
 
     <p>
-      De leerlingen worden aangemoedigd om hun eigen manier van communiceren
-      en creëren te onderzoeken. Daarbij staat niet het overwinnen van
-      verlegenheid centraal, maar het herkennen en waarderen van verschillende
-      vormen van expressie.
+      Door middel van film, gesprek en kunsteducatieve opdrachten ontdekken
+      kinderen verschillende manieren om zichzelf uit te drukken. Daarbij is
+      ruimte voor verbeelding, beweging, taal en spel.
     </p>
 
-    <h2>Het educatieprogramma</h2>
+    <h2>Het programma</h2>
 
     <div class="program-grid">
 
@@ -349,29 +366,18 @@
         <h3>Film en gesprek</h3>
 
         <p>
-          Na het bekijken van de film gaan de kinderen met elkaar in gesprek
-          over Billy, haar onderwaterwereld en de manieren waarop zij leert
-          zichzelf te uiten.
+          Na het bekijken van de film praten de kinderen over Billy, haar
+          onderwaterwereld en de verschillende manieren waarop iemand zich
+          kan uiten.
         </p>
       </article>
 
       <article class="program-item">
-        <h3>Creatieve opdrachten</h3>
+        <h3>Kunsteducatieve lessen</h3>
 
         <p>
-          Met opdrachten rond taal, theater, dans en beeld ontdekken kinderen
-          welke expressievormen bij hen passen en hoe zij hun ideeën kunnen
-          delen.
-        </p>
-      </article>
-
-      <article class="program-item">
-        <h3>Voor scholen</h3>
-
-        <p>
-          Het programma wordt ontwikkeld voor gebruik in het basisonderwijs
-          en kan worden aangepast aan de leeftijd, groepsgrootte en behoeften
-          van de klas.
+          Met lessen rond schrijven, theater en dans onderzoeken kinderen hun
+          eigen stem, verbeelding en manier van communiceren.
         </p>
       </article>
 
@@ -379,9 +385,8 @@
         <h3>Workshops op locatie</h3>
 
         <p>
-          Naast het lesprogramma bieden we workshops op locatie aan, waaronder
-          stop-motionanimatie. Kinderen maken daarin kennis met het proces van
-          bedenken, bouwen, bewegen en fotograferen.
+          Daarnaast bieden we workshops aan, waaronder stop-motionanimatie.
+          Kinderen bedenken, bouwen, bewegen en fotograferen hun eigen verhaal.
         </p>
       </article>
 
@@ -390,35 +395,26 @@
     <h2>Onze partners</h2>
 
     <p>
-      Het educatieprogramma wordt ontwikkeld in samenwerking met
-      kunsteducatoren en culturele organisaties uit verschillende
-      disciplines. Hun expertise op het gebied van theater, dans en
-      schrijfkunst draagt bij aan een programma waarin kinderen worden
-      uitgenodigd om op verschillende manieren hun eigen stem te ontdekken.
-    </p>
-
-    <p>
-      In de zoektocht naar deze samenwerkingen zijn wij ondersteund door
-      <strong>Noordje</strong>, die ons hielp bij het vinden van
-      kunsteducatoren en culturele partners die aansluiten bij de visie van
-      Het Onderwater Theater.
+      Voor de ontwikkeling van de kunsteducatieve lessen werken wij samen met
+      kunsteducatoren uit verschillende disciplines. In de zoektocht naar deze
+      samenwerkingen zijn wij ondersteund door <strong>Noordje</strong>.
     </p>
 
     <div class="partners">
 
       <div>
         <strong>Sarah Oortgijs</strong>
-        Taalrijk Kunsteducatie · Lessen SCHRIJVEN
+        Taalrijk Kunsteducatie · Schrijven
       </div>
 
       <div>
         <strong>Dominique Leensen</strong>
-        Dwarswerk · Lessen THEATER
+        Dwarswerk · Theater
       </div>
 
       <div>
         <strong>Kim Tuerlings</strong>
-        Lessen DANS
+        Dans
       </div>
 
     </div>
