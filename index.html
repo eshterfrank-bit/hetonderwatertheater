@@ -272,7 +272,7 @@
       margin: 0 auto 80px;
 
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       align-items: center;
       gap: 60px 40px;
     }
@@ -293,6 +293,26 @@
       line-height: 1.5;
 
       opacity: 0.95;
+    }
+
+
+    /* --------------------------------
+       KLEINE FOOTER
+    -------------------------------- */
+
+    .site-footer {
+      position: relative;
+      z-index: 1;
+
+      padding: 10px 24px 16px;
+
+      color: var(--blue);
+      font-size: 0.7rem;
+      line-height: 1.2;
+      text-align: center;
+      letter-spacing: 0.03em;
+
+      opacity: 0.45;
     }
 
     /* --------------------------------
@@ -345,6 +365,11 @@
 
       .supporters-text {
         font-size: 0.7rem;
+      }
+
+      .site-footer {
+        padding: 8px 24px 14px;
+        font-size: 0.6rem;
       }
     }
 
@@ -440,8 +465,8 @@
     <section class="sponsors" id="sponsors">
 
       <p class="sponsors-title">
-        Dit project wordt mede mogelijk gemaakt door de volgende fondsen
-        en partners:
+        Dit project wordt mede mogelijk gemaakt door de volgende fondsen,
+        partners en samenwerkingsorganisaties:
       </p>
 
       <div class="logo-grid">
@@ -453,6 +478,8 @@
         <img src="hetcultuurfonds.png" alt="Het Cultuurfonds">
         <img src="oba.png" alt="OBA">
         <img src="thrive.png" alt="Thrive">
+        <img src="NOORDJE.png" alt="Noordje">
+        <img src="PLUK.png" alt="PLUK">
       </div>
 
       <div class="supporters-text">
@@ -476,6 +503,10 @@
     </section>
 
   </main>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
 
   <script>
     /*
