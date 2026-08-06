@@ -115,14 +115,51 @@
       line-height: 1.8;
     }
 
-    .site-footer {
+    /* --------------------------------
+       FOTOGALERIJ
+    -------------------------------- */
+
+    .film-gallery {
       position: relative;
       z-index: 2;
-      padding: 0 24px 40px;
+
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 0 0 140px;
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    .film-gallery img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    /* --------------------------------
+       KLEINE FOOTER
+    -------------------------------- */
+
+    .site-footer {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
       color: var(--blue);
-      font-size: 0.9rem;
-      text-align: center;
-      opacity: 0.75;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      opacity: 0.45;
+
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
     }
 
     /* --------------------------------
@@ -324,6 +361,17 @@
           translate3d(34%, 5%, 0)
           rotate(2.5deg);
       }
+
+      .film-gallery {
+        width: auto;
+        padding: 0 24px 320px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .site-footer {
+        display: none;
+      }
     }
 
     /* --------------------------------
@@ -383,22 +431,36 @@
     </h1>
 
     <p>
-      
-     Het Onderwater Theater is een korte stop-motion kinderfilm over opgroeien met het label 'verlegen'. In dit coming-of-age verhaal volg je de introverte hoofdpersoon Billy die een kleurrijke onderwaterwereld ontdekt met haar denkbeeldige vriend Glibber. De film verkent thema's als identiteit, expressie en de ruimte om jezelf te zijn, en nodigt kinderen uit om op verschillende manieren naar deze thema's te kijken.
+      Het Onderwater Theater is een korte stop-motion kinderfilm over opgroeien met het label 'verlegen'. In dit coming-of-age verhaal volg je de introverte hoofdpersoon Billy die door haar vriend Glibber wordt meegenomen naar een kleurrijke onderwaterwereld.
     </p>
 
     <h2>Stop-motion animatie</h2>
 
     <p>
-     Het Onderwater Theater is volledig met de hand gemaakt. De film is opgebouwd uit beschilderd karton, handgemaakte poppen en kleurrijke decors die beeld voor beeld zijn geanimeerd met de stop-motiontechniek. De kenmerkende beeldtaal van stop motion animator Sasha Herman geeft de film een tastbare en ambachtelijke uitstraling, waarin materiaal, kleur en beweging samen het verhaal vertellen.
-
+      Het Onderwater Theater is volledig met de hand gemaakt aan de hand van stop motion animatie. De set is gemaakt van beschilderde kartonnen decors en handgemaakte poppen. De set wordt beeld voor beeld geanimeerd en zal aan het einde van de productie uit meer da 10.000 aan elkaar geplakte beelden bestaan.
     </p>
 
-       <h2>Een verhaal voor gesprek</h2>
- <p>De film sluit aan bij thema's als mentale gezondheid, identiteit en zelfbeeld. Vanuit het verhaal ontstaat ruimte om te praten over labels, introversie en de verschillende manieren waarop mensen zich uiten. Zo vormt Het Onderwater Theater een toegankelijk vertrekpunt voor gesprekken in de klas, thuis en in culturele instellingen.
+    <h2>Een verhaal voor gesprek</h2>
+
+    <p>
+      De film verkent thema's als identiteit, expressie en de ruimte om jezelf te zijn. Vanuit het verhaal ontstaat ruimte om te praten over labels, introversie en de verschillende manieren waarop mensen zich uiten. Zo vormt Het Onderwater Theater een toegankelijk vertrekpunt voor gesprekken in de klas, thuis en in culturele instellingen.
     </p>
-      
+
   </main>
+
+  <section class="film-gallery" aria-label="Filmbeelden">
+    <img
+      src="OT_glibberinpot.jpg"
+      alt="Glibber in een glazen pot voor het gezicht van een personage"
+      loading="lazy"
+      decoding="async">
+
+    <img
+      src="OT_glibber.jpg"
+      alt="Glibber in een groene onderwaterwereld"
+      loading="lazy"
+      decoding="async">
+  </section>
 
   <footer class="site-footer">
     © Esther Frank 2026
