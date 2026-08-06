@@ -38,6 +38,164 @@
     }
 
     /* --------------------------------
+       BEWEGENDE SCHELP + STIP
+    -------------------------------- */
+
+    .floating-object {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+
+      width: clamp(105px, 13vw, 205px);
+      aspect-ratio: 1;
+
+      pointer-events: none;
+      user-select: none;
+
+      opacity: 0;
+      transform-origin: center;
+      will-change: transform, opacity;
+
+      transition: opacity 0.8s ease;
+    }
+
+    .floating-object.is-visible {
+      opacity: 0.96;
+    }
+
+    .floating-shell {
+      position: absolute;
+      inset: 0;
+
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      transform-origin: center;
+      will-change: transform;
+
+      animation: shell-breathe 5.4s ease-in-out infinite;
+    }
+
+    .floating-dot-orbit {
+      position: absolute;
+      inset: -22%;
+
+      transform-origin: center;
+      will-change: transform;
+
+      animation: dot-orbit 7.5s linear infinite;
+    }
+
+    .floating-dot {
+      position: absolute;
+      top: 2%;
+      left: 50%;
+
+      display: block;
+      width: clamp(18px, 2.4vw, 38px);
+      height: auto;
+
+      transform:
+        translateX(-50%)
+        rotate(0deg);
+
+      transform-origin: center;
+      will-change: transform, opacity;
+
+      animation: dot-pulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes shell-breathe {
+      0%,
+      100% {
+        transform:
+          translateY(-4px)
+          rotate(-4deg)
+          scale(0.98);
+      }
+
+      50% {
+        transform:
+          translateY(8px)
+          rotate(4deg)
+          scale(1.035);
+      }
+    }
+
+    @keyframes dot-orbit {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dot-pulse {
+      0%,
+      100% {
+        opacity: 0.55;
+        transform:
+          translateX(-50%)
+          rotate(0deg)
+          scale(0.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform:
+          translateX(-50%)
+          rotate(-180deg)
+          scale(1.15);
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .floating-object {
+        width: clamp(90px, 28vw, 155px);
+        opacity: 0.92;
+
+        animation: floating-touch-route 22s linear infinite;
+      }
+
+      @keyframes floating-touch-route {
+        0% {
+          transform:
+            translate3d(-25vw, 18vh, 0)
+            rotate(-8deg);
+        }
+
+        23% {
+          transform:
+            translate3d(18vw, 60vh, 0)
+            rotate(9deg);
+        }
+
+        50% {
+          transform:
+            translate3d(58vw, 32vh, 0)
+            rotate(-5deg);
+        }
+
+        76% {
+          transform:
+            translate3d(86vw, 72vh, 0)
+            rotate(8deg);
+        }
+
+        100% {
+          transform:
+            translate3d(125vw, 25vh, 0)
+            rotate(-8deg);
+        }
+      }
+    }
+
+    /* --------------------------------
        NAVIGATIE
     -------------------------------- */
 
@@ -707,6 +865,10 @@
         scroll-behavior: auto;
       }
 
+      .floating-object {
+        display: none;
+      }
+
       .top-nav a,
       .timeline-card,
       .instagram-corner {
@@ -717,6 +879,27 @@
 </head>
 
 <body style="position:relative;">
+
+  <div
+    class="floating-object"
+    id="floatingObject"
+    aria-hidden="true">
+
+    <img
+      class="floating-shell"
+      src="shell_2.png"
+      alt=""
+      draggable="false">
+
+    <div class="floating-dot-orbit">
+      <img
+        class="floating-dot"
+        src="stip.png"
+        alt=""
+        draggable="false">
+    </div>
+
+  </div>
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
@@ -1067,6 +1250,185 @@
     </div>
 
   </div>
+
+  <script>
+    /*
+      Schelp + stip:
+      - bewegen samen zelfstandig door het scherm;
+      - de stip draait als een kleine satelliet om de schelp;
+      - bij muisbeweging volgt het duo de bezoeker;
+      - na drie seconden hervat het zijn eigen route.
+    */
+
+    const floatingObject =
+      document.querySelector("#floatingObject");
+
+    const canUsePointer =
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    const reducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (floatingObject && canUsePointer && !reducedMotion) {
+      const IDLE_DELAY = 3000;
+
+      let mode = "drifting";
+
+      let currentX = -140;
+      let currentY = window.innerHeight * 0.22;
+
+      let targetX = window.innerWidth * 0.22;
+      let targetY = window.innerHeight * 0.46;
+
+      let previousX = currentX;
+      let previousY = currentY;
+
+      let rotation = 0;
+      let idleTimer = null;
+      let nextTargetTimer = null;
+
+      const followSpeed = 0.06;
+      const driftSpeed = 0.011;
+
+      floatingObject.classList.add("is-visible");
+
+      function randomBetween(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function chooseDriftTarget() {
+        const size = floatingObject.offsetWidth;
+        const leaveScreen = Math.random() < 0.26;
+
+        if (leaveScreen) {
+          const side = Math.floor(Math.random() * 4);
+
+          if (side === 0) {
+            targetX = -size * 0.65;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 1) {
+            targetX = window.innerWidth + size * 0.65;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 2) {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = -size * 0.65;
+          } else {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = window.innerHeight + size * 0.65;
+          }
+        } else {
+          targetX = randomBetween(
+            size * 0.35,
+            window.innerWidth - size * 0.35
+          );
+
+          targetY = randomBetween(
+            size * 0.35,
+            window.innerHeight - size * 0.35
+          );
+        }
+
+        clearTimeout(nextTargetTimer);
+
+        nextTargetTimer = setTimeout(() => {
+          if (mode === "drifting") {
+            chooseDriftTarget();
+          }
+        }, randomBetween(5000, 9000));
+      }
+
+      function startDrifting() {
+        mode = "drifting";
+        chooseDriftTarget();
+      }
+
+      function followPointer(event) {
+        mode = "following";
+
+        targetX = event.clientX;
+        targetY = event.clientY;
+
+        floatingObject.classList.add("is-visible");
+
+        clearTimeout(idleTimer);
+        clearTimeout(nextTargetTimer);
+
+        idleTimer = setTimeout(
+          startDrifting,
+          IDLE_DELAY
+        );
+      }
+
+      function animateFloatingObject() {
+        const speed =
+          mode === "following"
+            ? followSpeed
+            : driftSpeed;
+
+        currentX += (targetX - currentX) * speed;
+        currentY += (targetY - currentY) * speed;
+
+        const movementX = currentX - previousX;
+        const movementY = currentY - previousY;
+
+        const movementAngle =
+          Math.atan2(movementY, movementX) *
+          (180 / Math.PI);
+
+        const targetRotation =
+          Math.max(-16, Math.min(16, movementAngle * 0.16));
+
+        rotation +=
+          (targetRotation - rotation) * 0.045;
+
+        const x =
+          currentX - floatingObject.offsetWidth / 2;
+
+        const y =
+          currentY - floatingObject.offsetHeight / 2;
+
+        floatingObject.style.transform = `
+          translate3d(${x}px, ${y}px, 0)
+          rotate(${rotation}deg)
+        `;
+
+        previousX = currentX;
+        previousY = currentY;
+
+        if (mode === "drifting") {
+          const distance = Math.hypot(
+            targetX - currentX,
+            targetY - currentY
+          );
+
+          if (distance < 34) {
+            chooseDriftTarget();
+          }
+        }
+
+        requestAnimationFrame(animateFloatingObject);
+      }
+
+      window.addEventListener(
+        "pointermove",
+        followPointer,
+        { passive: true }
+      );
+
+      window.addEventListener(
+        "resize",
+        () => {
+          if (mode === "drifting") {
+            chooseDriftTarget();
+          }
+        },
+        { passive: true }
+      );
+
+      startDrifting();
+      animateFloatingObject();
+    }
+  </script>
 
   <script>
     const timelineCarousel =
