@@ -178,7 +178,7 @@
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
 
-      padding: 140px 250px 140px 0;
+      padding: 140px 250px 120px 0;
     }
 
     /* --------------------------------
@@ -270,45 +270,104 @@
     }
 
     /* --------------------------------
-       PARTNERS
+       CONTACTUITNODIGING
     -------------------------------- */
 
-    .partners {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 24px 0 12px;
+    .contact-cta {
+      max-width: 720px;
+      margin-top: 52px;
+      padding: 28px 30px;
+
+      border: 3px solid var(--blue);
+      border-radius: 26px;
+
+      background: rgba(255, 253, 246, 0.82);
     }
 
-    .partners > div {
-      padding: 10px 16px;
+    .contact-cta p {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
 
-      border: 2px solid var(--blue);
-      border-radius: 999px;
+    .contact-cta a {
+      display: inline-block;
+      margin-top: 12px;
 
-      background: rgba(255, 253, 246, 0.9);
-      line-height: 1.45;
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
 
       transition:
         transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background-color 0.25s ease;
+        opacity 0.25s ease;
     }
 
-    .partners > div:hover {
-      transform: scale(1.06);
-      background: white;
-      box-shadow: 0 8px 24px rgba(0, 71, 255, 0.12);
+    .contact-cta a:hover,
+    .contact-cta a:focus-visible {
+      transform: translateX(6px);
+      opacity: 0.68;
     }
 
-    .partners strong {
-      display: block;
-      margin-bottom: 1px;
-      font-size: 0.88rem;
+    /* --------------------------------
+       PARTNERS
+    -------------------------------- */
+
+    .partners-heading {
+      margin-top: 72px;
+      margin-bottom: 14px;
+      padding-top: 28px;
+
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+
+      border-top: 1px solid rgba(0, 71, 255, 0.18);
+    }
+
+    .partners-intro {
+      max-width: 760px;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
     .partners {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 34px;
+
+      margin: 30px 0 12px;
+    }
+
+    .partner {
+      padding: 0;
+    }
+
+    .partner-role {
+      display: block;
+      margin-bottom: 6px;
+
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+
+      opacity: 0.62;
+    }
+
+    .partner strong {
+      display: block;
+      margin-bottom: 3px;
+
+      font-size: 1rem;
+    }
+
+    .partner span {
+      display: block;
+
       font-size: 0.88rem;
+      line-height: 1.5;
+
+      opacity: 0.78;
     }
 
     /* --------------------------------
@@ -343,9 +402,6 @@
         padding-right: 220px;
       }
 
-      .program-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* --------------------------------
@@ -403,26 +459,20 @@
         padding-top: 22px;
       }
 
-      .program-grid {
-        grid-template-columns: 1fr;
+      .contact-cta {
+        margin-top: 40px;
+        padding: 24px;
+        border-radius: 22px;
       }
+
 
       .program-item {
         padding: 24px;
       }
 
       .partners {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .partners > div {
-        border-radius: 18px;
-        padding: 10px 14px;
-      }
-
-      .partners > div:hover {
-        transform: scale(1.02);
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
 
       .site-footer {
@@ -446,8 +496,7 @@
 
       .creature-cursor img,
       .top-nav a,
-      .program-item,
-      .partners > div {
+      .contact-cta a {
         animation: none;
         transition: none;
       }
@@ -490,100 +539,67 @@
       </picture>
     </h1>
 
-    
-
-    
-
     <p>
-      Het educatieprogramma is ontwikkeld vanuit de thema’s van
-      Het Onderwater Theater. De lessen sluiten aan bij de film en
-      nodigen kinderen uit om op verschillende manieren te onderzoeken wie
-      ze zijn en hoe ze zich kunnen uiten.
+      Het afneembaar educatieprogramma sluit aan bij de thema’s van
+      Het Onderwater Theater. In de bundel van verschillende korte lessen ontdekken kinderen
+      alternatieve manieren om te kijken, maken en vertellen als praten niet jouw ding is.
     </p>
 
     <h2>De lessen</h2>
 
     <p>
-      Het programma is ontwikkeld in samenwerking met kunsteducatoren uit verschillende
-      disciplines. Iedere les vertrekt uit het thema van de film, en verdiept zich door de kunstvorm van die specifieke les. De lessen zijn kort, eenvoudig uit te voeren en kunnen zowel
-      in de klas als thuis worden gebruikt.
+      De lessen zijn ontwikkeld in samenwerking met kunsteducatoren uit verschillende
+      disciplines en zijn eenvoudig uit te voeren in de klas of thuis.
     </p>
-
-    <div class="program-grid">
-
-      <article class="program-item">
-        <h3>In gesprek</h3>
-
-        <p>
-          De film vormt het vertrekpunt voor een gesprek over identiteit,
-          labels en expressie.
-        </p>
-      </article>
-
-      <article class="program-item">
-        <h3>Kunsteducatieve lessen</h3>
-
-        <p>
-          Met verschillende kunstopdrachten onderzoeken kinderen
-          verschillende manieren om zichzelf uit te drukken.
-        </p>
-      </article>
-
-      <article class="program-item">
-        <h3>Workshops op locatie</h3>
-
-        <p>
-          De makers bieden ook workshops op locatie aan, zoals
-          stop-motionanimatie en creatief schrijven.
-        </p>
-      </article>
-
-    </div>
 
     <h2>Workshops op locatie</h2>
 
     <p>
-      De makers kunnen langskomen voor workshops op school of bij een
-      culturele instelling. Tijdens een stop-motionworkshop bedenken zij hun eigen denkbeeldige vriend,
-      waarna we deze samen animeren. In een
-      schrijfles werken zij aan het vertellen van hun verhaal.
+      De makers geven ook workshops op locatie, in stop-motionanimatie en
+      creatief schrijven. 
     </p>
 
-    <p style="margin-top:32px;">
-      Wil je meer informatie over het educatieprogramma of de mogelijkheden
-      voor een workshop op locatie?
-      <a href="contact.html" style="color:inherit;font-weight:bold;text-decoration:underline;">
-        Neem gerust contact met ons op.
+    <div class="contact-cta">
+      <p>
+        Vragen, ideeën of interesse in ons educatieprogramma?
+      </p>
+
+      <a href="contact.html">
+        We denken graag met je mee →
       </a>
-    </p>
+    </div>
 
 
 
 
 
-    <h2 class="partners-heading">Onze partners</h2>
 
-    <p>
-      Voor de ontwikkeling van de kunsteducatieve lessen werken wij samen met
-      kunsteducatoren uit verschillende disciplines. In de zoektocht naar deze
-      samenwerkingen zijn wij ondersteund door <strong>Noordje</strong>.
+
+    <h2 class="partners-heading">Ontwikkeld met</h2>
+
+    <p class="partners-intro">
+      De kunsteducatieve lessen zijn ontwikkeld in samenwerking met
+      kunsteducatoren uit verschillende disciplines. Bij het opbouwen van
+      deze samenwerkingen werden we ondersteund door <strong>Noordje</strong>.
     </p>
 
     <div class="partners">
 
-      <div>
+      <div class="partner">
+        <span class="partner-role">Schrijven</span>
         <strong>Sarah Oortgijs</strong>
-        Taalrijk Kunsteducatie · Schrijven
+        <span>Taalrijk Kunsteducatie</span>
       </div>
 
-      <div>
+      <div class="partner">
+        <span class="partner-role">Theater</span>
         <strong>Dominique Leensen</strong>
-        Dwarswerk · Theater
+        <span>Dwarswerk</span>
       </div>
 
-      <div>
+      <div class="partner">
+        <span class="partner-role">Dans</span>
         <strong>Kim Tuerlings</strong>
-        Dans
       </div>
 
     </div>
