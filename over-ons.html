@@ -7,7 +7,8 @@
 
   <title>Over ons | Het Onderwater Theater</title>
 
-  <link rel="icon" type="image/png" href="shell_pink.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
     :root {
@@ -31,6 +32,11 @@
       font-family: Arial, sans-serif;
     }
 
+    button,
+    a {
+      font: inherit;
+    }
+
     /* --------------------------------
        NAVIGATIE
     -------------------------------- */
@@ -40,18 +46,23 @@
       top: 30px;
       right: 40px;
       z-index: 100;
+
       display: flex;
       gap: 15px;
     }
 
     .top-nav a {
       padding: 10px 20px;
+
       border: 3px solid var(--blue);
       border-radius: 40px;
+
       color: var(--blue);
       font-weight: bold;
       text-decoration: none;
+
       background: rgba(255, 253, 246, 0.88);
+
       transition:
         background-color 0.3s ease,
         color 0.3s ease,
@@ -72,18 +83,16 @@
     .page {
       position: relative;
       z-index: 2;
+
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
-      padding: 140px 300px 100px 0;
+
+      padding: 140px 250px 140px 0;
     }
 
-    /* --------------------------------
-       TITEL ALS AFBEELDING
-    -------------------------------- */
-
     .page-title {
-      width: min(92vw, 950px);
-      margin: 0 0 50px;
+      width: min(78vw, 730px);
+      margin: 0 0 48px;
       line-height: 0;
     }
 
@@ -94,21 +103,28 @@
       height: auto;
     }
 
-    /* --------------------------------
-       TEKST
-    -------------------------------- */
-
     h2 {
-      margin: 64px 0 20px;
-      font-size: 2rem;
+      margin: 72px 0 24px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.3;
     }
 
     p {
-      max-width: 780px;
-      margin: 0 0 24px;
-      font-size: 1.1rem;
-      line-height: 1.8;
+      max-width: 920px;
+      margin: 0;
+      font-size: 1.2rem;
       font-weight: 400;
+      line-height: 1.9;
+    }
+
+    p + p {
+      margin-top: 24px;
     }
 
     /* --------------------------------
@@ -118,45 +134,399 @@
     .people {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 35px;
+      gap: 48px;
       margin-top: 36px;
     }
 
     .person {
-      padding: 30px;
-      border: 3px solid var(--blue);
-      border-radius: 30px;
-      background: rgba(255, 253, 246, 0.82);
-      transition: transform 0.3s ease;
-    }
-
-    .person:hover {
-      transform: translateY(-5px);
-    }
-
-    .person h3 {
-      margin: 0 0 12px;
-      font-size: 1.6rem;
+      padding: 0;
     }
 
     .person p {
-      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.75;
     }
 
     /* --------------------------------
-       KLEINE FOOTER
+       TIJDLIJN-CARROUSEL
+    -------------------------------- */
+
+    .journey {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      padding: 30px 0 150px;
+    }
+
+    .journey-header {
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto 58px;
+    }
+
+    .journey-header h2 {
+      margin-top: 0;
+    }
+
+    .journey-header p {
+      max-width: 820px;
+    }
+
+    .timeline-carousel {
+      position: relative;
+
+      width: min(1500px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .timeline-viewport {
+      overflow: hidden;
+      padding: 44px 0 54px;
+    }
+
+    .timeline-track {
+      display: flex;
+      gap: 34px;
+
+      transition: transform 0.58s cubic-bezier(.22, .78, .22, 1);
+      will-change: transform;
+    }
+
+    .timeline-event {
+      position: relative;
+
+      flex: 0 0 calc((100% - 68px) / 3);
+      min-width: 0;
+    }
+
+    .timeline-card {
+      width: 100%;
+      min-height: 220px;
+      padding: 26px 24px 28px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      border: 3px solid var(--blue);
+      border-radius: 28px;
+
+      color: var(--blue);
+      text-align: left;
+
+      background: var(--background);
+      cursor: pointer;
+
+      opacity: 0.52;
+      transform: scale(0.94);
+
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
+
+    .timeline-event.is-active .timeline-card {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .timeline-card:hover,
+    .timeline-card:focus-visible {
+      color: white;
+      background: var(--blue);
+      outline: none;
+    }
+
+    .timeline-date {
+      font-size: 0.76rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .timeline-title {
+      max-width: 260px;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .timeline-category {
+      margin-top: auto;
+
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    .timeline-dot {
+      display: block;
+
+      width: 22px;
+      height: 22px;
+      margin: 24px auto 0;
+
+      border: 5px solid var(--background);
+      border-radius: 50%;
+
+      background: var(--blue);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 62px;
+
+      height: 4px;
+      border-radius: 999px;
+
+      background: var(--blue);
+
+      pointer-events: none;
+    }
+
+    .timeline-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: 18px;
+    }
+
+    .timeline-arrow {
+      padding: 0;
+
+      border: 0;
+
+      color: var(--blue);
+      background: transparent;
+
+      font-size: 1rem;
+      font-weight: bold;
+
+      cursor: pointer;
+      transition: opacity 0.25s ease;
+    }
+
+    .timeline-arrow:hover,
+    .timeline-arrow:focus-visible {
+      opacity: 0.55;
+    }
+
+    .timeline-counter {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.7;
+    }
+
+    /* --------------------------------
+       POPUP
+    -------------------------------- */
+
+    .timeline-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+
+      display: none;
+      place-items: center;
+
+      padding: 24px;
+
+      background: rgba(255, 253, 246, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .timeline-modal.is-open {
+      display: grid;
+    }
+
+    .timeline-dialog {
+      position: relative;
+
+      width: min(1120px, 100%);
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+
+      background: var(--background);
+    }
+
+    .timeline-media {
+      min-height: 540px;
+      background: rgba(0, 71, 255, 0.05);
+    }
+
+    .timeline-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      object-fit: cover;
+    }
+
+    .timeline-modal-content {
+      padding: 54px 44px 42px;
+    }
+
+    .timeline-modal-content h3 {
+      margin: 14px 0 20px;
+      font-size: 2rem;
+    }
+
+    .timeline-modal-content p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .timeline-modal-logo {
+      display: block;
+      width: min(160px, 60%);
+      max-height: 72px;
+      margin-top: 30px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .timeline-modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+
+      font-size: 0.74rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-modal-meta span {
+      opacity: 0.72;
+    }
+
+    .timeline-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 3;
+
+      width: 44px;
+      height: 44px;
+
+      border: 0;
+
+      color: var(--blue);
+      background: transparent;
+
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .timeline-modal-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      margin-top: 38px;
+    }
+
+    .timeline-modal-nav button {
+      padding: 0;
+      border: 0;
+
+      color: var(--blue);
+      background: transparent;
+
+      cursor: pointer;
+    }
+
+    /* --------------------------------
+       AFSLUITING
+    -------------------------------- */
+
+    .closing-note {
+      position: relative;
+      z-index: 2;
+
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 0 0 110px;
+    }
+
+    .closing-note p {
+      max-width: 820px;
+    }
+
+    /* --------------------------------
+       INSTAGRAM
+    -------------------------------- */
+
+    .instagram-section {
+      position: relative;
+      z-index: 2;
+
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 0 0 140px;
+    }
+
+    .instagram-icon-link {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      border: 3px solid var(--blue);
+      border-radius: 18px;
+
+      color: var(--blue);
+      text-decoration: none;
+
+      font-size: 1.45rem;
+      font-weight: bold;
+
+      transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .instagram-icon-link:hover,
+    .instagram-icon-link:focus-visible {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------
+       FOOTER
     -------------------------------- */
 
     .site-footer {
-      position: relative;
-      z-index: 2;
-      padding: 8px 24px 18px;
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
       color: var(--blue);
-      font-size: 0.65rem;
-      line-height: 1.2;
-      text-align: center;
-      letter-spacing: 0.02em;
-      opacity: 0.5;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      opacity: 0.45;
+
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
     }
 
     /* --------------------------------
@@ -172,6 +542,10 @@
       .people {
         grid-template-columns: 1fr;
       }
+
+      .timeline-track {
+        gap: 90px;
+      }
     }
 
     /* --------------------------------
@@ -183,8 +557,10 @@
         position: relative;
         top: 0;
         right: 0;
+
         justify-content: center;
         flex-wrap: wrap;
+
         padding: 30px 20px 0;
       }
 
@@ -195,7 +571,7 @@
 
       .page {
         width: auto;
-        padding: 80px 24px 100px;
+        padding: 80px 24px 96px;
       }
 
       .page-title {
@@ -203,17 +579,91 @@
         margin-bottom: 40px;
       }
 
+      p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
+
       h2 {
-        margin-top: 56px;
+        margin-top: 52px;
+        font-size: 1.9rem;
       }
 
       .people {
         grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .journey {
+        padding: 18px 0 96px;
+      }
+
+      .journey-header {
+        width: auto;
+        margin: 0 24px 34px;
+      }
+
+      .timeline-carousel {
+        width: calc(100% - 24px);
+      }
+
+      .timeline-viewport {
+        overflow: hidden;
+        padding: 30px 0 42px;
+      }
+
+      .timeline-track {
+        gap: 16px;
+      }
+
+      .timeline-event {
+        flex: 0 0 86%;
+      }
+
+      .timeline-card {
+        min-height: 205px;
+        padding: 24px 22px 26px;
+      }
+
+      .timeline-line {
+        bottom: 50px;
+      }
+
+      .timeline-controls {
+        margin-top: 14px;
+      }
+
+      .timeline-dialog {
+        grid-template-columns: 1fr;
+        border-top-width: 3px;
+        border-bottom-width: 3px;
+      }
+
+      .timeline-media,
+      .timeline-media img {
+        min-height: 250px;
+      }
+
+      .timeline-modal-content {
+        padding: 32px 24px 28px;
+      }
+
+      .timeline-modal-content h3 {
+        font-size: 1.6rem;
+      }
+
+      .closing-note {
+        width: auto;
+        padding: 0 24px 72px;
+      }
+
+      .instagram-section {
+        width: auto;
+        padding: 0 24px 96px;
       }
 
       .site-footer {
-        padding: 6px 24px 14px;
-        font-size: 0.6rem;
+        display: none;
       }
     }
 
@@ -227,7 +677,8 @@
       }
 
       .top-nav a,
-      .person {
+      .timeline-card,
+      .instagram-icon-link {
         transition: none;
       }
     }
@@ -245,7 +696,7 @@
 
   <main class="page">
 
-    <div class="page-title">
+    <h1 class="page-title">
       <picture>
         <source
           srcset="OT_OVER-ONS-lossless.webp"
@@ -257,22 +708,20 @@
           loading="eager"
           decoding="async">
       </picture>
-    </div>
+    </h1>
 
     <p>
-      Het Onderwater Theater is een korte stop-motion kinderfilm en educatief
-      project dat het label verlegenheid onderzoekt. In een wereld waarin
-      extraversie vaak de norm is, nodigt het project kinderen uit om nieuwe,
-      bij hun individu passende expressievormen te ontdekken.
+      <em>Het Onderwater Theater</em> is een korte stop-motionfilm en
+      educatief project dat via een coming-of-age sprookje het label
+      ‘verlegenheid’ onderzoekt. In een wereld waarin extraversie vaak de norm
+      is, nodigt het project kinderen van 6 tot 11 jaar uit om verschillende
+      manieren van communiceren en expressie te ontdekken. Zo vormt
+      <em>Het Onderwater Theater</em> een kunstzinnig en pedagogisch
+      tegenvoorstel: met een knipoog, maar zonder om de spanning heen te
+      draaien.
     </p>
 
-    <p>
-      Via een kleurrijke, handgemaakte onderwaterwereld volgen we Billy, een
-      meisje dat ontdekt dat ze zich niet hoeft aan te passen aan de norm om
-      zichzelf te uiten en begrepen te worden. Het project wil ruimte maken
-      voor verschillende manieren van zijn en biedt kinderen herkenning,
-      verbeelding en nieuwe vormen van expressie.
-    </p>
+
 
     <h2>De initiatiefnemers</h2>
 
@@ -282,10 +731,9 @@
         <h3>Esther Frank</h3>
 
         <p>
-          Esther is de schrijver en producer. Vanuit haar persoonlijke
-          ervaringen onderzoekt zij hoe kunst kan bijdragen aan mentale
-          gezondheid en bewustwording. Voor Het Onderwater Theater ontwikkelt
-          zij eveneens het aansluitende educatieprogramma.
+          Schrijver en producer. Esther ontwikkelt daarnaast het
+          educatieprogramma en onderzoekt hoe kunst ruimte kan maken voor
+          verschillende manieren van zijn en communiceren.
         </p>
       </article>
 
@@ -293,30 +741,579 @@
         <h3>Sasha Herman</h3>
 
         <p>
-          Sasha is de regisseur en stop-motion animator. Zijn werk kenmerkt
-          zich door kleurrijke, handgemaakte beeldwerelden waarin
-          kwetsbaarheid en verbeelding samenkomen. Voor Het Onderwater Theater
-          ontwikkelt hij de visuele wereld en realiseert hij de animatie.
+          Regisseur en stop-motionanimator. Sasha ontwikkelt de kleurrijke,
+          handgemaakte beeldwereld en realiseert de animatie van de film.
         </p>
       </article>
 
     </div>
 
-    <h2>Waarom dit project?</h2>
+</main>
 
-    <p>
-      Veel kinderen krijgen al vroeg labels zoals ‘verlegen’. Hoewel dat
-      onschuldig lijkt, beïnvloeden zulke woorden vaak hoe kinderen naar
-      zichzelf kijken. Het Onderwater Theater wil het gesprek verschuiven:
-      weg van tekort, richting nieuwsgierigheid, gevoeligheid en de kracht van
-      de binnenwereld.
-    </p>
+  <section class="journey" aria-labelledby="journeyTitle">
 
-  </main>
+    <div class="journey-header">
+      <h2 id="journeyTitle">De reis van Het Onderwater Theater</h2>
+
+      <p>
+        Film, educatie en samenwerkingen groeiden stap voor stap naast elkaar.
+        In deze tijdlijn zie je hoe het project zich ontwikkelde.
+      </p>
+    </div>
+
+    <div
+      class="timeline-carousel"
+      id="timelineCarousel"
+      aria-label="Interactieve tijdlijn">
+
+      <div class="timeline-viewport">
+        <div class="timeline-line" aria-hidden="true"></div>
+
+        <div class="timeline-track">
+
+        <article
+          class="timeline-event"
+          data-date="Maart 2024"
+          data-title="Eerste ontmoeting bij Beautiful Distress"
+          data-category="Ontmoeting"
+          data-text="Sasha en Esther ontmoeten elkaar bij Beautiful Distress, waar Sasha tijdens NDSM Get Lost een workshop geeft. Deze ontmoeting vormt het begin van hun samenwerking aan Het Onderwater Theater."
+          data-image="timeline-beautiful-distress.jpg"
+          data-logo="beautifuldistress.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Maart 2024</span>
+            <strong class="timeline-title">
+              Eerste ontmoeting bij Beautiful Distress
+            </strong>
+            <span class="timeline-category">Ontmoeting</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="Juni 2025"
+          data-title="Workshops bij SOL Network"
+          data-category="Onderzoek & educatie"
+          data-text="Tijdens workshops bij SOL Network verzamelen de makers ervaringen, ideeën en perspectieven die als inspiratie dienen voor de verdere ontwikkeling van de film."
+          data-image="timeline-sol-workshops.jpg"
+          data-logo="sol.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Juni 2025</span>
+            <strong class="timeline-title">
+              Workshops bij SOL Network
+            </strong>
+            <span class="timeline-category">Onderzoek & educatie</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+
+        <article
+          class="timeline-event"
+          data-date="November 2025"
+          data-title="Start set design"
+          data-category="Productie"
+          data-text="De bouw van de handgemaakte decors en de onderwaterwereld gaat van start. Hier krijgt de visuele wereld van Het Onderwater Theater langzaam vorm."
+          data-image="timeline-setdesign.jpg"
+          data-logo="">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">November 2025</span>
+            <strong class="timeline-title">
+              Start set design
+            </strong>
+            <span class="timeline-category">Productie</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="Oktober 2025"
+          data-title="Rotterdam Projectsubsidie"
+          data-category="Steun & financiering"
+          data-text="Het Onderwater Theater ontvangt een projectsubsidie van Rotterdam. Deze bijdrage maakt een volgende stap in de ontwikkeling en productie van het project mogelijk."
+          data-image="timeline-rotterdam-subsidie.jpg"
+          data-logo="rotterdam.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Oktober 2025</span>
+            <strong class="timeline-title">
+              Rotterdam Projectsubsidie
+            </strong>
+            <span class="timeline-category">Steun & financiering</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="December 2025"
+          data-title="Opname van de voice-over"
+          data-category="Productie"
+          data-text="De voice-over van de film wordt opgenomen in de studio. Daarmee krijgen de personages en het verhaal letterlijk een stem."
+          data-image="timeline-voiceover.jpg"
+          data-logo="">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">December 2025</span>
+            <strong class="timeline-title">
+              Opname van de voice-over
+            </strong>
+            <span class="timeline-category">Productie</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="Maart 2026"
+          data-title="AFK Projectsubsidie"
+          data-category="Steun & financiering"
+          data-text="Het project ontvangt een projectsubsidie van het Amsterdams Fonds voor de Kunst. Deze steun draagt bij aan de verdere realisatie van film en educatieprogramma."
+          data-image="timeline-afk-subsidie.jpg"
+          data-logo="afk.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Maart 2026</span>
+            <strong class="timeline-title">
+              AFK Projectsubsidie
+            </strong>
+            <span class="timeline-category">Steun & financiering</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="Mei 2026"
+          data-title="Voordekunst-campagne behaald"
+          data-category="Steun & financiering"
+          data-text="Dankzij de steun van crowdfunders wordt het doel van de Voordekunst-campagne behaald. Daarmee kan de productie verder worden gerealiseerd."
+          data-image="timeline-voordekunst.jpg"
+          data-logo="voordekunst.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Mei 2026</span>
+            <strong class="timeline-title">
+              Voordekunst-campagne behaald
+            </strong>
+            <span class="timeline-category">Steun & financiering</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+
+        <article
+          class="timeline-event"
+          data-date="Juni 2026"
+          data-title="Start animatie"
+          data-category="Productie"
+          data-text="Na de voorbereidingen begint de animatie van de film. Beeld voor beeld komt de handgemaakte onderwaterwereld tot leven."
+          data-image="timeline-start-animatie.jpg"
+          data-logo="">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Juni 2026</span>
+            <strong class="timeline-title">
+              Start animatie
+            </strong>
+            <span class="timeline-category">Productie</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        <article
+          class="timeline-event"
+          data-date="Juni 2026"
+          data-title="Pilotworkshop bij de OBA"
+          data-category="Onderzoek & educatie"
+          data-text="Bij de OBA vindt een pilot van de animatieworkshop plaats. Tijdens deze workshop wordt onderzocht hoe kinderen via stop-motion hun eigen ideeën en verhalen kunnen verbeelden."
+          data-image="timeline-oba-pilot.jpg"
+          data-logo="oba.png">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">Juni 2026</span>
+            <strong class="timeline-title">
+              Pilotworkshop bij de OBA
+            </strong>
+            <span class="timeline-category">Onderzoek & educatie</span>
+          </button>
+
+          <span class="timeline-dot" aria-hidden="true"></span>
+        </article>
+
+        </div>
+      </div>
+
+      <div class="timeline-controls">
+        <button
+          class="timeline-arrow timeline-carousel-prev"
+          type="button"
+          aria-label="Vorige gebeurtenissen">
+          ← Vorige
+        </button>
+
+        <span
+          class="timeline-counter"
+          aria-live="polite">
+          01 / 09
+        </span>
+
+        <button
+          class="timeline-arrow timeline-carousel-next"
+          type="button"
+          aria-label="Volgende gebeurtenissen">
+          Volgende →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+<section class="instagram-section" aria-label="Instagram">
+    <!-- Vervang de URL door jullie exacte Instagram-profiel-URL. -->
+    <a
+      class="instagram-icon-link"
+      href="https://www.instagram.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Volg Het Onderwater Theater op Instagram">
+      ◎
+    </a>
+  </section>
 
   <footer class="site-footer">
     © Esther Frank 2026
   </footer>
+
+  <div
+    class="timeline-modal"
+    id="timelineModal"
+    aria-hidden="true">
+
+    <div
+      class="timeline-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="timelineModalTitle">
+
+      <button
+        class="timeline-close"
+        type="button"
+        aria-label="Sluiten">
+        ×
+      </button>
+
+      <div class="timeline-media">
+        <img
+          id="timelineModalImage"
+          src=""
+          alt=""
+          onerror="this.closest('.timeline-media').style.display='none'">
+      </div>
+
+      <div class="timeline-modal-content">
+
+        <div class="timeline-modal-meta">
+          <span id="timelineModalDate"></span>
+          <span id="timelineModalCategory"></span>
+        </div>
+
+        <h3 id="timelineModalTitle"></h3>
+
+        <p id="timelineModalText"></p>
+
+        <img
+          class="timeline-modal-logo"
+          id="timelineModalLogo"
+          src=""
+          alt=""
+          onerror="this.style.display='none'">
+
+        <div class="timeline-modal-nav">
+          <button type="button" class="timeline-prev">
+            ← Vorige
+          </button>
+
+          <button type="button" class="timeline-next">
+            Volgende →
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const timelineCarousel = document.querySelector("#timelineCarousel");
+    const timelineTrack = timelineCarousel.querySelector(".timeline-track");
+    const timelineCards = Array.from(
+      timelineCarousel.querySelectorAll(".timeline-event")
+    );
+    const timelineCarouselPrevious =
+      timelineCarousel.querySelector(".timeline-carousel-prev");
+    const timelineCarouselNext =
+      timelineCarousel.querySelector(".timeline-carousel-next");
+    const timelineCounter =
+      timelineCarousel.querySelector(".timeline-counter");
+
+    let timelineCarouselIndex = 0;
+    let timelineTouchStartX = 0;
+    let timelineTouchEndX = 0;
+
+    function timelineVisibleCount() {
+      return window.matchMedia("(max-width: 800px)").matches ? 1 : 3;
+    }
+
+    function updateTimelineCarousel() {
+      const visibleCount = timelineVisibleCount();
+      const maxIndex = Math.max(0, timelineCards.length - visibleCount);
+
+      timelineCarouselIndex =
+        Math.min(Math.max(timelineCarouselIndex, 0), maxIndex);
+
+      const gap =
+        window.matchMedia("(max-width: 800px)").matches ? 16 : 34;
+
+      const cardWidth =
+        timelineCards[0].getBoundingClientRect().width;
+
+      timelineTrack.style.transform =
+        `translate3d(-${timelineCarouselIndex * (cardWidth + gap)}px, 0, 0)`;
+
+      const activeIndex =
+        Math.min(
+          timelineCarouselIndex +
+          (visibleCount === 3 ? 1 : 0),
+          timelineCards.length - 1
+        );
+
+      timelineCards.forEach((card, index) => {
+        card.classList.toggle("is-active", index === activeIndex);
+      });
+
+      timelineCounter.textContent =
+        `${String(activeIndex + 1).padStart(2, "0")} / ` +
+        `${String(timelineCards.length).padStart(2, "0")}`;
+    }
+
+    timelineCarouselPrevious.addEventListener("click", () => {
+      timelineCarouselIndex -= 1;
+      updateTimelineCarousel();
+    });
+
+    timelineCarouselNext.addEventListener("click", () => {
+      timelineCarouselIndex += 1;
+      updateTimelineCarousel();
+    });
+
+    timelineCarousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        timelineCarouselPrevious.click();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        timelineCarouselNext.click();
+      }
+    });
+
+    timelineCarousel.addEventListener(
+      "touchstart",
+      (event) => {
+        timelineTouchStartX = event.changedTouches[0].clientX;
+      },
+      { passive: true }
+    );
+
+    timelineCarousel.addEventListener(
+      "touchend",
+      (event) => {
+        timelineTouchEndX = event.changedTouches[0].clientX;
+
+        const distance =
+          timelineTouchEndX - timelineTouchStartX;
+
+        if (Math.abs(distance) < 45) {
+          return;
+        }
+
+        if (distance < 0) {
+          timelineCarouselNext.click();
+        } else {
+          timelineCarouselPrevious.click();
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "resize",
+      updateTimelineCarousel,
+      { passive: true }
+    );
+
+    updateTimelineCarousel();
+
+    const timelineEvents = Array.from(
+      document.querySelectorAll(".timeline-event")
+    );
+
+    const modal = document.querySelector("#timelineModal");
+    const dialog = modal.querySelector(".timeline-dialog");
+    const closeButton = modal.querySelector(".timeline-close");
+    const previousButton = modal.querySelector(".timeline-prev");
+    const nextButton = modal.querySelector(".timeline-next");
+
+    const modalDate = modal.querySelector("#timelineModalDate");
+    const modalCategory = modal.querySelector("#timelineModalCategory");
+    const modalTitle = modal.querySelector("#timelineModalTitle");
+    const modalText = modal.querySelector("#timelineModalText");
+    const modalImage = modal.querySelector("#timelineModalImage");
+    const modalMedia = modal.querySelector(".timeline-media");
+    const modalLogo = modal.querySelector("#timelineModalLogo");
+
+    let activeTimelineIndex = 0;
+    let previouslyFocusedElement = null;
+
+    function openTimelineEvent(index) {
+      activeTimelineIndex = index;
+
+      const event = timelineEvents[index];
+
+      modalDate.textContent = event.dataset.date;
+      modalCategory.textContent = event.dataset.category;
+      modalTitle.textContent = event.dataset.title;
+      modalText.textContent = event.dataset.text;
+
+      modalMedia.style.display = "";
+      modalImage.style.display = "";
+      modalImage.src = event.dataset.image || "";
+      modalImage.alt = event.dataset.title;
+
+      modalLogo.style.display = event.dataset.logo ? "block" : "none";
+      modalLogo.src = event.dataset.logo || "";
+      modalLogo.alt =
+        event.dataset.logo
+          ? `Logo bij ${event.dataset.title}`
+          : "";
+
+      previouslyFocusedElement = document.activeElement;
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      closeButton.focus();
+    }
+
+    function closeTimelineModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+
+      if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+      }
+    }
+
+    function showPreviousTimelineEvent() {
+      const nextIndex =
+        (activeTimelineIndex - 1 + timelineEvents.length) %
+        timelineEvents.length;
+
+      openTimelineEvent(nextIndex);
+    }
+
+    function showNextTimelineEvent() {
+      const nextIndex =
+        (activeTimelineIndex + 1) %
+        timelineEvents.length;
+
+      openTimelineEvent(nextIndex);
+    }
+
+    timelineEvents.forEach((event, index) => {
+      const button = event.querySelector(".timeline-card");
+
+      button.addEventListener("click", () => {
+        openTimelineEvent(index);
+      });
+    });
+
+    closeButton.addEventListener("click", closeTimelineModal);
+    previousButton.addEventListener("click", showPreviousTimelineEvent);
+    nextButton.addEventListener("click", showNextTimelineEvent);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeTimelineModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!modal.classList.contains("is-open")) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeTimelineModal();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPreviousTimelineEvent();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNextTimelineEvent();
+      }
+    });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusableElements = Array.from(
+        dialog.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => !element.disabled);
+
+      const firstElement = focusableElements[0];
+      const lastElement =
+        focusableElements[focusableElements.length - 1];
+
+      if (
+        event.shiftKey &&
+        document.activeElement === firstElement
+      ) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (
+        !event.shiftKey &&
+        document.activeElement === lastElement
+      ) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    });
+  </script>
 
 </body>
 
