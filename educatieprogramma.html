@@ -32,6 +32,102 @@
       font-family: Arial, sans-serif;
     }
 
+
+    /* --------------------------------
+       BEWEGEND WEZEN
+    -------------------------------- */
+
+    .creature-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: clamp(120px, 15vw, 240px);
+      aspect-ratio: 1;
+
+      z-index: 1;
+
+      pointer-events: none;
+      user-select: none;
+
+      opacity: 0;
+      transition: opacity 0.8s ease;
+
+      transform-origin: center;
+      will-change: transform, opacity;
+    }
+
+    .creature-cursor.is-visible {
+      opacity: 1;
+    }
+
+    .creature-cursor img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      transform-origin: center;
+      will-change: transform;
+
+      animation: creature-float 4.2s ease-in-out infinite;
+    }
+
+    @keyframes creature-float {
+      0%,
+      100% {
+        transform:
+          translateY(-5px)
+          rotate(-3deg)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translateY(8px)
+          rotate(3deg)
+          scale(1.025);
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .creature-cursor {
+        opacity: 0.95;
+        animation: creature-touch-swim 18s linear infinite;
+      }
+
+      @keyframes creature-touch-swim {
+        0% {
+          transform:
+            translate3d(-30vw, 65vh, 0)
+            rotate(-12deg);
+        }
+
+        25% {
+          transform:
+            translate3d(18vw, 45vh, 0)
+            rotate(7deg);
+        }
+
+        50% {
+          transform:
+            translate3d(52vw, 62vh, 0)
+            rotate(-5deg);
+        }
+
+        75% {
+          transform:
+            translate3d(82vw, 28vh, 0)
+            rotate(8deg);
+        }
+
+        100% {
+          transform:
+            translate3d(125vw, 48vh, 0)
+            rotate(-10deg);
+        }
+      }
+    }
+
     /* --------------------------------
        NAVIGATIE
     -------------------------------- */
@@ -112,6 +208,15 @@
       line-height: 1.2;
     }
 
+    .partners-heading {
+      margin-top: 72px;
+      margin-bottom: 14px;
+      padding-top: 28px;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      border-top: 1px solid rgba(0,71,255,0.18);
+    }
+
     h3 {
       margin: 0 0 14px;
       font-size: 1.45rem;
@@ -156,7 +261,6 @@
 
     .program-item:hover {
       transform: translateY(-4px);
-      box-shadow: 8px 10px 0 rgba(0, 71, 255, 0.1);
     }
 
     .program-item p {
@@ -172,12 +276,12 @@
     .partners {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
-      margin: 34px 0 20px;
+      gap: 12px;
+      margin: 24px 0 12px;
     }
 
     .partners > div {
-      padding: 16px 22px;
+      padding: 10px 16px;
 
       border: 2px solid var(--blue);
       border-radius: 999px;
@@ -199,8 +303,12 @@
 
     .partners strong {
       display: block;
-      margin-bottom: 2px;
-      font-size: 1rem;
+      margin-bottom: 1px;
+      font-size: 0.88rem;
+    }
+
+    .partners {
+      font-size: 0.88rem;
     }
 
     /* --------------------------------
@@ -261,6 +369,10 @@
         border-width: 2px;
       }
 
+      .creature-cursor {
+        width: clamp(90px, 27vw, 155px);
+      }
+
       .page {
         width: auto;
         padding: 80px 24px 96px;
@@ -285,6 +397,12 @@
         font-size: 1.3rem;
       }
 
+      .partners-heading {
+        font-size: 1.05rem;
+        margin-top: 56px;
+        padding-top: 22px;
+      }
+
       .program-grid {
         grid-template-columns: 1fr;
       }
@@ -299,7 +417,8 @@
       }
 
       .partners > div {
-        border-radius: 22px;
+        border-radius: 18px;
+        padding: 10px 14px;
       }
 
       .partners > div:hover {
@@ -320,9 +439,16 @@
         scroll-behavior: auto;
       }
 
+      .creature-cursor {
+        display: none;
+        animation: none;
+      }
+
+      .creature-cursor img,
       .top-nav a,
       .program-item,
       .partners > div {
+        animation: none;
         transition: none;
       }
     }
@@ -330,6 +456,16 @@
 </head>
 
 <body>
+
+  <div
+    class="creature-cursor"
+    id="creatureCursor"
+    aria-hidden="true">
+    <img
+      src="OT_creature.png"
+      alt=""
+      draggable="false">
+  </div>
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
@@ -356,42 +492,49 @@
 
     
 
+    
+
     <p>
-      Het educatieprogramma van Het Onderwater Theater bestaat uit een reeks korte lessen, ontwikkeld
-      in samenwerking met educatoren uit verschillende kunstdisciplines. De lessen zijn
-      eenvoudig uit te voeren in de klas of thuis en laten kinderen
-      kennismaken met verschillende vormen van expressie, en verkent thema's als identiteit en de ruimte om jezelf te zijn.
+      Het educatieprogramma is ontwikkeld vanuit de thema’s van
+      Het Onderwater Theater. De lessen sluiten aan bij de film en
+      nodigen kinderen uit om op verschillende manieren te onderzoeken wie
+      ze zijn en hoe ze zich kunnen uiten.
+    </p>
+
+    <h2>De lessen</h2>
+
+    <p>
+      Het programma is ontwikkeld in samenwerking met kunsteducatoren uit verschillende
+      disciplines. Iedere les vertrekt uit het thema van de film, en verdiept zich door de kunstvorm van die specifieke les. De lessen zijn kort, eenvoudig uit te voeren en kunnen zowel
+      in de klas als thuis worden gebruikt.
     </p>
 
     <div class="program-grid">
 
       <article class="program-item">
-        <h3>Wat?</h3>
+        <h3>In gesprek</h3>
 
         <p>
-          Korte, toegankelijke lessen waarin kinderen kennismaken met
-          verschillende expressievormen. De lessen zijn eenvoudig uit te
-          voeren in de klas of thuis.
+          De film vormt het vertrekpunt voor een gesprek over identiteit,
+          labels en expressie.
         </p>
       </article>
 
       <article class="program-item">
-        <h3>Waarom?</h3>
+        <h3>Kunsteducatieve lessen</h3>
 
         <p>
-          Kinderen krijgen al vroeg woorden en verwachtingen mee over hoe zij
-          zouden moeten zijn. Het programma onderzoekt wat zulke labels met
-          kinderen kunnen doen en laat zien dat er niet één manier is om
-          jezelf te zijn.
+          Met verschillende kunstopdrachten onderzoeken kinderen
+          verschillende manieren om zichzelf uit te drukken.
         </p>
       </article>
 
       <article class="program-item">
-        <h3>Hoe?</h3>
+        <h3>Workshops op locatie</h3>
 
         <p>
-          Met film, gesprek en kunsteducatieve opdrachten ontdekken kinderen
-          verschillende manieren om zichzelf uit te drukken. 
+          De makers bieden ook workshops op locatie aan, zoals
+          stop-motionanimatie en creatief schrijven.
         </p>
       </article>
 
@@ -400,14 +543,25 @@
     <h2>Workshops op locatie</h2>
 
     <p>
-      Naast het afneembaar educatieprogramma kunnen de makers ook langskomen voor workshops op
-      locatie. Denk aan een workshop stop-motionanimatie, waarin kinderen leren hun denkbeeldige vriend te maken en animeren, of aan schrijflessen waarin zij hun eigen verhaal
-      ontwikkelen.
+      De makers kunnen langskomen voor workshops op school of bij een
+      culturele instelling. Tijdens een stop-motionworkshop bedenken zij hun eigen denkbeeldige vriend,
+      waarna we deze samen animeren. In een
+      schrijfles werken zij aan het vertellen van hun verhaal.
+    </p>
+
+    <p style="margin-top:32px;">
+      Wil je meer informatie over het educatieprogramma of de mogelijkheden
+      voor een workshop op locatie?
+      <a href="contact.html" style="color:inherit;font-weight:bold;text-decoration:underline;">
+        Neem gerust contact met ons op.
+      </a>
     </p>
 
 
 
-    <h2>Onze partners</h2>
+
+
+    <h2 class="partners-heading">Onze partners</h2>
 
     <p>
       Voor de ontwikkeling van de kunsteducatieve lessen werken wij samen met
@@ -439,6 +593,184 @@
   <footer class="site-footer">
     © Esther Frank 2026
   </footer>
+
+
+  <script>
+    /*
+      Bewegend wezen:
+      - beweegt zelfstandig door het hele scherm;
+      - volgt de cursor;
+      - vervolgt na drie seconden haar eigen route.
+    */
+
+    const creature = document.querySelector("#creatureCursor");
+
+    const canUsePointer =
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    const reducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (creature && canUsePointer && !reducedMotion) {
+      const IDLE_DELAY = 3000;
+
+      let mode = "swimming";
+
+      let currentX = -120;
+      let currentY = window.innerHeight * 0.25;
+
+      let targetX = window.innerWidth * 0.2;
+      let targetY = window.innerHeight * 0.4;
+
+      let previousX = currentX;
+      let previousY = currentY;
+
+      let rotation = 0;
+      let idleTimer = null;
+      let nextSwimTargetTimer = null;
+
+      const followSpeed = 0.065;
+      const swimSpeed = 0.012;
+
+      creature.classList.add("is-visible");
+
+      function randomBetween(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function chooseSwimTarget() {
+        const creatureSize = creature.offsetWidth;
+        const leaveScreen = Math.random() < 0.3;
+
+        if (leaveScreen) {
+          const side = Math.floor(Math.random() * 4);
+
+          if (side === 0) {
+            targetX = -creatureSize * 0.55;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 1) {
+            targetX = window.innerWidth + creatureSize * 0.55;
+            targetY = randomBetween(0, window.innerHeight);
+          } else if (side === 2) {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = -creatureSize * 0.55;
+          } else {
+            targetX = randomBetween(0, window.innerWidth);
+            targetY = window.innerHeight + creatureSize * 0.55;
+          }
+        } else {
+          targetX = randomBetween(
+            creatureSize * 0.25,
+            window.innerWidth - creatureSize * 0.25
+          );
+
+          targetY = randomBetween(
+            creatureSize * 0.25,
+            window.innerHeight - creatureSize * 0.25
+          );
+        }
+
+        clearTimeout(nextSwimTargetTimer);
+
+        nextSwimTargetTimer = setTimeout(() => {
+          if (mode === "swimming") {
+            chooseSwimTarget();
+          }
+        }, randomBetween(4500, 8000));
+      }
+
+      function startSwimming() {
+        mode = "swimming";
+        chooseSwimTarget();
+      }
+
+      function followPointer(event) {
+        mode = "following";
+
+        targetX = event.clientX;
+        targetY = event.clientY;
+
+        creature.classList.add("is-visible");
+
+        clearTimeout(idleTimer);
+        clearTimeout(nextSwimTargetTimer);
+
+        idleTimer = setTimeout(
+          startSwimming,
+          IDLE_DELAY
+        );
+      }
+
+      function animateCreature() {
+        const speed =
+          mode === "following"
+            ? followSpeed
+            : swimSpeed;
+
+        currentX += (targetX - currentX) * speed;
+        currentY += (targetY - currentY) * speed;
+
+        const movementX = currentX - previousX;
+        const movementY = currentY - previousY;
+
+        const movementAngle =
+          Math.atan2(movementY, movementX) *
+          (180 / Math.PI);
+
+        const targetRotation =
+          Math.max(-18, Math.min(18, movementAngle * 0.18));
+
+        rotation +=
+          (targetRotation - rotation) * 0.04;
+
+        const x =
+          currentX - creature.offsetWidth / 2;
+
+        const y =
+          currentY - creature.offsetHeight / 2;
+
+        creature.style.transform = `
+          translate3d(${x}px, ${y}px, 0)
+          rotate(${rotation}deg)
+        `;
+
+        previousX = currentX;
+        previousY = currentY;
+
+        if (mode === "swimming") {
+          const distance = Math.hypot(
+            targetX - currentX,
+            targetY - currentY
+          );
+
+          if (distance < 35) {
+            chooseSwimTarget();
+          }
+        }
+
+        requestAnimationFrame(animateCreature);
+      }
+
+      window.addEventListener(
+        "pointermove",
+        followPointer,
+        { passive: true }
+      );
+
+      window.addEventListener(
+        "resize",
+        () => {
+          if (mode === "swimming") {
+            chooseSwimTarget();
+          }
+        },
+        { passive: true }
+      );
+
+      startSwimming();
+      animateCreature();
+    }
+  </script>
 
 </body>
 
