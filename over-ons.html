@@ -443,10 +443,10 @@
     -------------------------------- */
 
     .instagram-corner {
-      position: fixed;
+      position: absolute;
       right: 22px;
       bottom: 18px;
-      z-index: 1000;
+      z-index: 10;
 
       display: flex;
       flex-direction: column;
@@ -471,14 +471,15 @@
     }
 
     .instagram-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      opacity: .65;
     }
 
     .instagram-handle {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 500;
     }
 
     /* --------------------------------
@@ -662,7 +663,7 @@
   </style>
 </head>
 
-<body>
+<body style="position:relative;">
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
@@ -910,12 +911,12 @@
 
 <a
     class="instagram-corner"
-    href="https://www.instagram.com/"
+    href="https://www.instagram.com/het_onderwater_theater/"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Volg Het Onderwater Theater op Instagram">
     <span class="instagram-label">Instagram</span>
-    <span class="instagram-handle">@hetonderwatertheater ↗</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
   </a>
 
   <footer class="site-footer">
