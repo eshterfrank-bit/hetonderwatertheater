@@ -301,18 +301,22 @@
     -------------------------------- */
 
     .site-footer {
-      position: relative;
-      z-index: 1;
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
 
-      padding: 10px 24px 16px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
 
       color: var(--blue);
       font-size: 0.7rem;
-      line-height: 1.2;
-      text-align: center;
       letter-spacing: 0.03em;
 
       opacity: 0.45;
+
+      z-index: 1000;
+      pointer-events: none;
+      user-select: none;
     }
 
     /* --------------------------------
@@ -368,8 +372,7 @@
       }
 
       .site-footer {
-        padding: 8px 24px 14px;
-        font-size: 0.6rem;
+        display: none;
       }
     }
 
