@@ -148,182 +148,155 @@
     }
 
     /* --------------------------------
-       TIJDLIJN-CARROUSEL
+       MINIMALE TIJDLIJN
     -------------------------------- */
 
     .journey {
       position: relative;
       z-index: 2;
-
       width: 100%;
-      padding: 30px 0 150px;
+      padding: 20px 0 130px;
     }
 
     .journey-header {
       width: min(1180px, calc(100% - 80px));
-      margin: 0 auto 58px;
+      margin: 0 auto 42px;
     }
 
     .journey-header h2 {
       margin-top: 0;
-    }
-
-    .journey-header p {
-      max-width: 820px;
+      margin-bottom: 0;
     }
 
     .timeline-carousel {
-      position: relative;
-
       width: min(1500px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     .timeline-viewport {
-      overflow: hidden;
-      padding: 44px 0 54px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 26px 0 34px;
+      scroll-snap-type: x proximity;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 71, 255, 0.35) transparent;
+    }
+
+    .timeline-viewport::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .timeline-viewport::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(0, 71, 255, 0.35);
     }
 
     .timeline-track {
+      position: relative;
+      width: max-content;
+      min-width: 100%;
       display: flex;
-      gap: 34px;
+      align-items: flex-start;
+      gap: 72px;
+      padding: 0 46px 34px;
+    }
 
-      transition: transform 0.58s cubic-bezier(.22, .78, .22, 1);
-      will-change: transform;
+    .timeline-track::after {
+      content: "";
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 0;
+      height: 1px;
+      background: rgba(0, 71, 255, 0.22);
     }
 
     .timeline-event {
       position: relative;
-
-      flex: 0 0 calc((100% - 68px) / 3);
-      min-width: 0;
+      z-index: 1;
+      flex: 0 0 210px;
+      scroll-snap-align: center;
     }
 
     .timeline-card {
       width: 100%;
-      min-height: 220px;
-      padding: 26px 24px 28px;
-
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-
-      border: 3px solid var(--blue);
-      border-radius: 28px;
-
+      gap: 8px;
+      border: 0;
       color: var(--blue);
       text-align: left;
-
-      background: var(--background);
+      background: transparent;
       cursor: pointer;
-
-      opacity: 0.52;
-      transform: scale(0.94);
-
       transition:
-        transform 0.3s ease,
-        opacity 0.3s ease,
-        background-color 0.3s ease,
-        color 0.3s ease;
-    }
-
-    .timeline-event.is-active .timeline-card {
-      opacity: 1;
-      transform: scale(1);
+        opacity 0.22s ease,
+        transform 0.22s ease;
     }
 
     .timeline-card:hover,
     .timeline-card:focus-visible {
-      color: white;
-      background: var(--blue);
+      opacity: 0.58;
+      transform: translateY(-2px);
       outline: none;
     }
 
+    .timeline-dot {
+      display: none;
+    }
+
     .timeline-date {
-      font-size: 0.76rem;
-      font-weight: bold;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.72;
+      font-size: 0.86rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0.62;
     }
 
     .timeline-title {
-      max-width: 260px;
-      font-size: 1.2rem;
-      line-height: 1.3;
+      max-width: 190px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
     }
 
-    .timeline-category {
-      margin-top: auto;
+    .timeline-ruler {
+      position: relative;
 
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      opacity: 0.55;
+      width: max-content;
+      min-width: 100%;
+      height: 30px;
+      margin-top: 34px;
+
+      background:
+        repeating-linear-gradient(
+          to right,
+          var(--blue) 0 1px,
+          transparent 1px 34px
+        );
+
+      background-size: auto 11px;
+      background-position: left top;
+      background-repeat: repeat-x;
     }
 
-    .timeline-dot {
-      display: block;
-
-      width: 22px;
-      height: 22px;
-      margin: 24px auto 0;
-
-      border: 5px solid var(--background);
-      border-radius: 50%;
-
-      background: var(--blue);
-      box-shadow: 0 0 0 2px var(--blue);
-    }
-
-    .timeline-line {
+    .timeline-ruler::after {
+      content: "";
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 62px;
+      bottom: 0;
 
-      height: 4px;
-      border-radius: 999px;
-
+      height: 1px;
       background: var(--blue);
-
-      pointer-events: none;
     }
 
-    .timeline-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-top: 18px;
-    }
-
-    .timeline-arrow {
-      padding: 0;
-
-      border: 0;
-
-      color: var(--blue);
-      background: transparent;
-
-      font-size: 1rem;
-      font-weight: bold;
-
-      cursor: pointer;
-      transition: opacity 0.25s ease;
-    }
-
-    .timeline-arrow:hover,
-    .timeline-arrow:focus-visible {
-      opacity: 0.55;
-    }
-
-    .timeline-counter {
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      font-variant-numeric: tabular-nums;
-      opacity: 0.7;
+    .timeline-category,
+    .timeline-controls,
+    .timeline-line {
+      display: none;
     }
 
     /* --------------------------------
@@ -469,42 +442,43 @@
        INSTAGRAM
     -------------------------------- */
 
-    .instagram-section {
-      position: relative;
-      z-index: 2;
+    .instagram-corner {
+      position: fixed;
+      right: 22px;
+      bottom: 18px;
+      z-index: 1000;
 
-      width: min(1180px, calc(100% - 80px));
-      margin: 0 auto;
-      padding: 0 0 140px;
-    }
-
-    .instagram-icon-link {
-      width: 52px;
-      height: 52px;
-
-      display: grid;
-      place-items: center;
-
-      border: 3px solid var(--blue);
-      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
 
       color: var(--blue);
+      text-align: right;
       text-decoration: none;
 
-      font-size: 1.45rem;
-      font-weight: bold;
+      opacity: 0.68;
 
       transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
+        opacity 0.25s ease,
         transform 0.25s ease;
     }
 
-    .instagram-icon-link:hover,
-    .instagram-icon-link:focus-visible {
-      color: white;
-      background: var(--blue);
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible {
+      opacity: 1;
       transform: translateY(-2px);
+    }
+
+    .instagram-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .instagram-handle {
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     /* --------------------------------
@@ -595,42 +569,44 @@
       }
 
       .journey {
-        padding: 18px 0 96px;
+        padding: 12px 0 88px;
       }
 
       .journey-header {
         width: auto;
-        margin: 0 24px 34px;
+        margin: 0 24px 26px;
       }
 
       .timeline-carousel {
-        width: calc(100% - 24px);
+        width: 100%;
       }
 
       .timeline-viewport {
-        overflow: hidden;
-        padding: 30px 0 42px;
+        overflow-x: auto;
+        padding: 18px 0 26px;
       }
 
       .timeline-track {
-        gap: 16px;
+        gap: 40px;
+        padding: 0 24px;
+      }
+
+      .timeline-track::after {
+        left: 16px;
+        right: 16px;
       }
 
       .timeline-event {
-        flex: 0 0 86%;
+        flex: 0 0 165px;
       }
 
-      .timeline-card {
-        min-height: 205px;
-        padding: 24px 22px 26px;
+      .timeline-title {
+        max-width: 150px;
+        font-size: 0.98rem;
       }
 
-      .timeline-line {
-        bottom: 50px;
-      }
-
-      .timeline-controls {
-        margin-top: 14px;
+      .timeline-ruler {
+        margin-top: 28px;
       }
 
       .timeline-dialog {
@@ -662,7 +638,8 @@
         padding: 0 24px 96px;
       }
 
-      .site-footer {
+      .site-footer,
+      .instagram-corner {
         display: none;
       }
     }
@@ -678,7 +655,7 @@
 
       .top-nav a,
       .timeline-card,
-      .instagram-icon-link {
+      .instagram-corner {
         transition: none;
       }
     }
@@ -753,21 +730,20 @@
   <section class="journey" aria-labelledby="journeyTitle">
 
     <div class="journey-header">
-      <h2 id="journeyTitle">De reis van Het Onderwater Theater</h2>
+      <h2 id="journeyTitle">In ontwikkeling</h2>
       
     </div>
 
     <div
       class="timeline-carousel"
       id="timelineCarousel"
-      aria-label="Interactieve tijdlijn">
+      aria-label="Interactieve tijdlijn"
+      tabindex="0">
 
       <div class="timeline-viewport">
-        <div class="timeline-line" aria-hidden="true"></div>
-
         <div class="timeline-track">
 
-        <article
+<article
           class="timeline-event"
           data-date="Maart 2024"
           data-title="Eerste ontmoeting bij Beautiful Distress"
@@ -781,13 +757,10 @@
             <strong class="timeline-title">
               Eerste ontmoeting bij Beautiful Distress
             </strong>
-            <span class="timeline-category">Ontmoeting</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-        <article
+<article
           class="timeline-event"
           data-date="Juni 2025"
           data-title="Workshops bij SOL Network"
@@ -801,34 +774,10 @@
             <strong class="timeline-title">
               Workshops bij SOL Network
             </strong>
-            <span class="timeline-category">Onderzoek & educatie</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-
-        <article
-          class="timeline-event"
-          data-date="November 2025"
-          data-title="Start set design"
-          data-category="Productie"
-          data-text="De bouw van de handgemaakte decors en de onderwaterwereld gaat van start. Hier krijgt de visuele wereld van Het Onderwater Theater langzaam vorm."
-          data-image="timeline-setdesign.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">November 2025</span>
-            <strong class="timeline-title">
-              Start set design
-            </strong>
-            <span class="timeline-category">Productie</span>
-          </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
-        </article>
-
-        <article
+<article
           class="timeline-event"
           data-date="Oktober 2025"
           data-title="Rotterdam Projectsubsidie"
@@ -842,13 +791,27 @@
             <strong class="timeline-title">
               Rotterdam Projectsubsidie
             </strong>
-            <span class="timeline-category">Steun & financiering</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-        <article
+<article
+          class="timeline-event"
+          data-date="November 2025"
+          data-title="Start set design"
+          data-category="Productie"
+          data-text="De bouw van de handgemaakte decors en de onderwaterwereld gaat van start. Hier krijgt de visuele wereld van Het Onderwater Theater langzaam vorm."
+          data-image="timeline-setdesign.jpg"
+          data-logo="">
+
+          <button class="timeline-card" type="button">
+            <span class="timeline-date">November 2025</span>
+            <strong class="timeline-title">
+              Start set design
+            </strong>
+          </button>
+        </article>
+
+<article
           class="timeline-event"
           data-date="December 2025"
           data-title="Opname van de voice-over"
@@ -862,13 +825,10 @@
             <strong class="timeline-title">
               Opname van de voice-over
             </strong>
-            <span class="timeline-category">Productie</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-        <article
+<article
           class="timeline-event"
           data-date="Maart 2026"
           data-title="AFK Projectsubsidie"
@@ -882,13 +842,10 @@
             <strong class="timeline-title">
               AFK Projectsubsidie
             </strong>
-            <span class="timeline-category">Steun & financiering</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-        <article
+<article
           class="timeline-event"
           data-date="Mei 2026"
           data-title="Voordekunst-campagne behaald"
@@ -902,14 +859,10 @@
             <strong class="timeline-title">
               Voordekunst-campagne behaald
             </strong>
-            <span class="timeline-category">Steun & financiering</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-
-        <article
+<article
           class="timeline-event"
           data-date="Juni 2026"
           data-title="Start animatie"
@@ -923,13 +876,10 @@
             <strong class="timeline-title">
               Start animatie
             </strong>
-            <span class="timeline-category">Productie</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
-        <article
+<article
           class="timeline-event"
           data-date="Juni 2026"
           data-title="Pilotworkshop bij de OBA"
@@ -943,52 +893,30 @@
             <strong class="timeline-title">
               Pilotworkshop bij de OBA
             </strong>
-            <span class="timeline-category">Onderzoek & educatie</span>
           </button>
-
-          <span class="timeline-dot" aria-hidden="true"></span>
         </article>
 
         </div>
-      </div>
 
-      <div class="timeline-controls">
-        <button
-          class="timeline-arrow timeline-carousel-prev"
-          type="button"
-          aria-label="Vorige gebeurtenissen">
-          ← Vorige
-        </button>
-
-        <span
-          class="timeline-counter"
-          aria-live="polite">
-          01 / 09
-        </span>
-
-        <button
-          class="timeline-arrow timeline-carousel-next"
-          type="button"
-          aria-label="Volgende gebeurtenissen">
-          Volgende →
-        </button>
+        <div
+          class="timeline-ruler"
+          aria-hidden="true">
+        </div>
       </div>
 
     </div>
 
   </section>
 
-<section class="instagram-section" aria-label="Instagram">
-    <!-- Vervang de URL door jullie exacte Instagram-profiel-URL. -->
-    <a
-      class="instagram-icon-link"
-      href="https://www.instagram.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Volg Het Onderwater Theater op Instagram">
-      ◎
-    </a>
-  </section>
+<a
+    class="instagram-corner"
+    href="https://www.instagram.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@hetonderwatertheater ↗</span>
+  </a>
 
   <footer class="site-footer">
     © Esther Frank 2026
@@ -1055,116 +983,29 @@
   </div>
 
   <script>
-    const timelineCarousel = document.querySelector("#timelineCarousel");
-    const timelineTrack = timelineCarousel.querySelector(".timeline-track");
-    const timelineCards = Array.from(
-      timelineCarousel.querySelectorAll(".timeline-event")
-    );
-    const timelineCarouselPrevious =
-      timelineCarousel.querySelector(".timeline-carousel-prev");
-    const timelineCarouselNext =
-      timelineCarousel.querySelector(".timeline-carousel-next");
-    const timelineCounter =
-      timelineCarousel.querySelector(".timeline-counter");
+    const timelineCarousel =
+      document.querySelector("#timelineCarousel");
 
-    let timelineCarouselIndex = 0;
-    let timelineTouchStartX = 0;
-    let timelineTouchEndX = 0;
-
-    function timelineVisibleCount() {
-      return window.matchMedia("(max-width: 800px)").matches ? 1 : 3;
-    }
-
-    function updateTimelineCarousel() {
-      const visibleCount = timelineVisibleCount();
-      const maxIndex = Math.max(0, timelineCards.length - visibleCount);
-
-      timelineCarouselIndex =
-        Math.min(Math.max(timelineCarouselIndex, 0), maxIndex);
-
-      const gap =
-        window.matchMedia("(max-width: 800px)").matches ? 16 : 34;
-
-      const cardWidth =
-        timelineCards[0].getBoundingClientRect().width;
-
-      timelineTrack.style.transform =
-        `translate3d(-${timelineCarouselIndex * (cardWidth + gap)}px, 0, 0)`;
-
-      const activeIndex =
-        Math.min(
-          timelineCarouselIndex +
-          (visibleCount === 3 ? 1 : 0),
-          timelineCards.length - 1
-        );
-
-      timelineCards.forEach((card, index) => {
-        card.classList.toggle("is-active", index === activeIndex);
-      });
-
-      timelineCounter.textContent =
-        `${String(activeIndex + 1).padStart(2, "0")} / ` +
-        `${String(timelineCards.length).padStart(2, "0")}`;
-    }
-
-    timelineCarouselPrevious.addEventListener("click", () => {
-      timelineCarouselIndex -= 1;
-      updateTimelineCarousel();
-    });
-
-    timelineCarouselNext.addEventListener("click", () => {
-      timelineCarouselIndex += 1;
-      updateTimelineCarousel();
-    });
+    const timelineViewport =
+      timelineCarousel.querySelector(".timeline-viewport");
 
     timelineCarousel.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        timelineCarouselPrevious.click();
+        timelineViewport.scrollBy({
+          left: -260,
+          behavior: "smooth"
+        });
       }
 
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        timelineCarouselNext.click();
+        timelineViewport.scrollBy({
+          left: 260,
+          behavior: "smooth"
+        });
       }
     });
-
-    timelineCarousel.addEventListener(
-      "touchstart",
-      (event) => {
-        timelineTouchStartX = event.changedTouches[0].clientX;
-      },
-      { passive: true }
-    );
-
-    timelineCarousel.addEventListener(
-      "touchend",
-      (event) => {
-        timelineTouchEndX = event.changedTouches[0].clientX;
-
-        const distance =
-          timelineTouchEndX - timelineTouchStartX;
-
-        if (Math.abs(distance) < 45) {
-          return;
-        }
-
-        if (distance < 0) {
-          timelineCarouselNext.click();
-        } else {
-          timelineCarouselPrevious.click();
-        }
-      },
-      { passive: true }
-    );
-
-    window.addEventListener(
-      "resize",
-      updateTimelineCarousel,
-      { passive: true }
-    );
-
-    updateTimelineCarousel();
 
     const timelineEvents = Array.from(
       document.querySelectorAll(".timeline-event")
