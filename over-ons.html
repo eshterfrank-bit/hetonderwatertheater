@@ -148,6 +148,41 @@
     }
 
     /* --------------------------------
+       TEAM
+    -------------------------------- */
+
+    .team-section {
+      margin-top: 68px;
+    }
+
+    .team-heading {
+      margin: 0 0 26px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px 40px;
+    }
+
+    .team-member strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .team-member span {
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.72;
+    }
+
+    /* --------------------------------
        MINIMALE TIJDLIJN
     -------------------------------- */
 
@@ -518,6 +553,10 @@
         grid-template-columns: 1fr;
       }
 
+      .team-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .timeline-track {
         gap: 90px;
       }
@@ -567,6 +606,20 @@
       .people {
         grid-template-columns: 1fr;
         gap: 34px;
+      }
+
+      .team-section {
+        margin-top: 54px;
+      }
+
+      .team-heading {
+        margin-bottom: 22px;
+        font-size: 1.05rem;
+      }
+
+      .team-list {
+        grid-template-columns: 1fr;
+        gap: 22px;
       }
 
       .journey {
@@ -724,6 +777,39 @@
       </article>
 
     </div>
+
+    <section class="team-section" aria-labelledby="teamTitle">
+      <h2 class="team-heading" id="teamTitle">Team</h2>
+
+      <div class="team-list">
+
+        <div class="team-member">
+          <strong>Moritz Gabe</strong>
+          <span>Sound design &amp; muzikale compositie</span>
+        </div>
+
+        <div class="team-member">
+          <strong>Letitica van Neerven</strong>
+          <span>Assistent set design</span>
+        </div>
+
+        <div class="team-member">
+          <strong>Studio Sophie van Geest</strong>
+          <span>Assistent animatie</span>
+        </div>
+
+        <div class="team-member">
+          <strong>RMX Studio</strong>
+          <span>Voice-over</span>
+        </div>
+
+        <div class="team-member">
+          <strong>Reket Social (Rixta van der Molen)</strong>
+          <span>Communicatie</span>
+        </div>
+
+      </div>
+    </section>
 
 </main>
 
