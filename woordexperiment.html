@@ -18,7 +18,7 @@
       --background: #fffdf6;
       --blue: #0047ff;
       --red: #E3170A;
-      --mint: #A9E5BB;
+      --mint: #FFE600;
       --purple: #7E2E84;
       --pink: #FFB2E6;
       --word-color: #0047ff;
@@ -103,11 +103,11 @@
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
 
-      padding: 140px 250px 140px 0;
+      padding: 140px 80px 140px 0;
     }
 
     .intro {
-      max-width: 920px;
+      max-width: 1060px;
       margin-bottom: 72px;
     }
 
@@ -141,11 +141,14 @@
 
     .intro p,
     p {
-      max-width: 920px;
+      max-width: 1060px;
       margin: 0;
       font-size: 1.2rem;
       line-height: 1.9;
       font-weight: 400;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
     }
 
     p + p,
@@ -669,6 +672,10 @@
       left: var(--x);
       top: var(--y);
 
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+
       color: var(--c);
       font-family: var(--f);
 
@@ -678,6 +685,16 @@
 
       animation: wall-float var(--d) ease-in-out infinite alternate;
       animation-delay: var(--delay);
+    }
+
+    .wall-item.is-dragging {
+      z-index: 20;
+      cursor: grabbing;
+      animation: none;
+    }
+
+    .wall-item.is-dragging .wall-credit {
+      opacity: 0.66;
     }
 
     .wall-word {
@@ -1017,9 +1034,9 @@
             <button
               class="color-choice"
               type="button"
-              aria-label="Mint"
-              data-color="#A9E5BB"
-              style="--swatch:#A9E5BB">
+              aria-label="Geel"
+              data-color="#FFE600"
+              style="--swatch:#FFE600">
             </button>
 
             <button
@@ -1059,6 +1076,7 @@
             <button class="size-button" id="letterWider" type="button">Uittrekken</button>
             <button class="size-button" id="letterShorter" type="button">Platter</button>
             <button class="size-button" id="letterTaller" type="button">Hoger</button>
+            <button class="size-button" id="letterWave" type="button">Laat golven</button>
             <button class="size-button" id="letterReset" type="button">Reset vorm</button>
             <button class="size-button" id="letterBack" type="button">Terug</button>
           </div>
@@ -1123,8 +1141,8 @@
                 data-color="#0047ff" style="--swatch:#0047ff"></button>
               <button class="spray-color" type="button" aria-label="Rood"
                 data-color="#E3170A" style="--swatch:#E3170A"></button>
-              <button class="spray-color" type="button" aria-label="Mint"
-                data-color="#A9E5BB" style="--swatch:#A9E5BB"></button>
+              <button class="spray-color" type="button" aria-label="Geel"
+                data-color="#FFE600" style="--swatch:#FFE600"></button>
               <button class="spray-color" type="button" aria-label="Paars"
                 data-color="#7E2E84" style="--swatch:#7E2E84"></button>
               <button class="spray-color" type="button" aria-label="Roze"
@@ -1183,8 +1201,8 @@
 
         <p>
           Iedereen begint met dezelfde letters.
-          Toch ziet ieder woord er anders uit. Woorden die je hier bewaart,
-          blijven in deze browser op de muur staan.
+          Toch ziet ieder woord er anders uit.
+          Sleep de woorden over de muur en geef ze zelf een plek.
         </p>
       </div>
 
@@ -1235,6 +1253,7 @@
     const letterWider = document.querySelector("#letterWider");
     const letterShorter = document.querySelector("#letterShorter");
     const letterTaller = document.querySelector("#letterTaller");
+    const letterWave = document.querySelector("#letterWave");
     const letterReset = document.querySelector("#letterReset");
     const letterBack = document.querySelector("#letterBack");
 
@@ -1283,6 +1302,8 @@
       button.dataset.scale = "1";
       button.dataset.scaleX = "1";
       button.dataset.scaleY = "1";
+      button.dataset.rotation = "0";
+      button.dataset.shiftY = "0";
       button.dataset.id = `${letter}-${index}-${Math.random()}`;
 
       button.addEventListener("dragstart", () => {
@@ -1327,8 +1348,11 @@
       const scale = Number(button.dataset.scale || 1);
       const scaleX = Number(button.dataset.scaleX || 1);
       const scaleY = Number(button.dataset.scaleY || 1);
+      const rotation = Number(button.dataset.rotation || 0);
+      const shiftY = Number(button.dataset.shiftY || 0);
 
       button.style.transform =
+        `translateY(${shiftY * 24}px) rotate(${rotation}deg) ` +
         `scale(${scale * scaleX}, ${scale * scaleY})`;
 
       button.style.marginInline =
@@ -1392,6 +1416,23 @@
       changeSelectedLetterAxis("y", 0.12);
     });
 
+    letterWave.addEventListener("click", () => {
+      const letters = [...wordZone.querySelectorAll(".letter")];
+
+      letters.forEach((letter, index) => {
+        const direction = index % 2 === 0 ? -1 : 1;
+        letter.dataset.rotation =
+          (direction * (3 + Math.random() * 8)).toFixed(2);
+        letter.dataset.shiftY =
+          (direction * (0.08 + Math.random() * 0.12)).toFixed(3);
+        updateLetterScaleVisual(letter);
+      });
+
+      if (currentValidWord) {
+        rebuildMaskAndPreview(false);
+      }
+    });
+
     letterReset.addEventListener("click", () => {
       if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
         return;
@@ -1400,6 +1441,8 @@
       selectedLetter.dataset.scale = "1";
       selectedLetter.dataset.scaleX = "1";
       selectedLetter.dataset.scaleY = "1";
+      selectedLetter.dataset.rotation = "0";
+      selectedLetter.dataset.shiftY = "0";
       updateLetterScaleVisual(selectedLetter);
 
       if (currentValidWord) {
@@ -1507,7 +1550,9 @@
         char: letter.dataset.letter,
         scale: Number(letter.dataset.scale || 1),
         scaleX: Number(letter.dataset.scaleX || 1),
-        scaleY: Number(letter.dataset.scaleY || 1)
+        scaleY: Number(letter.dataset.scaleY || 1),
+        rotation: Number(letter.dataset.rotation || 0),
+        shiftY: Number(letter.dataset.shiftY || 0)
       }));
     }
 
@@ -1626,9 +1671,12 @@
       entries.forEach((entry, index) => {
         const item = document.createElement("div");
         item.className = "wall-item";
+        item.dataset.entryIndex = String(index);
 
-        const x = 10 + ((index * 23 + 8) % 82);
-        const y = 10 + ((index * 31 + 14) % 78);
+        const defaultX = 10 + ((index * 23 + 8) % 82);
+        const defaultY = 10 + ((index * 31 + 14) % 78);
+        const x = Number.isFinite(entry.x) ? entry.x : defaultX;
+        const y = Number.isFinite(entry.y) ? entry.y : defaultY;
         const rotate = ((index * 7) % 9) - 4;
         const duration = 4.5 + ((index * 0.8) % 4);
 
@@ -1644,6 +1692,7 @@
         art.className = "wall-art";
         art.src = entry.art;
         art.alt = entry.word;
+        art.draggable = false;
 
         const credit = document.createElement("span");
         credit.className = "wall-credit";
@@ -1653,6 +1702,54 @@
         item.appendChild(art);
         item.appendChild(credit);
         wall.appendChild(item);
+
+        let draggingWallItem = false;
+
+        function moveWallItem(event) {
+          if (!draggingWallItem) return;
+
+          const rect = wall.getBoundingClientRect();
+
+          const xPercent = Math.max(
+            5,
+            Math.min(95, ((event.clientX - rect.left) / rect.width) * 100)
+          );
+
+          const yPercent = Math.max(
+            6,
+            Math.min(94, ((event.clientY - rect.top) / rect.height) * 100)
+          );
+
+          item.style.setProperty("--x", `${xPercent}%`);
+          item.style.setProperty("--y", `${yPercent}%`);
+
+          entry.x = Number(xPercent.toFixed(2));
+          entry.y = Number(yPercent.toFixed(2));
+        }
+
+        function stopWallDrag(event) {
+          if (!draggingWallItem) return;
+
+          draggingWallItem = false;
+          item.classList.remove("is-dragging");
+
+          if (item.hasPointerCapture(event.pointerId)) {
+            item.releasePointerCapture(event.pointerId);
+          }
+
+          saveEntries(entries);
+        }
+
+        item.addEventListener("pointerdown", (event) => {
+          draggingWallItem = true;
+          item.classList.add("is-dragging");
+          item.setPointerCapture(event.pointerId);
+          moveWallItem(event);
+        });
+
+        item.addEventListener("pointermove", moveWallItem);
+        item.addEventListener("pointerup", stopWallDrag);
+        item.addEventListener("pointercancel", stopWallDrag);
       });
     }
 
@@ -1731,8 +1828,10 @@
           size: baseSize * item.scale,
           scaleX: item.scaleX || 1,
           scaleY: item.scaleY || 1,
+          rotation: item.rotation || 0,
+          shiftY: item.shiftY || 0,
           x: x + width / 2,
-          y: rect.height / 2,
+          y: rect.height / 2 + (item.shiftY || 0) * baseSize,
           width
         };
 
@@ -1763,6 +1862,7 @@
       layout.forEach((letter) => {
         maskCtx.save();
         maskCtx.translate(letter.x, letter.y);
+        maskCtx.rotate(letter.rotation * Math.PI / 180);
         maskCtx.scale(letter.scaleX, letter.scaleY);
         maskCtx.font = `700 ${letter.size}px ${selectedFont}`;
         maskCtx.fillText(letter.char, 0, 0);
@@ -1789,6 +1889,7 @@
       layout.forEach((letter) => {
         paintCtx.save();
         paintCtx.translate(letter.x, letter.y);
+        paintCtx.rotate(letter.rotation * Math.PI / 180);
         paintCtx.scale(letter.scaleX, letter.scaleY);
         paintCtx.font = `700 ${letter.size}px ${selectedFont}`;
         paintCtx.fillText(letter.char, 0, 0);
