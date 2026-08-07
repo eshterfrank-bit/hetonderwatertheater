@@ -12,13 +12,15 @@
   <link rel="apple-touch-icon" href="favicon.png">
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Cormorant+Garamond:wght@600;700&family=Fredoka:wght@500;600&family=Special+Elite&family=Yeseva+One&display=swap');
+
     :root {
       --background: #fffdf6;
       --blue: #0047ff;
-      --pink: #ff8eb5;
-      --green: #3ca58d;
-      --yellow: #e6bd52;
-      --lilac: #8f82d8;
+      --pink: #d9889f;
+      --green: #4f8778;
+      --yellow: #c5a255;
+      --lilac: #7f75a8;
       --word-color: #0047ff;
       --word-font: Arial, sans-serif;
     }
@@ -219,6 +221,55 @@
       opacity: 0.5;
     }
 
+
+    .letter-size-tools {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(0, 71, 255, 0.14);
+    }
+
+    .letter-size-tools h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .letter-size-tools p {
+      margin: 0 0 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      opacity: 0.5;
+    }
+
+    .size-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .size-button {
+      min-width: 38px;
+      padding: 8px 11px;
+      border: 2px solid rgba(0, 71, 255, 0.22);
+      border-radius: 999px;
+      color: var(--blue);
+      font-weight: 700;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .size-button:hover,
+    .size-button:focus-visible {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    .letter.is-selected {
+      box-shadow:
+        inset 0 0 0 2px var(--blue),
+        0 0 0 3px rgba(255, 253, 246, 0.95);
+    }
+
     /* --------------------------------
        WOORDMAKER
     -------------------------------- */
@@ -377,6 +428,118 @@
       opacity: 0.4;
     }
 
+
+    /* --------------------------------
+       VERF / WINDOWS-PAINT-LAAG
+    -------------------------------- */
+
+    .paint-area {
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
+    }
+
+    .paint-area h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .paint-area > p {
+      margin: 0 0 16px;
+      max-width: 620px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      opacity: 0.56;
+    }
+
+    .paint-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .tool-button {
+      padding: 8px 12px;
+      border: 2px solid rgba(0, 71, 255, 0.22);
+      border-radius: 999px;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.82rem;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .tool-button:hover,
+    .tool-button:focus-visible,
+    .tool-button.is-active {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    .tool-button.is-active {
+      background: rgba(0, 71, 255, 0.06);
+    }
+
+    .spray-colors {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .spray-color {
+      width: 27px;
+      height: 27px;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background: var(--swatch);
+      cursor: pointer;
+    }
+
+    .spray-color.is-active,
+    .spray-color:hover,
+    .spray-color:focus-visible {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    .paint-canvas-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 1;
+      min-height: 190px;
+      overflow: hidden;
+      border: 2px solid rgba(0, 71, 255, 0.15);
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(0, 71, 255, 0.025), rgba(0, 71, 255, 0.025)),
+        var(--background);
+    }
+
+    #paintCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .paint-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
     /* --------------------------------
        BEWAREN
     -------------------------------- */
@@ -526,6 +689,27 @@
       opacity: 0.66;
     }
 
+    .wall-empty {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      opacity: 0.4;
+    }
+
+    .wall-art {
+      display: block;
+      width: min(260px, 28vw);
+      height: auto;
+      max-height: 160px;
+      object-fit: contain;
+    }
+
+
     @keyframes wall-float {
       from { translate: 0 -3px; }
       to { translate: 0 5px; }
@@ -665,6 +849,11 @@
         padding: 13px;
         border-radius: 20px;
       }
+
+      .paint-canvas-wrap {
+        min-height: 160px;
+        aspect-ratio: 2 / 1;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -705,11 +894,16 @@
       <h1>Woordexperiment</h1>
 
       <p>
-       Met Het Onderwater Theater onderzoeken we het label ‘verlegenheid’: met een knipoog, maar zonder om de spanning heen te draaien. Want woorden kunnen houvast geven, maar ook bepalen hoe we naar onszelf en naar anderen kijken.
+        Met Het Onderwater Theater onderzoeken we het label ‘verlegenheid’:
+        met een knipoog, maar zonder om de spanning heen te draaien. Want woorden
+        kunnen houvast geven, maar ook bepalen hoe we naar onszelf en naar anderen kijken.
+      </p>
 
-Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, combineer, kies kleur en vorm en maak van dezelfde letters iets nieuws. Geen juiste uitkomst, wel een andere blik.
-      <p> 
-
+      <p>
+        Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen.
+        Schuif, combineer, kies kleur en vorm en maak van dezelfde letters iets nieuws.
+        Geen juiste uitkomst, wel een andere blik.
+      </p>
     </header>
 
     <section class="maker" aria-label="Maak een woord">
@@ -723,40 +917,41 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
             <button
               class="font-choice is-active"
               type="button"
-              data-font="Arial, sans-serif">
-              Helder
+              data-font="'Yeseva One', serif"
+              style="font-family:'Yeseva One',serif">
+              Vintage
             </button>
 
             <button
               class="font-choice"
               type="button"
-              data-font="Georgia, serif"
-              style="font-family:Georgia,serif">
-              Zacht
+              data-font="'Fredoka', sans-serif"
+              style="font-family:'Fredoka',sans-serif">
+              Speels
             </button>
 
             <button
               class="font-choice"
               type="button"
-              data-font="'Courier New', monospace"
-              style="font-family:'Courier New',monospace">
-              Ritmisch
+              data-font="'Special Elite', monospace"
+              style="font-family:'Special Elite',monospace">
+              Ruw
             </button>
 
             <button
               class="font-choice"
               type="button"
-              data-font="'Arial Black', Arial, sans-serif"
-              style="font-family:'Arial Black',Arial,sans-serif">
-              Stevig
+              data-font="'Cormorant Garamond', serif"
+              style="font-family:'Cormorant Garamond',serif">
+              Chic
             </button>
 
             <button
               class="font-choice"
               type="button"
-              data-font="'Trebuchet MS', Arial, sans-serif"
-              style="font-family:'Trebuchet MS',Arial,sans-serif">
-              Rond
+              data-font="'Bungee', sans-serif"
+              style="font-family:'Bungee',sans-serif">
+              Grafisch
             </button>
           </div>
         </div>
@@ -777,32 +972,32 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
               class="color-choice"
               type="button"
               aria-label="Roze"
-              data-color="#ff8eb5"
-              style="--swatch:#ff8eb5">
+              data-color="#d9889f"
+              style="--swatch:#d9889f">
             </button>
 
             <button
               class="color-choice"
               type="button"
               aria-label="Groen"
-              data-color="#3ca58d"
-              style="--swatch:#3ca58d">
+              data-color="#4f8778"
+              style="--swatch:#4f8778">
             </button>
 
             <button
               class="color-choice"
               type="button"
               aria-label="Geel"
-              data-color="#e6bd52"
-              style="--swatch:#e6bd52">
+              data-color="#c5a255"
+              style="--swatch:#c5a255">
             </button>
 
             <button
               class="color-choice"
               type="button"
               aria-label="Lila"
-              data-color="#8f82d8"
-              style="--swatch:#8f82d8">
+              data-color="#7f75a8"
+              style="--swatch:#7f75a8">
             </button>
           </div>
 
@@ -810,6 +1005,18 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
             Alleen kleuren en lettervormen uit deze kleine verzameling.
             Zo blijft de muur één geheel.
           </p>
+        </div>
+
+        <div class="letter-size-tools">
+          <h2>Verschuif de verhoudingen</h2>
+          <p>Klik op een letter in jouw woord en maak alleen die letter groter of kleiner.</p>
+
+          <div class="size-controls">
+            <button class="size-button" id="letterSmaller" type="button" aria-label="Letter kleiner">−</button>
+            <button class="size-button" id="letterBigger" type="button" aria-label="Letter groter">+</button>
+            <button class="size-button" id="letterReset" type="button">100%</button>
+            <button class="size-button" id="letterBack" type="button">Terug</button>
+          </div>
         </div>
 
       </aside>
@@ -841,8 +1048,42 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         <div class="feedback" id="feedback" aria-live="polite"></div>
 
         <div class="hint">
-          Woorden die nu kunnen worden bewaard:
-          leven · geven · regen · engel · leger · veer · neer · veren · vegen · legen
+          Mogelijke woorden:
+          leven · geven · regen · engel · leger · veer · neer · veren · vegen · legen · leren · regel · even · veel · geel · geen
+        </div>
+
+        <div class="paint-area">
+          <h2>Geef je woord een laag</h2>
+          <p>
+            Zoals in Paint vroeger: spuit of teken over je woord.
+            De verf blijft binnen de letters, zodat het woord leesbaar blijft.
+          </p>
+
+          <div class="paint-toolbar" aria-label="Verfgereedschap">
+            <button class="tool-button is-active" id="sprayTool" type="button">Spuitbus</button>
+            <button class="tool-button" id="pencilTool" type="button">Potlood</button>
+            <button class="tool-button" id="clearPaint" type="button">Wis verf</button>
+
+            <div class="spray-colors" aria-label="Spuitbuskleuren">
+              <button class="spray-color is-active" type="button" aria-label="Blauw"
+                data-color="#0047ff" style="--swatch:#0047ff"></button>
+              <button class="spray-color" type="button" aria-label="Roze"
+                data-color="#d9889f" style="--swatch:#d9889f"></button>
+              <button class="spray-color" type="button" aria-label="Groen"
+                data-color="#4f8778" style="--swatch:#4f8778"></button>
+              <button class="spray-color" type="button" aria-label="Geel"
+                data-color="#c5a255" style="--swatch:#c5a255"></button>
+              <button class="spray-color" type="button" aria-label="Lila"
+                data-color="#7f75a8" style="--swatch:#7f75a8"></button>
+            </div>
+          </div>
+
+          <div class="paint-canvas-wrap">
+            <canvas id="paintCanvas"></canvas>
+            <div class="paint-placeholder" id="paintPlaceholder">
+              Maak eerst een geldig woord. Daarna verschijnt het hier om te beschilderen.
+            </div>
+          </div>
         </div>
 
         <div class="save-area">
@@ -916,17 +1157,12 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
     const LETTERS = ["V", "E", "R", "L", "E", "G", "E", "N"];
 
     const VALID_WORDS = new Set([
-      "LEVEN",
-      "GEVEN",
-      "REGEN",
-      "ENGEL",
-      "LEGER",
-      "VEER",
-      "NEER",
-      "VEREN",
-      "VEGEN",
-      "LEGEN"
+      "LEVEN", "GEVEN", "REGEN", "ENGEL", "LEGER", "VEER", "NEER",
+      "VEREN", "VEGEN", "LEGEN", "LEREN", "REGEL", "EVEN", "VEEL",
+      "GEEL", "GEEN"
     ]);
+
+    const STORAGE_KEY = "onderwater-woorden-v4";
 
     const letterPool = document.querySelector("#letterPool");
     const wordZone = document.querySelector("#wordZone");
@@ -939,9 +1175,39 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
     const fontChoices = document.querySelectorAll(".font-choice");
     const colorChoices = document.querySelectorAll(".color-choice");
 
-    let selectedFont = "Arial, sans-serif";
+    const letterSmaller = document.querySelector("#letterSmaller");
+    const letterBigger = document.querySelector("#letterBigger");
+    const letterReset = document.querySelector("#letterReset");
+    const letterBack = document.querySelector("#letterBack");
+
+    const paintCanvas = document.querySelector("#paintCanvas");
+    const paintPlaceholder = document.querySelector("#paintPlaceholder");
+    const sprayTool = document.querySelector("#sprayTool");
+    const pencilTool = document.querySelector("#pencilTool");
+    const clearPaint = document.querySelector("#clearPaint");
+    const sprayColors = document.querySelectorAll(".spray-color");
+
+    let selectedFont = "'Yeseva One', serif";
     let selectedColor = "#0047ff";
     let draggedLetter = null;
+    let selectedLetter = null;
+
+    let paintMode = "spray";
+    let sprayColor = "#0047ff";
+    let isPainting = false;
+    let currentValidWord = "";
+    let lastPointer = null;
+
+    const paintCtx = paintCanvas.getContext("2d");
+
+    const paintLayer = document.createElement("canvas");
+    const paintLayerCtx = paintLayer.getContext("2d");
+
+    const maskCanvas = document.createElement("canvas");
+    const maskCtx = maskCanvas.getContext("2d");
+
+    const clippedPaint = document.createElement("canvas");
+    const clippedCtx = clippedPaint.getContext("2d");
 
     function createLetter(letter, index) {
       const button = document.createElement("button");
@@ -951,6 +1217,7 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
       button.textContent = letter;
       button.draggable = true;
       button.dataset.letter = letter;
+      button.dataset.scale = "1";
       button.dataset.id = `${letter}-${index}-${Math.random()}`;
 
       button.addEventListener("dragstart", () => {
@@ -965,33 +1232,103 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
       });
 
       button.addEventListener("click", () => {
-        const currentParent = button.parentElement;
-
-        if (currentParent === letterPool) {
+        if (button.parentElement === letterPool) {
           wordZone.appendChild(button);
+          selectLetter(button);
         } else {
-          letterPool.appendChild(button);
+          selectLetter(button);
         }
 
+        updateLetterScaleVisual(button);
         updateWordState();
       });
 
       return button;
     }
 
+    function selectLetter(button) {
+      if (selectedLetter) {
+        selectedLetter.classList.remove("is-selected");
+      }
+
+      selectedLetter = button;
+
+      if (selectedLetter) {
+        selectedLetter.classList.add("is-selected");
+      }
+    }
+
+    function updateLetterScaleVisual(button) {
+      const scale = Number(button.dataset.scale || 1);
+      button.style.transform = `scale(${scale})`;
+      button.style.marginInline =
+        `${Math.max(0, (scale - 1) * 18)}px`;
+    }
+
+    function changeSelectedLetterScale(delta) {
+      if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
+        return;
+      }
+
+      const current = Number(selectedLetter.dataset.scale || 1);
+      const next = Math.max(0.65, Math.min(1.6, current + delta));
+
+      selectedLetter.dataset.scale = next.toFixed(2);
+      updateLetterScaleVisual(selectedLetter);
+
+      if (currentValidWord) {
+        rebuildMaskAndPreview(false);
+      }
+    }
+
+    letterSmaller.addEventListener("click", () => {
+      changeSelectedLetterScale(-0.1);
+    });
+
+    letterBigger.addEventListener("click", () => {
+      changeSelectedLetterScale(0.1);
+    });
+
+    letterReset.addEventListener("click", () => {
+      if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
+        return;
+      }
+
+      selectedLetter.dataset.scale = "1";
+      updateLetterScaleVisual(selectedLetter);
+
+      if (currentValidWord) {
+        rebuildMaskAndPreview(false);
+      }
+    });
+
+    letterBack.addEventListener("click", () => {
+      if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
+        return;
+      }
+
+      selectedLetter.classList.remove("is-selected");
+      letterPool.appendChild(selectedLetter);
+      selectedLetter = null;
+      updateWordState();
+    });
+
     function resetLetters() {
       letterPool.innerHTML = "";
       wordZone.innerHTML = "";
+      selectedLetter = null;
 
       LETTERS.forEach((letter, index) => {
-        letterPool.appendChild(
-          createLetter(letter, index)
-        );
+        letterPool.appendChild(createLetter(letter, index));
       });
 
       feedback.textContent = "";
       feedback.classList.remove("is-valid");
       saveButton.disabled = true;
+      currentValidWord = "";
+
+      clearAllCanvasLayers();
+      paintPlaceholder.style.display = "grid";
     }
 
     function setupDropZone(zone) {
@@ -999,9 +1336,7 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         event.preventDefault();
         zone.classList.add("is-over");
 
-        if (!draggedLetter) {
-          return;
-        }
+        if (!draggedLetter) return;
 
         const afterElement =
           getDragAfterElement(zone, event.clientX);
@@ -1009,10 +1344,7 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         if (!afterElement) {
           zone.appendChild(draggedLetter);
         } else {
-          zone.insertBefore(
-            draggedLetter,
-            afterElement
-          );
+          zone.insertBefore(draggedLetter, afterElement);
         }
       });
 
@@ -1024,9 +1356,15 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         event.preventDefault();
         zone.classList.remove("is-over");
 
-        if (draggedLetter &&
-            draggedLetter.parentElement !== zone) {
+        if (
+          draggedLetter &&
+          draggedLetter.parentElement !== zone
+        ) {
           zone.appendChild(draggedLetter);
+        }
+
+        if (draggedLetter && zone === wordZone) {
+          selectLetter(draggedLetter);
         }
 
         updateWordState();
@@ -1035,32 +1373,21 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
 
     function getDragAfterElement(container, x) {
       const elements = [
-        ...container.querySelectorAll(
-          ".letter:not(.dragging)"
-        )
+        ...container.querySelectorAll(".letter:not(.dragging)")
       ];
 
       return elements.reduce(
         (closest, child) => {
           const box = child.getBoundingClientRect();
-          const offset =
-            x - box.left - box.width / 2;
+          const offset = x - box.left - box.width / 2;
 
-          if (
-            offset < 0 &&
-            offset > closest.offset
-          ) {
-            return {
-              offset,
-              element: child
-            };
+          if (offset < 0 && offset > closest.offset) {
+            return { offset, element: child };
           }
 
           return closest;
         },
-        {
-          offset: Number.NEGATIVE_INFINITY
-        }
+        { offset: Number.NEGATIVE_INFINITY }
       ).element;
     }
 
@@ -1068,6 +1395,13 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
       return [...wordZone.querySelectorAll(".letter")]
         .map((letter) => letter.dataset.letter)
         .join("");
+    }
+
+    function currentLetterDesign() {
+      return [...wordZone.querySelectorAll(".letter")].map((letter) => ({
+        char: letter.dataset.letter,
+        scale: Number(letter.dataset.scale || 1)
+      }));
     }
 
     function updateWordState() {
@@ -1078,18 +1412,29 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
 
       if (!word) {
         feedback.textContent = "";
+        currentValidWord = "";
+        clearAllCanvasLayers();
+        paintPlaceholder.style.display = "grid";
         return;
       }
 
       if (VALID_WORDS.has(word)) {
-        feedback.textContent =
-          `${word.toLowerCase()} kan naar de muur.`;
-
+        feedback.textContent = `${word.toLowerCase()} kan naar de muur.`;
         feedback.classList.add("is-valid");
         saveButton.disabled = false;
+
+        if (currentValidWord !== word) {
+          currentValidWord = word;
+          clearPaintLayer();
+          rebuildMaskAndPreview(true);
+        } else {
+          rebuildMaskAndPreview(false);
+        }
       } else {
-        feedback.textContent =
-          "Blijf schuiven.";
+        feedback.textContent = "Blijf schuiven.";
+        currentValidWord = "";
+        clearAllCanvasLayers();
+        paintPlaceholder.style.display = "grid";
       }
     }
 
@@ -1100,13 +1445,16 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         );
 
         button.classList.add("is-active");
-
         selectedFont = button.dataset.font;
 
         document.documentElement.style.setProperty(
           "--word-font",
           selectedFont
         );
+
+        if (currentValidWord) {
+          rebuildMaskAndPreview(false);
+        }
       });
     });
 
@@ -1117,13 +1465,16 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
         );
 
         button.classList.add("is-active");
-
         selectedColor = button.dataset.color;
 
         document.documentElement.style.setProperty(
           "--word-color",
           selectedColor
         );
+
+        if (currentValidWord) {
+          rebuildMaskAndPreview(false);
+        }
       });
     });
 
@@ -1138,7 +1489,7 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
     function loadEntries() {
       try {
         return JSON.parse(
-          localStorage.getItem("onderwater-woorden") || "[]"
+          localStorage.getItem(STORAGE_KEY) || "[]"
         );
       } catch {
         return [];
@@ -1147,89 +1498,370 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
 
     function saveEntries(entries) {
       localStorage.setItem(
-        "onderwater-woorden",
+        STORAGE_KEY,
         JSON.stringify(entries)
       );
     }
 
-    const sampleEntries = [
-      {
-        word: "LEVEN",
-        name: "Noor",
-        color: "#0047ff",
-        font: "Georgia, serif"
-      },
-      {
-        word: "REGEN",
-        name: "Mila",
-        color: "#ff8eb5",
-        font: "'Courier New', monospace"
-      },
-      {
-        word: "GEVEN",
-        name: "Sam",
-        color: "#3ca58d",
-        font: "'Trebuchet MS', Arial, sans-serif"
-      },
-      {
-        word: "ENGEL",
-        name: "Bo",
-        color: "#8f82d8",
-        font: "'Arial Black', Arial, sans-serif"
-      }
-    ];
-
     function renderWall() {
-      const saved = loadEntries();
-      const entries = [...sampleEntries, ...saved];
-
+      const entries = loadEntries();
       wall.innerHTML = "";
+
+      if (!entries.length) {
+        const empty = document.createElement("div");
+        empty.className = "wall-empty";
+        empty.textContent =
+          "De muur is nog leeg. Laat het eerste woord achter.";
+        wall.appendChild(empty);
+        return;
+      }
 
       entries.forEach((entry, index) => {
         const item = document.createElement("div");
         item.className = "wall-item";
 
-        const x =
-          10 + ((index * 23 + 8) % 82);
-
-        const y =
-          10 + ((index * 31 + 14) % 78);
-
-        const rotate =
-          ((index * 7) % 9) - 4;
-
-        const size =
-          1.9 + ((index * 0.37) % 2.25);
-
-        const duration =
-          4.5 + ((index * 0.8) % 4);
+        const x = 10 + ((index * 23 + 8) % 82);
+        const y = 10 + ((index * 31 + 14) % 78);
+        const rotate = ((index * 7) % 9) - 4;
+        const duration = 4.5 + ((index * 0.8) % 4);
 
         item.style.setProperty("--x", `${x}%`);
         item.style.setProperty("--y", `${y}%`);
         item.style.setProperty("--r", `${rotate}deg`);
-        item.style.setProperty("--s", `${size}rem`);
         item.style.setProperty("--d", `${duration}s`);
         item.style.setProperty("--delay", `${-index * 0.42}s`);
         item.style.setProperty("--c", entry.color);
         item.style.setProperty("--f", entry.font);
 
-        const word = document.createElement("span");
-        word.className = "wall-word";
-        word.textContent = entry.word;
+        const art = document.createElement("img");
+        art.className = "wall-art";
+        art.src = entry.art;
+        art.alt = entry.word;
 
         const credit = document.createElement("span");
         credit.className = "wall-credit";
         credit.textContent =
-          entry.name
-            ? `door ${entry.name}`
-            : "";
+          entry.name ? `door ${entry.name}` : "";
 
-        item.appendChild(word);
+        item.appendChild(art);
         item.appendChild(credit);
-
         wall.appendChild(item);
       });
     }
+
+    function resizeCanvases() {
+      const rect = paintCanvas.getBoundingClientRect();
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+      [paintCanvas, paintLayer, maskCanvas, clippedPaint].forEach((canvas) => {
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+      });
+
+      paintCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      paintLayerCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      maskCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      clippedCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      if (currentValidWord) {
+        clearPaintLayer();
+        rebuildMaskAndPreview(true);
+      }
+    }
+
+    function clearCanvas(ctx, canvas) {
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function clearPaintLayer() {
+      clearCanvas(paintLayerCtx, paintLayer);
+    }
+
+    function clearAllCanvasLayers() {
+      clearCanvas(paintCtx, paintCanvas);
+      clearCanvas(paintLayerCtx, paintLayer);
+      clearCanvas(maskCtx, maskCanvas);
+      clearCanvas(clippedCtx, clippedPaint);
+    }
+
+    function getWordLayout() {
+      const rect = paintCanvas.getBoundingClientRect();
+      const design = currentLetterDesign();
+
+      if (!design.length) return [];
+
+      const baseSize = Math.max(
+        44,
+        Math.min(rect.height * 0.46, rect.width / (design.length * 0.75))
+      );
+
+      const gap = baseSize * 0.025;
+
+      const widths = design.map((item) => {
+        maskCtx.font = `700 ${baseSize * item.scale}px ${selectedFont}`;
+        return maskCtx.measureText(item.char).width;
+      });
+
+      const total =
+        widths.reduce((sum, width) => sum + width, 0) +
+        gap * (design.length - 1);
+
+      let x = (rect.width - total) / 2;
+
+      return design.map((item, index) => {
+        const width = widths[index];
+        const result = {
+          char: item.char,
+          scale: item.scale,
+          size: baseSize * item.scale,
+          x: x + width / 2,
+          y: rect.height / 2,
+          width
+        };
+
+        x += width + gap;
+        return result;
+      });
+    }
+
+    function rebuildMaskAndPreview(resetPlaceholder = false) {
+      if (!currentValidWord) return;
+
+      const rect = paintCanvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      if (resetPlaceholder) {
+        paintPlaceholder.style.display = "none";
+      }
+
+      clearCanvas(maskCtx, maskCanvas);
+
+      const layout = getWordLayout();
+
+      maskCtx.save();
+      maskCtx.fillStyle = "#000";
+      maskCtx.textAlign = "center";
+      maskCtx.textBaseline = "middle";
+
+      layout.forEach((letter) => {
+        maskCtx.font =
+          `700 ${letter.size}px ${selectedFont}`;
+
+        maskCtx.fillText(
+          letter.char,
+          letter.x,
+          letter.y
+        );
+      });
+
+      maskCtx.restore();
+
+      renderPaintCanvas();
+    }
+
+    function renderPaintCanvas() {
+      const rect = paintCanvas.getBoundingClientRect();
+
+      clearCanvas(paintCtx, paintCanvas);
+
+      const layout = getWordLayout();
+
+      paintCtx.save();
+      paintCtx.fillStyle = selectedColor;
+      paintCtx.textAlign = "center";
+      paintCtx.textBaseline = "middle";
+
+      layout.forEach((letter) => {
+        paintCtx.font =
+          `700 ${letter.size}px ${selectedFont}`;
+
+        paintCtx.fillText(
+          letter.char,
+          letter.x,
+          letter.y
+        );
+      });
+
+      paintCtx.restore();
+
+      clearCanvas(clippedCtx, clippedPaint);
+
+      clippedCtx.drawImage(
+        paintLayer,
+        0,
+        0,
+        paintLayer.width,
+        paintLayer.height,
+        0,
+        0,
+        rect.width,
+        rect.height
+      );
+
+      clippedCtx.globalCompositeOperation = "destination-in";
+
+      clippedCtx.drawImage(
+        maskCanvas,
+        0,
+        0,
+        maskCanvas.width,
+        maskCanvas.height,
+        0,
+        0,
+        rect.width,
+        rect.height
+      );
+
+      clippedCtx.globalCompositeOperation = "source-over";
+
+      paintCtx.drawImage(
+        clippedPaint,
+        0,
+        0,
+        clippedPaint.width,
+        clippedPaint.height,
+        0,
+        0,
+        rect.width,
+        rect.height
+      );
+    }
+
+    function pointerPosition(event) {
+      const rect = paintCanvas.getBoundingClientRect();
+
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+    }
+
+    function sprayAt(x, y) {
+      if (!currentValidWord) return;
+
+      paintLayerCtx.save();
+      paintLayerCtx.fillStyle = sprayColor;
+      paintLayerCtx.globalAlpha = 0.62;
+
+      for (let i = 0; i < 38; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.pow(Math.random(), 0.62) * 29;
+        const radius = Math.random() * 1.8 + 0.45;
+
+        paintLayerCtx.beginPath();
+        paintLayerCtx.arc(
+          x + Math.cos(angle) * distance,
+          y + Math.sin(angle) * distance,
+          radius,
+          0,
+          Math.PI * 2
+        );
+        paintLayerCtx.fill();
+      }
+
+      paintLayerCtx.restore();
+      renderPaintCanvas();
+    }
+
+    function pencilTo(x, y) {
+      if (!currentValidWord || !lastPointer) return;
+
+      paintLayerCtx.save();
+      paintLayerCtx.strokeStyle = sprayColor;
+      paintLayerCtx.lineWidth = 5;
+      paintLayerCtx.lineCap = "round";
+      paintLayerCtx.lineJoin = "round";
+
+      paintLayerCtx.beginPath();
+      paintLayerCtx.moveTo(lastPointer.x, lastPointer.y);
+      paintLayerCtx.lineTo(x, y);
+      paintLayerCtx.stroke();
+
+      paintLayerCtx.restore();
+
+      lastPointer = { x, y };
+      renderPaintCanvas();
+    }
+
+    paintCanvas.addEventListener("pointerdown", (event) => {
+      if (!currentValidWord) return;
+
+      isPainting = true;
+      paintCanvas.setPointerCapture(event.pointerId);
+
+      const point = pointerPosition(event);
+      lastPointer = point;
+
+      if (paintMode === "spray") {
+        sprayAt(point.x, point.y);
+      }
+    });
+
+    paintCanvas.addEventListener("pointermove", (event) => {
+      if (!isPainting) return;
+
+      const point = pointerPosition(event);
+
+      if (paintMode === "spray") {
+        sprayAt(point.x, point.y);
+      } else {
+        pencilTo(point.x, point.y);
+      }
+    });
+
+    function stopPainting(event) {
+      isPainting = false;
+      lastPointer = null;
+
+      if (
+        event &&
+        paintCanvas.hasPointerCapture(event.pointerId)
+      ) {
+        paintCanvas.releasePointerCapture(event.pointerId);
+      }
+    }
+
+    paintCanvas.addEventListener("pointerup", stopPainting);
+    paintCanvas.addEventListener("pointercancel", stopPainting);
+    paintCanvas.addEventListener("pointerleave", () => {
+      isPainting = false;
+      lastPointer = null;
+    });
+
+    sprayTool.addEventListener("click", () => {
+      paintMode = "spray";
+      sprayTool.classList.add("is-active");
+      pencilTool.classList.remove("is-active");
+    });
+
+    pencilTool.addEventListener("click", () => {
+      paintMode = "pencil";
+      pencilTool.classList.add("is-active");
+      sprayTool.classList.remove("is-active");
+    });
+
+    sprayColors.forEach((button) => {
+      button.addEventListener("click", () => {
+        sprayColors.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+        sprayColor = button.dataset.color;
+      });
+    });
+
+    clearPaint.addEventListener("click", () => {
+      clearPaintLayer();
+      renderPaintCanvas();
+    });
 
     saveButton.addEventListener("click", () => {
       const word = currentWord();
@@ -1239,18 +1871,18 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
       }
 
       const name = cleanName(nameInput.value);
-
       const entries = loadEntries();
 
       entries.push({
         word,
         name,
         color: selectedColor,
-        font: selectedFont
+        font: selectedFont,
+        letters: currentLetterDesign(),
+        art: paintCanvas.toDataURL("image/png")
       });
 
-      saveEntries(entries.slice(-35));
-
+      saveEntries(entries.slice(-40));
       renderWall();
 
       nameInput.value = "";
@@ -1276,8 +1908,13 @@ Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen. Schuif, 
     setupDropZone(letterPool);
     setupDropZone(wordZone);
 
-    resetLetters();
-    renderWall();
+    window.addEventListener("resize", resizeCanvases);
+
+    document.fonts.ready.then(() => {
+      resetLetters();
+      renderWall();
+      requestAnimationFrame(resizeCanvases);
+    });
   </script>
 
 </body>
