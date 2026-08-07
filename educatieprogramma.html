@@ -335,37 +335,44 @@
        INSTAGRAM
     -------------------------------- */
 
-    .instagram-corner{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      z-index:1000;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:2px;
-      text-decoration:none;
-      color:var(--blue);
+    .instagram-corner {
+      position: absolute;
+      right: 22px;
+      bottom: 18px;
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+
+      color: var(--blue);
+      text-align: right;
+      text-decoration: none;
+
+      opacity: 0.68;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
     }
 
-    .instagram-label{
-      font-size:.68rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.45;
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible {
+      opacity: 1;
+      transform: translateY(-2px);
     }
 
-    .instagram-handle{
-      font-size:.88rem;
-      color:var(--blue);
+    .instagram-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: .65;
     }
 
-    .instagram-corner:hover .instagram-handle{text-decoration:underline;}
-
-    @media (max-width:800px){
-      .instagram-corner{right:16px;bottom:16px;}
-      .instagram-label{font-size:.72rem;}
-      .instagram-handle{font-size:.82rem;}
+    .instagram-handle {
+      font-size: 0.78rem;
+      font-weight: 500;
     }
 
     /* --------------------------------
