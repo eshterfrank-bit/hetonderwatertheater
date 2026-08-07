@@ -160,22 +160,70 @@
     -------------------------------- */
 
     .maker {
+      display: block;
+    }
+
+    .build-step,
+    .play-step,
+    .finish-step {
+      padding-top: 56px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
+    }
+
+    .build-step {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .play-step,
+    .finish-step {
+      margin-top: 84px;
+    }
+
+    .step-heading {
       display: grid;
-      grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.38fr);
-      gap: 72px;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 18px;
       align-items: start;
+      max-width: 920px;
+      margin-bottom: 34px;
+    }
+
+    .step-number {
+      padding-top: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.48;
+    }
+
+    .step-heading h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .step-heading p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.65;
+      opacity: 0.66;
     }
 
     .settings {
-      position: sticky;
-      top: 42px;
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 42px 48px;
     }
 
     .setting + .setting {
-      margin-top: 40px;
+      margin-top: 0;
     }
 
-    .setting h2 {
+    .setting h3,
+    .letter-size-tools h3,
+    .word-play-tools h3 {
       margin: 0 0 14px;
       font-size: 1rem;
       line-height: 1.2;
@@ -244,13 +292,13 @@
 
     .letter-size-tools,
     .word-play-tools {
-      margin-top: 24px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(0, 71, 255, 0.14);
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
     }
 
-    .letter-size-tools h2,
-    .word-play-tools h2 {
+    .letter-size-tools h3,
+    .word-play-tools h3 {
       margin: 0 0 8px;
       font-size: 1rem;
       line-height: 1.2;
@@ -300,6 +348,18 @@
 
     .word-maker {
       min-width: 0;
+    }
+
+    .build-step .source-word,
+    .build-step .letter-pool,
+    .build-step .word-zone,
+    .build-step .feedback,
+    .build-step .hint {
+      max-width: 920px;
+    }
+
+    .finish-step {
+      max-width: 920px;
     }
 
     .source-word {
@@ -879,12 +939,27 @@
       }
 
       .maker {
-        grid-template-columns: 1fr;
-        gap: 42px;
+        display: block;
       }
 
       .settings {
-        position: static;
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .play-step,
+      .finish-step {
+        margin-top: 64px;
+      }
+
+      .step-heading {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .step-heading h2 {
+        font-size: 1.7rem;
       }
 
       .intro {
@@ -994,143 +1069,25 @@
       </p>
 
       <p>
-        Breng hier het woord in beweging.
+        Breng hier letterlijk het woord in beweging.
         Schuif, combineer en maak van dezelfde letters iets nieuws.
       </p>
     </header>
 
-    <section class="maker" aria-label="Maak een woord">
+    <section class="maker" aria-label="Maak en vorm een woord">
 
-      <aside class="settings">
+      <div class="word-maker build-step">
 
-        <div class="setting">
-          <h2>Kies een lettervorm</h2>
-
-          <div class="font-choices">
-            <button
-              class="font-choice is-active"
-              type="button"
-              data-font="'Yeseva One', serif"
-              style="font-family:'Yeseva One',serif">
-              Vintage
-            </button>
-
-            <button
-              class="font-choice"
-              type="button"
-              data-font="'Fredoka', sans-serif"
-              style="font-family:'Fredoka',sans-serif">
-              Speels
-            </button>
-
-            <button
-              class="font-choice"
-              type="button"
-              data-font="'Special Elite', monospace"
-              style="font-family:'Special Elite',monospace">
-              Ruw
-            </button>
-
-            <button
-              class="font-choice"
-              type="button"
-              data-font="'Cormorant Garamond', serif"
-              style="font-family:'Cormorant Garamond',serif">
-              Chic
-            </button>
-
-            <button
-              class="font-choice"
-              type="button"
-              data-font="'Bungee', sans-serif"
-              style="font-family:'Bungee',sans-serif">
-              Grafisch
-            </button>
+        <div class="step-heading">
+          <span class="step-number">01</span>
+          <div>
+            <h2>Maak je woord</h2>
+            <p>
+              Begin met de letters van verlegen en zet ze in een nieuwe volgorde.
+              Op mobiel kun je ook op een letter tikken.
+            </p>
           </div>
         </div>
-
-        <div class="setting">
-          <h2>Kies een kleur</h2>
-
-          <div class="color-choices">
-            <button
-              class="color-choice is-active"
-              type="button"
-              aria-label="Blauw"
-              data-color="#0047ff"
-              style="--swatch:#0047ff">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Rood"
-              data-color="#E3170A"
-              style="--swatch:#E3170A">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Geel"
-              data-color="#FFE600"
-              style="--swatch:#FFE600">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Felgroen"
-              data-color="#20D34A"
-              style="--swatch:#20D34A">
-            </button>
-          </div>
-
-          <p class="tiny">
-            Alleen kleuren en lettervormen uit deze kleine verzameling.
-            Zo blijft de muur één geheel.
-          </p>
-        </div>
-
-        <div class="letter-size-tools">
-          <h2>Verschuif de verhoudingen</h2>
-          <p>
-            Selecteer een letter en trek, duw of vervorm haar.
-            Maak haar groter, kleiner, breder, smaller, hoger of platter.
-          </p>
-
-          <div class="size-controls">
-            <button class="size-button" id="letterSmaller" type="button">Kleiner</button>
-            <button class="size-button" id="letterBigger" type="button">Groter</button>
-            <button class="size-button" id="letterNarrower" type="button">Induwen</button>
-            <button class="size-button" id="letterWider" type="button">Uittrekken</button>
-            <button class="size-button" id="letterShorter" type="button">Platter</button>
-            <button class="size-button" id="letterTaller" type="button">Hoger</button>
-            <button class="size-button" id="letterWave" type="button">Laat golven</button>
-            <button class="size-button" id="letterReset" type="button">Reset vorm</button>
-            <button class="size-button" id="letterBack" type="button">Terug</button>
-          </div>
-        </div>
-
-        <div class="word-play-tools">
-          <h2>Speel met je woord</h2>
-          <p>
-            Geef het hele woord een beweging of een grafisch gebaar.
-          </p>
-
-          <div class="word-play-controls">
-            <button class="size-button" id="wordTilt" type="button">Scheef</button>
-            <button class="size-button" id="wordBounce" type="button">Spring</button>
-            <button class="size-button" id="wordWave" type="button">Golf</button>
-            <button class="size-button" id="wordUnderline" type="button">Streep</button>
-            <button class="size-button" id="wordSquiggle" type="button">Golfstreep</button>
-            <button class="size-button" id="wordPlayReset" type="button">Rustig</button>
-          </div>
-        </div>
-
-      </aside>
-
-      <div class="word-maker">
 
         <div class="source-word" aria-hidden="true">
           <span style="--i:0">V</span>
@@ -1142,11 +1099,6 @@
           <span style="--i:6">E</span>
           <span style="--i:7">N</span>
         </div>
-
-        <p class="instruction">
-          Sleep letters naar beneden en zet ze in een nieuwe volgorde.
-          Op mobiel kun je ook simpelweg op een letter tikken.
-        </p>
 
         <p class="zone-label">Letters</p>
         <div class="letter-pool drop-zone" id="letterPool" aria-label="Beschikbare letters"></div>
@@ -1161,12 +1113,157 @@
           leven · geven · regen · engel · leger · veren · neer · legen · leren · regel · even · veel · geen · veer · leer · leeg · geef · erg · gen · vergen
         </div>
 
-        <div class="composition-area">
-          <h2>Jouw compositie</h2>
-          <p>
-            Hier zie je hoe jouw woord op de muur verschijnt.
-          </p>
+      </div>
 
+      <div class="play-step">
+
+        <div class="step-heading">
+          <span class="step-number">02</span>
+          <div>
+            <h2>Speel met je woord</h2>
+            <p>
+              Geef het woord pas daarna een eigen vorm, kleur en beweging.
+            </p>
+          </div>
+        </div>
+
+        <div class="settings">
+
+          <div class="setting">
+            <h3>Kies een lettervorm</h3>
+
+            <div class="font-choices">
+              <button
+                class="font-choice is-active"
+                type="button"
+                data-font="'Yeseva One', serif"
+                style="font-family:'Yeseva One',serif">
+                Vintage
+              </button>
+
+              <button
+                class="font-choice"
+                type="button"
+                data-font="'Fredoka', sans-serif"
+                style="font-family:'Fredoka',sans-serif">
+                Speels
+              </button>
+
+              <button
+                class="font-choice"
+                type="button"
+                data-font="'Special Elite', monospace"
+                style="font-family:'Special Elite',monospace">
+                Ruw
+              </button>
+
+              <button
+                class="font-choice"
+                type="button"
+                data-font="'Cormorant Garamond', serif"
+                style="font-family:'Cormorant Garamond',serif">
+                Chic
+              </button>
+
+              <button
+                class="font-choice"
+                type="button"
+                data-font="'Bungee', sans-serif"
+                style="font-family:'Bungee',sans-serif">
+                Grafisch
+              </button>
+            </div>
+          </div>
+
+          <div class="setting">
+            <h3>Kies een kleur</h3>
+
+            <div class="color-choices">
+              <button
+                class="color-choice is-active"
+                type="button"
+                aria-label="Blauw"
+                data-color="#0047ff"
+                style="--swatch:#0047ff">
+              </button>
+
+              <button
+                class="color-choice"
+                type="button"
+                aria-label="Rood"
+                data-color="#E3170A"
+                style="--swatch:#E3170A">
+              </button>
+
+              <button
+                class="color-choice"
+                type="button"
+                aria-label="Geel"
+                data-color="#FFE600"
+                style="--swatch:#FFE600">
+              </button>
+
+              <button
+                class="color-choice"
+                type="button"
+                aria-label="Felgroen"
+                data-color="#20D34A"
+                style="--swatch:#20D34A">
+              </button>
+            </div>
+          </div>
+
+          <div class="letter-size-tools">
+            <h3>Verschuif de verhoudingen</h3>
+            <p>
+              Selecteer een letter en trek, duw of vervorm haar.
+            </p>
+
+            <div class="size-controls">
+              <button class="size-button" id="letterSmaller" type="button">Kleiner</button>
+              <button class="size-button" id="letterBigger" type="button">Groter</button>
+              <button class="size-button" id="letterNarrower" type="button">Induwen</button>
+              <button class="size-button" id="letterWider" type="button">Uittrekken</button>
+              <button class="size-button" id="letterShorter" type="button">Platter</button>
+              <button class="size-button" id="letterTaller" type="button">Hoger</button>
+              <button class="size-button" id="letterWave" type="button">Laat golven</button>
+              <button class="size-button" id="letterReset" type="button">Reset vorm</button>
+              <button class="size-button" id="letterBack" type="button">Terug</button>
+            </div>
+          </div>
+
+          <div class="word-play-tools">
+            <h3>Geef het hele woord een gebaar</h3>
+            <p>
+              Laat het woord bewegen of voeg een grafisch accent toe.
+            </p>
+
+            <div class="word-play-controls">
+              <button class="size-button" id="wordTilt" type="button">Scheef</button>
+              <button class="size-button" id="wordBounce" type="button">Spring</button>
+              <button class="size-button" id="wordWave" type="button">Golf</button>
+              <button class="size-button" id="wordUnderline" type="button">Streep</button>
+              <button class="size-button" id="wordSquiggle" type="button">Golfstreep</button>
+              <button class="size-button" id="wordPlayReset" type="button">Rustig</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="finish-step">
+
+        <div class="step-heading">
+          <span class="step-number">03</span>
+          <div>
+            <h2>Geef het een plek</h2>
+            <p>
+              Bekijk je compositie en voeg haar toe aan de woordenmuur.
+            </p>
+          </div>
+        </div>
+
+        <div class="composition-area">
           <div class="paint-canvas-wrap composition-preview">
             <canvas id="paintCanvas"></canvas>
             <div class="paint-placeholder" id="paintPlaceholder">
@@ -1176,7 +1273,6 @@
         </div>
 
         <div class="save-area">
-          <h2>Laat het achter</h2>
 
           <div class="save-row">
             <input
