@@ -80,10 +80,10 @@
       position: relative;
       z-index: 2;
 
-      width: min(1180px, calc(100% - 80px));
+      width: min(980px, calc(100% - 80px));
       margin: 0 auto;
 
-      padding: 140px 250px 120px 0;
+      padding: 140px 0 120px;
     }
 
     /* --------------------------------
@@ -180,8 +180,8 @@
 
     .wordexperiment-note {
       position: absolute;
-      top: 560px;
-      right: 42px;
+      top: 700px;
+      right: -120px;
       z-index: 3;
 
       width: 220px;
@@ -373,12 +373,13 @@
     @media (max-width: 1050px) {
       .page {
         width: min(920px, calc(100% - 56px));
-        padding-right: 220px;
+        padding-right: 0;
       }
 
       .wordexperiment-note {
-        right: 10px;
-        width: 200px;
+        top: 700px;
+        right: -20px;
+        width: 190px;
       }
 
     }
