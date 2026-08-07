@@ -1,0 +1,1303 @@
+\
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Woordexperiment | Het Onderwater Theater</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <style>
+    :root {
+      --background: #fffdf6;
+      --blue: #0047ff;
+      --pink: #ff8eb5;
+      --green: #3ca58d;
+      --yellow: #e6bd52;
+      --lilac: #8f82d8;
+      --word-color: #0047ff;
+      --word-font: Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    /* --------------------------------
+       NAVIGATIE
+    -------------------------------- */
+
+    .top-nav {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      z-index: 100;
+
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .top-nav a {
+      padding: 10px 20px;
+
+      border: 3px solid var(--blue);
+      border-radius: 40px;
+
+      color: var(--blue);
+      font-weight: bold;
+      text-decoration: none;
+
+      background: rgba(255, 253, 246, 0.88);
+
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------
+       PAGINA
+    -------------------------------- */
+
+    .page {
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 150px 0 120px;
+    }
+
+    .intro {
+      max-width: 900px;
+      margin-bottom: 72px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.9rem;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0.55;
+    }
+
+    h1 {
+      margin: 0 0 30px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .intro p {
+      max-width: 920px;
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      font-weight: 400;
+    }
+
+    .intro p + p {
+      margin-top: 18px;
+    }
+
+    /* --------------------------------
+       KEUZES
+    -------------------------------- */
+
+    .maker {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.38fr);
+      gap: 72px;
+      align-items: start;
+    }
+
+    .settings {
+      position: sticky;
+      top: 42px;
+    }
+
+    .setting + .setting {
+      margin-top: 40px;
+    }
+
+    .setting h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .font-choices,
+    .color-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .font-choice,
+    .color-choice {
+      border: 2px solid rgba(0, 71, 255, 0.22);
+      background: transparent;
+      cursor: pointer;
+
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .font-choice {
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+
+    .font-choice:hover,
+    .font-choice:focus-visible,
+    .font-choice.is-active {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    .font-choice.is-active {
+      background: rgba(0, 71, 255, 0.05);
+    }
+
+    .color-choice {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border-radius: 50%;
+      background: var(--swatch);
+    }
+
+    .color-choice:hover,
+    .color-choice:focus-visible,
+    .color-choice.is-active {
+      border-color: var(--blue);
+      transform: scale(1.08);
+      outline: none;
+    }
+
+    .tiny {
+      margin: 12px 0 0;
+      max-width: 300px;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      opacity: 0.5;
+    }
+
+    /* --------------------------------
+       WOORDMAKER
+    -------------------------------- */
+
+    .word-maker {
+      min-width: 0;
+    }
+
+    .source-word {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.05em;
+      margin-bottom: 34px;
+
+      color: var(--word-color);
+      font-family: var(--word-font);
+      font-size: clamp(3.1rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.045em;
+
+      transition:
+        color 0.25s ease,
+        font-family 0.25s ease;
+    }
+
+    .source-word span {
+      display: inline-block;
+      animation: float-letter 4.8s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -0.28s);
+    }
+
+    @keyframes float-letter {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-5px) rotate(1deg);
+      }
+    }
+
+    .instruction {
+      max-width: 680px;
+      margin: 0 0 18px;
+
+      font-size: 0.98rem;
+      line-height: 1.65;
+
+      opacity: 0.7;
+    }
+
+    .zone-label {
+      margin: 0 0 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.42;
+    }
+
+    .letter-pool,
+    .word-zone {
+      min-height: 112px;
+      padding: 16px;
+
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 10px;
+
+      border: 2px solid rgba(0, 71, 255, 0.15);
+      border-radius: 24px;
+
+      transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .letter-pool {
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .word-zone {
+      min-height: 145px;
+      align-items: center;
+      background: rgba(0, 71, 255, 0.02);
+    }
+
+    .letter-pool.is-over,
+    .word-zone.is-over {
+      border-color: var(--blue);
+      background: rgba(0, 71, 255, 0.05);
+    }
+
+    .letter {
+      width: clamp(54px, 7vw, 82px);
+      height: clamp(66px, 8.5vw, 96px);
+
+      display: grid;
+      place-items: center;
+
+      border: 0;
+      border-radius: 18px;
+
+      color: var(--word-color);
+      font-family: var(--word-font);
+      font-size: clamp(2.25rem, 5.1vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: inset 0 0 0 1px rgba(0, 71, 255, 0.11);
+
+      cursor: grab;
+      user-select: none;
+      touch-action: manipulation;
+
+      transition:
+        transform 0.16s ease,
+        color 0.25s ease,
+        font-family 0.25s ease,
+        background-color 0.2s ease;
+    }
+
+    .letter:hover,
+    .letter:focus-visible {
+      transform: translateY(-3px) rotate(-1deg);
+      outline: none;
+    }
+
+    .letter:active {
+      cursor: grabbing;
+      transform: scale(0.97);
+    }
+
+    .letter.dragging {
+      opacity: 0.35;
+    }
+
+    .feedback {
+      min-height: 30px;
+      margin: 16px 0 0;
+
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .feedback.is-valid {
+      font-weight: 600;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 0.76rem;
+      line-height: 1.55;
+      opacity: 0.4;
+    }
+
+    /* --------------------------------
+       BEWAREN
+    -------------------------------- */
+
+    .save-area {
+      margin-top: 42px;
+      padding-top: 30px;
+
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
+    }
+
+    .save-area h2 {
+      margin: 0 0 18px;
+      font-size: 1.2rem;
+    }
+
+    .save-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .name-input {
+      width: min(100%, 280px);
+      padding: 12px 0;
+
+      border: 0;
+      border-bottom: 2px solid rgba(0, 71, 255, 0.32);
+
+      color: var(--blue);
+      font-size: 1rem;
+
+      background: transparent;
+      outline: none;
+    }
+
+    .name-input:focus {
+      border-bottom-color: var(--blue);
+    }
+
+    .save-button,
+    .reset-button {
+      padding: 10px 17px;
+
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .save-button {
+      color: white;
+      background: var(--blue);
+    }
+
+    .save-button:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .reset-button {
+      margin-top: 14px;
+      color: var(--blue);
+      background: transparent;
+    }
+
+    /* --------------------------------
+       MUUR
+    -------------------------------- */
+
+    .wall-section {
+      margin-top: 140px;
+    }
+
+    .wall-header {
+      max-width: 760px;
+      margin-bottom: 48px;
+    }
+
+    .wall-header h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+    }
+
+    .wall-header p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.65;
+    }
+
+    .wall {
+      position: relative;
+
+      min-height: 680px;
+      overflow: hidden;
+
+      border-top: 1px solid rgba(0, 71, 255, 0.12);
+      border-bottom: 1px solid rgba(0, 71, 255, 0.12);
+    }
+
+    .wall-item {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+
+      color: var(--c);
+      font-family: var(--f);
+
+      transform:
+        translate(-50%, -50%)
+        rotate(var(--r));
+
+      animation: wall-float var(--d) ease-in-out infinite alternate;
+      animation-delay: var(--delay);
+    }
+
+    .wall-word {
+      display: block;
+
+      font-size: var(--s);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+
+      white-space: nowrap;
+    }
+
+    .wall-credit {
+      display: block;
+      margin-top: 6px;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.64rem;
+      font-weight: 400;
+
+      opacity: 0;
+      transition: opacity 0.2s ease;
+
+      white-space: nowrap;
+    }
+
+    .wall-item:hover .wall-credit {
+      opacity: 0.66;
+    }
+
+    @keyframes wall-float {
+      from { translate: 0 -3px; }
+      to { translate: 0 5px; }
+    }
+
+    /* --------------------------------
+       INSTAGRAM + FOOTER
+    -------------------------------- */
+
+    .instagram-corner {
+      position: absolute;
+      right: 22px;
+      bottom: 18px;
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+
+      color: var(--blue);
+      text-decoration: none;
+
+      opacity: 0.68;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .instagram-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .instagram-handle {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .site-footer {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1000;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
+      color: var(--blue);
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+
+      opacity: 0.45;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* --------------------------------
+       RESPONSIVE
+    -------------------------------- */
+
+    @media (max-width: 900px) {
+      .top-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+
+        justify-content: center;
+
+        padding: 30px 20px 0;
+      }
+
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
+      }
+
+      .page {
+        width: auto;
+        padding: 80px 24px 90px;
+      }
+
+      .maker {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .settings {
+        position: static;
+      }
+
+      .intro {
+        margin-bottom: 52px;
+      }
+
+      .wall-section {
+        margin-top: 100px;
+      }
+
+      .wall {
+        min-height: 760px;
+      }
+
+      .site-footer,
+      .instagram-corner {
+        display: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      h1 {
+        font-size: 1.9rem;
+      }
+
+      .source-word {
+        font-size: clamp(2.6rem, 14vw, 4.2rem);
+      }
+
+      .letter {
+        width: 54px;
+        height: 66px;
+        font-size: 2.4rem;
+      }
+
+      .letter-pool,
+      .word-zone {
+        padding: 13px;
+        border-radius: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .source-word span,
+      .wall-item {
+        animation: none;
+      }
+
+      .top-nav a,
+      .font-choice,
+      .color-choice,
+      .instagram-corner {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body style="position:relative;">
+
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="de-film.html">De film</a>
+    <a href="educatieprogramma.html">Educatie</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="page">
+
+    <header class="intro">
+      <p class="eyebrow">Een interactieve typografische installatie</p>
+
+      <h1>Woordexperiment</h1>
+
+      <p>
+        Wat gebeurt er als je een woord uit elkaar haalt en opnieuw bekijkt?
+      </p>
+
+      <p>
+        Met Het Onderwater Theater onderzoeken we het label ‘verlegen’.
+        Niet om het weg te poetsen, maar om er met nieuwsgierigheid naar te kijken.
+        Want misschien vertelt één woord nooit het hele verhaal.
+      </p>
+
+      <p>
+        Hier mag je dezelfde letters opnieuw ordenen. Kies een lettervorm,
+        een kleur en ontdek welk nieuw woord ontstaat. Een kleine typografische
+        oefening die laat zien dat betekenis kan verschuiven, net als hoe we
+        naar elkaar kijken.
+      </p>
+
+      <p>
+        Laat jouw woord achter en bouw mee aan een muur vol verschillende perspectieven.
+      </p>
+
+      <p>
+        Liefs,<br>
+        Esther &amp; Sasha
+      </p>
+    </header>
+
+    <section class="maker" aria-label="Maak een woord">
+
+      <aside class="settings">
+
+        <div class="setting">
+          <h2>Kies een lettervorm</h2>
+
+          <div class="font-choices">
+            <button
+              class="font-choice is-active"
+              type="button"
+              data-font="Arial, sans-serif">
+              Helder
+            </button>
+
+            <button
+              class="font-choice"
+              type="button"
+              data-font="Georgia, serif"
+              style="font-family:Georgia,serif">
+              Zacht
+            </button>
+
+            <button
+              class="font-choice"
+              type="button"
+              data-font="'Courier New', monospace"
+              style="font-family:'Courier New',monospace">
+              Ritmisch
+            </button>
+
+            <button
+              class="font-choice"
+              type="button"
+              data-font="'Arial Black', Arial, sans-serif"
+              style="font-family:'Arial Black',Arial,sans-serif">
+              Stevig
+            </button>
+
+            <button
+              class="font-choice"
+              type="button"
+              data-font="'Trebuchet MS', Arial, sans-serif"
+              style="font-family:'Trebuchet MS',Arial,sans-serif">
+              Rond
+            </button>
+          </div>
+        </div>
+
+        <div class="setting">
+          <h2>Kies een kleur</h2>
+
+          <div class="color-choices">
+            <button
+              class="color-choice is-active"
+              type="button"
+              aria-label="Blauw"
+              data-color="#0047ff"
+              style="--swatch:#0047ff">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Roze"
+              data-color="#ff8eb5"
+              style="--swatch:#ff8eb5">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Groen"
+              data-color="#3ca58d"
+              style="--swatch:#3ca58d">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Geel"
+              data-color="#e6bd52"
+              style="--swatch:#e6bd52">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Lila"
+              data-color="#8f82d8"
+              style="--swatch:#8f82d8">
+            </button>
+          </div>
+
+          <p class="tiny">
+            Alleen kleuren en lettervormen uit deze kleine verzameling.
+            Zo blijft de muur één geheel.
+          </p>
+        </div>
+
+      </aside>
+
+      <div class="word-maker">
+
+        <div class="source-word" aria-hidden="true">
+          <span style="--i:0">V</span>
+          <span style="--i:1">E</span>
+          <span style="--i:2">R</span>
+          <span style="--i:3">L</span>
+          <span style="--i:4">E</span>
+          <span style="--i:5">G</span>
+          <span style="--i:6">E</span>
+          <span style="--i:7">N</span>
+        </div>
+
+        <p class="instruction">
+          Sleep letters naar beneden en zet ze in een nieuwe volgorde.
+          Op mobiel kun je ook simpelweg op een letter tikken.
+        </p>
+
+        <p class="zone-label">Letters</p>
+        <div class="letter-pool drop-zone" id="letterPool" aria-label="Beschikbare letters"></div>
+
+        <p class="zone-label">Jouw woord</p>
+        <div class="word-zone drop-zone" id="wordZone" aria-label="Jouw woord"></div>
+
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+
+        <div class="hint">
+          Woorden die nu kunnen worden bewaard:
+          leven · geven · regen · engel · leger · veer · neer · veren · vegen · legen
+        </div>
+
+        <div class="save-area">
+          <h2>Laat het achter</h2>
+
+          <div class="save-row">
+            <input
+              class="name-input"
+              id="nameInput"
+              type="text"
+              maxlength="15"
+              autocomplete="off"
+              placeholder="jouw naam"
+              aria-label="Jouw naam">
+
+            <button
+              class="save-button"
+              id="saveButton"
+              type="button"
+              disabled>
+              Naar de muur
+            </button>
+          </div>
+
+          <button
+            class="reset-button"
+            id="resetButton"
+            type="button">
+            Opnieuw
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="wall-section" aria-labelledby="wallTitle">
+
+      <div class="wall-header">
+        <p class="eyebrow">Van bezoekers</p>
+
+        <h2 id="wallTitle">De woordenmuur</h2>
+
+        <p>
+          Iedereen begint met dezelfde letters.
+          Toch ziet ieder woord er anders uit.
+        </p>
+      </div>
+
+      <div class="wall" id="wall" aria-live="polite"></div>
+
+    </section>
+
+  </main>
+
+  <a
+    class="instagram-corner"
+    href="https://www.instagram.com/het_onderwater_theater/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
+  </a>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
+
+  <script>
+    const LETTERS = ["V", "E", "R", "L", "E", "G", "E", "N"];
+
+    const VALID_WORDS = new Set([
+      "LEVEN",
+      "GEVEN",
+      "REGEN",
+      "ENGEL",
+      "LEGER",
+      "VEER",
+      "NEER",
+      "VEREN",
+      "VEGEN",
+      "LEGEN"
+    ]);
+
+    const letterPool = document.querySelector("#letterPool");
+    const wordZone = document.querySelector("#wordZone");
+    const feedback = document.querySelector("#feedback");
+    const saveButton = document.querySelector("#saveButton");
+    const resetButton = document.querySelector("#resetButton");
+    const nameInput = document.querySelector("#nameInput");
+    const wall = document.querySelector("#wall");
+
+    const fontChoices = document.querySelectorAll(".font-choice");
+    const colorChoices = document.querySelectorAll(".color-choice");
+
+    let selectedFont = "Arial, sans-serif";
+    let selectedColor = "#0047ff";
+    let draggedLetter = null;
+
+    function createLetter(letter, index) {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "letter";
+      button.textContent = letter;
+      button.draggable = true;
+      button.dataset.letter = letter;
+      button.dataset.id = `${letter}-${index}-${Math.random()}`;
+
+      button.addEventListener("dragstart", () => {
+        draggedLetter = button;
+        button.classList.add("dragging");
+      });
+
+      button.addEventListener("dragend", () => {
+        button.classList.remove("dragging");
+        draggedLetter = null;
+        updateWordState();
+      });
+
+      button.addEventListener("click", () => {
+        const currentParent = button.parentElement;
+
+        if (currentParent === letterPool) {
+          wordZone.appendChild(button);
+        } else {
+          letterPool.appendChild(button);
+        }
+
+        updateWordState();
+      });
+
+      return button;
+    }
+
+    function resetLetters() {
+      letterPool.innerHTML = "";
+      wordZone.innerHTML = "";
+
+      LETTERS.forEach((letter, index) => {
+        letterPool.appendChild(
+          createLetter(letter, index)
+        );
+      });
+
+      feedback.textContent = "";
+      feedback.classList.remove("is-valid");
+      saveButton.disabled = true;
+    }
+
+    function setupDropZone(zone) {
+      zone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        zone.classList.add("is-over");
+
+        if (!draggedLetter) {
+          return;
+        }
+
+        const afterElement =
+          getDragAfterElement(zone, event.clientX);
+
+        if (!afterElement) {
+          zone.appendChild(draggedLetter);
+        } else {
+          zone.insertBefore(
+            draggedLetter,
+            afterElement
+          );
+        }
+      });
+
+      zone.addEventListener("dragleave", () => {
+        zone.classList.remove("is-over");
+      });
+
+      zone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        zone.classList.remove("is-over");
+
+        if (draggedLetter &&
+            draggedLetter.parentElement !== zone) {
+          zone.appendChild(draggedLetter);
+        }
+
+        updateWordState();
+      });
+    }
+
+    function getDragAfterElement(container, x) {
+      const elements = [
+        ...container.querySelectorAll(
+          ".letter:not(.dragging)"
+        )
+      ];
+
+      return elements.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect();
+          const offset =
+            x - box.left - box.width / 2;
+
+          if (
+            offset < 0 &&
+            offset > closest.offset
+          ) {
+            return {
+              offset,
+              element: child
+            };
+          }
+
+          return closest;
+        },
+        {
+          offset: Number.NEGATIVE_INFINITY
+        }
+      ).element;
+    }
+
+    function currentWord() {
+      return [...wordZone.querySelectorAll(".letter")]
+        .map((letter) => letter.dataset.letter)
+        .join("");
+    }
+
+    function updateWordState() {
+      const word = currentWord();
+
+      feedback.classList.remove("is-valid");
+      saveButton.disabled = true;
+
+      if (!word) {
+        feedback.textContent = "";
+        return;
+      }
+
+      if (VALID_WORDS.has(word)) {
+        feedback.textContent =
+          `${word.toLowerCase()} kan naar de muur.`;
+
+        feedback.classList.add("is-valid");
+        saveButton.disabled = false;
+      } else {
+        feedback.textContent =
+          "Blijf schuiven.";
+      }
+    }
+
+    fontChoices.forEach((button) => {
+      button.addEventListener("click", () => {
+        fontChoices.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+
+        selectedFont = button.dataset.font;
+
+        document.documentElement.style.setProperty(
+          "--word-font",
+          selectedFont
+        );
+      });
+    });
+
+    colorChoices.forEach((button) => {
+      button.addEventListener("click", () => {
+        colorChoices.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+
+        selectedColor = button.dataset.color;
+
+        document.documentElement.style.setProperty(
+          "--word-color",
+          selectedColor
+        );
+      });
+    });
+
+    function cleanName(value) {
+      return value
+        .replace(/[^a-zA-ZÀ-ÿ' -]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 15);
+    }
+
+    function loadEntries() {
+      try {
+        return JSON.parse(
+          localStorage.getItem("onderwater-woorden") || "[]"
+        );
+      } catch {
+        return [];
+      }
+    }
+
+    function saveEntries(entries) {
+      localStorage.setItem(
+        "onderwater-woorden",
+        JSON.stringify(entries)
+      );
+    }
+
+    const sampleEntries = [
+      {
+        word: "LEVEN",
+        name: "Noor",
+        color: "#0047ff",
+        font: "Georgia, serif"
+      },
+      {
+        word: "REGEN",
+        name: "Mila",
+        color: "#ff8eb5",
+        font: "'Courier New', monospace"
+      },
+      {
+        word: "GEVEN",
+        name: "Sam",
+        color: "#3ca58d",
+        font: "'Trebuchet MS', Arial, sans-serif"
+      },
+      {
+        word: "ENGEL",
+        name: "Bo",
+        color: "#8f82d8",
+        font: "'Arial Black', Arial, sans-serif"
+      }
+    ];
+
+    function renderWall() {
+      const saved = loadEntries();
+      const entries = [...sampleEntries, ...saved];
+
+      wall.innerHTML = "";
+
+      entries.forEach((entry, index) => {
+        const item = document.createElement("div");
+        item.className = "wall-item";
+
+        const x =
+          10 + ((index * 23 + 8) % 82);
+
+        const y =
+          10 + ((index * 31 + 14) % 78);
+
+        const rotate =
+          ((index * 7) % 9) - 4;
+
+        const size =
+          1.9 + ((index * 0.37) % 2.25);
+
+        const duration =
+          4.5 + ((index * 0.8) % 4);
+
+        item.style.setProperty("--x", `${x}%`);
+        item.style.setProperty("--y", `${y}%`);
+        item.style.setProperty("--r", `${rotate}deg`);
+        item.style.setProperty("--s", `${size}rem`);
+        item.style.setProperty("--d", `${duration}s`);
+        item.style.setProperty("--delay", `${-index * 0.42}s`);
+        item.style.setProperty("--c", entry.color);
+        item.style.setProperty("--f", entry.font);
+
+        const word = document.createElement("span");
+        word.className = "wall-word";
+        word.textContent = entry.word;
+
+        const credit = document.createElement("span");
+        credit.className = "wall-credit";
+        credit.textContent =
+          entry.name
+            ? `door ${entry.name}`
+            : "";
+
+        item.appendChild(word);
+        item.appendChild(credit);
+
+        wall.appendChild(item);
+      });
+    }
+
+    saveButton.addEventListener("click", () => {
+      const word = currentWord();
+
+      if (!VALID_WORDS.has(word)) {
+        return;
+      }
+
+      const name = cleanName(nameInput.value);
+
+      const entries = loadEntries();
+
+      entries.push({
+        word,
+        name,
+        color: selectedColor,
+        font: selectedFont
+      });
+
+      saveEntries(entries.slice(-35));
+
+      renderWall();
+
+      nameInput.value = "";
+      resetLetters();
+
+      document.querySelector("#wallTitle")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    });
+
+    resetButton.addEventListener("click", resetLetters);
+
+    nameInput.addEventListener("input", () => {
+      const cleaned = cleanName(nameInput.value);
+
+      if (nameInput.value !== cleaned) {
+        nameInput.value = cleaned;
+      }
+    });
+
+    setupDropZone(letterPool);
+    setupDropZone(wordZone);
+
+    resetLetters();
+    renderWall();
+  </script>
+
+</body>
+</html>
