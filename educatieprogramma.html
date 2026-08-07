@@ -34,101 +34,6 @@
 
 
     /* --------------------------------
-       BEWEGEND WEZEN
-    -------------------------------- */
-
-    .creature-cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      width: clamp(120px, 15vw, 240px);
-      aspect-ratio: 1;
-
-      z-index: 1;
-
-      pointer-events: none;
-      user-select: none;
-
-      opacity: 0;
-      transition: opacity 0.8s ease;
-
-      transform-origin: center;
-      will-change: transform, opacity;
-    }
-
-    .creature-cursor.is-visible {
-      opacity: 1;
-    }
-
-    .creature-cursor img {
-      display: block;
-      width: 100%;
-      height: auto;
-
-      transform-origin: center;
-      will-change: transform;
-
-      animation: creature-float 4.2s ease-in-out infinite;
-    }
-
-    @keyframes creature-float {
-      0%,
-      100% {
-        transform:
-          translateY(-5px)
-          rotate(-3deg)
-          scale(1);
-      }
-
-      50% {
-        transform:
-          translateY(8px)
-          rotate(3deg)
-          scale(1.025);
-      }
-    }
-
-    @media (hover: none), (pointer: coarse) {
-      .creature-cursor {
-        opacity: 0.95;
-        animation: creature-touch-swim 18s linear infinite;
-      }
-
-      @keyframes creature-touch-swim {
-        0% {
-          transform:
-            translate3d(-30vw, 65vh, 0)
-            rotate(-12deg);
-        }
-
-        25% {
-          transform:
-            translate3d(18vw, 45vh, 0)
-            rotate(7deg);
-        }
-
-        50% {
-          transform:
-            translate3d(52vw, 62vh, 0)
-            rotate(-5deg);
-        }
-
-        75% {
-          transform:
-            translate3d(82vw, 28vh, 0)
-            rotate(8deg);
-        }
-
-        100% {
-          transform:
-            translate3d(125vw, 48vh, 0)
-            rotate(-10deg);
-        }
-      }
-    }
-
-    /* --------------------------------
        NAVIGATIE
     -------------------------------- */
 
@@ -270,6 +175,70 @@
     }
 
     /* --------------------------------
+       WOORDEXPERIMENT
+    -------------------------------- */
+
+    .wordexperiment-note {
+      position: absolute;
+      top: 560px;
+      right: 42px;
+      z-index: 3;
+
+      width: 220px;
+      padding: 22px 24px 20px;
+
+      border: 1.5px solid var(--blue);
+      border-radius: 14px;
+
+      color: var(--blue);
+      text-decoration: none;
+      background: var(--background);
+
+      box-shadow: 0 10px 28px rgba(0, 71, 255, 0.08);
+
+      transform: rotate(2deg);
+      transform-origin: center;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .wordexperiment-note:hover,
+    .wordexperiment-note:focus-visible {
+      transform:
+        rotate(0deg)
+        translateY(-3px);
+
+      box-shadow: 0 14px 34px rgba(0, 71, 255, 0.12);
+      outline: none;
+    }
+
+    .wordexperiment-note strong {
+      display: block;
+      margin-bottom: 14px;
+
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .wordexperiment-note .letters {
+      display: block;
+      margin-bottom: 16px;
+
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+    }
+
+    .wordexperiment-note .discover {
+      display: block;
+
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* --------------------------------
        PARTNERS
     -------------------------------- */
 
@@ -407,6 +376,11 @@
         padding-right: 220px;
       }
 
+      .wordexperiment-note {
+        right: 10px;
+        width: 200px;
+      }
+
     }
 
     /* --------------------------------
@@ -430,9 +404,6 @@
         border-width: 2px;
       }
 
-      .creature-cursor {
-        width: clamp(90px, 27vw, 155px);
-      }
 
       .page {
         width: auto;
@@ -475,9 +446,28 @@
         padding: 24px;
       }
 
+
+      .wordexperiment-card {
+        width: 100%;
+        margin-top: 40px;
+        padding: 22px 24px;
+      }
+
       .partners {
         grid-template-columns: 1fr;
         gap: 24px;
+      }
+
+      .wordexperiment-note {
+        position: relative;
+        top: auto;
+        right: auto;
+
+        display: inline-block;
+        width: min(240px, 100%);
+        margin: 46px 0 10px;
+
+        transform: rotate(1deg);
       }
 
       .site-footer,
@@ -495,13 +485,9 @@
         scroll-behavior: auto;
       }
 
-      .creature-cursor {
-        display: none;
-        animation: none;
-      }
 
-      .creature-cursor img,
-      .top-nav a {
+      .top-nav a,
+      .wordexperiment-note {
         animation: none;
         transition: none;
       }
@@ -511,17 +497,7 @@
 
 <body style="position:relative;">
 
-  <div
-    class="creature-cursor"
-    id="creatureCursor"
-    aria-hidden="true">
-    <img
-      src="OT_creature.png"
-      alt=""
-      draggable="false">
-  </div>
-
-  <nav class="top-nav" aria-label="Hoofdnavigatie">
+<nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
     <a href="de-film.html">De film</a>
     <a href="over-ons.html">Over ons</a>
@@ -565,6 +541,14 @@
       zelfstandig worden aangeboden.
     </p>
 
+    <a
+      class="wordexperiment-note"
+      href="woordexperiment.html"
+      aria-label="Ontdek het Woordexperiment">
+      <strong>Woordexperiment</strong>
+      <span class="letters">V E R L E G E N</span>
+      <span class="discover">→ Ontdek</span>
+    </a>
 
 
 <h2 class="partners-heading">Ontwikkeld met</h2>
@@ -611,185 +595,6 @@
   <footer class="site-footer">
     © Esther Frank 2026
   </footer>
-
-
-  <script>
-    /*
-      Bewegend wezen:
-      - beweegt zelfstandig door het hele scherm;
-      - volgt de cursor;
-      - vervolgt na drie seconden haar eigen route.
-    */
-
-    const creature = document.querySelector("#creatureCursor");
-
-    const canUsePointer =
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    const reducedMotion =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (creature && canUsePointer && !reducedMotion) {
-      const IDLE_DELAY = 3000;
-
-      let mode = "swimming";
-
-      let currentX = -120;
-      let currentY = window.innerHeight * 0.25;
-
-      let targetX = window.innerWidth * 0.2;
-      let targetY = window.innerHeight * 0.4;
-
-      let previousX = currentX;
-      let previousY = currentY;
-
-      let rotation = 0;
-      let idleTimer = null;
-      let nextSwimTargetTimer = null;
-
-      const followSpeed = 0.065;
-      const swimSpeed = 0.012;
-
-      creature.classList.add("is-visible");
-
-      function randomBetween(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      function chooseSwimTarget() {
-        const creatureSize = creature.offsetWidth;
-        const leaveScreen = Math.random() < 0.3;
-
-        if (leaveScreen) {
-          const side = Math.floor(Math.random() * 4);
-
-          if (side === 0) {
-            targetX = -creatureSize * 0.55;
-            targetY = randomBetween(0, window.innerHeight);
-          } else if (side === 1) {
-            targetX = window.innerWidth + creatureSize * 0.55;
-            targetY = randomBetween(0, window.innerHeight);
-          } else if (side === 2) {
-            targetX = randomBetween(0, window.innerWidth);
-            targetY = -creatureSize * 0.55;
-          } else {
-            targetX = randomBetween(0, window.innerWidth);
-            targetY = window.innerHeight + creatureSize * 0.55;
-          }
-        } else {
-          targetX = randomBetween(
-            creatureSize * 0.25,
-            window.innerWidth - creatureSize * 0.25
-          );
-
-          targetY = randomBetween(
-            creatureSize * 0.25,
-            window.innerHeight - creatureSize * 0.25
-          );
-        }
-
-        clearTimeout(nextSwimTargetTimer);
-
-        nextSwimTargetTimer = setTimeout(() => {
-          if (mode === "swimming") {
-            chooseSwimTarget();
-          }
-        }, randomBetween(4500, 8000));
-      }
-
-      function startSwimming() {
-        mode = "swimming";
-        chooseSwimTarget();
-      }
-
-      function followPointer(event) {
-        mode = "following";
-
-        targetX = event.clientX;
-        targetY = event.clientY;
-
-        creature.classList.add("is-visible");
-
-        clearTimeout(idleTimer);
-        clearTimeout(nextSwimTargetTimer);
-
-        idleTimer = setTimeout(
-          startSwimming,
-          IDLE_DELAY
-        );
-      }
-
-      function animateCreature() {
-        const speed =
-          mode === "following"
-            ? followSpeed
-            : swimSpeed;
-
-        currentX += (targetX - currentX) * speed;
-        currentY += (targetY - currentY) * speed;
-
-        const movementX = currentX - previousX;
-        const movementY = currentY - previousY;
-
-        const movementAngle =
-          Math.atan2(movementY, movementX) *
-          (180 / Math.PI);
-
-        const targetRotation =
-          Math.max(-18, Math.min(18, movementAngle * 0.18));
-
-        rotation +=
-          (targetRotation - rotation) * 0.04;
-
-        const x =
-          currentX - creature.offsetWidth / 2;
-
-        const y =
-          currentY - creature.offsetHeight / 2;
-
-        creature.style.transform = `
-          translate3d(${x}px, ${y}px, 0)
-          rotate(${rotation}deg)
-        `;
-
-        previousX = currentX;
-        previousY = currentY;
-
-        if (mode === "swimming") {
-          const distance = Math.hypot(
-            targetX - currentX,
-            targetY - currentY
-          );
-
-          if (distance < 35) {
-            chooseSwimTarget();
-          }
-        }
-
-        requestAnimationFrame(animateCreature);
-      }
-
-      window.addEventListener(
-        "pointermove",
-        followPointer,
-        { passive: true }
-      );
-
-      window.addEventListener(
-        "resize",
-        () => {
-          if (mode === "swimming") {
-            chooseSwimTarget();
-          }
-        },
-        { passive: true }
-      );
-
-      startSwimming();
-      animateCreature();
-    }
-  </script>
-
 </body>
 
 </html>
