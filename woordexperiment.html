@@ -17,10 +17,10 @@
     :root {
       --background: #fffdf6;
       --blue: #0047ff;
-      --pink: #d9889f;
-      --green: #4f8778;
-      --yellow: #c5a255;
-      --lilac: #7f75a8;
+      --red: #E3170A;
+      --mint: #A9E5BB;
+      --purple: #7E2E84;
+      --pink: #FFB2E6;
       --word-color: #0047ff;
       --word-font: Arial, sans-serif;
     }
@@ -97,13 +97,17 @@
     -------------------------------- */
 
     .page {
+      position: relative;
+      z-index: 2;
+
       width: min(1180px, calc(100% - 80px));
       margin: 0 auto;
-      padding: 150px 0 120px;
+
+      padding: 140px 250px 140px 0;
     }
 
     .intro {
-      max-width: 900px;
+      max-width: 920px;
       margin-bottom: 72px;
     }
 
@@ -123,7 +127,20 @@
       font-weight: 700;
     }
 
-    .intro p {
+    h2 {
+      margin: 72px 0 24px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .intro p,
+    p {
       max-width: 920px;
       margin: 0;
       font-size: 1.2rem;
@@ -131,8 +148,9 @@
       font-weight: 400;
     }
 
+    p + p,
     .intro p + p {
-      margin-top: 18px;
+      margin-top: 24px;
     }
 
     /* --------------------------------
@@ -483,10 +501,12 @@
       background: rgba(0, 71, 255, 0.06);
     }
 
-    .spray-colors {
+    .spray-colors,
+    .paint-sizes {
       display: flex;
       gap: 7px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .spray-color {
@@ -799,7 +819,18 @@
 
       .page {
         width: auto;
-        padding: 80px 24px 90px;
+        padding: 80px 24px 96px;
+      }
+
+      p,
+      .intro p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
+
+      h2 {
+        margin-top: 52px;
+        font-size: 1.9rem;
       }
 
       .maker {
@@ -823,9 +854,17 @@
         min-height: 760px;
       }
 
-      .site-footer,
       .instagram-corner {
         display: none;
+      }
+
+      .site-footer {
+        position: static;
+        writing-mode: horizontal-tb;
+        transform: none;
+        padding: 6px 24px 14px;
+        text-align: center;
+        font-size: 0.6rem;
       }
     }
 
@@ -889,20 +928,19 @@
   <main class="page">
 
     <header class="intro">
-      <p class="eyebrow">Een interactieve typografische installatie</p>
+      <p class="eyebrow">Een interactieve installatie van Het Onderwater Theater</p>
 
       <h1>Woordexperiment</h1>
 
       <p>
-        Met Het Onderwater Theater onderzoeken we het label ‘verlegenheid’:
+        Met Het Onderwater Theater onderzoeken we het label verlegenheid:
         met een knipoog, maar zonder om de spanning heen te draaien. Want woorden
         kunnen houvast geven, maar ook bepalen hoe we naar onszelf en naar anderen kijken.
       </p>
 
       <p>
-        Hier gebruiken we kunst om dat woord letterlijk in beweging te brengen.
-        Schuif, combineer, kies kleur en vorm en maak van dezelfde letters iets nieuws.
-        Geen juiste uitkomst, wel een andere blik.
+        Breng hier letterlijk het woord in beweging.
+        Schuif, combineer en maak van dezelfde letters iets nieuws.
       </p>
     </header>
 
@@ -971,33 +1009,33 @@
             <button
               class="color-choice"
               type="button"
+              aria-label="Rood"
+              data-color="#E3170A"
+              style="--swatch:#E3170A">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Mint"
+              data-color="#A9E5BB"
+              style="--swatch:#A9E5BB">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
+              aria-label="Paars"
+              data-color="#7E2E84"
+              style="--swatch:#7E2E84">
+            </button>
+
+            <button
+              class="color-choice"
+              type="button"
               aria-label="Roze"
-              data-color="#d9889f"
-              style="--swatch:#d9889f">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Groen"
-              data-color="#4f8778"
-              style="--swatch:#4f8778">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Geel"
-              data-color="#c5a255"
-              style="--swatch:#c5a255">
-            </button>
-
-            <button
-              class="color-choice"
-              type="button"
-              aria-label="Lila"
-              data-color="#7f75a8"
-              style="--swatch:#7f75a8">
+              data-color="#FFB2E6"
+              style="--swatch:#FFB2E6">
             </button>
           </div>
 
@@ -1009,12 +1047,19 @@
 
         <div class="letter-size-tools">
           <h2>Verschuif de verhoudingen</h2>
-          <p>Klik op een letter in jouw woord en maak alleen die letter groter of kleiner.</p>
+          <p>
+            Selecteer een letter en trek, duw of vervorm haar.
+            Maak haar groter, kleiner, breder, smaller, hoger of platter.
+          </p>
 
           <div class="size-controls">
-            <button class="size-button" id="letterSmaller" type="button" aria-label="Letter kleiner">−</button>
-            <button class="size-button" id="letterBigger" type="button" aria-label="Letter groter">+</button>
-            <button class="size-button" id="letterReset" type="button">100%</button>
+            <button class="size-button" id="letterSmaller" type="button">Kleiner</button>
+            <button class="size-button" id="letterBigger" type="button">Groter</button>
+            <button class="size-button" id="letterNarrower" type="button">Induwen</button>
+            <button class="size-button" id="letterWider" type="button">Uittrekken</button>
+            <button class="size-button" id="letterShorter" type="button">Platter</button>
+            <button class="size-button" id="letterTaller" type="button">Hoger</button>
+            <button class="size-button" id="letterReset" type="button">Reset vorm</button>
             <button class="size-button" id="letterBack" type="button">Terug</button>
           </div>
         </div>
@@ -1049,7 +1094,7 @@
 
         <div class="hint">
           Mogelijke woorden:
-          leven · geven · regen · engel · leger · veer · neer · veren · vegen · legen · leren · regel · even · veel · geel · geen
+          leven · geven · regen · engel · leger · veren · neer · legen · leren · regel · even · veel · geen
         </div>
 
         <div class="paint-area">
@@ -1062,19 +1107,28 @@
           <div class="paint-toolbar" aria-label="Verfgereedschap">
             <button class="tool-button is-active" id="sprayTool" type="button">Spuitbus</button>
             <button class="tool-button" id="pencilTool" type="button">Potlood</button>
-            <button class="tool-button" id="clearPaint" type="button">Wis verf</button>
+            <button class="tool-button" id="markerTool" type="button">Marker</button>
+            <button class="tool-button" id="brushTool" type="button">Kwast</button>
+            <button class="tool-button" id="eraserTool" type="button">Gum</button>
+            <button class="tool-button" id="clearPaint" type="button">Wis alles</button>
 
-            <div class="spray-colors" aria-label="Spuitbuskleuren">
+            <div class="paint-sizes" aria-label="Lijndikte">
+              <button class="tool-button paint-size" type="button" data-size="3">Dun</button>
+              <button class="tool-button paint-size is-active" type="button" data-size="7">Middel</button>
+              <button class="tool-button paint-size" type="button" data-size="14">Dik</button>
+            </div>
+
+            <div class="spray-colors" aria-label="Verfkleuren">
               <button class="spray-color is-active" type="button" aria-label="Blauw"
                 data-color="#0047ff" style="--swatch:#0047ff"></button>
+              <button class="spray-color" type="button" aria-label="Rood"
+                data-color="#E3170A" style="--swatch:#E3170A"></button>
+              <button class="spray-color" type="button" aria-label="Mint"
+                data-color="#A9E5BB" style="--swatch:#A9E5BB"></button>
+              <button class="spray-color" type="button" aria-label="Paars"
+                data-color="#7E2E84" style="--swatch:#7E2E84"></button>
               <button class="spray-color" type="button" aria-label="Roze"
-                data-color="#d9889f" style="--swatch:#d9889f"></button>
-              <button class="spray-color" type="button" aria-label="Groen"
-                data-color="#4f8778" style="--swatch:#4f8778"></button>
-              <button class="spray-color" type="button" aria-label="Geel"
-                data-color="#c5a255" style="--swatch:#c5a255"></button>
-              <button class="spray-color" type="button" aria-label="Lila"
-                data-color="#7f75a8" style="--swatch:#7f75a8"></button>
+                data-color="#FFB2E6" style="--swatch:#FFB2E6"></button>
             </div>
           </div>
 
@@ -1129,7 +1183,8 @@
 
         <p>
           Iedereen begint met dezelfde letters.
-          Toch ziet ieder woord er anders uit.
+          Toch ziet ieder woord er anders uit. Woorden die je hier bewaart,
+          blijven in deze browser op de muur staan.
         </p>
       </div>
 
@@ -1157,9 +1212,8 @@
     const LETTERS = ["V", "E", "R", "L", "E", "G", "E", "N"];
 
     const VALID_WORDS = new Set([
-      "LEVEN", "GEVEN", "REGEN", "ENGEL", "LEGER", "VEER", "NEER",
-      "VEREN", "VEGEN", "LEGEN", "LEREN", "REGEL", "EVEN", "VEEL",
-      "GEEL", "GEEN"
+      "LEVEN", "GEVEN", "REGEN", "ENGEL", "LEGER", "VEREN", "NEER",
+      "LEGEN", "LEREN", "REGEL", "EVEN", "VEEL", "GEEN"
     ]);
 
     const STORAGE_KEY = "onderwater-woorden-v4";
@@ -1177,6 +1231,10 @@
 
     const letterSmaller = document.querySelector("#letterSmaller");
     const letterBigger = document.querySelector("#letterBigger");
+    const letterNarrower = document.querySelector("#letterNarrower");
+    const letterWider = document.querySelector("#letterWider");
+    const letterShorter = document.querySelector("#letterShorter");
+    const letterTaller = document.querySelector("#letterTaller");
     const letterReset = document.querySelector("#letterReset");
     const letterBack = document.querySelector("#letterBack");
 
@@ -1184,8 +1242,12 @@
     const paintPlaceholder = document.querySelector("#paintPlaceholder");
     const sprayTool = document.querySelector("#sprayTool");
     const pencilTool = document.querySelector("#pencilTool");
+    const markerTool = document.querySelector("#markerTool");
+    const brushTool = document.querySelector("#brushTool");
+    const eraserTool = document.querySelector("#eraserTool");
     const clearPaint = document.querySelector("#clearPaint");
     const sprayColors = document.querySelectorAll(".spray-color");
+    const paintSizes = document.querySelectorAll(".paint-size");
 
     let selectedFont = "'Yeseva One', serif";
     let selectedColor = "#0047ff";
@@ -1194,6 +1256,7 @@
 
     let paintMode = "spray";
     let sprayColor = "#0047ff";
+    let paintSize = 7;
     let isPainting = false;
     let currentValidWord = "";
     let lastPointer = null;
@@ -1218,6 +1281,8 @@
       button.draggable = true;
       button.dataset.letter = letter;
       button.dataset.scale = "1";
+      button.dataset.scaleX = "1";
+      button.dataset.scaleY = "1";
       button.dataset.id = `${letter}-${index}-${Math.random()}`;
 
       button.addEventListener("dragstart", () => {
@@ -1260,9 +1325,14 @@
 
     function updateLetterScaleVisual(button) {
       const scale = Number(button.dataset.scale || 1);
-      button.style.transform = `scale(${scale})`;
+      const scaleX = Number(button.dataset.scaleX || 1);
+      const scaleY = Number(button.dataset.scaleY || 1);
+
+      button.style.transform =
+        `scale(${scale * scaleX}, ${scale * scaleY})`;
+
       button.style.marginInline =
-        `${Math.max(0, (scale - 1) * 18)}px`;
+        `${Math.max(0, (scale * scaleX - 1) * 18)}px`;
     }
 
     function changeSelectedLetterScale(delta) {
@@ -1281,6 +1351,23 @@
       }
     }
 
+    function changeSelectedLetterAxis(axis, delta) {
+      if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
+        return;
+      }
+
+      const key = axis === "x" ? "scaleX" : "scaleY";
+      const current = Number(selectedLetter.dataset[key] || 1);
+      const next = Math.max(0.55, Math.min(1.75, current + delta));
+
+      selectedLetter.dataset[key] = next.toFixed(2);
+      updateLetterScaleVisual(selectedLetter);
+
+      if (currentValidWord) {
+        rebuildMaskAndPreview(false);
+      }
+    }
+
     letterSmaller.addEventListener("click", () => {
       changeSelectedLetterScale(-0.1);
     });
@@ -1289,12 +1376,30 @@
       changeSelectedLetterScale(0.1);
     });
 
+    letterNarrower.addEventListener("click", () => {
+      changeSelectedLetterAxis("x", -0.12);
+    });
+
+    letterWider.addEventListener("click", () => {
+      changeSelectedLetterAxis("x", 0.12);
+    });
+
+    letterShorter.addEventListener("click", () => {
+      changeSelectedLetterAxis("y", -0.12);
+    });
+
+    letterTaller.addEventListener("click", () => {
+      changeSelectedLetterAxis("y", 0.12);
+    });
+
     letterReset.addEventListener("click", () => {
       if (!selectedLetter || selectedLetter.parentElement !== wordZone) {
         return;
       }
 
       selectedLetter.dataset.scale = "1";
+      selectedLetter.dataset.scaleX = "1";
+      selectedLetter.dataset.scaleY = "1";
       updateLetterScaleVisual(selectedLetter);
 
       if (currentValidWord) {
@@ -1400,7 +1505,9 @@
     function currentLetterDesign() {
       return [...wordZone.querySelectorAll(".letter")].map((letter) => ({
         char: letter.dataset.letter,
-        scale: Number(letter.dataset.scale || 1)
+        scale: Number(letter.dataset.scale || 1),
+        scaleX: Number(letter.dataset.scaleX || 1),
+        scaleY: Number(letter.dataset.scaleY || 1)
       }));
     }
 
@@ -1605,8 +1712,9 @@
       const gap = baseSize * 0.025;
 
       const widths = design.map((item) => {
+        const scaleX = item.scaleX || 1;
         maskCtx.font = `700 ${baseSize * item.scale}px ${selectedFont}`;
-        return maskCtx.measureText(item.char).width;
+        return maskCtx.measureText(item.char).width * scaleX;
       });
 
       const total =
@@ -1621,6 +1729,8 @@
           char: item.char,
           scale: item.scale,
           size: baseSize * item.scale,
+          scaleX: item.scaleX || 1,
+          scaleY: item.scaleY || 1,
           x: x + width / 2,
           y: rect.height / 2,
           width
@@ -1651,14 +1761,12 @@
       maskCtx.textBaseline = "middle";
 
       layout.forEach((letter) => {
-        maskCtx.font =
-          `700 ${letter.size}px ${selectedFont}`;
-
-        maskCtx.fillText(
-          letter.char,
-          letter.x,
-          letter.y
-        );
+        maskCtx.save();
+        maskCtx.translate(letter.x, letter.y);
+        maskCtx.scale(letter.scaleX, letter.scaleY);
+        maskCtx.font = `700 ${letter.size}px ${selectedFont}`;
+        maskCtx.fillText(letter.char, 0, 0);
+        maskCtx.restore();
       });
 
       maskCtx.restore();
@@ -1679,14 +1787,12 @@
       paintCtx.textBaseline = "middle";
 
       layout.forEach((letter) => {
-        paintCtx.font =
-          `700 ${letter.size}px ${selectedFont}`;
-
-        paintCtx.fillText(
-          letter.char,
-          letter.x,
-          letter.y
-        );
+        paintCtx.save();
+        paintCtx.translate(letter.x, letter.y);
+        paintCtx.scale(letter.scaleX, letter.scaleY);
+        paintCtx.font = `700 ${letter.size}px ${selectedFont}`;
+        paintCtx.fillText(letter.char, 0, 0);
+        paintCtx.restore();
       });
 
       paintCtx.restore();
@@ -1770,14 +1876,32 @@
       renderPaintCanvas();
     }
 
-    function pencilTo(x, y) {
+    function drawStrokeTo(x, y) {
       if (!currentValidWord || !lastPointer) return;
 
       paintLayerCtx.save();
-      paintLayerCtx.strokeStyle = sprayColor;
-      paintLayerCtx.lineWidth = 5;
       paintLayerCtx.lineCap = "round";
       paintLayerCtx.lineJoin = "round";
+
+      if (paintMode === "eraser") {
+        paintLayerCtx.globalCompositeOperation = "destination-out";
+        paintLayerCtx.strokeStyle = "rgba(0,0,0,1)";
+        paintLayerCtx.lineWidth = Math.max(10, paintSize * 2.2);
+      } else {
+        paintLayerCtx.globalCompositeOperation = "source-over";
+        paintLayerCtx.strokeStyle = sprayColor;
+
+        if (paintMode === "marker") {
+          paintLayerCtx.globalAlpha = 0.36;
+          paintLayerCtx.lineWidth = paintSize * 2.2;
+        } else if (paintMode === "brush") {
+          paintLayerCtx.globalAlpha = 0.9;
+          paintLayerCtx.lineWidth = paintSize * 1.55;
+        } else {
+          paintLayerCtx.globalAlpha = 1;
+          paintLayerCtx.lineWidth = paintSize;
+        }
+      }
 
       paintLayerCtx.beginPath();
       paintLayerCtx.moveTo(lastPointer.x, lastPointer.y);
@@ -1812,7 +1936,7 @@
       if (paintMode === "spray") {
         sprayAt(point.x, point.y);
       } else {
-        pencilTo(point.x, point.y);
+        drawStrokeTo(point.x, point.y);
       }
     });
 
@@ -1835,16 +1959,50 @@
       lastPointer = null;
     });
 
-    sprayTool.addEventListener("click", () => {
-      paintMode = "spray";
-      sprayTool.classList.add("is-active");
-      pencilTool.classList.remove("is-active");
-    });
+    const paintToolButtons = [
+      sprayTool,
+      pencilTool,
+      markerTool,
+      brushTool,
+      eraserTool
+    ];
 
-    pencilTool.addEventListener("click", () => {
-      paintMode = "pencil";
-      pencilTool.classList.add("is-active");
-      sprayTool.classList.remove("is-active");
+    function setPaintMode(mode, button) {
+      paintMode = mode;
+      paintToolButtons.forEach((tool) =>
+        tool.classList.remove("is-active")
+      );
+      button.classList.add("is-active");
+    }
+
+    sprayTool.addEventListener("click", () =>
+      setPaintMode("spray", sprayTool)
+    );
+
+    pencilTool.addEventListener("click", () =>
+      setPaintMode("pencil", pencilTool)
+    );
+
+    markerTool.addEventListener("click", () =>
+      setPaintMode("marker", markerTool)
+    );
+
+    brushTool.addEventListener("click", () =>
+      setPaintMode("brush", brushTool)
+    );
+
+    eraserTool.addEventListener("click", () =>
+      setPaintMode("eraser", eraserTool)
+    );
+
+    paintSizes.forEach((button) => {
+      button.addEventListener("click", () => {
+        paintSizes.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+        button.classList.add("is-active");
+        paintSize = Number(button.dataset.size || 7);
+      });
     });
 
     sprayColors.forEach((button) => {
@@ -1879,10 +2037,17 @@
         color: selectedColor,
         font: selectedFont,
         letters: currentLetterDesign(),
-        art: paintCanvas.toDataURL("image/png")
+        art: paintCanvas.toDataURL("image/webp", 0.82)
       });
 
-      saveEntries(entries.slice(-40));
+      try {
+        saveEntries(entries);
+      } catch (error) {
+        feedback.textContent =
+          "Deze browser heeft geen opslagruimte meer voor nieuwe woorden.";
+        return;
+      }
+
       renderWall();
 
       nameInput.value = "";
