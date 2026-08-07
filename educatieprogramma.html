@@ -338,37 +338,34 @@
     .instagram-corner{
       position:fixed;
       right:22px;
-      bottom:20px;
+      bottom:22px;
       z-index:1000;
       display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--blue);
+      flex-direction:column;
+      align-items:flex-end;
+      gap:2px;
       text-decoration:none;
-      font-size:.85rem;
-      font-weight:600;
-      background:rgba(255,253,246,.92);
-      padding:8px 12px;
-      border-radius:999px;
-      transition:transform .25s ease,opacity .25s ease;
+      color:var(--blue);
     }
 
-    .instagram-corner:hover{
-      transform:translateY(-2px);
+    .instagram-label{
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.45;
     }
 
-    .instagram-corner img{
-      width:22px;
-      height:22px;
-      display:block;
+    .instagram-handle{
+      font-size:1rem;
+      color:var(--blue);
     }
+
+    .instagram-corner:hover .instagram-handle{text-decoration:underline;}
 
     @media (max-width:800px){
-      .instagram-corner{
-        right:14px;
-        bottom:14px;
-        font-size:.75rem;
-      }
+      .instagram-corner{right:16px;bottom:16px;}
+      .instagram-label{font-size:.72rem;}
+      .instagram-handle{font-size:.9rem;}
     }
 
     /* --------------------------------
@@ -593,13 +590,14 @@
 
   </main>
 
-  <a class="instagram-corner"
-     href="https://instagram.com/het_onderwater_theater"
-     target="_blank"
-     rel="noopener noreferrer"
-     aria-label="Instagram Het Onderwater Theater">
-    <img src="instagram.png" alt="">
-    <span>@het_onderwater_theater</span>
+  <a
+    class="instagram-corner"
+    href="https://www.instagram.com/het_onderwater_theater/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
   </a>
 
   <footer class="site-footer">
