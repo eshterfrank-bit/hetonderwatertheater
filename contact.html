@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Contact | Het Onderwater Theater</title>
 
-<link rel="icon" type="image/png" href="shell_pink.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <style>
+:root{
+--bg:#FFFDF6;
+--blue:#0047FF;
+}
+
+*{box-sizing:border-box}
 
 body{
 margin:0;
-background:#FFFDF6;
+background:var(--bg);
 font-family:Arial,sans-serif;
-color:#0047FF;
+color:var(--blue);
+overflow-x:hidden;
 }
 
 .top-nav{
@@ -29,16 +37,19 @@ z-index:100;
 
 .top-nav a{
 text-decoration:none;
-color:#0047FF;
+color:var(--blue);
 font-weight:bold;
 padding:10px 20px;
-border:3px solid #0047FF;
+border:3px solid var(--blue);
 border-radius:40px;
+background:rgba(255,253,246,.88);
+transition:.25s;
 }
 
 .top-nav a:hover{
-background:#0047FF;
-color:white;
+background:var(--blue);
+color:#fff;
+transform:translateY(-2px);
 }
 
 .page{
@@ -46,75 +57,125 @@ min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-text-align:center;
 padding:120px 30px;
-box-sizing:border-box;
+text-align:center;
 }
 
-.content{
-max-width:750px;
+.content{max-width:760px}
+
+.page-title{
+width:min(78vw,720px);
+margin:0 auto 42px;
+line-height:0;
 }
 
-h1{
-font-size:clamp(3.5rem,10vw,8rem);
-line-height:0.9;
-margin:0;
-text-transform:uppercase;
-font-weight:900;
-letter-spacing:-0.04em;
+.page-title img,
+.page-title picture{
+display:block;
+width:100%;
+height:auto;
 }
 
 p{
 font-size:1.2rem;
-line-height:1.6;
-margin:40px auto 0;
-max-width:600px;
+line-height:1.8;
+max-width:620px;
+margin:0 auto;
 }
 
 .button{
 display:inline-block;
-margin-top:45px;
+margin-top:42px;
 padding:16px 36px;
-border:3px solid #0047FF;
+border:3px solid var(--blue);
 border-radius:40px;
 text-decoration:none;
-color:#0047FF;
 font-weight:bold;
+color:var(--blue);
+transition:.25s;
 }
 
 .button:hover{
-background:#0047FF;
-color:white;
+background:var(--blue);
+color:#fff;
+}
+
+.instagram-corner{
+position:absolute;
+right:22px;
+bottom:18px;
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:2px;
+text-decoration:none;
+color:var(--blue);
+opacity:.68;
+transition:.25s;
+}
+
+.instagram-corner:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+.instagram-label{
+font-size:.62rem;
+letter-spacing:.08em;
+text-transform:uppercase;
+opacity:.65;
+}
+
+.instagram-handle{
+font-size:.78rem;
+font-weight:500;
+}
+
+.site-footer{
+position:fixed;
+left:18px;
+bottom:18px;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
+font-size:.7rem;
+opacity:.45;
+pointer-events:none;
 }
 
 @media(max-width:900px){
 .top-nav{
 position:relative;
-justify-content:center;
-right:0;
 top:0;
-padding-top:30px;
+right:0;
+justify-content:center;
+padding:30px 20px 0;
 flex-wrap:wrap;
 }
+.page{padding:80px 24px}
+.site-footer,
+.instagram-corner{display:none;}
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="top-nav">
+<nav class="top-nav">
 <a href="index.html">Home</a>
 <a href="over-ons.html">Over ons</a>
 <a href="de-film.html">De film</a>
 <a href="educatieprogramma.html">Educatie</a>
-</div>
+</nav>
 
 <section class="page">
-
 <div class="content">
 
-<h1>Contact</h1>
+<div class="page-title">
+<picture>
+<source srcset="OT_CONTACT-lossless.webp" type="image/webp">
+<img src="OT_CONTACT-optimized.png" alt="Contact" loading="eager" decoding="async">
+</picture>
+</div>
 
 <p>
 Voor samenwerkingen, workshops, toekomstige vertoningen of vragen over Het Onderwater Theater kun je ons mailen.
@@ -125,8 +186,21 @@ Mail ons
 </a>
 
 </div>
-
 </section>
+
+<a
+class="instagram-corner"
+href="https://www.instagram.com/het_onderwater_theater/"
+target="_blank"
+rel="noopener noreferrer"
+aria-label="Volg Het Onderwater Theater op Instagram">
+<span class="instagram-label">Instagram</span>
+<span class="instagram-handle">@het_onderwater_theater ↗</span>
+</a>
+
+<footer class="site-footer">
+© Esther Frank 2026
+</footer>
 
 </body>
 </html>
