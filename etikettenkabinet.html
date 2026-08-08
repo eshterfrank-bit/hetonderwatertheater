@@ -1335,17 +1335,21 @@
     const nextLabelButton = document.querySelector("#nextLabelButton");
     const labelCards = Array.from(document.querySelectorAll(".label-card"));
 
-        });
-      });
+    const LABEL_PALETTE = {
+      VERLEGEN:["#FFC83D","#0047ff"],
+      STIL:["#FFC83D","#0047ff"],
+      DRUK:["#FFC83D","#0047ff"],
+      GEVOELIG:["#FFC83D","#0047ff"],
+      STOER:["#FFC83D","#0047ff"],
+      EIGENWIJS:["#FFC83D","#0047ff"],
+      SOCIAAL:["#FFC83D","#0047ff"],
+      RUSTIG:["#FFC83D","#0047ff"]
+    };
 
-      const total = same + different;
-
-      return {
-        samePercent: total ? Math.round((same / total) * 100) : 0,
-        differentPercent: total ? 100 - Math.round((same / total) * 100) : 0,
-        total
-      };
-    }
+    let activeLabel = "VERLEGEN";
+    let currentStep = 0;
+    let selectedAnswer = "";
+    const completedLabels = new Set();
 
     function buildProgress(){
       progress.innerHTML = "";
@@ -1537,7 +1541,6 @@
       );
 
       if(nextCard){
-        const [nextAccent] = LABEL_PALETTE[nextLabel];
         nextCard.style.outline = "3px solid #FFC83D";
         nextCard.style.outlineOffset = "4px";
       }
