@@ -7,12 +7,14 @@
 
   <title>Het Onderwater Theater</title>
 
-  <link rel="icon" type="image/png" href="shell_pink.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
     :root {
       --background: #fffdf6;
       --blue: #0047ff;
+      --red: #E3170A;
     }
 
     * {
@@ -167,6 +169,18 @@
       color: white;
       background: var(--blue);
       transform: translateY(-2px);
+    }
+
+    .top-nav .games-link {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible {
+      color: white;
+      background: var(--red);
+      border-color: var(--red);
     }
 
     /* --------------------------------
@@ -424,6 +438,7 @@
     <a href="over-ons.html">Over ons</a>
     <a href="de-film.html">De film</a>
     <a href="educatieprogramma.html">Educatie</a>
+    <a class="games-link" href="spellen.html">Spellen</a>
     <a href="contact.html">Contact</a>
   </nav>
 
