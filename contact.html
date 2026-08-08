@@ -12,148 +12,176 @@
 
 <style>
 :root{
---bg:#FFFDF6;
---blue:#0047FF;
+  --bg:#FFFDF6;
+  --blue:#0047FF;
+  --games:#FFC83D;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
-margin:0;
-background:var(--bg);
-font-family:Arial,sans-serif;
-color:var(--blue);
-overflow-x:hidden;
+  margin:0;
+  background:var(--bg);
+  font-family:Arial,sans-serif;
+  color:var(--blue);
+  overflow-x:hidden;
 }
 
 .top-nav{
-position:absolute;
-top:30px;
-right:40px;
-display:flex;
-gap:15px;
-z-index:100;
+  position:absolute;
+  top:30px;
+  right:40px;
+  display:flex;
+  gap:15px;
+  z-index:100;
 }
 
 .top-nav a{
-text-decoration:none;
-color:var(--blue);
-font-weight:bold;
-padding:10px 20px;
-border:3px solid var(--blue);
-border-radius:40px;
-background:rgba(255,253,246,.88);
-transition:.25s;
+  text-decoration:none;
+  color:var(--blue);
+  font-weight:bold;
+  padding:10px 20px;
+  border:3px solid var(--blue);
+  border-radius:40px;
+  background:rgba(255,253,246,.88);
+  transition:.25s;
 }
 
 .top-nav a:hover{
-background:var(--blue);
-color:#fff;
-transform:translateY(-2px);
+  background:var(--blue);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+/* Spellen */
+
+.top-nav .games-link{
+  color:var(--games);
+  border-color:var(--games);
+}
+
+.top-nav .games-link:hover,
+.top-nav .games-link:focus-visible{
+  background:var(--games);
+  border-color:var(--games);
+  color:#FFFDF6;
+  transform:translateY(-2px);
 }
 
 .page{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:120px 30px;
-text-align:center;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:120px 30px;
+  text-align:center;
 }
 
-.content{max-width:760px}
+.content{
+  max-width:760px;
+}
 
 .page-title{
-width:min(78vw,720px);
-margin:0 auto 42px;
-line-height:0;
+  width:min(78vw,720px);
+  margin:0 auto 42px;
+  line-height:0;
 }
 
 .page-title img,
 .page-title picture{
-display:block;
-width:100%;
-height:auto;
+  display:block;
+  width:100%;
+  height:auto;
 }
 
 p{
-font-size:1.2rem;
-line-height:1.8;
-max-width:620px;
-margin:0 auto;
+  font-size:1.2rem;
+  line-height:1.8;
+  max-width:620px;
+  margin:0 auto;
 }
 
 .button{
-display:inline-block;
-margin-top:42px;
-padding:16px 36px;
-border:3px solid var(--blue);
-border-radius:40px;
-text-decoration:none;
-font-weight:bold;
-color:var(--blue);
-transition:.25s;
+  display:inline-block;
+  margin-top:42px;
+  padding:16px 36px;
+  border:3px solid var(--blue);
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:bold;
+  color:var(--blue);
+  transition:.25s;
 }
 
 .button:hover{
-background:var(--blue);
-color:#fff;
+  background:var(--blue);
+  color:#fff;
 }
 
 .instagram-corner{
-position:absolute;
-right:22px;
-bottom:18px;
-display:flex;
-flex-direction:column;
-align-items:flex-end;
-gap:2px;
-text-decoration:none;
-color:var(--blue);
-opacity:.68;
-transition:.25s;
+  position:absolute;
+  right:22px;
+  bottom:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:2px;
+  text-decoration:none;
+  color:var(--blue);
+  opacity:.68;
+  transition:.25s;
 }
 
 .instagram-corner:hover{
-opacity:1;
-transform:translateY(-2px);
+  opacity:1;
+  transform:translateY(-2px);
 }
 
 .instagram-label{
-font-size:.62rem;
-letter-spacing:.08em;
-text-transform:uppercase;
-opacity:.65;
+  font-size:.62rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.65;
 }
 
 .instagram-handle{
-font-size:.78rem;
-font-weight:500;
+  font-size:.78rem;
+  font-weight:500;
 }
 
 .site-footer{
-position:fixed;
-left:18px;
-bottom:18px;
-writing-mode:vertical-rl;
-transform:rotate(180deg);
-font-size:.7rem;
-opacity:.45;
-pointer-events:none;
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-size:.7rem;
+  opacity:.45;
+  pointer-events:none;
 }
 
 @media(max-width:900px){
-.top-nav{
-position:relative;
-top:0;
-right:0;
-justify-content:center;
-padding:30px 20px 0;
-flex-wrap:wrap;
-}
-.page{padding:80px 24px}
-.site-footer,
-.instagram-corner{display:none;}
+
+  .top-nav{
+    position:relative;
+    top:0;
+    right:0;
+    justify-content:center;
+    padding:30px 20px 0;
+    flex-wrap:wrap;
+  }
+
+  .page{
+    padding:80px 24px;
+  }
+
+  .site-footer,
+  .instagram-corner{
+    display:none;
+  }
+
 }
 </style>
 </head>
@@ -161,45 +189,51 @@ flex-wrap:wrap;
 <body>
 
 <nav class="top-nav">
-<a href="index.html">Home</a>
-<a href="over-ons.html">Over ons</a>
-<a href="de-film.html">De film</a>
-<a href="educatieprogramma.html">Educatie</a>
+  <a href="index.html">Home</a>
+  <a href="over-ons.html">Over ons</a>
+  <a href="de-film.html">De film</a>
+  <a href="educatieprogramma.html">Educatie</a>
+  <a href="spellen.html" class="games-link">Spellen</a>
 </nav>
 
 <section class="page">
-<div class="content">
+  <div class="content">
 
-<div class="page-title">
-<picture>
-<source srcset="OT_CONTACT-lossless.webp" type="image/webp">
-<img src="OT_CONTACT-optimized.png" alt="Contact" loading="eager" decoding="async">
-</picture>
-</div>
+    <div class="page-title">
+      <picture>
+        <source srcset="OT_CONTACT-lossless.webp" type="image/webp">
+        <img src="OT_CONTACT-optimized.png"
+             alt="Contact"
+             loading="eager"
+             decoding="async">
+      </picture>
+    </div>
 
-<p>
-Voor samenwerkingen, workshops, toekomstige vertoningen of vragen over Het Onderwater Theater kun je ons mailen.
-</p>
+    <p>
+      Voor samenwerkingen, workshops, toekomstige vertoningen of vragen over Het Onderwater Theater kun je ons mailen.
+    </p>
 
-<a class="button" href="mailto:eshterfrank@gmail.com">
-Mail ons
-</a>
+    <a class="button" href="mailto:eshterfrank@gmail.com">
+      Mail ons
+    </a>
 
-</div>
+  </div>
 </section>
 
 <a
-class="instagram-corner"
-href="https://www.instagram.com/het_onderwater_theater/"
-target="_blank"
-rel="noopener noreferrer"
-aria-label="Volg Het Onderwater Theater op Instagram">
-<span class="instagram-label">Instagram</span>
-<span class="instagram-handle">@het_onderwater_theater ↗</span>
+  class="instagram-corner"
+  href="https://www.instagram.com/het_onderwater_theater/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Volg Het Onderwater Theater op Instagram">
+
+  <span class="instagram-label">Instagram</span>
+  <span class="instagram-handle">@het_onderwater_theater ↗</span>
+
 </a>
 
 <footer class="site-footer">
-© Esther Frank 2026
+  © Esther Frank 2026
 </footer>
 
 </body>
