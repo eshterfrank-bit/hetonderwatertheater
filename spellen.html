@@ -1,1 +1,605 @@
+<!DOCTYPE html>
+<html lang="nl">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Spellen | Het Onderwater Theater</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --background: #fffdf6;
+      --blue: #0047ff;
+      --green: #20D34A;
+      --yellow: #FFE600;
+      --pink: #FF4FB3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+    }
+
+    a,
+    button {
+      font: inherit;
+    }
+
+    /* --------------------------------
+       NAVIGATIE
+    -------------------------------- */
+
+    .top-nav {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      z-index: 100;
+
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .top-nav a {
+      padding: 10px 20px;
+
+      border: 3px solid var(--blue);
+      border-radius: 40px;
+
+      color: var(--blue);
+      font-weight: bold;
+      text-decoration: none;
+
+      background: rgba(255, 253, 246, 0.88);
+
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      color: white;
+      background: var(--blue);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Spellen wijkt bewust af van de rest van de navigatie */
+    .top-nav .games-link {
+      color: #E3170A;
+      border-color: #E3170A;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0;
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible {
+      color: white;
+      background: #E3170A;
+      border-color: #E3170A;
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------
+       PAGINA
+    -------------------------------- */
+
+    .page {
+      position: relative;
+      z-index: 2;
+
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+
+      padding: 140px 80px 140px 0;
+    }
+
+    .intro {
+      max-width: 1060px;
+      margin-bottom: 72px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.9rem;
+      opacity: 0.55;
+    }
+
+    h1 {
+      margin: 0 0 30px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    p {
+      max-width: 1060px;
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      font-weight: 400;
+    }
+
+    p + p {
+      margin-top: 24px;
+    }
+
+    /* --------------------------------
+       SPELLEN
+    -------------------------------- */
+
+    .games-section {
+      padding-top: 56px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
+    }
+
+    .games-heading {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      max-width: 920px;
+      margin-bottom: 34px;
+    }
+
+    .games-number {
+      padding-top: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.48;
+    }
+
+    .games-heading p {
+      font-size: 1rem;
+      line-height: 1.65;
+      opacity: 0.66;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .game-card {
+      position: relative;
+      min-height: 360px;
+      padding: 28px;
+
+      display: flex;
+      flex-direction: column;
+
+      border: 2px solid rgba(0, 71, 255, 0.22);
+      border-radius: 28px;
+
+      color: var(--blue);
+      text-decoration: none;
+
+      background: rgba(255, 255, 255, 0.25);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+    }
+
+    .game-card:hover,
+    .game-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: var(--red);
+      background: rgba(227, 23, 10, 0.14);
+      outline: none;
+    }
+
+    .game-card:hover::before,
+    .game-card:focus-visible::before {
+      border-color: var(--red);
+      opacity: 0.8;
+    }
+
+    .game-card::before {
+      content: "";
+      position: absolute;
+      top: 24px;
+      right: 24px;
+
+      width: 14px;
+      height: 14px;
+
+      border: 2px solid currentColor;
+      border-radius: 50%;
+
+      opacity: 0.35;
+    }
+
+
+
+    .game-age {
+      margin-bottom: 42px;
+
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+
+      opacity: 0.5;
+    }
+
+    .game-card h3 {
+      max-width: 280px;
+      margin-bottom: 16px;
+
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .game-card p {
+      margin: 0 0 28px;
+
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .game-medium {
+      display: inline-block;
+      margin-top: auto;
+
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+
+      opacity: 0.55;
+    }
+
+    .game-enter {
+      display: inline-block;
+      margin-top: 16px;
+
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* --------------------------------
+       SLOTTEKST
+    -------------------------------- */
+
+    .closing {
+      max-width: 900px;
+      margin-top: 92px;
+      padding-top: 44px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
+    }
+
+    .closing p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* --------------------------------
+       INSTAGRAM + FOOTER
+    -------------------------------- */
+
+    .instagram-corner {
+      position: absolute;
+      right: 22px;
+      bottom: 18px;
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+
+      color: var(--blue);
+      text-decoration: none;
+
+      opacity: 0.68;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .instagram-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .instagram-handle {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .site-footer {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1000;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
+      color: var(--blue);
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+
+      opacity: 0.45;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* --------------------------------
+       RESPONSIVE
+    -------------------------------- */
+
+    @media (max-width: 900px) {
+      .top-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+
+        justify-content: center;
+
+        padding: 30px 20px 0;
+      }
+
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
+      }
+
+      .top-nav .games-link {
+        transform: none;
+      }
+
+      .page {
+        width: auto;
+        padding: 80px 24px 96px;
+      }
+
+      p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
+
+      .intro {
+        margin-bottom: 52px;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .game-card {
+        min-height: 300px;
+      }
+
+      .games-heading {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .instagram-corner {
+        display: none;
+      }
+
+      .site-footer {
+        position: static;
+        writing-mode: horizontal-tb;
+        transform: none;
+        padding: 6px 24px 14px;
+        text-align: center;
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .top-nav a,
+      .game-card,
+      .instagram-corner {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body style="position:relative;">
+
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="de-film.html">De film</a>
+    <a href="educatieprogramma.html">Educatie</a>
+    <a href="over-ons.html">Over ons</a>
+
+    <a
+      class="games-link"
+      href="spellen.html"
+      aria-current="page">
+      Spellen
+    </a>
+
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="page">
+
+    <header class="intro">
+      <p class="eyebrow">Onderdeel van het educatieprogramma van Het Onderwater Theater</p>
+
+      <h1>Spellen</h1>
+
+      <p>
+        Het educatieprogramma sluit aan bij de thema’s uit Het Onderwater Theater
+        en nodigt kinderen uit om na te denken over identiteit, expressie en de
+        woorden en verwachtingen die zij al vroeg meekrijgen over hoe zij zouden
+        moeten zijn. Zo wordt een kind dat stil, voorzichtig of observerend is,
+        al snel verlegen genoemd.
+      </p>
+
+      <p>
+        De spellen onderzoeken deze thema’s vanuit taal, beeld en perspectief.
+        Ze geven kinderen verschillende manieren om te kijken, te communiceren
+        en zich uit te drukken, zonder dat er één juiste uitkomst is.
+      </p>
+    </header>
+
+    <section class="games-section">
+
+      <div class="games-heading">
+        <span class="games-number">01</span>
+
+        <div>
+          <h2>Interactieve spellen</h2>
+          <p>
+            De spellen vormen een aanvulling op de film en het educatieprogramma.
+            Elk spel benadert dezelfde thema’s vanuit een andere kunstvorm en
+            sluit aan bij een andere leeftijd.
+          </p>
+        </div>
+      </div>
+
+      <div class="games-grid">
+
+        <a
+          class="game-card"
+          href="bericht-voor-billy-patronen-v2.html">
+
+          <span class="game-age">vanaf ongeveer 6 jaar</span>
+
+          <h3>Een bericht voor Billy</h3>
+
+          <p>
+            Onder water werken woorden soms niet zo goed.
+            Met vormen, kleuren, lijnen en patronen onderzoeken kinderen
+            hoe zij iets kunnen vertellen zonder woorden.
+          </p>
+
+          <span class="game-medium">
+            beeld · kleur · compositie
+          </span>
+
+          <span class="game-enter">→ Open het spel</span>
+        </a>
+
+        <a
+          class="game-card"
+          href="het-verlegen-spel.html">
+
+          <span class="game-age">vanaf ongeveer 8 jaar</span>
+
+          <h3>Het Verlegen Spel</h3>
+
+          <p>
+            Vanuit het woord verlegen onderzoeken kinderen hoe taal kan
+            verschuiven. Door letters te combineren en vorm te geven ontstaat
+            ruimte om anders naar hetzelfde woord te kijken.
+          </p>
+
+          <span class="game-medium">
+            taal · typografie · verbeelding
+          </span>
+
+          <span class="game-enter">→ Open het spel</span>
+        </a>
+
+        <a
+          class="game-card"
+          href="etikettenkabinet-opgemaakt-v2.html">
+
+          <span class="game-age">vanaf ongeveer 11 jaar</span>
+
+          <h3>Het Etikettenkabinet</h3>
+
+          <p>
+            Aan de hand van verschillende situaties onderzoeken kinderen
+            wat labels als verlegen, stil, druk of stoer eigenlijk betekenen
+            en hoe zulke woorden invloed kunnen hebben op hoe we naar iemand kijken.
+          </p>
+
+          <span class="game-medium">
+            labels · betekenis · perspectief
+          </span>
+
+          <span class="game-enter">→ Open het kabinet</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <section class="closing">
+      <p>
+        De spellen sluiten aan bij de film en de kunsteducatieve lessen van
+        Het Onderwater Theater. Vanuit dans, theater, schrijfkunst, muziek,
+        beeldende kunst en interactieve opdrachten krijgen kinderen handvatten
+        aangereikt om te onderzoeken welke vormen van expressie bij hen passen.
+      </p>
+    </section>
+
+  </main>
+
+  <a
+    class="instagram-corner"
+    href="https://www.instagram.com/het_onderwater_theater/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
+  </a>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
+
+</body>
+
+</html>
