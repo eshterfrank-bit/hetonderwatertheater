@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Het Etikettenkabinet | Het Onderwater Theater</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root{
+      --background:#fffdf6;
+      --blue:#0047ff;
+      --yellow:#FFE600;
+      --green:#20D34A;
+      --red:#E3170A;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      overflow-x:hidden;
+      background:var(--background);
+      color:var(--blue);
+      font-family:Arial,sans-serif;
+    }
+
+    button,a{font:inherit}
+
+    .top-nav{
+      position:absolute;
+      top:30px;
+      right:40px;
+      z-index:100;
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .top-nav a{
+      padding:10px 20px;
+      border:3px solid var(--blue);
+      border-radius:40px;
+      color:var(--blue);
+      font-weight:bold;
+      text-decoration:none;
+      background:rgba(255,253,246,.88);
+      transition:
+        background-color .3s ease,
+        color .3s ease,
+        transform .3s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible{
+      color:#fff;
+      background:var(--blue);
+      transform:translateY(-2px);
+      outline:none;
+    }
+
+    .page{
+      position:relative;
+      z-index:2;
+      width:min(1180px,calc(100% - 80px));
+      margin:0 auto;
+      padding:140px 80px 140px 0;
+    }
+
+    .intro{
+      max-width:1060px;
+      margin-bottom:72px;
+    }
+
+    .eyebrow{
+      margin:0 0 14px;
+      font-size:.9rem;
+      letter-spacing:0;
+      text-transform:none;
+      opacity:.55;
+    }
+
+    h1{
+      margin:0 0 30px;
+      font-size:2.2rem;
+      line-height:1.2;
+      letter-spacing:0;
+      font-weight:700;
+    }
+
+    h2{
+      margin:72px 0 24px;
+      font-size:2.2rem;
+      line-height:1.2;
+    }
+
+    h3{
+      margin:0 0 14px;
+      font-size:1.45rem;
+      line-height:1.3;
+    }
+
+    .intro p,
+    p{
+      max-width:1060px;
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.9;
+      font-weight:400;
+      word-break:normal;
+      overflow-wrap:normal;
+      hyphens:none;
+    }
+
+    p+p,
+    .intro p+p{
+      margin-top:24px;
+    }
+
+    /* KABINET */
+
+    .cabinet-section{
+      padding-top:56px;
+      border-top:1px solid rgba(0,71,255,.16);
+    }
+
+    .cabinet-header{
+      max-width:920px;
+      margin-bottom:34px;
+    }
+
+    .cabinet-header h2{
+      margin:0 0 8px;
+      font-size:2rem;
+      line-height:1.2;
+    }
+
+    .cabinet-header p{
+      margin:0;
+      font-size:1rem;
+      line-height:1.65;
+      opacity:.66;
+    }
+
+    .cabinet{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .label-card{
+      position:relative;
+      min-height:122px;
+      padding:20px;
+      border:2px solid rgba(0,71,255,.22);
+      border-radius:18px;
+      color:var(--blue);
+      text-align:left;
+      background:rgba(255,255,255,.25);
+      cursor:pointer;
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background-color .2s ease;
+    }
+
+    .label-card::before{
+      content:"";
+      position:absolute;
+      top:12px;
+      right:12px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      border:1.5px solid currentColor;
+      opacity:.35;
+    }
+
+    .label-card:hover,
+    .label-card:focus-visible{
+      transform:translateY(-3px) rotate(-.3deg);
+      border-color:var(--blue);
+      background:rgba(0,71,255,.03);
+      outline:none;
+    }
+
+    .label-card strong{
+      display:block;
+      margin-top:28px;
+      font-size:1.05rem;
+      letter-spacing:0;
+      text-transform:uppercase;
+    }
+
+    .label-card small{
+      display:block;
+      margin-top:6px;
+      font-size:.7rem;
+      opacity:.45;
+    }
+
+    .label-card[data-label="VERLEGEN"]{
+      border-color:rgba(0,71,255,.22);
+      background:rgba(255,255,255,.25);
+    }
+
+    .label-card.is-complete{
+      background:rgba(32,211,74,.1);
+    }
+
+    .label-card.is-selected-label{
+      border:2px solid var(--green);
+      background:#20D34A;
+      color:var(--blue);
+    }
+
+    .label-card.is-selected-label strong,
+    .label-card.is-selected-label small{
+      color:var(--blue);
+    }
+
+    .label-card.is-selected-label small{
+      opacity:.72;
+    }
+
+    .label-card.is-selected-label::before{
+      border-color:var(--blue);
+      opacity:.55;
+    }
+
+    /* ONDERZOEK */
+
+    .research{
+      display:none;
+      margin-top:84px;
+      padding-top:56px;
+      border-top:1px solid rgba(0,71,255,.16);
+    }
+
+    .research.is-visible{display:block}
+
+    .research-head{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      align-items:start;
+      gap:30px;
+      max-width:920px;
+      margin-bottom:34px;
+    }
+
+    .big-label{
+      display:inline-flex;
+      align-items:center;
+      min-height:86px;
+      padding:16px 22px;
+      border:2px solid var(--blue);
+      border-radius:18px;
+      background:rgba(255,255,255,.25);
+      font-size:clamp(2rem,5vw,4.2rem);
+      font-weight:700;
+      line-height:1;
+      letter-spacing:-.02em;
+      text-transform:uppercase;
+      transform:rotate(-1deg);
+    }
+
+    .research-intro{
+      margin:18px 0 0;
+      max-width:720px;
+      font-size:1rem;
+      line-height:1.65;
+      opacity:.66;
+    }
+
+    .progress{
+      display:flex;
+      gap:7px;
+      padding-top:10px;
+    }
+
+    .progress-dot{
+      width:9px;
+      height:9px;
+      border:1.5px solid var(--blue);
+      border-radius:50%;
+      opacity:.35;
+    }
+
+    .progress-dot.is-done{
+      background:var(--blue);
+      opacity:1;
+    }
+
+    .question-stage{
+      max-width:920px;
+      min-height:420px;
+    }
+
+    .scenario{
+      margin-bottom:28px;
+      font-size:1.45rem;
+      line-height:1.45;
+      letter-spacing:0;
+    }
+
+    .question{
+      margin-bottom:18px;
+      font-size:1rem;
+      line-height:1.55;
+      font-weight:700;
+      opacity:.66;
+    }
+
+    .answers{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .answer{
+      min-width:38px;
+      padding:8px 11px;
+      border:2px solid rgba(0,71,255,.22);
+      border-radius:999px;
+      color:var(--blue);
+      font-weight:700;
+      background:transparent;
+      cursor:pointer;
+      transition:
+        border-color .2s ease,
+        background-color .2s ease,
+        transform .2s ease;
+    }
+
+    .answer:hover,
+    .answer:focus-visible{
+      border-color:var(--blue);
+      transform:translateY(-2px);
+      outline:none;
+    }
+
+    .answer.is-selected{
+      border-color:var(--blue);
+      background:var(--blue);
+      color:#fff;
+    }
+
+    .next-row{
+      margin-top:28px;
+    }
+
+    .next-button,
+    .cabinet-button{
+      padding:10px 17px;
+      border:2px solid var(--blue);
+      border-radius:999px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .next-button{
+      color:#fff;
+      background:var(--blue);
+    }
+
+    .next-button:disabled{
+      opacity:.25;
+      cursor:not-allowed;
+    }
+
+    .cabinet-button{
+      color:var(--blue);
+      background:transparent;
+    }
+
+    /* SLOT */
+
+    .finale{
+      display:none;
+      position:relative;
+      min-height:640px;
+      margin-top:84px;
+      padding:64px 40px;
+      overflow:hidden;
+      border:1px solid rgba(0,71,255,.18);
+      border-radius:30px;
+      background:
+        linear-gradient(to right,rgba(0,71,255,.025) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(0,71,255,.025) 1px,transparent 1px),
+        var(--background);
+      background-size:42px 42px;
+    }
+
+    .finale.is-visible{
+      display:grid;
+      place-items:center;
+    }
+
+    .finale-center{
+      position:relative;
+      z-index:2;
+      max-width:820px;
+      text-align:center;
+    }
+
+    .final-label{
+      display:inline-block;
+      margin-bottom:40px;
+      padding:14px 20px;
+      border:2px solid var(--blue);
+      border-radius:18px;
+      font-size:clamp(2.5rem,6vw,5rem);
+      font-weight:700;
+      line-height:1;
+      letter-spacing:-.02em;
+      transform:rotate(-1deg);
+      background:rgba(255,255,255,.25);
+      text-transform:uppercase;
+    }
+
+    .final-thought{
+      margin:0 auto;
+      max-width:760px;
+      font-size:2rem;
+      line-height:1.35;
+      font-weight:700;
+      letter-spacing:0;
+    }
+
+    .final-sub{
+      margin:24px auto 0;
+      max-width:760px;
+      font-size:1rem;
+      line-height:1.65;
+      font-weight:400;
+      opacity:.66;
+    }
+
+    .word-cloud span{
+      position:absolute;
+      left:var(--x);
+      top:var(--y);
+      font-size:clamp(.85rem,1.6vw,1.3rem);
+      font-weight:700;
+      opacity:.42;
+      transform:translate(-50%,-50%) rotate(var(--r));
+      animation:drift var(--d) ease-in-out infinite alternate;
+    }
+
+    @keyframes drift{
+      from{translate:0 -4px}
+      to{translate:0 7px}
+    }
+
+    .final-actions{
+      margin-top:34px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .instagram-corner{
+      position:absolute;
+      right:22px;
+      bottom:18px;
+      z-index:10;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:2px;
+      color:var(--blue);
+      text-decoration:none;
+      opacity:.68;
+      transition:
+        opacity .25s ease,
+        transform .25s ease;
+    }
+
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible{
+      opacity:1;
+      transform:translateY(-2px);
+    }
+
+    .instagram-label{
+      font-size:.62rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.65;
+    }
+
+    .instagram-handle{
+      font-size:.78rem;
+      font-weight:500;
+    }
+
+    .site-footer{
+      position:fixed;
+      left:18px;
+      bottom:18px;
+      z-index:1000;
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      color:var(--blue);
+      font-size:.7rem;
+      letter-spacing:.03em;
+      opacity:.45;
+      pointer-events:none;
+      user-select:none;
+    }
+
+    @media(max-width:900px){
+      .top-nav{
+        position:relative;
+        top:0;
+        right:0;
+        justify-content:center;
+        padding:30px 20px 0;
+      }
+
+      .top-nav a{
+        padding:8px 15px;
+        border-width:2px;
+      }
+
+      .page{
+        width:auto;
+        padding:80px 24px 96px;
+      }
+
+      p,
+      .intro p{
+        font-size:1.05rem;
+        line-height:1.75;
+      }
+
+      h2{
+        margin-top:52px;
+        font-size:1.9rem;
+      }
+
+      .cabinet{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .research-head{
+        grid-template-columns:1fr;
+      }
+
+      .progress{padding-top:0}
+
+      .question-stage{min-height:460px}
+
+      .finale{
+        min-height:720px;
+        padding:50px 24px;
+      }
+
+      .instagram-corner{
+        display:none;
+      }
+
+      .site-footer{
+        position:static;
+        writing-mode:horizontal-tb;
+        transform:none;
+        padding:6px 24px 14px;
+        text-align:center;
+        font-size:.6rem;
+      }
+    }
+
+    @media(max-width:520px){
+      .cabinet{grid-template-columns:1fr}
+      .label-card{min-height:96px}
+      .label-card strong{margin-top:22px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .label-card,
+      .answer,
+      .word-cloud span{
+        transition:none;
+        animation:none;
+      }
+    }
+  </style>
+</head>
+
+<body style="position:relative;">
+
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="de-film.html">De film</a>
+    <a href="educatieprogramma.html">Educatie</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="page">
+
+    <header class="intro">
+      <p class="eyebrow">Een interactieve installatie van Het Onderwater Theater</p>
+
+      <h1>Het Etikettenkabinet</h1>
+
+      <p>
+        We gebruiken elke dag woorden om mensen te beschrijven.
+        Maar bedoelen we eigenlijk allemaal hetzelfde?
+      </p>
+
+      <p>
+        Kies een etiket en bekijk het van dichtbij.
+      </p>
+    </header>
+
+    <section class="cabinet-section" aria-labelledby="cabinetTitle">
+      <div class="cabinet-header">
+        <h2 id="cabinetTitle">Kies een etiket</h2>
+        <p>
+          Elk laatje onderzoekt een ander woord. Er is geen goed of fout antwoord:
+          het gaat om wat jij in een situatie denkt te zien.
+        </p>
+      </div>
+
+      <div class="cabinet">
+        <button class="label-card" type="button" data-label="VERLEGEN">
+          <strong>Verlegen</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="STIL">
+          <strong>Stil</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="DRUK">
+          <strong>Druk</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="GEVOELIG">
+          <strong>Gevoelig</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="STOER">
+          <strong>Stoer</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="EIGENWIJS">
+          <strong>Eigenwijs</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="SOCIAAL">
+          <strong>Sociaal</strong>
+          <small>open dit etiket</small>
+        </button>
+
+        <button class="label-card" type="button" data-label="RUSTIG">
+          <strong>Rustig</strong>
+          <small>open dit etiket</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="research" id="research" aria-live="polite">
+      <div class="research-head">
+        <div>
+          <div class="big-label" id="bigLabel"></div>
+          <p class="research-intro" id="researchIntro"></p>
+        </div>
+
+        <div class="progress" id="progress" aria-label="Voortgang"></div>
+      </div>
+
+      <div class="question-stage" id="questionStage"></div>
+    </section>
+
+    <section class="finale" id="finale" aria-labelledby="finalThought">
+      <div class="word-cloud" id="wordCloud" aria-hidden="true"></div>
+
+      <div class="finale-center">
+        <div class="final-label" id="finalLabel"></div>
+
+        <p class="final-thought" id="finalThought"></p>
+
+        <p class="final-sub" id="finalSub"></p>
+
+        <div class="final-actions">
+          <button class="cabinet-button" id="nextLabelButton" type="button">
+            Ga naar het volgende etiket
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <a
+    class="instagram-corner"
+    href="https://www.instagram.com/het_onderwater_theater/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
+  </a>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
+
+  <script>
+    const LABELS = {
+      VERLEGEN: {
+        intro:
+          "Wanneer noemen we iemand verlegen? Hetzelfde gedrag kan uit heel verschillende dingen ontstaan.",
+        steps: [
+          {
+            text:"Sara komt voor het eerst in een nieuwe klas. Ze zegt de eerste dag bijna niets.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","afwachtend","observerend","nieuwsgierig","ik weet het niet"]
+          },
+          {
+            text:"Milan wordt rood als zijn vrienden ontdekken op wie hij verliefd is.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","ongemakkelijk","blij","beschaamd","ik weet het niet"]
+          },
+          {
+            text:"Lina kent niemand op een feestje en blijft dicht bij haar vader staan.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","voorzichtig","bang","rustig","ik weet het niet"]
+          },
+          {
+            text:"Jay vertelt thuis urenlang verhalen, maar zegt op school weinig.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","stil","afhankelijk van de situatie","rustig","ik weet het niet"]
+          },
+          {
+            text:"Iemand wordt uitgelachen als die iets zegt. Daarna praat die persoon minder.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","onzeker","voorzichtig","verdrietig","ik weet het niet"]
+          },
+          {
+            text:"Iemand kijkt eerst een tijdje toe voordat die meespeelt.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["verlegen","observerend","nieuwsgierig","voorzichtig","ik weet het niet"]
+          },
+          {
+            text:"Heb je het woord ‘verlegen’ steeds op dezelfde manier gebruikt?",
+            question:"",
+            answers:["ja","nee","dat weet ik eigenlijk niet"]
+          },
+          {
+            text:"Stel dat andere mensen vaak zeggen dat jij verlegen bent.",
+            question:"Wordt het dan makkelijker of moeilijker om ineens wél iets te zeggen of te doen?",
+            answers:["makkelijker","moeilijker","dat maakt niets uit","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Misschien begint een label als een beschrijving. Maar eindigt het soms als een verwachting.",
+        finalSub:
+          "Als anderen verwachten dat je verlegen bent, kan het moeilijker worden om ineens iets anders te laten zien. Een woord vertelt misschien iets over een moment — maar nooit het hele verhaal van iemand.",
+        cloud:["observerend","afwachtend","ongemakkelijk","bang","rustig","voorzichtig","nieuwsgierig","onzeker","stil","situatie","verwachting"]
+      },
+
+      STIL: {
+        intro:
+          "Stil gedrag is zichtbaar. Maar de reden waarom iemand stil is, zie je vaak niet.",
+        steps: [
+          {
+            text:"Noa zegt tijdens het eten bijna niets, maar luistert naar ieder verhaal.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["stil","luisterend","moe","rustig","ik weet het niet"]
+          },
+          {
+            text:"Amir zegt weinig omdat hij diep nadenkt over een opdracht.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["stil","geconcentreerd","bedachtzaam","onzeker","ik weet het niet"]
+          },
+          {
+            text:"Een leerling zegt niets nadat er ruzie in de klas is geweest.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["stil","verdrietig","boos","voorzichtig","ik weet het niet"]
+          },
+          {
+            text:"Iemand praat weinig in een grote groep, maar veel met één goede vriend.",
+            question:"Is die persoon dan stil?",
+            answers:["ja","nee","alleen soms","ik weet het niet"]
+          },
+          {
+            text:"Als iemand vaak ‘de stille’ wordt genoemd...",
+            question:"kan dat invloed hebben op hoe vaak anderen die persoon iets vragen?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Stil is iets wat je kunt zien. Maar niet waarom iemand stil is.",
+        finalSub:
+          "Een zichtbaar gedrag kan allerlei betekenissen hebben. Als een etiket blijft plakken, gaan anderen soms stoppen met verder kijken.",
+        cloud:["luisterend","nadenkend","moe","rustig","verdrietig","geconcentreerd","voorzichtig","situatie","stil"]
+      },
+
+      DRUK: {
+        intro:
+          "Wanneer wordt energie ‘druk’? En wanneer noemen we precies hetzelfde enthousiasme?",
+        steps: [
+          {
+            text:"Mika staat tijdens een opdracht drie keer op om iets te pakken.",
+            question:"Wat zou er aan de hand kunnen zijn?",
+            answers:["druk","enthousiast","afgeleid","onrustig","ik weet het niet"]
+          },
+          {
+            text:"Een kind praat heel snel omdat het ontzettend veel over dinosaurussen weet.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["druk","enthousiast","gepassioneerd","ongeduldig","ik weet het niet"]
+          },
+          {
+            text:"Iemand wiebelt met een been tijdens een spannende toets.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["druk","gespannen","zenuwachtig","beweeglijk","ik weet het niet"]
+          },
+          {
+            text:"Een leerling beweegt veel tijdens de les, maar kan precies vertellen wat er is uitgelegd.",
+            question:"Zegt ‘druk’ dan genoeg?",
+            answers:["ja","nee","soms","ik weet het niet"]
+          },
+          {
+            text:"Als mensen verwachten dat jij altijd druk bent...",
+            question:"gaan ze rustig gedrag dan misschien minder snel opmerken?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Hetzelfde gedrag kan energie, spanning, verveling of enthousiasme betekenen.",
+        finalSub:
+          "Als ‘druk’ de eerste verklaring wordt, kunnen andere verklaringen uit beeld verdwijnen.",
+        cloud:["energie","enthousiast","gespannen","beweeglijk","afgeleid","nieuwsgierig","verveeld","verwachting"]
+      },
+
+      GEVOELIG: {
+        intro:
+          "Gevoelig kan een compliment zijn, maar ook kritiek. Wat bedoelen we er eigenlijk mee?",
+        steps: [
+          {
+            text:"Iemand merkt meteen dat een vriend verdrietig is, terwijl niemand anders iets ziet.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["gevoelig","oplettend","empathisch","bezorgd","ik weet het niet"]
+          },
+          {
+            text:"Een kind moet huilen bij een verdrietige film.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["gevoelig","verdrietig","meelevend","emotioneel","ik weet het niet"]
+          },
+          {
+            text:"Een leerling vindt harde geluiden in de klas snel te veel.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["gevoelig","overprikkeld","lastig","oplettend","ik weet het niet"]
+          },
+          {
+            text:"Een vriend zegt: ‘Doe niet zo gevoelig.’",
+            question:"Klinkt ‘gevoelig’ hier hetzelfde als wanneer iemand zegt: ‘Jij voelt anderen goed aan’?",
+            answers:["ja","nee","een beetje","ik weet het niet"]
+          },
+          {
+            text:"Als iemand vaak ‘te gevoelig’ wordt genoemd...",
+            question:"kan die persoon gevoelens dan minder snel laten zien?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Eén woord kan tegelijk een kwaliteit en een kritiek worden.",
+        finalSub:
+          "De betekenis van een label zit niet alleen in het woord, maar ook in de situatie en in de toon waarop iemand het gebruikt.",
+        cloud:["oplettend","empathisch","overprikkeld","meelevend","emotioneel","kwaliteit","kritiek","context"]
+      },
+
+      STOER: {
+        intro:
+          "Een positief label kan ook verwachtingen maken. Wat gebeurt er als iedereen jou stoer vindt?",
+        steps: [
+          {
+            text:"Een kind klimt als eerste in een hoge boom.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["stoer","dapper","roekeloos","nieuwsgierig","ik weet het niet"]
+          },
+          {
+            text:"Iemand durft te zeggen dat die bang is.",
+            question:"Kan dat ook stoer zijn?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          },
+          {
+            text:"Een leerling die meestal nergens bang voor lijkt, wil niet mee in een achtbaan.",
+            question:"Past ‘stoer’ nog steeds?",
+            answers:["ja","nee","soms","ik weet het niet"]
+          },
+          {
+            text:"Iedereen in de groep verwacht dat jij voorop gaat.",
+            question:"Kan het lastig zijn om dan te zeggen dat je iets niet durft?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          },
+          {
+            text:"Als je altijd ‘de stoere’ bent...",
+            question:"is er dan genoeg ruimte om kwetsbaar te zijn?",
+            answers:["ja","nee","soms","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Ook een compliment kan een rol worden waar je niet altijd in wilt blijven.",
+        finalSub:
+          "Een positief label kan fijn voelen én tegelijk verwachtingen maken over hoe je je hoort te gedragen.",
+        cloud:["dapper","bang","kwetsbaar","roekeloos","nieuwsgierig","rol","verwachting","stoer"]
+      },
+
+      EIGENWIJS: {
+        intro:
+          "Wanneer noemen we iemand eigenwijs, en wanneer noemen we precies hetzelfde gedrag zelfstandig?",
+        steps: [
+          {
+            text:"Een leerling wil een opdracht op een andere manier maken dan de rest.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["eigenwijs","zelfstandig","creatief","lastig","ik weet het niet"]
+          },
+          {
+            text:"Iemand blijft bij een idee, ook nadat anderen het ermee oneens zijn.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["eigenwijs","vastberaden","koppig","zelfverzekerd","ik weet het niet"]
+          },
+          {
+            text:"Een kind vraagt steeds waarom een regel eigenlijk bestaat.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["eigenwijs","nieuwsgierig","kritisch","brutaal","ik weet het niet"]
+          },
+          {
+            text:"Denk je dat volwassenen en kinderen hetzelfde bedoelen met ‘eigenwijs’?",
+            question:"",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          },
+          {
+            text:"Als mensen verwachten dat jij toch nooit luistert...",
+            question:"gaan ze dan minder snel echt naar jouw idee luisteren?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Het verschil tussen eigenwijs en zelfstandig zit soms vooral in wie er kijkt.",
+        finalSub:
+          "Een label beschrijft niet alleen gedrag. Het vertelt ook iets over wat de ander van dat gedrag vindt.",
+        cloud:["zelfstandig","vastberaden","koppig","creatief","kritisch","nieuwsgierig","perspectief"]
+      },
+
+      SOCIAAL: {
+        intro:
+          "Betekent sociaal dat je veel praat, veel vrienden hebt, of goed contact maakt?",
+        steps: [
+          {
+            text:"Iemand praat met iedereen in de klas, maar luistert niet vaak naar anderen.",
+            question:"Is die persoon sociaal?",
+            answers:["ja","nee","soms","ik weet het niet"]
+          },
+          {
+            text:"Een kind heeft één heel goede vriend en hoeft niet met iedereen om te gaan.",
+            question:"Is die persoon sociaal?",
+            answers:["ja","nee","op een andere manier","ik weet het niet"]
+          },
+          {
+            text:"Iemand zegt weinig in een groep, maar merkt wel wanneer iemand zich buitengesloten voelt.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["sociaal","stil","oplettend","zorgzaam","ik weet het niet"]
+          },
+          {
+            text:"Kun je sociaal zijn zonder veel te praten?",
+            question:"",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          },
+          {
+            text:"Als iemand bekendstaat als ‘niet sociaal’...",
+            question:"kunnen anderen die persoon dan minder snel uitnodigen?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Sociaal gedrag kan er op veel verschillende manieren uitzien.",
+        finalSub:
+          "Wie veel praat is niet automatisch socialer dan iemand die goed luistert, zorgt of één-op-één contact prettig vindt.",
+        cloud:["praten","luisteren","zorgzaam","oplettend","vriend","groep","contact","sociaal"]
+      },
+
+      RUSTIG: {
+        intro:
+          "Rustig klinkt vaak positief. Maar ook dit woord kan verschillende dingen betekenen.",
+        steps: [
+          {
+            text:"Een leerling werkt lang geconcentreerd aan één tekening.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["rustig","geconcentreerd","creatief","stil","ik weet het niet"]
+          },
+          {
+            text:"Een kind zegt weinig omdat het erg moe is.",
+            question:"Welke omschrijving past volgens jou het best?",
+            answers:["rustig","moe","stil","teruggetrokken","ik weet het niet"]
+          },
+          {
+            text:"Iemand kijkt rustig, maar is vanbinnen heel zenuwachtig.",
+            question:"Is die persoon rustig?",
+            answers:["ja","nee","van buiten wel","ik weet het niet"]
+          },
+          {
+            text:"Als je iemand ‘de rustige’ noemt...",
+            question:"verwacht je dan misschien dat die persoon nooit luid of uitbundig is?",
+            answers:["ja","nee","misschien","ik weet het niet"]
+          }
+        ],
+        finalThought:
+          "Hoe iemand eruitziet en wat iemand vanbinnen ervaart, hoeven niet hetzelfde te zijn.",
+        finalSub:
+          "Ook een rustig label kan verwachtingen maken over hoeveel ruimte iemand inneemt of mag innemen.",
+        cloud:["geconcentreerd","moe","stil","zenuwachtig","uitbundig","binnenwereld","rustig"]
+      }
+    };
+
+    const labelOrder = [
+      "VERLEGEN",
+      "STIL",
+      "DRUK",
+      "GEVOELIG",
+      "STOER",
+      "EIGENWIJS",
+      "SOCIAAL",
+      "RUSTIG"
+    ];
+
+    const research = document.querySelector("#research");
+    const questionStage = document.querySelector("#questionStage");
+    const progress = document.querySelector("#progress");
+    const bigLabel = document.querySelector("#bigLabel");
+    const researchIntro = document.querySelector("#researchIntro");
+
+    const finale = document.querySelector("#finale");
+    const finalLabel = document.querySelector("#finalLabel");
+    const finalThought = document.querySelector("#finalThought");
+    const finalSub = document.querySelector("#finalSub");
+    const wordCloud = document.querySelector("#wordCloud");
+
+    const nextLabelButton = document.querySelector("#nextLabelButton");
+    const labelCards = Array.from(document.querySelectorAll(".label-card"));
+
+    let activeLabel = "VERLEGEN";
+    let currentStep = 0;
+    let selectedAnswer = "";
+    const completedLabels = new Set();
+
+    function buildProgress(){
+      progress.innerHTML = "";
+
+      LABELS[activeLabel].steps.forEach((_,index) => {
+        const dot = document.createElement("span");
+        dot.className = "progress-dot";
+
+        if(index < currentStep){
+          dot.classList.add("is-done");
+        }
+
+        progress.appendChild(dot);
+      });
+    }
+
+    function renderStep(){
+      selectedAnswer = "";
+      buildProgress();
+
+      const step = LABELS[activeLabel].steps[currentStep];
+      questionStage.innerHTML = "";
+
+      const scenario = document.createElement("div");
+      scenario.className = "scenario";
+      scenario.textContent = step.text;
+      questionStage.appendChild(scenario);
+
+      if(step.question){
+        const q = document.createElement("div");
+        q.className = "question";
+        q.textContent = step.question;
+        questionStage.appendChild(q);
+      }
+
+      const answers = document.createElement("div");
+      answers.className = "answers";
+
+      step.answers.forEach((answerText) => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.type = "button";
+        button.textContent = answerText;
+
+        button.addEventListener("click", () => {
+          answers.querySelectorAll(".answer")
+            .forEach((item) => item.classList.remove("is-selected"));
+
+          button.classList.add("is-selected");
+          selectedAnswer = answerText;
+          nextButton.disabled = false;
+        });
+
+        answers.appendChild(button);
+      });
+
+      questionStage.appendChild(answers);
+
+      const nextRow = document.createElement("div");
+      nextRow.className = "next-row";
+
+      const nextButton = document.createElement("button");
+      nextButton.className = "next-button";
+      nextButton.type = "button";
+      nextButton.disabled = true;
+      nextButton.textContent =
+        currentStep === LABELS[activeLabel].steps.length - 1
+          ? "Bekijk het etiket"
+          : "Volgende →";
+
+      nextButton.addEventListener("click", () => {
+        if(!selectedAnswer) return;
+
+        currentStep += 1;
+
+        if(currentStep >= LABELS[activeLabel].steps.length){
+          showFinale();
+        }else{
+          renderStep();
+        }
+      });
+
+      nextRow.appendChild(nextButton);
+      questionStage.appendChild(nextRow);
+    }
+
+    function createWordCloud(words){
+      wordCloud.innerHTML = "";
+
+      const positions = [
+        [12,20,-5,5.7],
+        [82,18,3,6.1],
+        [19,72,5,5.3],
+        [78,78,-4,6.4],
+        [50,12,2,5.5],
+        [8,48,-2,6.8],
+        [91,48,4,5.8],
+        [32,87,-3,6.2],
+        [67,88,3,5.4],
+        [30,27,4,6.5],
+        [72,31,-5,5.6],
+        [20,38,2,6.7],
+        [84,62,-2,5.9]
+      ];
+
+      words.forEach((word,index) => {
+        const span = document.createElement("span");
+        const p = positions[index % positions.length];
+
+        span.textContent = word;
+        span.style.setProperty("--x",`${p[0]}%`);
+        span.style.setProperty("--y",`${p[1]}%`);
+        span.style.setProperty("--r",`${p[2]}deg`);
+        span.style.setProperty("--d",`${p[3]}s`);
+
+        wordCloud.appendChild(span);
+      });
+    }
+
+    function showFinale(){
+      const labelData = LABELS[activeLabel];
+
+      completedLabels.add(activeLabel);
+
+      labelCards.forEach((card) => {
+        card.classList.toggle(
+          "is-complete",
+          completedLabels.has(card.dataset.label)
+        );
+      });
+
+      research.classList.remove("is-visible");
+      research.style.display = "none";
+
+      finalLabel.textContent = activeLabel;
+      finalThought.textContent = labelData.finalThought;
+      finalSub.textContent = labelData.finalSub;
+      createWordCloud(labelData.cloud);
+
+      finale.classList.add("is-visible");
+
+      finale.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+    }
+
+    function startResearch(label){
+      activeLabel = label;
+      currentStep = 0;
+      selectedAnswer = "";
+
+      const labelData = LABELS[activeLabel];
+
+      finale.classList.remove("is-visible");
+
+      bigLabel.textContent = activeLabel;
+      researchIntro.textContent = labelData.intro;
+
+      research.style.display = "";
+      research.classList.add("is-visible");
+
+      renderStep();
+
+      research.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }
+
+    function returnToCabinet(){
+      finale.classList.remove("is-visible");
+      research.classList.remove("is-visible");
+      research.style.display = "none";
+
+      const currentIndex = labelOrder.indexOf(activeLabel);
+      const nextLabel =
+        labelOrder[(currentIndex + 1) % labelOrder.length];
+
+      labelCards.forEach((card) => {
+        card.style.outline = "";
+      });
+
+      const nextCard = labelCards.find(
+        (card) => card.dataset.label === nextLabel
+      );
+
+      if(nextCard){
+        nextCard.style.outline = "3px solid rgba(32,211,74,.5)";
+        nextCard.style.outlineOffset = "4px";
+      }
+
+      document.querySelector("#cabinetTitle")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      window.setTimeout(() => {
+        if(nextCard) nextCard.focus();
+      },650);
+    }
+
+    labelCards.forEach((button) => {
+      button.addEventListener("click", () => {
+        labelCards.forEach((card) => {
+          card.style.outline = "";
+          card.classList.remove("is-selected-label");
+        });
+
+        button.classList.add("is-selected-label");
+        startResearch(button.dataset.label);
+      });
+    });
+
+    nextLabelButton.addEventListener("click", returnToCabinet);
+  </script>
+
+</body>
+</html>
