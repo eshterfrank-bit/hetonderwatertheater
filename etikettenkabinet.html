@@ -436,6 +436,31 @@
       margin-top:28px;
     }
 
+
+    .next-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .previous-button{
+      padding:10px 17px;
+      border:2px solid rgba(0,71,255,.22);
+      border-radius:999px;
+      color:var(--blue);
+      font-weight:600;
+      background:transparent;
+      cursor:pointer;
+    }
+
+    .previous-button:hover,
+    .previous-button:focus-visible{
+      border-color:var(--blue);
+      background:rgba(0,71,255,.04);
+      outline:none;
+    }
+
     .next-button,
     .cabinet-button{
       padding:10px 17px;
@@ -460,149 +485,79 @@
       background:transparent;
     }
 
-    /* SLOT */
+
+    /* --------------------------------
+       RESULTAAT
+    -------------------------------- */
 
     .finale{
       display:none;
-      position:relative;
-      min-height:640px;
       margin-top:84px;
-      padding:64px 40px;
-      overflow:hidden;
-      border:1px solid rgba(0,71,255,.18);
-      border-radius:30px;
-      background:
-        linear-gradient(to right,rgba(0,71,255,.025) 1px,transparent 1px),
-        linear-gradient(to bottom,rgba(0,71,255,.025) 1px,transparent 1px),
-        var(--background);
-      background-size:42px 42px;
+      padding-top:56px;
+      border-top:1px solid rgba(0,71,255,.16);
     }
 
     .finale.is-visible{
-      display:grid;
-      place-items:center;
+      display:block;
     }
 
     .finale-center{
-      position:relative;
-      z-index:2;
-      max-width:820px;
-      text-align:center;
+      max-width:920px;
+      text-align:left;
+    }
+
+    .finale-center .eyebrow{
+      margin-bottom:14px;
     }
 
     .final-label{
       display:inline-block;
-      margin-bottom:40px;
-      padding:14px 20px;
-      border:2px solid var(--blue);
-      border-radius:18px;
-      font-size:clamp(2.5rem,6vw,5rem);
+      margin:0 0 34px;
+      padding:10px 16px;
+      border:2px solid #FFC83D;
+      border-radius:999px;
+      color:var(--blue);
+      background:rgba(255,200,61,.12);
+      font-size:.9rem;
       font-weight:700;
       line-height:1;
-      letter-spacing:-.02em;
-      transform:rotate(-1deg);
-      background:rgba(255,255,255,.25);
+      letter-spacing:.04em;
       text-transform:uppercase;
+      transform:none;
     }
 
-    .final-thought{
-      margin:0 auto;
+    .result-title{
       max-width:760px;
-      font-size:2rem;
-      line-height:1.35;
-      font-weight:700;
-      letter-spacing:0;
-    }
-
-    .final-sub{
-      margin:24px auto 0;
-      max-width:760px;
-      font-size:1rem;
-      line-height:1.65;
-      font-weight:400;
-      opacity:.66;
-    }
-
-
-    .results-kicker{
-      margin:0 0 12px;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.48;
-    }
-
-    .results-title{
-      margin:0 auto 28px;
-      max-width:760px;
+      margin:0 0 28px;
       font-size:2rem;
       line-height:1.2;
+    }
+
+
+    .result-text{
+      max-width:760px;
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.75;
       font-weight:700;
     }
 
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-      max-width:680px;
-      margin:0 auto 24px;
-    }
-
-    .stat-card{
-      padding:28px 22px;
-      border:2px solid rgba(0,71,255,.15);
-      border-radius:24px;
-      background:rgba(255,255,255,.25);
-    }
-
-    .stat-card strong{
-      display:block;
-      margin-bottom:7px;
-      color:var(--active-accent);
-      font-size:clamp(2.5rem,6vw,4.8rem);
-      line-height:.95;
-      letter-spacing:-.04em;
-    }
-
-    .stat-card span{
-      display:block;
-      font-size:.92rem;
-      line-height:1.45;
+    .result-sub{
+      max-width:760px;
+      margin:14px 0 0;
+      font-size:1rem;
+      line-height:1.7;
       opacity:.66;
     }
 
-    .results-note{
-      max-width:680px;
-      margin:0 auto;
-      font-size:.82rem;
-      line-height:1.55;
-      opacity:.48;
+    .final-actions{
+      margin-top:34px;
+      display:flex;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .results-question{
-      max-width:680px;
-      margin:34px auto 0;
-      font-size:1.2rem;
-      line-height:1.7;
-      font-weight:600;
-    }
-
-    .word-cloud span{
-      position:absolute;
-      left:var(--x);
-      top:var(--y);
-      font-size:clamp(.85rem,1.6vw,1.3rem);
-      font-weight:700;
-      opacity:.42;
-      transform:translate(-50%,-50%) rotate(var(--r));
-      animation:drift var(--d) ease-in-out infinite alternate;
-    }
-
-    @keyframes drift{
-      from{translate:0 -4px}
-      to{translate:0 7px}
-    }
 
     .final-actions{
       margin-top:34px;
@@ -704,13 +659,19 @@
 
       .question-stage{min-height:460px}
 
-      .finale{
-        min-height:720px;
-        padding:50px 24px;
-      }
 
       .stats-grid{
         grid-template-columns:1fr;
+      }
+
+      .result-title{
+        font-size:1.7rem;
+      }
+
+
+      .result-text{
+        font-size:1.05rem;
+        line-height:1.7;
       }
 
       .instagram-corner{
@@ -810,11 +771,11 @@
 
       <p>
         We gebruiken elke dag woorden om mensen te beschrijven.
-        Maar bedoelen we eigenlijk allemaal hetzelfde?
+        Maar kun je aan de buitenkant eigenlijk zien wat er vanbinnen gebeurt?
       </p>
 
       <p>
-        Kies een etiket en bekijk het van dichtbij.
+        Kies een etiket en onderzoek wat je ziet, wat je denkt en wat je niet zeker kunt weten.
       </p>
     </header>
 
@@ -822,8 +783,8 @@
       <div class="cabinet-header">
         <h2 id="cabinetTitle">Kies een etiket</h2>
         <p>
-          Elk laatje onderzoekt een ander woord. Er is geen goed of fout antwoord:
-          het gaat om wat jij in een situatie denkt te zien.
+          Elk laatje onderzoekt een ander woord. Er is geen goed of fout:
+          kijk naar de situatie en kies wat jij denkt.
         </p>
       </div>
 
@@ -883,25 +844,28 @@
       <div class="question-stage" id="questionStage"></div>
     </section>
 
-    <section class="finale" id="finale" aria-labelledby="resultsTitle">
-      <div class="word-cloud" id="wordCloud" aria-hidden="true"></div>
-
+    <section class="finale" id="finale" aria-labelledby="resultTitle">
       <div class="finale-center">
+
+        <p class="eyebrow">Jouw blik op dit etiket</p>
+
         <div class="final-label" id="finalLabel"></div>
 
-        <p class="results-kicker">Van buiten zie je maar een deel.</p>
+        <h2 class="result-title" id="resultTitle"></h2>
 
-        <h2 class="results-title" id="resultsTitle">
-          Wat verandert er wanneer een ervaring een etiket wordt?
-        </h2>
-
-        <p class="results-question" id="closingQuestion"></p>
+        <p class="result-text" id="resultText"></p>
+        <p class="result-sub" id="resultSub"></p>
 
         <div class="final-actions">
+          <button class="previous-button" id="backToLastQuestionButton" type="button">
+            Vorige
+          </button>
+
           <button class="cabinet-button" id="nextLabelButton" type="button">
             Ga naar het volgende etiket
           </button>
         </div>
+
       </div>
     </section>
 
@@ -925,295 +889,277 @@
     const LABELS = {
       VERLEGEN: {
         intro:
-          "Wanneer noemen we iemand verlegen? Wat zie je eigenlijk, wat vul je zelf in en wat kan zo’n woord met iemand doen?",
+          "Soms lijkt hetzelfde gedrag op elkaar, terwijl er vanbinnen iets heel anders gebeurt. Kijk goed: wat zie je, wat denk je en wat kun je eigenlijk niet weten?",
         steps: [
           {
             layer:"zien",
             text:"Sara komt voor het eerst in een nieuwe klas. Ze zegt de eerste dag bijna niets.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["verlegen","afwachtend","observerend","nieuwsgierig","ik weet het niet"]
           },
           {
             layer:"weten",
             text:"Je koos net een woord voor Sara.",
-            question:"Hoe weet je dat eigenlijk?",
-            answers:["ik zie het gedrag","ik denk dat ze zich zo voelt","ik herken het","dat weet ik eigenlijk niet"]
+            question:"Kun je dat echt zien, of denk je dat?",
+            answers:["ik zie vooral haar gedrag","ik denk dat ze zich zo voelt","ik herken het","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Milan wordt rood als zijn vrienden ontdekken op wie hij verliefd is.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["verlegen","ongemakkelijk","blij","beschaamd","ik weet het niet"]
-          },
-          {
-            layer:"weten",
-            text:"Je zag één moment van Milan.",
-            question:"Zegt dat genoeg over hoe hij meestal is?",
-            answers:["ja","nee","misschien","ik weet het niet"]
+            text:"Billy zegt in de klas weinig omdat ze bang is dat anderen haar raar vinden. Noor zegt weinig omdat ze graag eerst kijkt en luistert.",
+            question:"Allebei worden ze ‘verlegen’ genoemd. Is dat voor allebei hetzelfde?",
+            answers:["ja","nee","een beetje","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Jay vertelt thuis urenlang verhalen, maar zegt op school weinig.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["verlegen","stil","afhankelijk van de situatie","rustig","ik weet het niet"]
+            text:"Lina kent niemand op een feestje. Ze blijft eerst dicht bij haar vader staan, maar later speelt ze wel mee.",
+            question:"Welk woord past volgens jou het best bij het begin van de avond?",
+            answers:["verlegen","voorzichtig","onwennig","afwachtend","ik weet het niet"]
           },
           {
             layer:"invloed",
-            text:"Stel dat anderen Jay steeds opnieuw ‘verlegen’ noemen.",
+            text:"Stel dat anderen Billy en Noor steeds opnieuw ‘verlegen’ noemen.",
             question:"Wat zou er kunnen gebeuren?",
-            answers:["hij gaat zichzelf ook zo zien","hij trekt zich er niets van aan","het verschilt per persoon","ik weet het niet"]
-          },
-          {
-            layer:"casus",
-            text:"Billy voelt zich al onzeker in groepen. Zij zou zelf kunnen zeggen: ‘Ik voel me verlegen.’",
-            question:"Wat beschrijft die zin vooral?",
-            answers:["een gevoel","een moment","wie Billy altijd is","ik weet het niet"]
-          },
-          {
-            layer:"casus",
-            text:"Noor voelt zich eigenlijk prima wanneer ze eerst kijkt en weinig zegt. Anderen noemen haar steeds verlegen.",
-            question:"Wat kan hier anders zijn dan bij Billy?",
-            answers:["de binnenwereld","wie het woord gebruikt","de reden van het gedrag","alles kan anders zijn"]
+            answers:["ze gaan zichzelf ook zo zien","ze trekken zich er niets van aan","het verschilt per persoon","ik weet het niet"]
           },
           {
             layer:"slot",
-            text:"‘Ik voel me verlegen.’  —  ‘Jij bent verlegen.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["gevoel wordt identiteit","degene die het woord gebruikt","de zekerheid van de uitspraak","meer dan één van deze dingen"]
+            text:"Billy zegt: ‘Ik voel me verlegen.’ Iemand anders zegt: ‘Jij bent verlegen.’",
+            question:"Klinkt dat hetzelfde?",
+            answers:["nee, het ene is een gevoel","nee, het andere zegt wie je bent","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Van buiten kan gedrag op elkaar lijken. Wat kun je niet zien als je alleen het etiket kent?",
-        cloud:["observerend","afwachtend","ongemakkelijk","bang","rustig","voorzichtig","nieuwsgierig","onzeker","stil","situatie","verwachting"]
+          "Wat zie je niet als je alleen het woord ‘verlegen’ hoort?",
+        cloud:["observerend","afwachtend","ongemakkelijk","bang","rustig","voorzichtig","nieuwsgierig","onzeker","stil","situatie"]
       },
 
       STIL: {
         intro:
-          "Stil gedrag kun je zien. Maar waarom iemand stil is, zie je vaak niet.",
+          "Iemand kan stil zijn om heel verschillende redenen. Kun je aan de buitenkant zien waarom?",
         steps: [
           {
             layer:"zien",
             text:"Noa zegt tijdens het eten bijna niets, maar luistert naar ieder verhaal.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["stil","luisterend","moe","rustig","ik weet het niet"]
           },
           {
             layer:"weten",
-            text:"Je koos een woord voor Noa.",
-            question:"Hoe weet je wat er vanbinnen gebeurt?",
-            answers:["dat zie ik niet","ik leid het af uit gedrag","ik herken het","ik weet het niet"]
+            text:"Je ziet dat Noa weinig zegt.",
+            question:"Weet je daardoor ook wat ze denkt of voelt?",
+            answers:["nee","een beetje","misschien","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Amir zegt weinig omdat hij diep nadenkt over een opdracht.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["stil","geconcentreerd","bedachtzaam","onzeker","ik weet het niet"]
+            text:"Amir praat weinig in de klas, maar met zijn beste vriend praat hij uren.",
+            question:"Is Amir dan ‘stil’?",
+            answers:["ja","nee","alleen soms","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Iemand praat weinig in een grote groep, maar veel met één goede vriend.",
-            question:"Is ‘stil’ dan een eigenschap of vooral iets van de situatie?",
-            answers:["eigenschap","situatie","allebei","ik weet het niet"]
+            layer:"zien",
+            text:"Maya zegt niets nadat ze ruzie heeft gehad met een vriendin.",
+            question:"Welk woord past volgens jou het best?",
+            answers:["stil","boos","verdrietig","voorzichtig","ik weet het niet"]
           },
           {
             layer:"invloed",
-            text:"Stel dat iemand vaak ‘de stille’ wordt genoemd.",
-            question:"Wat zou dat kunnen doen met hoe anderen die persoon benaderen?",
-            answers:["ze vragen minder","ze verwachten weinig reactie","er verandert niets","dat verschilt"]
+            text:"Stel dat iedereen Amir ‘de stille’ noemt.",
+            question:"Wat kan er dan gebeuren?",
+            answers:["mensen vragen hem minder","mensen verwachten dat hij weinig zegt","er verandert niets","dat verschilt"]
           },
           {
             layer:"slot",
             text:"‘Ik ben vandaag stil.’  —  ‘Jij bent de stille.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["moment wordt identiteit","de spreker verandert","de verwachting wordt groter","meer dan één van deze dingen"]
+            question:"Is dat hetzelfde?",
+            answers:["nee, een moment wordt een rol","nee, de tweede klinkt vaster","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
           "Wat kun je missen als je alleen ziet dat iemand stil is?",
-        cloud:["luisterend","nadenkend","moe","rustig","verdrietig","geconcentreerd","voorzichtig","situatie","stil"]
+        cloud:["luisterend","nadenkend","moe","rustig","geconcentreerd","voorzichtig","situatie","stil"]
       },
 
       DRUK: {
         intro:
-          "Wanneer wordt energie ‘druk’? En wanneer noemen we hetzelfde gedrag enthousiast, gespannen of nieuwsgierig?",
+          "Veel bewegen of praten kan van alles betekenen. Zie je enthousiasme, spanning, verveling of iets anders?",
         steps: [
           {
             layer:"zien",
             text:"Mika staat tijdens een opdracht drie keer op om iets te pakken.",
-            question:"Wat zou er aan de hand kunnen zijn?",
+            question:"Wat denk jij dat hier gebeurt?",
             answers:["druk","enthousiast","afgeleid","onrustig","ik weet het niet"]
           },
           {
             layer:"weten",
-            text:"Je zag Mika bewegen.",
-            question:"Weet je daarmee ook waarom?",
-            answers:["nee","ik denk van wel","soms","ik weet het niet"]
+            text:"Je ziet Mika veel bewegen.",
+            question:"Kun je daardoor zeker weten waarom?",
+            answers:["nee","een beetje","ja","ik weet het niet"]
           },
           {
             layer:"zien",
             text:"Een kind praat heel snel omdat het ontzettend veel over dinosaurussen weet.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["druk","enthousiast","gepassioneerd","ongeduldig","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Iemand wiebelt met een been tijdens een spannende toets.",
-            question:"Wat zie je vooral?",
-            answers:["beweging","spanning","druk gedrag","dat kan ik niet zeker weten"]
+            layer:"zien",
+            text:"Tijdens de pauze rent Sam overal heen. In de tekenles zit Sam daarna twintig minuten helemaal stil.",
+            question:"Is ‘druk’ dan iets wat Sam is, of iets wat soms gebeurt?",
+            answers:["iets wat Sam is","iets van het moment","allebei","ik weet het niet"]
           },
           {
             layer:"invloed",
             text:"Stel dat mensen verwachten dat jij altijd druk bent.",
-            question:"Wat kan er dan gebeuren als je een keer rustig bent?",
+            question:"Wat kan er gebeuren als je een keer rustig bent?",
             answers:["ze merken het minder snel","ze zijn verrast","er verandert niets","dat verschilt"]
           },
           {
             layer:"slot",
-            text:"‘Ik voel veel energie.’  —  ‘Jij bent druk.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["ervaring wordt etiket","de interpretatie wordt zekerder","de spreker bepaalt meer","meer dan één van deze dingen"]
+            text:"‘Ik heb veel energie.’  —  ‘Jij bent druk.’",
+            question:"Is dat hetzelfde?",
+            answers:["nee, het ene is een gevoel","nee, het andere is een etiket","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Hoeveel verschillende verhalen kunnen er schuilgaan achter hetzelfde drukke gedrag?",
-        cloud:["energie","enthousiast","gespannen","beweeglijk","afgeleid","nieuwsgierig","verveeld","verwachting"]
+          "Hoeveel verschillende verhalen kunnen er achter hetzelfde drukke gedrag zitten?",
+        cloud:["energie","enthousiast","gespannen","beweeglijk","afgeleid","nieuwsgierig","verveeld"]
       },
 
       GEVOELIG: {
         intro:
-          "Gevoelig kan een kwaliteit, een ervaring of een verwijt zijn. Wat bedoelen we wanneer we het woord gebruiken?",
+          "‘Gevoelig’ kan iets moois betekenen, maar ook klinken als kritiek. Wat bedoelen we eigenlijk?",
         steps: [
           {
             layer:"zien",
             text:"Iemand merkt meteen dat een vriend verdrietig is, terwijl niemand anders iets ziet.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["gevoelig","oplettend","empathisch","bezorgd","ik weet het niet"]
+            question:"Welk woord past volgens jou het best?",
+            answers:["gevoelig","oplettend","meelevend","bezorgd","ik weet het niet"]
           },
           {
             layer:"weten",
             text:"Je noemt iemand gevoelig.",
-            question:"Bedoel je dan wat diegene voelt, of wat jij ziet?",
-            answers:["wat diegene voelt","wat ik zie","allebei","ik weet het niet"]
+            question:"Zie je dat echt, of denk je dat diegene veel voelt?",
+            answers:["ik zie vooral gedrag","ik denk dat diegene veel voelt","allebei","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Een kind moet huilen bij een verdrietige film.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["gevoelig","verdrietig","meelevend","emotioneel","ik weet het niet"]
+            text:"Een leerling vindt harde geluiden in de klas snel te veel.",
+            question:"Is dat hetzelfde soort ‘gevoelig’ als iemand die snel verdrietig wordt?",
+            answers:["ja","nee","misschien","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Een leerling vindt harde geluiden in de klas snel te veel.",
-            question:"Is dat hetzelfde soort ‘gevoelig’ als bij de film?",
-            answers:["ja","nee","misschien","ik weet het niet"]
+            layer:"zien",
+            text:"Een kind merkt meteen dat een trui kriebelt en dat het licht in de klas heel fel is.",
+            question:"Past ‘gevoelig’ hier hetzelfde als bij verdrietig worden van een film?",
+            answers:["ja","nee","een beetje","ik weet het niet"]
           },
           {
             layer:"invloed",
             text:"Stel dat iemand vaak hoort: ‘Doe niet zo gevoelig.’",
             question:"Wat zou er kunnen gebeuren?",
-            answers:["gevoelens minder laten zien","zich sterker voordoen","er verandert niets","dat verschilt"]
+            answers:["gevoelens minder laten zien","zich anders voordoen","er verandert niets","dat verschilt"]
           },
           {
             layer:"slot",
             text:"‘Ik voel veel.’  —  ‘Jij bent te gevoelig.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["ervaring wordt oordeel","de toon verandert","het woord krijgt meer macht","meer dan één van deze dingen"]
+            question:"Klinkt dat hetzelfde?",
+            answers:["nee, het tweede is een oordeel","nee, het tweede klinkt vaster","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Wanneer beschrijft ‘gevoelig’ iets, en wanneer vult het iets in voor iemand anders?",
-        cloud:["oplettend","empathisch","overprikkeld","meelevend","emotioneel","kwaliteit","kritiek","context"]
+          "Wanneer helpt een woord om iets te begrijpen, en wanneer gaat het iets invullen voor iemand anders?",
+        cloud:["oplettend","meelevend","overprikkeld","emotioneel","kwaliteit","kritiek","context"]
       },
 
       STOER: {
         intro:
-          "Ook positieve woorden kunnen verwachtingen maken. Wat gebeurt er als iemand steeds als stoer wordt gezien?",
+          "Ook een positief woord kan iets van je verwachten. Wat gebeurt er als iedereen jou ‘stoer’ vindt?",
         steps: [
           {
             layer:"zien",
             text:"Een kind klimt als eerste in een hoge boom.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["stoer","dapper","roekeloos","nieuwsgierig","ik weet het niet"]
           },
           {
             layer:"weten",
             text:"Je ziet iemand iets spannends doen.",
-            question:"Weet je ook of diegene bang is?",
-            answers:["nee","ja","misschien","ik weet het niet"]
+            question:"Kun je daardoor weten of diegene bang is?",
+            answers:["nee","misschien","ja","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Iemand durft te zeggen dat die bang is.",
+            text:"Iemand zegt hardop dat die iets niet durft.",
             question:"Kan dat ook stoer zijn?",
             answers:["ja","nee","misschien","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Een leerling die meestal nergens bang voor lijkt, wil niet mee in een achtbaan.",
+            layer:"zien",
+            text:"Een kind dat meestal alles durft, wil vandaag niet van de hoge duikplank.",
             question:"Past ‘stoer’ nog steeds?",
             answers:["ja","nee","soms","ik weet het niet"]
           },
           {
             layer:"invloed",
-            text:"Stel dat iedereen verwacht dat jij voorop gaat.",
-            question:"Wat kan dat doen met de ruimte om te zeggen dat je iets niet durft?",
-            answers:["die ruimte wordt kleiner","die ruimte blijft gelijk","het hangt ervan af","ik weet het niet"]
+            text:"Stel dat iedereen verwacht dat jij altijd voorop gaat.",
+            question:"Wat kan dat doen met de ruimte om te zeggen dat je bang bent?",
+            answers:["die ruimte wordt kleiner","die ruimte blijft hetzelfde","het hangt ervan af","ik weet het niet"]
           },
           {
             layer:"slot",
             text:"‘Ik durfde dit.’  —  ‘Jij bent stoer.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["moment wordt identiteit","verwachting wordt groter","de ander bepaalt meer","meer dan één van deze dingen"]
+            question:"Is dat hetzelfde?",
+            answers:["nee, het ene gaat over een moment","nee, het andere wordt een rol","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Kan een compliment ook iets vastzetten?",
-        cloud:["dapper","bang","kwetsbaar","roekeloos","nieuwsgierig","rol","verwachting","stoer"]
+          "Kan een compliment ook iets worden waar je moeilijk uit kunt stappen?",
+        cloud:["dapper","bang","kwetsbaar","roekeloos","nieuwsgierig","rol","verwachting"]
       },
 
       EIGENWIJS: {
         intro:
-          "Wanneer noemen we iemand eigenwijs, en wanneer noemen we hetzelfde gedrag zelfstandig of vastberaden?",
+          "Hetzelfde gedrag kan door de één ‘eigenwijs’ worden genoemd en door de ander ‘zelfstandig’. Hoe komt dat?",
         steps: [
           {
             layer:"zien",
             text:"Een leerling wil een opdracht op een andere manier maken dan de rest.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["eigenwijs","zelfstandig","creatief","lastig","ik weet het niet"]
           },
           {
             layer:"weten",
             text:"Je ziet iemand afwijken van de groep.",
-            question:"Hoeveel zegt jouw woord over die persoon, en hoeveel over jouw mening over dat gedrag?",
-            answers:["vooral over die persoon","vooral over mijn mening","over allebei","ik weet het niet"]
+            question:"Zegt jouw woord alleen iets over die persoon, of ook iets over wat jij ervan vindt?",
+            answers:["vooral over die persoon","ook over mijn mening","over allebei","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Iemand blijft bij een idee, ook nadat anderen het ermee oneens zijn.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["eigenwijs","vastberaden","koppig","zelfverzekerd","ik weet het niet"]
+            text:"Een kind vraagt steeds waarom een regel eigenlijk bestaat.",
+            question:"Wat denk jij dat hier gebeurt?",
+            answers:["nieuwsgierig","eigenwijs","kritisch","brutaal","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Een kind vraagt steeds waarom een regel eigenlijk bestaat.",
-            question:"Wat zie je hier vooral?",
-            answers:["nieuwsgierigheid","eigenwijsheid","kritisch denken","ik weet het niet"]
+            layer:"zien",
+            text:"Een leerling blijft bij haar plan, ook nadat de rest van de groep iets anders wil.",
+            question:"Welk woord past volgens jou het best?",
+            answers:["eigenwijs","vastberaden","koppig","zelfstandig","ik weet het niet"]
           },
           {
             layer:"invloed",
             text:"Stel dat mensen verwachten dat jij toch nooit luistert.",
-            question:"Wat zou dat kunnen doen met hoe serieus ze jouw ideeën nemen?",
+            question:"Wat kan dat doen met hoe serieus ze jouw ideeën nemen?",
             answers:["minder serieus","even serieus","het hangt ervan af","ik weet het niet"]
           },
           {
             layer:"slot",
             text:"‘Ik heb een ander idee.’  —  ‘Jij bent eigenwijs.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["verschil wordt identiteit","de toon verandert","de ander interpreteert meer","meer dan één van deze dingen"]
+            question:"Is dat hetzelfde?",
+            answers:["nee, verschil wordt een etiket","nee, de tweede klinkt als een oordeel","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Wanneer beschrijft een woord gedrag, en wanneer vooral de blik van degene die kijkt?",
+          "Wanneer beschrijft een woord iemand, en wanneer vooral de blik van degene die kijkt?",
         cloud:["zelfstandig","vastberaden","koppig","creatief","kritisch","nieuwsgierig","perspectief"]
       },
 
@@ -1230,8 +1176,8 @@
           {
             layer:"weten",
             text:"Je ziet iemand veel praten.",
-            question:"Weet je daarmee ook hoe verbonden diegene zich voelt met anderen?",
-            answers:["nee","ja","misschien","ik weet het niet"]
+            question:"Weet je daardoor ook hoe verbonden diegene zich voelt met anderen?",
+            answers:["nee","misschien","ja","ik weet het niet"]
           },
           {
             layer:"zien",
@@ -1240,9 +1186,9 @@
             answers:["ja","nee","op een andere manier","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Iemand zegt weinig in een groep, maar merkt wel wanneer iemand zich buitengesloten voelt.",
-            question:"Welke omschrijving past volgens jou het best?",
+            layer:"zien",
+            text:"Iemand zegt weinig in een groep, maar ziet wel meteen dat een ander alleen staat en gaat erbij zitten.",
+            question:"Welk woord past volgens jou het best?",
             answers:["sociaal","stil","oplettend","zorgzaam","ik weet het niet"]
           },
           {
@@ -1254,54 +1200,54 @@
           {
             layer:"slot",
             text:"‘Ik praat niet veel in groepen.’  —  ‘Jij bent niet sociaal.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["gedrag wordt identiteit","de interpretatie wordt groter","de context verdwijnt","meer dan één van deze dingen"]
+            question:"Is dat hetzelfde?",
+            answers:["nee, gedrag wordt identiteit","nee, de context verdwijnt","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
-          "Hoeveel manieren van sociaal zijn blijven buiten beeld als je alleen naar praten kijkt?",
-        cloud:["praten","luisteren","zorgzaam","oplettend","vriend","groep","contact","sociaal"]
+          "Hoeveel manieren van sociaal zijn zie je niet als je alleen let op wie het meest praat?",
+        cloud:["praten","luisteren","zorgzaam","oplettend","vriend","groep","contact"]
       },
 
       RUSTIG: {
         intro:
-          "Rustig klinkt vaak positief. Maar ook dit woord kan verschillende ervaringen en verwachtingen bedekken.",
+          "Iemand kan er rustig uitzien en zich vanbinnen heel anders voelen. Wat zie je wel, en wat niet?",
         steps: [
           {
             layer:"zien",
             text:"Een leerling werkt lang geconcentreerd aan één tekening.",
-            question:"Welke omschrijving past volgens jou het best?",
+            question:"Welk woord past volgens jou het best?",
             answers:["rustig","geconcentreerd","creatief","stil","ik weet het niet"]
           },
           {
             layer:"weten",
             text:"Je ziet iemand rustig werken.",
-            question:"Weet je daarmee ook hoe diegene zich vanbinnen voelt?",
-            answers:["nee","ja","misschien","ik weet het niet"]
+            question:"Kun je daardoor weten hoe diegene zich vanbinnen voelt?",
+            answers:["nee","misschien","ja","ik weet het niet"]
           },
           {
             layer:"zien",
-            text:"Een kind zegt weinig omdat het erg moe is.",
-            question:"Welke omschrijving past volgens jou het best?",
-            answers:["rustig","moe","stil","teruggetrokken","ik weet het niet"]
+            text:"Iemand kijkt rustig, maar is vanbinnen heel zenuwachtig.",
+            question:"Past het woord ‘rustig’ nog steeds?",
+            answers:["ja, van buiten wel","nee","misschien","ik weet het niet"]
           },
           {
-            layer:"weten",
-            text:"Iemand kijkt rustig, maar is vanbinnen heel zenuwachtig.",
-            question:"Is ‘rustig’ dan nog een goede beschrijving?",
-            answers:["ja","nee","van buiten wel","ik weet het niet"]
+            layer:"zien",
+            text:"Een kind zit stil tijdens een spreekbeurt, maar voelt ondertussen zijn hart heel snel kloppen.",
+            question:"Is dat kind rustig?",
+            answers:["ja, van buiten wel","nee, vanbinnen niet","allebei kan","ik weet het niet"]
           },
           {
             layer:"invloed",
             text:"Stel dat iemand altijd ‘de rustige’ wordt genoemd.",
             question:"Wat kan dat doen met de ruimte om luid, boos of uitbundig te zijn?",
-            answers:["die ruimte wordt kleiner","die ruimte blijft gelijk","het hangt ervan af","ik weet het niet"]
+            answers:["die ruimte wordt kleiner","die ruimte blijft hetzelfde","het hangt ervan af","ik weet het niet"]
           },
           {
             layer:"slot",
             text:"‘Ik ben nu rustig.’  —  ‘Jij bent de rustige.’",
-            question:"Wat verandert er tussen deze twee zinnen?",
-            answers:["moment wordt identiteit","verwachting wordt groter","de context verdwijnt","meer dan één van deze dingen"]
+            question:"Is dat hetzelfde?",
+            answers:["nee, moment wordt identiteit","nee, de tweede klinkt vaster","ja, ongeveer","ik weet het niet"]
           }
         ],
         closingQuestion:
@@ -1329,10 +1275,12 @@
 
     const finale = document.querySelector("#finale");
     const finalLabel = document.querySelector("#finalLabel");
-    const closingQuestion = document.querySelector("#closingQuestion");
-    const wordCloud = document.querySelector("#wordCloud");
+    const resultTitle = document.querySelector("#resultTitle");
+    const resultText = document.querySelector("#resultText");
+    const resultSub = document.querySelector("#resultSub");
 
     const nextLabelButton = document.querySelector("#nextLabelButton");
+    const backToLastQuestionButton = document.querySelector("#backToLastQuestionButton");
     const labelCards = Array.from(document.querySelectorAll(".label-card"));
 
     const LABEL_PALETTE = {
@@ -1346,10 +1294,129 @@
       RUSTIG:["#FFC83D","#0047ff"]
     };
 
+    const STATS_KEY = "etikettenkabinet-spelers-v2";
+
+    const LABEL_WORDS = {
+      VERLEGEN:"verlegen",
+      STIL:"stil",
+      DRUK:"druk",
+      GEVOELIG:"gevoelig",
+      STOER:"stoer",
+      EIGENWIJS:"eigenwijs",
+      SOCIAAL:"sociaal",
+      RUSTIG:"rustig"
+    };
+
+    const LABEL_REFLECTIONS = {
+      VERLEGEN:"Toch weten we nog steeds niet zeker wat iemand vanbinnen voelde.",
+      STIL:"We kunnen zien dát iemand stil is. Maar niet altijd waarom.",
+      DRUK:"Achter hetzelfde gedrag kunnen heel verschillende redenen zitten.",
+      GEVOELIG:"Niet iedereen bedoelt hetzelfde wanneer diegene ‘gevoelig’ zegt.",
+      STOER:"Ook een compliment kan verwachtingen maken.",
+      EIGENWIJS:"Hetzelfde gedrag kan voor de één eigenwijs zijn en voor de ander zelfstandig.",
+      SOCIAAL:"Veel praten is niet de enige manier om sociaal te zijn.",
+      RUSTIG:"Iemand kan rustig lijken en zich vanbinnen heel anders voelen."
+    };
+
     let activeLabel = "VERLEGEN";
     let currentStep = 0;
     let selectedAnswer = "";
+    let roundAnswers = [];
+    let answerHistory = [];
     const completedLabels = new Set();
+
+    function loadPlayerStats(){
+      try{
+        return JSON.parse(localStorage.getItem(STATS_KEY) || "{}");
+      }catch{
+        return {};
+      }
+    }
+
+    function savePlayerStats(stats){
+      try{
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+      }catch{
+        /* Het spel blijft werken als lokale opslag niet beschikbaar is. */
+      }
+    }
+
+    function labelChoiceRate(label, answers){
+      const target = LABEL_WORDS[label];
+      const relevant = answers.filter((entry) =>
+        entry &&
+        entry.layer === "zien" &&
+        entry.options.includes(target)
+      );
+
+      if(!relevant.length){
+        return { rate:0, chosen:0, total:0 };
+      }
+
+      const chosen = relevant.filter((entry) => entry.answer === target).length;
+
+      return {
+        rate:Math.round((chosen / relevant.length) * 100),
+        chosen,
+        total:relevant.length
+      };
+    }
+
+    function previousAverage(label){
+      const stats = loadPlayerStats();
+      const entries = Array.isArray(stats[label]) ? stats[label] : [];
+
+      if(!entries.length) return null;
+
+      const average =
+        entries.reduce((sum,value) => sum + value,0) / entries.length;
+
+      return Math.round(average);
+    }
+
+    function saveCurrentRate(label, rate){
+      const stats = loadPlayerStats();
+      if(!Array.isArray(stats[label])) stats[label] = [];
+
+      stats[label].push(rate);
+
+      /* Houd de lokale verzameling compact. */
+      stats[label] = stats[label].slice(-100);
+
+      savePlayerStats(stats);
+    }
+
+    function comparisonText(label, mine, others){
+      const word = LABEL_WORDS[label];
+
+      if(others === null){
+        return {
+          title:`Jij gebruikte het woord ‘${word}’ in deze ronde.`,
+          text:LABEL_REFLECTIONS[label]
+        };
+      }
+
+      const difference = mine - others;
+
+      if(difference <= -10){
+        return {
+          title:`Jij gebruikte het woord ‘${word}’ minder vaak dan andere spelers.`,
+          text:"Misschien zag jij vaker iets anders in hetzelfde gedrag."
+        };
+      }
+
+      if(difference >= 10){
+        return {
+          title:`Jij gebruikte het woord ‘${word}’ vaker dan andere spelers.`,
+          text:"Misschien voelde dat woord voor jou bij meer situaties passend."
+        };
+      }
+
+      return {
+        title:"Jouw keuzes lagen dicht bij die van andere spelers.",
+        text:"Toch kan achter hetzelfde antwoord nog een heel andere reden zitten."
+      };
+    }
 
     function buildProgress(){
       progress.innerHTML = "";
@@ -1367,10 +1434,10 @@
     }
 
     function renderStep(){
-      selectedAnswer = "";
-      buildProgress();
-
       const step = LABELS[activeLabel].steps[currentStep];
+
+      selectedAnswer = answerHistory[currentStep] || "";
+      buildProgress();
       questionStage.innerHTML = "";
 
       const scenario = document.createElement("div");
@@ -1394,12 +1461,17 @@
         button.type = "button";
         button.textContent = answerText;
 
+        if(answerText === selectedAnswer){
+          button.classList.add("is-selected");
+        }
+
         button.addEventListener("click", () => {
           answers.querySelectorAll(".answer")
             .forEach((item) => item.classList.remove("is-selected"));
 
           button.classList.add("is-selected");
           selectedAnswer = answerText;
+          answerHistory[currentStep] = answerText;
           nextButton.disabled = false;
         });
 
@@ -1411,10 +1483,24 @@
       const nextRow = document.createElement("div");
       nextRow.className = "next-row";
 
+      if(currentStep > 0){
+        const previousButton = document.createElement("button");
+        previousButton.className = "previous-button";
+        previousButton.type = "button";
+        previousButton.textContent = "Vorige";
+
+        previousButton.addEventListener("click", () => {
+          currentStep -= 1;
+          renderStep();
+        });
+
+        nextRow.appendChild(previousButton);
+      }
+
       const nextButton = document.createElement("button");
       nextButton.className = "next-button";
       nextButton.type = "button";
-      nextButton.disabled = true;
+      nextButton.disabled = !selectedAnswer;
       nextButton.textContent =
         currentStep === LABELS[activeLabel].steps.length - 1
           ? "Bekijk het etiket"
@@ -1422,6 +1508,15 @@
 
       nextButton.addEventListener("click", () => {
         if(!selectedAnswer) return;
+
+        const currentData = LABELS[activeLabel].steps[currentStep];
+
+        answerHistory[currentStep] = selectedAnswer;
+        roundAnswers[currentStep] = {
+          layer:currentData.layer,
+          answer:selectedAnswer,
+          options:[...currentData.answers]
+        };
 
         currentStep += 1;
 
@@ -1436,41 +1531,11 @@
       questionStage.appendChild(nextRow);
     }
 
-    function createWordCloud(words){
-      wordCloud.innerHTML = "";
-
-      const positions = [
-        [12,20,-5,5.7],
-        [82,18,3,6.1],
-        [19,72,5,5.3],
-        [78,78,-4,6.4],
-        [50,12,2,5.5],
-        [8,48,-2,6.8],
-        [91,48,4,5.8],
-        [32,87,-3,6.2],
-        [67,88,3,5.4],
-        [30,27,4,6.5],
-        [72,31,-5,5.6],
-        [20,38,2,6.7],
-        [84,62,-2,5.9]
-      ];
-
-      words.forEach((word,index) => {
-        const span = document.createElement("span");
-        const p = positions[index % positions.length];
-
-        span.textContent = word;
-        span.style.setProperty("--x",`${p[0]}%`);
-        span.style.setProperty("--y",`${p[1]}%`);
-        span.style.setProperty("--r",`${p[2]}deg`);
-        span.style.setProperty("--d",`${p[3]}s`);
-
-        wordCloud.appendChild(span);
-      });
-    }
-
     function showFinale(){
       const labelData = LABELS[activeLabel];
+      const own = labelChoiceRate(activeLabel,roundAnswers);
+      const others = previousAverage(activeLabel);
+      const copy = comparisonText(activeLabel,own.rate,others);
 
       completedLabels.add(activeLabel);
 
@@ -1485,14 +1550,25 @@
       research.style.display = "none";
 
       finalLabel.textContent = activeLabel;
-      closingQuestion.textContent = labelData.closingQuestion;
-      createWordCloud(labelData.cloud);
+      resultTitle.textContent = copy.title;
+      resultText.textContent = copy.text;
+
+      resultSub.textContent =
+        others === null
+          ? "Wanneer meer mensen dit etiket onderzoeken, kan jouw keuze met eerdere spelers worden vergeleken."
+          : LABEL_REFLECTIONS[activeLabel];
 
       finale.classList.add("is-visible");
 
+      /*
+        Sla pas ná het tonen van de vergelijking op.
+        Zo wordt de huidige speler niet met zichzelf vergeleken.
+      */
+      saveCurrentRate(activeLabel,own.rate);
+
       finale.scrollIntoView({
         behavior:"smooth",
-        block:"center"
+        block:"start"
       });
     }
 
@@ -1500,6 +1576,8 @@
       activeLabel = label;
       currentStep = 0;
       selectedAnswer = "";
+      roundAnswers = [];
+      answerHistory = [];
 
       const labelData = LABELS[activeLabel];
       const [accent,ink] = LABEL_PALETTE[activeLabel];
@@ -1565,6 +1643,21 @@
 
         button.classList.add("is-selected-label");
         startResearch(button.dataset.label);
+      });
+    });
+
+    backToLastQuestionButton.addEventListener("click", () => {
+      finale.classList.remove("is-visible");
+
+      research.style.display = "";
+      research.classList.add("is-visible");
+
+      currentStep = LABELS[activeLabel].steps.length - 1;
+      renderStep();
+
+      research.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
       });
     });
 
