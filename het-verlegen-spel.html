@@ -91,6 +91,19 @@
       transform: translateY(-2px);
     }
 
+
+    .top-nav .games-link {
+      color: #FFC83D;
+      border-color: #FFC83D;
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible {
+      color: #fffdf6;
+      background: #FFC83D;
+      border-color: #FFC83D;
+    }
+
     /* --------------------------------
        PAGINA
     -------------------------------- */
@@ -1051,6 +1064,7 @@
     <a href="index.html">Home</a>
     <a href="de-film.html">De film</a>
     <a href="educatieprogramma.html">Educatie</a>
+    <a href="spellen.html" class="games-link">Spellen</a>
     <a href="over-ons.html">Over ons</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -1303,7 +1317,7 @@
       <div class="wall-header">
         <p class="eyebrow">Van bezoekers</p>
 
-        <h2 id="wallTitle">De Verlegen Muur</h2>
+        <h2 id="wallTitle">Woordenmuur</h2>
 
         <p>
           Iedereen begint met dezelfde letters.
@@ -1336,7 +1350,7 @@
     const LETTERS = ["V", "E", "R", "L", "E", "G", "E", "N"];
 
     const VALID_WORDS = new Set([
-      "LEVEN", "GEVEN", "REGEN", "ENGEL", "LEGER", "VEREN", "NEER",
+      "LEVEN", "REGEN", "ENGEL", "LEGER", "VEREN", "NEER",
       "LEGEN", "LEREN", "REGEL", "EVEN", "VEEL", "GEEN",
       "VEER", "LEER", "LEEG", "GEEF", "ERG", "GEN", "VERGEN"
     ]);
