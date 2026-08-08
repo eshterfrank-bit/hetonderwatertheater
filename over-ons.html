@@ -1,16 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="nl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Over ons | Het Onderwater Theater</title>
-
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Over ons | Het Onderwater Theater</title>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<style>
     :root {
       --background: #fffdf6;
       --blue: #0047ff;
@@ -232,6 +229,19 @@
       color: white;
       background: var(--blue);
       transform: translateY(-2px);
+    }
+
+
+    .top-nav .games-link{
+      border-color:#FFC83D;
+      color:#FFC83D;
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible{
+      background:#FFC83D;
+      border-color:#FFC83D;
+      color:#fffdf6;
     }
 
     /* --------------------------------
@@ -877,54 +887,28 @@
     }
   </style>
 </head>
-
 <body style="position:relative;">
-
-  <div
-    class="floating-object"
-    id="floatingObject"
-    aria-hidden="true">
-
-    <img
-      class="floating-shell"
-      src="shell_2.png"
-      alt=""
-      draggable="false">
-
-    <div class="floating-dot-orbit">
-      <img
-        class="floating-dot"
-        src="stip.png"
-        alt=""
-        draggable="false">
-    </div>
-
-  </div>
-
-  <nav class="top-nav" aria-label="Hoofdnavigatie">
-    <a href="index.html">Home</a>
-    <a href="de-film.html">De film</a>
-    <a href="educatieprogramma.html">Educatie</a>
+<div aria-hidden="true" class="floating-object" id="floatingObject">
+<img alt="" class="floating-shell" draggable="false" src="shell_2.png"/>
+<div class="floating-dot-orbit">
+<img alt="" class="floating-dot" draggable="false" src="stip.png"/>
+</div>
+</div>
+<nav aria-label="Hoofdnavigatie" class="top-nav">
+<a href="index.html">Home</a>
+<a href="de-film.html">De film</a>
+<a href="educatieprogramma.html">Educatie</a>
+<a class="games-link" href="spellen.html">Spellen</a>
     <a href="contact.html">Contact</a>
-  </nav>
-
-  <main class="page">
-
-    <h1 class="page-title">
-      <picture>
-        <source
-          srcset="OT_OVER-ONS-lossless.webp"
-          type="image/webp">
-
-        <img
-          src="OT_OVER-ONS-optimized.png"
-          alt="Over ons"
-          loading="eager"
-          decoding="async">
-      </picture>
-    </h1>
-
-    <p>
+</nav>
+<main class="page">
+<h1 class="page-title">
+<picture>
+<source srcset="OT_OVER-ONS-lossless.webp" type="image/webp"/>
+<img alt="Over ons" decoding="async" loading="eager" src="OT_OVER-ONS-optimized.png"/>
+</picture>
+</h1>
+<p>
     Het Onderwater Theater is een korte stop-motionfilm en
       educatief project dat via een coming-of-age sprookje het label
       ‘verlegenheid’ onderzoekt. In een wereld waarin extraversie vaak de norm
@@ -934,358 +918,185 @@
       tegenvoorstel: met een knipoog, maar zonder om de spanning heen te
       draaien.
     </p>
-
-
-
-    <h2>De initiatiefnemers</h2>
-
-    <div class="people">
-
-      <article class="person">
-        <h3>Esther Frank</h3>
-
-        <p>
+<h2>De initiatiefnemers</h2>
+<div class="people">
+<article class="person">
+<h3>Esther Frank</h3>
+<p>
           Schrijver en producer. Zij ontwikkelt daarnaast het educatieprogramma, en onderzoekt hoe kunst ruimte kan maken voor
           verschillende manieren van zijn en communiceren.
         </p>
-      </article>
-
-      <article class="person">
-        <h3>Sasha Herman</h3>
-
-        <p>
+</article>
+<article class="person">
+<h3>Sasha Herman</h3>
+<p>
           Regisseur en stop-motionanimator. Sasha ontwikkelt de kleurrijke,
           handgemaakte beeldwereld en realiseert de animatie van de film.
         </p>
-      </article>
-
-    </div>
-
-    <section class="team-section" aria-labelledby="teamTitle">
-      <h2 class="team-heading" id="teamTitle">Team</h2>
-
-      <div class="team-list">
-
-        <div class="team-member">
-          <strong>Moritz Gabe</strong>
-          <span>Sound design &amp; muzikale compositie</span>
-        </div>
-
-        <div class="team-member">
-          <strong>Letitica van Neerven</strong>
-          <span>Assistent set design</span>
-        </div>
-
-        <div class="team-member">
-          <strong>Sophie van Geest</strong>
-          <span>Assistent animatie</span>
-        </div>
-
-        <div class="team-member">
-          <strong>RMX Studio</strong>
-          <span>Voice-over</span>
-        </div>
-
-        <div class="team-member">
-          <strong>Reket Social (Rixta van der Molen)</strong>
-          <span>Communicatie</span>
-        </div>
-
-      </div>
-    </section>
-
+</article>
+</div>
+<section aria-labelledby="teamTitle" class="team-section">
+<h2 class="team-heading" id="teamTitle">Team</h2>
+<div class="team-list">
+<div class="team-member">
+<strong>Moritz Gabe</strong>
+<span>Sound design &amp; muzikale compositie</span>
+</div>
+<div class="team-member">
+<strong>Letitica van Neerven</strong>
+<span>Assistent set design</span>
+</div>
+<div class="team-member">
+<strong>Sophie van Geest</strong>
+<span>Assistent animatie</span>
+</div>
+<div class="team-member">
+<strong>RMX Studio</strong>
+<span>Voice-over</span>
+</div>
+<div class="team-member">
+<strong>Reket Social (Rixta van der Molen)</strong>
+<span>Communicatie</span>
+</div>
+</div>
+</section>
 </main>
-
-  <section class="journey" aria-labelledby="journeyTitle">
-
-    <div class="journey-header">
-      <h2 id="journeyTitle">In ontwikkeling</h2>
-      
-    </div>
-
-    <div
-      class="timeline-carousel"
-      id="timelineCarousel"
-      aria-label="Interactieve tijdlijn"
-      tabindex="0">
-
-      <div class="timeline-viewport">
-        <div class="timeline-track">
-
-<article
-          class="timeline-event"
-          data-date="Maart 2024"
-          data-title="Sasha en Esther ontmoeten elkaar"
-          data-category="Ontmoeting"
-          data-text="Sasha en Esther ontmoeten elkaar bij tentoonstellingsruimte Beautiful Distress, waar Sasha tijdens NDSM Get Lost een animatie workshop geeft en Esther werkte als tentoonstellingsmaker. Deze ontmoeting vormt het begin van hun samenwerking aan Het Onderwater Theater."
-          data-image="timeline-beautiful-distress.jpg"
-          data-logo="beautifuldistress.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Maart 2024</span>
-            <strong class="timeline-title">
+<section aria-labelledby="journeyTitle" class="journey">
+<div class="journey-header">
+<h2 id="journeyTitle">In ontwikkeling</h2>
+</div>
+<div aria-label="Interactieve tijdlijn" class="timeline-carousel" id="timelineCarousel" tabindex="0">
+<div class="timeline-viewport">
+<div class="timeline-track">
+<article class="timeline-event" data-category="Ontmoeting" data-date="Maart 2024" data-image="timeline-beautiful-distress.jpg" data-logo="beautifuldistress.png" data-text="Sasha en Esther ontmoeten elkaar bij tentoonstellingsruimte Beautiful Distress, waar Sasha tijdens NDSM Get Lost een animatie workshop geeft en Esther werkte als tentoonstellingsmaker. Deze ontmoeting vormt het begin van hun samenwerking aan Het Onderwater Theater." data-title="Sasha en Esther ontmoeten elkaar">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Maart 2024</span>
+<strong class="timeline-title">
               Sasha en Esther ontmoeten elkaar
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Juni 2025"
-          data-title="Workshops bij SOL Network"
-          data-category="Onderzoek & educatie"
-          data-text="De workshops in Rotterdam Feyenoord met steun van SOL Network dienen als inspiratie voor de verdere visuele ontwikkeling van de film."
-          data-image="timeline-sol-workshops.jpg"
-          data-logo="sol.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Juni 2025</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Onderzoek &amp; educatie" data-date="Juni 2025" data-image="timeline-sol-workshops.jpg" data-logo="sol.png" data-text="De workshops in Rotterdam Feyenoord met steun van SOL Network dienen als inspiratie voor de verdere visuele ontwikkeling van de film." data-title="Workshops bij SOL Network">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Juni 2025</span>
+<strong class="timeline-title">
               Workshops bij SOL Network
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Oktober 2025"
-          data-title="Rotterdam Projectsubsidie"
-          data-category="Steun & financiering"
-          data-text="Het Onderwater Theater ontvangt een projectsubsidie van Gemeente Rotterdam. Deze bijdrage maakt een volgende stap in de ontwikkeling en productie van het project mogelijk."
-          data-image="timeline-rotterdam-subsidie.jpg"
-          data-logo="rotterdam.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Oktober 2025</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Steun &amp; financiering" data-date="Oktober 2025" data-image="timeline-rotterdam-subsidie.jpg" data-logo="rotterdam.png" data-text="Het Onderwater Theater ontvangt een projectsubsidie van Gemeente Rotterdam. Deze bijdrage maakt een volgende stap in de ontwikkeling en productie van het project mogelijk." data-title="Rotterdam Projectsubsidie">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Oktober 2025</span>
+<strong class="timeline-title">
               Rotterdam Projectsubsidie
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="November 2025"
-          data-title="Start set design"
-          data-category="Productie"
-          data-text="De bouw van de handgemaakte decors en de onderwaterwereld gaat van start. Hier krijgt de visuele wereld van Het Onderwater Theater langzaam vorm."
-          data-image="timeline-setdesign.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">November 2025</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Productie" data-date="November 2025" data-image="timeline-setdesign.jpg" data-logo="" data-text="De bouw van de handgemaakte decors en de onderwaterwereld gaat van start. Hier krijgt de visuele wereld van Het Onderwater Theater langzaam vorm." data-title="Start set design">
+<button class="timeline-card" type="button">
+<span class="timeline-date">November 2025</span>
+<strong class="timeline-title">
               Start set design
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="December 2025"
-          data-title="Opname van de voice-over"
-          data-category="Productie"
-          data-text="De voice-over van de film wordt opgenomen in de studio. Daarmee krijgt het verhaal letterlijk een stem."
-          data-image="timeline-voiceover.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">December 2025</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Productie" data-date="December 2025" data-image="timeline-voiceover.jpg" data-logo="" data-text="De voice-over van de film wordt opgenomen in de studio. Daarmee krijgt het verhaal letterlijk een stem." data-title="Opname van de voice-over">
+<button class="timeline-card" type="button">
+<span class="timeline-date">December 2025</span>
+<strong class="timeline-title">
               Opname van de voice-over
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Maart 2026"
-          data-title="AFK Projectsubsidie"
-          data-category="Steun & financiering"
-          data-text="Het project ontvangt een projectsubsidie van het Amsterdams Fonds voor de Kunst. Deze steun draagt bij aan de verdere realisatie van film en educatieprogramma."
-          data-image="timeline-afk-subsidie.jpg"
-          data-logo="afk.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Maart 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Steun &amp; financiering" data-date="Maart 2026" data-image="timeline-afk-subsidie.jpg" data-logo="afk.png" data-text="Het project ontvangt een projectsubsidie van het Amsterdams Fonds voor de Kunst. Deze steun draagt bij aan de verdere realisatie van film en educatieprogramma." data-title="AFK Projectsubsidie">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Maart 2026</span>
+<strong class="timeline-title">
               AFK Projectsubsidie
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Mei 2026"
-          data-title="Voordekunst-campagne behaald"
-          data-category="Steun & financiering"
-          data-text="Dankzij de steun van crowdfunders wordt het doel van de Voordekunst-campagne behaald. Daarmee kan de productie verder worden gerealiseerd."
-          data-image="timeline-voordekunst.jpg"
-          data-logo="voordekunst.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Mei 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Steun &amp; financiering" data-date="Mei 2026" data-image="timeline-voordekunst.jpg" data-logo="voordekunst.png" data-text="Dankzij de steun van crowdfunders wordt het doel van de Voordekunst-campagne behaald. Daarmee kan de productie verder worden gerealiseerd." data-title="Voordekunst-campagne behaald">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Mei 2026</span>
+<strong class="timeline-title">
               Voordekunst-campagne behaald
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Juni 2026"
-          data-title="Start animatie"
-          data-category="Productie"
-          data-text="Na de voorbereidingen begint de animatie van de film. Beeld voor beeld komt de handgemaakte onderwaterwereld tot leven."
-          data-image="timeline-start-animatie.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Juni 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Productie" data-date="Juni 2026" data-image="timeline-start-animatie.jpg" data-logo="" data-text="Na de voorbereidingen begint de animatie van de film. Beeld voor beeld komt de handgemaakte onderwaterwereld tot leven." data-title="Start animatie">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Juni 2026</span>
+<strong class="timeline-title">
               Start animatie
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Juni 2026"
-          data-title="Pilotworkshop bij de OBA"
-          data-category="Onderzoek & educatie"
-          data-text="Bij de OBA Oosterdok vindt een pilot van de animatieworkshop plaats. Tijdens deze workshop wordt onderzocht hoe kinderen via stop-motion hun denkbeeldige vriend tot leven kunnen brengen."
-          data-image="timeline-oba-pilot.jpg"
-          data-logo="oba.png">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Juni 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Onderzoek &amp; educatie" data-date="Juni 2026" data-image="timeline-oba-pilot.jpg" data-logo="oba.png" data-text="Bij de OBA Oosterdok vindt een pilot van de animatieworkshop plaats. Tijdens deze workshop wordt onderzocht hoe kinderen via stop-motion hun denkbeeldige vriend tot leven kunnen brengen." data-title="Pilotworkshop bij de OBA">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Juni 2026</span>
+<strong class="timeline-title">
               Pilotworkshop bij de OBA
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Juli 2026"
-          data-title="Lancering website"
-          data-category="Communicatie"
-          data-text="De website van Het Onderwater Theater gaat live. Vanaf dit moment is het project online te volgen en groeit de wereld van de film stap voor stap mee met de ontwikkeling."
-          data-image="timeline-website.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Juli 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Communicatie" data-date="Juli 2026" data-image="timeline-website.jpg" data-logo="" data-text="De website van Het Onderwater Theater gaat live. Vanaf dit moment is het project online te volgen en groeit de wereld van de film stap voor stap mee met de ontwikkeling." data-title="Lancering website">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Juli 2026</span>
+<strong class="timeline-title">
               Lancering website
             </strong>
-          </button>
-        </article>
-
-<article
-          class="timeline-event"
-          data-date="Juli 2026"
-          data-title="Ontwikkeling educatieprogramma"
-          data-category="Onderzoek & educatie"
-          data-text="De ontwikkeling van het educatieprogramma gaat van start. Vanuit de film wordt gewerkt aan workshops en lesmateriaal waarin kunst, verbeelding en verschillende manieren van expressie centraal staan."
-          data-image="timeline-educatieprogramma.jpg"
-          data-logo="">
-
-          <button class="timeline-card" type="button">
-            <span class="timeline-date">Juli 2026</span>
-            <strong class="timeline-title">
+</button>
+</article>
+<article class="timeline-event" data-category="Onderzoek &amp; educatie" data-date="Juli 2026" data-image="timeline-educatieprogramma.jpg" data-logo="" data-text="De ontwikkeling van het educatieprogramma gaat van start. Vanuit de film wordt gewerkt aan workshops en lesmateriaal waarin kunst, verbeelding en verschillende manieren van expressie centraal staan." data-title="Ontwikkeling educatieprogramma">
+<button class="timeline-card" type="button">
+<span class="timeline-date">Juli 2026</span>
+<strong class="timeline-title">
               Ontwikkeling educatieprogramma
             </strong>
-          </button>
-        </article>
-
-        </div>
-
-        <div
-          class="timeline-ruler"
-          aria-hidden="true">
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-<a
-    class="instagram-corner"
-    href="https://www.instagram.com/het_onderwater_theater/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Volg Het Onderwater Theater op Instagram">
-    <span class="instagram-label">Instagram</span>
-    <span class="instagram-handle">@het_onderwater_theater ↗</span>
-  </a>
-
-  <footer class="site-footer">
+</button>
+</article>
+</div>
+<div aria-hidden="true" class="timeline-ruler">
+</div>
+</div>
+</div>
+</section>
+<a aria-label="Volg Het Onderwater Theater op Instagram" class="instagram-corner" href="https://www.instagram.com/het_onderwater_theater/" rel="noopener noreferrer" target="_blank">
+<span class="instagram-label">Instagram</span>
+<span class="instagram-handle">@het_onderwater_theater ↗</span>
+</a>
+<footer class="site-footer">
     © Esther Frank 2026
   </footer>
-
-  <div
-    class="timeline-modal"
-    id="timelineModal"
-    aria-hidden="true">
-
-    <div
-      class="timeline-dialog"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="timelineModalTitle">
-
-      <button
-        class="timeline-close"
-        type="button"
-        aria-label="Sluiten">
+<div aria-hidden="true" class="timeline-modal" id="timelineModal">
+<div aria-labelledby="timelineModalTitle" aria-modal="true" class="timeline-dialog" role="dialog">
+<button aria-label="Sluiten" class="timeline-close" type="button">
         ×
       </button>
-
-      <div class="timeline-media">
-        <img
-          id="timelineModalImage"
-          src=""
-          alt=""
-          onerror="this.closest('.timeline-media').style.display='none'">
-      </div>
-
-      <div class="timeline-modal-content">
-
-        <div class="timeline-modal-meta">
-          <span id="timelineModalDate"></span>
-          <span id="timelineModalCategory"></span>
-        </div>
-
-        <h3 id="timelineModalTitle"></h3>
-
-        <p id="timelineModalText"></p>
-
-        <img
-          class="timeline-modal-logo"
-          id="timelineModalLogo"
-          src=""
-          alt=""
-          onerror="this.style.display='none'">
-
-        <div class="timeline-modal-nav">
-          <button type="button" class="timeline-prev">
+<div class="timeline-media">
+<img alt="" id="timelineModalImage" onerror="this.closest('.timeline-media').style.display='none'" src=""/>
+</div>
+<div class="timeline-modal-content">
+<div class="timeline-modal-meta">
+<span id="timelineModalDate"></span>
+<span id="timelineModalCategory"></span>
+</div>
+<h3 id="timelineModalTitle"></h3>
+<p id="timelineModalText"></p>
+<img alt="" class="timeline-modal-logo" id="timelineModalLogo" onerror="this.style.display='none'" src=""/>
+<div class="timeline-modal-nav">
+<button class="timeline-prev" type="button">
             ← Vorige
           </button>
-
-          <button type="button" class="timeline-next">
+<button class="timeline-next" type="button">
             Volgende →
           </button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
+</div>
+</div>
+</div>
+</div>
+<script>
     /*
       Schelp + stip:
       - bewegen samen zelfstandig door het scherm;
@@ -1463,8 +1274,7 @@
       animateFloatingObject();
     }
   </script>
-
-  <script>
+<script>
     const timelineCarousel =
       document.querySelector("#timelineCarousel");
 
@@ -1633,7 +1443,5 @@
       }
     });
   </script>
-
 </body>
-
 </html>
