@@ -1,16 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="nl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>De film | Het Onderwater Theater</title>
-
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>De film | Het Onderwater Theater</title>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<style>
     :root {
       --background: #fffdf6;
       --blue: #0047ff;
@@ -69,6 +66,19 @@
       color: white;
       background: var(--blue);
       transform: translateY(-2px);
+    }
+
+
+    .top-nav .games-link{
+      border-color:#FFC83D;
+      color:#FFC83D;
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible{
+      background:#FFC83D;
+      border-color:#FFC83D;
+      color:#fffdf6;
     }
 
     /* --------------------------------
@@ -531,152 +541,75 @@
     }
   </style>
 </head>
-
 <body>
-
-  <nav class="top-nav" aria-label="Hoofdnavigatie">
-    <a href="index.html">Home</a>
-    <a href="over-ons.html">Over ons</a>
-    <a href="educatieprogramma.html">Educatie</a>
+<nav aria-label="Hoofdnavigatie" class="top-nav">
+<a href="index.html">Home</a>
+<a href="over-ons.html">Over ons</a>
+<a href="educatieprogramma.html">Educatie</a>
+<a class="games-link" href="spellen.html">Spellen</a>
     <a href="contact.html">Contact</a>
-  </nav>
-
-  <main class="page">
-
-    <h1 class="page-title">
-      <picture>
-        <source
-          srcset="OT_FILM-lossless.webp"
-          type="image/webp">
-
-        <img
-          src="OT_FILM-optimized.png"
-          alt="De film"
-          loading="eager"
-          decoding="async">
-      </picture>
-    </h1>
-
-    <p>
+</nav>
+<main class="page">
+<h1 class="page-title">
+<picture>
+<source srcset="OT_FILM-lossless.webp" type="image/webp"/>
+<img alt="De film" decoding="async" loading="eager" src="OT_FILM-optimized.png"/>
+</picture>
+</h1>
+<p>
       Het Onderwater Theater is een korte stop-motion kinderfilm die middels een coming-of-age sprookje het label verlegenheid onderzoekt. De film volgt de introverte hoofdpersoon Billy, die door haar (denkbeeldige) vriend Glibber wordt meegenomen naar een kleurrijke onderwaterwereld. Hier leert Billy zichzelf onder ogen te komen.
     </p>
-
-    <h2>Stop-motion animatie</h2>
-
-    <p>
+<h2>Stop-motion animatie</h2>
+<p>
       Het Onderwater Theater is volledig met de hand gemaakt met stop motion animatie. De set en de poppen zijn gemaakt van beschilderd karton, waskrijt tekeningen en textiel. De set wordt beeld voor beeld geanimeerd en zal aan het einde van de productie uit meer dan 10.000 aan elkaar geplakte beelden bestaan.
     </p>
-
-    <h2>De film als vertrekpunt</h2>
-
-    <p>
+<h2>De film als vertrekpunt</h2>
+<p>
       De film verkent thema's als identiteit en expressie. Vanuit de film ontstaat ruimte om hierover na te denken. Zo vormt Het Onderwater Theater een toegankelijk vertrekpunt voor gesprekken in de klas, thuis en in culturele instellingen.
     </p>
-
-  </main>
-
-  <section
-    class="film-slider"
-    id="filmSlider"
-    aria-label="Filmbeelden"
-    tabindex="0">
-
-    <div class="film-slider-stage">
-
-      <div class="film-slider-track">
-
-        
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_glibberinpot.jpg"
-            alt="Billy houdt Glibber in een glazen pot voor haar gezicht"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_glibber.jpg"
-            alt="Glibber in een groene onderwaterwereld"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_classmates.jpg"
-            alt="Filmstill uit Het Onderwater Theater"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_hide.jpg"
-            alt="Billy verstopt zich achter een boom"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_fire.jpg"
-            alt="Billy in een rood kostuum in een blauwe onderwaterwereld"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-        <figure class="film-slider-slide">
-          <img
-            src="OT_zucht.jpg"
-            alt="Filmstill uit Het Onderwater Theater"
-            loading="lazy"
-            decoding="async">
-        </figure>
-
-      
-
-      </div>
-
-      <button
-        class="film-slider-zone film-slider-prev"
-        type="button"
-        aria-label="Vorige afbeelding">
-      </button>
-
-      <button
-        class="film-slider-zone film-slider-next"
-        type="button"
-        aria-label="Volgende afbeelding">
-      </button>
-
-    </div>
-
-    <div class="film-slider-meta">
-      <span
-        class="film-slider-count"
-        aria-live="polite">
+</main>
+<section aria-label="Filmbeelden" class="film-slider" id="filmSlider" tabindex="0">
+<div class="film-slider-stage">
+<div class="film-slider-track">
+<figure class="film-slider-slide">
+<img alt="Billy houdt Glibber in een glazen pot voor haar gezicht" decoding="async" loading="lazy" src="OT_glibberinpot.jpg"/>
+</figure>
+<figure class="film-slider-slide">
+<img alt="Glibber in een groene onderwaterwereld" decoding="async" loading="lazy" src="OT_glibber.jpg"/>
+</figure>
+<figure class="film-slider-slide">
+<img alt="Filmstill uit Het Onderwater Theater" decoding="async" loading="lazy" src="OT_classmates.jpg"/>
+</figure>
+<figure class="film-slider-slide">
+<img alt="Billy verstopt zich achter een boom" decoding="async" loading="lazy" src="OT_hide.jpg"/>
+</figure>
+<figure class="film-slider-slide">
+<img alt="Billy in een rood kostuum in een blauwe onderwaterwereld" decoding="async" loading="lazy" src="OT_fire.jpg"/>
+</figure>
+<figure class="film-slider-slide">
+<img alt="Filmstill uit Het Onderwater Theater" decoding="async" loading="lazy" src="OT_zucht.jpg"/>
+</figure>
+</div>
+<button aria-label="Vorige afbeelding" class="film-slider-zone film-slider-prev" type="button">
+</button>
+<button aria-label="Volgende afbeelding" class="film-slider-zone film-slider-next" type="button">
+</button>
+</div>
+<div class="film-slider-meta">
+<span aria-live="polite" class="film-slider-count">
         01 / 06
       </span>
-    </div>
-
-  </section>
-
-  <footer class="site-footer">
+</div>
+</section>
+<footer class="site-footer">
     © Esther Frank 2026
   </footer>
-
-  <div class="billy" id="billy" aria-hidden="true">
-    <div class="billy-look" id="billyLook">
-      <img
-        src="OT_BILLY_TRANSPARANT.png"
-        alt=""
-        draggable="false">
-    </div>
-  </div>
-
-  <script>
+<div aria-hidden="true" class="billy" id="billy">
+<div class="billy-look" id="billyLook">
+<img alt="" draggable="false" src="OT_BILLY_TRANSPARANT.png"/>
+</div>
+</div>
+<script>
     const filmSlider = document.querySelector("#filmSlider");
 
     if (filmSlider) {
@@ -848,6 +781,5 @@
       animateBilly();
     }
   </script>
-
 </body>
 </html>
