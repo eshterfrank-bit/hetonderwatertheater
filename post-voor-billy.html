@@ -31,7 +31,15 @@
       font-family:Arial,sans-serif;
     }
 
-    button,input,a{font:inherit}
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
 
     /* NAVIGATIE */
 
@@ -65,81 +73,125 @@
       outline:none;
     }
 
+
+    .top-nav .games-link{
+      color:#FFC83D;
+      border-color:#FFC83D;
+    }
+
+    .top-nav .games-link:hover,
+    .top-nav .games-link:focus-visible{
+      color:#fffdf6;
+      background:#FFC83D;
+      border-color:#FFC83D;
+    }
+
     /* PAGINA */
 
-    .page{
-      width:min(1180px,calc(100% - 80px));
-      margin:0 auto;
-      padding:140px 0 120px;
+    .page {
+      position: relative;
+      z-index: 2;
+
+      width: min(1180px, calc(100% - 80px));
+      margin: 0 auto;
+
+      padding: 140px 80px 140px 0;
     }
 
-    .intro{
-      max-width:960px;
-      margin-bottom:72px;
+    .intro {
+      max-width: 1060px;
+      margin-bottom: 72px;
     }
 
-    .eyebrow{
-      margin:0 0 14px;
-      font-size:.9rem;
-      opacity:.55;
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.9rem;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0.55;
     }
 
-    h1{
-      margin:0 0 26px;
-      font-size:clamp(2.4rem,6vw,5rem);
-      line-height:.95;
-      letter-spacing:-.04em;
+    h1 {
+      margin: 0 0 30px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 700;
     }
 
-    h2{
-      margin:0 0 12px;
-      font-size:1.9rem;
-      line-height:1.15;
+    h2 {
+      margin: 72px 0 24px;
+      font-size: 2.2rem;
+      line-height: 1.2;
     }
 
-    h3{
-      margin:0 0 12px;
-      font-size:1rem;
+    h3 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.3;
     }
 
-    p{
-      max-width:920px;
-      margin:0;
-      font-size:1.2rem;
-      line-height:1.85;
+    .intro p,
+    p {
+      max-width: 1060px;
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      font-weight: 400;
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
     }
 
-    .intro p + p{margin-top:18px}
+    p + p,
+    .intro p + p {
+      margin-top: 24px;
+    }
 
     /* STAPPEN */
 
-    .step{
-      padding-top:54px;
-      border-top:1px solid rgba(0,71,255,.16);
+    .step {
+      padding-top: 56px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
     }
 
-    .step + .step{margin-top:82px}
-
-    .step-heading{
-      display:grid;
-      grid-template-columns:48px minmax(0,1fr);
-      gap:18px;
-      margin-bottom:30px;
-      max-width:900px;
+    .step:first-of-type {
+      padding-top: 0;
+      border-top: 0;
     }
 
-    .step-number{
-      padding-top:4px;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.1em;
-      opacity:.45;
+    .step + .step {
+      margin-top: 84px;
     }
 
-    .step-heading p{
-      font-size:1rem;
-      line-height:1.65;
-      opacity:.66;
+    .step-heading {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      max-width: 920px;
+      margin-bottom: 34px;
+    }
+
+    .step-number {
+      padding-top: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.48;
+    }
+
+    .step-heading h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .step-heading p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.65;
+      opacity: 0.66;
     }
 
     /* CARD CHOICE */
@@ -147,20 +199,24 @@
     .card-shapes,
     .palette,
     .shape-tray,
-    .pattern-choices{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+    .pattern-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .card-choice,
     .tool,
-    .color{
-      border:2px solid rgba(0,71,255,.22);
-      color:var(--blue);
-      background:transparent;
-      cursor:pointer;
-      transition:.2s ease;
+    .color {
+      border: 2px solid rgba(0, 71, 255, 0.22);
+      color: var(--blue);
+      background: transparent;
+      cursor: pointer;
+
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background-color 0.2s ease;
     }
 
     .card-choice{
@@ -182,31 +238,37 @@
 
     /* ATELIER */
 
-    .atelier{
-      display:grid;
-      grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);
-      gap:56px;
-      align-items:start;
+    .atelier {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.65fr) minmax(0, 1.35fr);
+      gap: 48px;
+      align-items: start;
     }
 
-    .tools{
-      display:grid;
-      gap:34px;
+    .tools {
+      display: grid;
+      gap: 34px;
     }
 
-    .tool-group p{
-      margin:0 0 12px;
-      font-size:.82rem;
-      line-height:1.5;
-      opacity:.55;
+    .tool-group h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      line-height: 1.2;
     }
 
-    .shape-tray .tool{
-      min-width:52px;
-      height:44px;
-      padding:7px 12px;
-      border-radius:999px;
-      font-weight:700;
+    .tool-group p {
+      margin: 0 0 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      opacity: 0.5;
+    }
+
+    .shape-tray .tool {
+      min-width: 38px;
+      height: auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-weight: 700;
     }
 
     .color{
@@ -300,28 +362,40 @@
       gap:9px;
     }
 
-    .small-tools .tool{
-      padding:8px 11px;
-      border-radius:999px;
-      font-size:.82rem;
-      font-weight:700;
+    .small-tools .tool {
+      min-width: 38px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     /* KAART */
 
-    .card-stage{
-      position:relative;
-      display:grid;
-      place-items:center;
-      min-height:520px;
-      overflow:hidden;
-      border:1px solid rgba(0,71,255,.16);
-      border-radius:28px;
+    .card-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 520px;
+      overflow: hidden;
+
+      border: 2px solid rgba(0, 71, 255, 0.15);
+      border-radius: 24px;
+
       background:
-        linear-gradient(to right,rgba(0,71,255,.022) 1px,transparent 1px),
-        linear-gradient(to bottom,rgba(0,71,255,.022) 1px,transparent 1px),
+        linear-gradient(
+          to right,
+          rgba(0, 71, 255, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(0, 71, 255, 0.025) 1px,
+          transparent 1px
+        ),
         var(--background);
-      background-size:32px 32px;
+
+      background-size: 28px 28px;
     }
 
     .postcard{
@@ -426,31 +500,43 @@
 
     /* STUREN */
 
-    .send-area{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:26px;
+    .send-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 42px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 71, 255, 0.16);
     }
 
-    .name-input{
-      width:min(100%,260px);
-      padding:12px 0;
-      border:0;
-      border-bottom:2px solid rgba(0,71,255,.3);
-      color:var(--blue);
-      background:transparent;
-      outline:none;
+    .name-input {
+      width: min(100%, 280px);
+      padding: 12px 0;
+
+      border: 0;
+      border-bottom: 2px solid rgba(0, 71, 255, 0.32);
+
+      color: var(--blue);
+      font-size: 1rem;
+
+      background: transparent;
+      outline: none;
+    }
+
+    .name-input:focus {
+      border-bottom-color: var(--blue);
     }
 
     .send-button,
-    .reset-button{
-      padding:11px 18px;
-      border:2px solid var(--blue);
-      border-radius:999px;
-      font-weight:700;
-      cursor:pointer;
+    .reset-button {
+      padding: 10px 17px;
+
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+
+      font-weight: 600;
+      cursor: pointer;
     }
 
     .send-button{
@@ -472,28 +558,54 @@
 
     /* ONDERWATERPOST */
 
-    .ocean-wall{
-      position:relative;
-      min-height:640px;
-      overflow:hidden;
-      margin-top:38px;
-      border:1px solid rgba(0,71,255,.18);
-      border-radius:30px;
+    .ocean-wall {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      margin-top: 38px;
+
+      border: 1px solid rgba(0, 71, 255, 0.18);
+      border-radius: 30px;
+
       background:
-        radial-gradient(circle at 10% 20%,rgba(32,211,74,.08),transparent 20%),
-        radial-gradient(circle at 82% 72%,rgba(255,230,0,.11),transparent 22%),
-        linear-gradient(180deg,rgba(0,71,255,.025),rgba(0,71,255,.07));
+        linear-gradient(
+          to right,
+          rgba(0, 71, 255, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(0, 71, 255, 0.025) 1px,
+          transparent 1px
+        ),
+        var(--background);
+
+      background-size: 42px 42px;
     }
 
-    .ocean-wall::before{
-      content:"ONDERWATERPOST";
-      position:absolute;
-      right:24px;
-      top:20px;
-      font-size:.62rem;
-      font-weight:700;
-      letter-spacing:.14em;
-      opacity:.45;
+    .ocean-wall::before {
+      content: "";
+      position: absolute;
+      top: 26px;
+      left: 28px;
+      width: 74px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #FFE600 0 55%, #20D34A 55% 100%);
+      z-index: 1;
+    }
+
+    .ocean-wall::after {
+      content: "ONDERWATERPOST";
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      color: var(--blue);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      opacity: 0.48;
+      z-index: 1;
     }
 
     .post-item{
@@ -527,67 +639,181 @@
       to{translate:0 6px}
     }
 
-    /* FOOTER */
+    /* --------------------------------
+       INSTAGRAM + FOOTER
+    -------------------------------- */
 
-    .site-footer{
-      position:fixed;
-      left:18px;
-      bottom:18px;
-      writing-mode:vertical-rl;
-      transform:rotate(180deg);
-      font-size:.7rem;
-      letter-spacing:.03em;
-      opacity:.45;
-      pointer-events:none;
+    .instagram-corner {
+      position: absolute;
+      right: 22px;
+      bottom: 18px;
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+
+      color: var(--blue);
+      text-decoration: none;
+
+      opacity: 0.68;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
     }
 
-    @media(max-width:900px){
-      .top-nav{
-        position:relative;
-        top:0;right:0;
-        justify-content:center;
-        padding:30px 20px 0;
+    .instagram-corner:hover,
+    .instagram-corner:focus-visible {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .instagram-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .instagram-handle {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .site-footer {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1000;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
+      color: var(--blue);
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+
+      opacity: 0.45;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      .top-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+
+        justify-content: center;
+
+        padding: 30px 20px 0;
       }
 
-      .top-nav a{
-        padding:8px 15px;
-        border-width:2px;
+      .top-nav a {
+        padding: 8px 15px;
+        border-width: 2px;
       }
 
-      .page{
-        width:auto;
-        padding:80px 24px 96px;
+      .page {
+        width: auto;
+        padding: 80px 24px 96px;
       }
 
-      p{font-size:1.05rem;line-height:1.75}
+      p,
+      .intro p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
 
-      .atelier{grid-template-columns:1fr;gap:34px}
+      h2 {
+        margin-top: 52px;
+        font-size: 1.9rem;
+      }
 
-      .card-stage{min-height:420px}
+      .atelier {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
 
-      .postcard{width:90%}
+      .step + .step {
+        margin-top: 64px;
+      }
 
-      .postcard[data-format="portrait"]{width:64%}
-      .postcard[data-format="round"]{width:72%}
+      .step-heading {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 28px;
+      }
 
-      .site-footer{
-        position:static;
-        writing-mode:horizontal-tb;
-        transform:none;
-        padding:8px 24px 14px;
-        text-align:center;
-        font-size:.6rem;
+      .step-heading h2 {
+        font-size: 1.7rem;
+      }
+
+      .intro {
+        margin-bottom: 52px;
+      }
+
+      .card-stage {
+        min-height: 420px;
+      }
+
+      .postcard {
+        width: 90%;
+      }
+
+      .postcard[data-format="portrait"] {
+        width: 64%;
+      }
+
+      .postcard[data-format="round"] {
+        width: 72%;
+      }
+
+      .ocean-wall {
+        min-height: 760px;
+      }
+
+      .instagram-corner {
+        display: none;
+      }
+
+      .site-footer {
+        position: static;
+        writing-mode: horizontal-tb;
+        transform: none;
+        padding: 6px 24px 14px;
+        text-align: center;
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .post-item {
+        animation: none;
+      }
+
+      .top-nav a,
+      .instagram-corner {
+        transition: none;
       }
     }
   </style>
 </head>
 
-<body>
+<body style="position:relative;">
 
   <nav class="top-nav" aria-label="Hoofdnavigatie">
     <a href="index.html">Home</a>
     <a href="de-film.html">De film</a>
     <a href="educatieprogramma.html">Educatie</a>
+    <a href="spellen.html" class="games-link">Spellen</a>
     <a href="over-ons.html">Over ons</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -747,6 +973,16 @@
     </section>
 
   </main>
+
+  <a
+    class="instagram-corner"
+    href="https://www.instagram.com/het_onderwater_theater/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Volg Het Onderwater Theater op Instagram">
+    <span class="instagram-label">Instagram</span>
+    <span class="instagram-handle">@het_onderwater_theater ↗</span>
+  </a>
 
   <footer class="site-footer">
     © Esther Frank 2026
