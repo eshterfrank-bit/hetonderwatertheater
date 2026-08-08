@@ -148,6 +148,50 @@
       margin-top: 24px;
     }
 
+
+    /* CONCRETE VRAAG */
+
+    .question-card{
+      max-width:920px;
+      margin:0 0 42px;
+      padding:24px 26px;
+
+      border-left:5px solid #FFC83D;
+      background:rgba(255,200,61,.08);
+    }
+
+    .question-card .question-label{
+      display:block;
+      margin-bottom:8px;
+
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+
+      opacity:.52;
+    }
+
+    .question-card p{
+      margin:0;
+      max-width:820px;
+
+      font-size:1.15rem;
+      line-height:1.7;
+      font-weight:600;
+    }
+
+    .question-card .question-small{
+      display:block;
+      margin-top:10px;
+
+      font-size:.88rem;
+      line-height:1.6;
+      font-weight:400;
+
+      opacity:.62;
+    }
+
     /* STAPPEN */
 
     .step {
@@ -733,6 +777,17 @@
         font-size: 1.9rem;
       }
 
+
+      .question-card{
+        margin-bottom:32px;
+        padding:20px 20px;
+      }
+
+      .question-card p{
+        font-size:1.05rem;
+        line-height:1.65;
+      }
+
       .atelier {
         grid-template-columns: 1fr;
         gap: 34px;
@@ -825,9 +880,9 @@
       <h1>Post voor Billy</h1>
 
       <p>
-        Onder water werken woorden niet zo goed.
-        Misschien kunnen vormen en kleuren iets vertellen wat woorden niet kunnen.
-        Wat wil jij Billy laten zien?
+        Onder water werken woorden soms niet zo goed.
+        Misschien kunnen vormen, kleuren en lijnen iets vertellen wat woorden niet kunnen.
+        Maak een kaart voor Billy en verbeeld wat jij haar wilt laten zien.
       </p>
     </header>
 
@@ -852,12 +907,20 @@
       <div class="step-heading">
         <span class="step-number">02</span>
         <div>
-          <h2>Maak je bericht</h2>
+          <h2>Verbeeld zonder woorden</h2>
           <p>
-            Kies vormen en kleuren. Sleep ze over de kaart, maak ze groter,
-            kleiner of draai ze. 
+            Gebruik vormen, kleuren, lijnen en patronen om iets te laten zien zonder het op te schrijven.
           </p>
         </div>
+      </div>
+
+      <div class="question-card" aria-label="Vraag voor je kaart">
+        <span class="question-label">Jouw vraag</span>
+
+        <p>
+          Billy voelt zich soms een beetje klein in een grote groep.
+          Kun jij een kaart maken waar ze blij, dapper of rustig van wordt?
+        </p>
       </div>
 
       <div class="atelier">
@@ -943,7 +1006,7 @@
               aria-label="Jouw naam">
 
             <button class="send-button" id="sendButton" type="button">
-              Stuur naar Billy →
+              Stuur je beeld naar Billy →
             </button>
 
             <button class="reset-button" id="resetButton" type="button">
@@ -1463,7 +1526,7 @@
 
       postcard.classList.add("is-sent");
       arrival.textContent =
-        "Billy heeft je kaart ontvangen.";
+        "Billy heeft je beeldbericht ontvangen.";
 
       setTimeout(() => {
         renderWall();
