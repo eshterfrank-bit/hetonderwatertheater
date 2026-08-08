@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Een bericht voor Billy | Het Onderwater Theater</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root{
+      --background:#fffdf6;
+      --blue:#0047ff;
+      --red:#E3170A;
+      --yellow:#FFE600;
+      --green:#20D34A;
+      --ink:#0047ff;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      overflow-x:hidden;
+      background:var(--background);
+      color:var(--blue);
+      font-family:Arial,sans-serif;
+    }
+
+    button,input,a{font:inherit}
+
+    /* NAVIGATIE */
+
+    .top-nav{
+      position:absolute;
+      top:30px;
+      right:40px;
+      z-index:100;
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .top-nav a{
+      padding:10px 20px;
+      border:3px solid var(--blue);
+      border-radius:40px;
+      color:var(--blue);
+      font-weight:bold;
+      text-decoration:none;
+      background:rgba(255,253,246,.88);
+      transition:.25s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible{
+      color:white;
+      background:var(--blue);
+      transform:translateY(-2px);
+      outline:none;
+    }
+
+    /* PAGINA */
+
+    .page{
+      width:min(1180px,calc(100% - 80px));
+      margin:0 auto;
+      padding:140px 0 120px;
+    }
+
+    .intro{
+      max-width:960px;
+      margin-bottom:72px;
+    }
+
+    .eyebrow{
+      margin:0 0 14px;
+      font-size:.9rem;
+      opacity:.55;
+    }
+
+    h1{
+      margin:0 0 26px;
+      font-size:clamp(2.4rem,6vw,5rem);
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:1.9rem;
+      line-height:1.15;
+    }
+
+    h3{
+      margin:0 0 12px;
+      font-size:1rem;
+    }
+
+    p{
+      max-width:920px;
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.85;
+    }
+
+    .intro p + p{margin-top:18px}
+
+    /* STAPPEN */
+
+    .step{
+      padding-top:54px;
+      border-top:1px solid rgba(0,71,255,.16);
+    }
+
+    .step + .step{margin-top:82px}
+
+    .step-heading{
+      display:grid;
+      grid-template-columns:48px minmax(0,1fr);
+      gap:18px;
+      margin-bottom:30px;
+      max-width:900px;
+    }
+
+    .step-number{
+      padding-top:4px;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      opacity:.45;
+    }
+
+    .step-heading p{
+      font-size:1rem;
+      line-height:1.65;
+      opacity:.66;
+    }
+
+    /* CARD CHOICE */
+
+    .card-shapes,
+    .palette,
+    .shape-tray,
+    .pattern-choices{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .card-choice,
+    .tool,
+    .color{
+      border:2px solid rgba(0,71,255,.22);
+      color:var(--blue);
+      background:transparent;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .card-choice{
+      width:108px;
+      height:74px;
+      border-radius:16px;
+      font-weight:700;
+    }
+
+    .card-choice[data-card="portrait"]{width:74px;height:108px}
+    .card-choice[data-card="round"]{width:86px;height:86px;border-radius:50%}
+    .card-choice.is-active,
+    .card-choice:hover,
+    .tool:hover,
+    .tool.is-active{
+      border-color:var(--blue);
+      transform:translateY(-2px);
+    }
+
+    /* ATELIER */
+
+    .atelier{
+      display:grid;
+      grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);
+      gap:56px;
+      align-items:start;
+    }
+
+    .tools{
+      display:grid;
+      gap:34px;
+    }
+
+    .tool-group p{
+      margin:0 0 12px;
+      font-size:.82rem;
+      line-height:1.5;
+      opacity:.55;
+    }
+
+    .shape-tray .tool{
+      min-width:52px;
+      height:44px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-weight:700;
+    }
+
+    .color{
+      width:34px;
+      height:34px;
+      padding:0;
+      border-radius:50%;
+      background:var(--swatch);
+    }
+
+    .color.is-active,
+    .color:hover{border-color:var(--blue);transform:scale(1.08)}
+
+    .pattern-choice{
+      width:46px;
+      height:46px;
+      padding:0;
+      border:2px solid rgba(0,71,255,.22);
+      border-radius:12px;
+      cursor:pointer;
+      background-color:var(--background);
+      transition:
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+    .pattern-choice:hover,
+    .pattern-choice:focus-visible,
+    .pattern-choice.is-active{
+      border-color:var(--blue);
+      transform:translateY(-2px);
+      outline:none;
+    }
+
+    .pattern-choice[data-pattern="solid"]{
+      background:var(--blue);
+    }
+
+    .pattern-choice[data-pattern="dots"]{
+      background-color:var(--background);
+      background-image:
+        radial-gradient(circle,var(--blue) 0 28%,transparent 30%);
+      background-size:12px 12px;
+    }
+
+    .pattern-choice[data-pattern="stripes"]{
+      background:
+        repeating-linear-gradient(
+          45deg,
+          var(--blue) 0 6px,
+          var(--background) 6px 12px
+        );
+    }
+
+    .pattern-choice[data-pattern="waves"]{
+      background-color:var(--background);
+      background-image:
+        radial-gradient(
+          ellipse at 50% 100%,
+          transparent 0 42%,
+          var(--blue) 44% 54%,
+          transparent 56%
+        );
+      background-size:18px 12px;
+    }
+
+    .pattern-choice[data-pattern="checks"]{
+      background:
+        conic-gradient(
+          var(--blue) 25%,
+          var(--background) 0 50%,
+          var(--blue) 0 75%,
+          var(--background) 0
+        );
+      background-size:14px 14px;
+    }
+
+    .pattern-choice[data-pattern="speckles"]{
+      background-color:var(--background);
+      background-image:
+        radial-gradient(circle at 20% 28%,var(--blue) 0 2px,transparent 2.5px),
+        radial-gradient(circle at 72% 34%,var(--blue) 0 1.6px,transparent 2px),
+        radial-gradient(circle at 42% 76%,var(--blue) 0 1.9px,transparent 2.3px),
+        radial-gradient(circle at 84% 82%,var(--blue) 0 1.3px,transparent 1.8px);
+      background-size:24px 24px;
+    }
+
+    .small-tools{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+    }
+
+    .small-tools .tool{
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:700;
+    }
+
+    /* KAART */
+
+    .card-stage{
+      position:relative;
+      display:grid;
+      place-items:center;
+      min-height:520px;
+      overflow:hidden;
+      border:1px solid rgba(0,71,255,.16);
+      border-radius:28px;
+      background:
+        linear-gradient(to right,rgba(0,71,255,.022) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(0,71,255,.022) 1px,transparent 1px),
+        var(--background);
+      background-size:32px 32px;
+    }
+
+    .postcard{
+      position:relative;
+      width:min(620px,82%);
+      aspect-ratio:3/2;
+      overflow:hidden;
+      border:2px solid var(--blue);
+      border-radius:26px;
+      background:#fffdf6;
+      box-shadow:0 18px 44px rgba(0,71,255,.08);
+      transition:
+        width .3s ease,
+        aspect-ratio .3s ease,
+        border-radius .3s ease,
+        transform .7s cubic-bezier(.2,.8,.2,1),
+        opacity .7s ease;
+    }
+
+    .postcard[data-format="portrait"]{
+      width:min(390px,64%);
+      aspect-ratio:2/3;
+    }
+
+    .postcard[data-format="round"]{
+      width:min(430px,70%);
+      aspect-ratio:1;
+      border-radius:50%;
+    }
+
+    .postcard.is-sent{
+      opacity:0;
+      transform:translate3d(35vw,-20vh,0) rotate(18deg) scale(.7);
+    }
+
+    .postcard::after{
+      content:"POST VOOR BILLY";
+      position:absolute;
+      right:18px;
+      bottom:14px;
+      font-size:.58rem;
+      letter-spacing:.14em;
+      font-weight:700;
+      opacity:.28;
+      pointer-events:none;
+    }
+
+    .shape{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:82px;
+      height:82px;
+      transform:
+        translate(-50%,-50%)
+        translate(var(--dx,0px),var(--dy,0px))
+        rotate(var(--rot,0deg))
+        scale(var(--scale,1));
+      transform-origin:center;
+      cursor:grab;
+      touch-action:none;
+      user-select:none;
+      transition:box-shadow .15s ease;
+    }
+
+    .shape.is-selected{
+      box-shadow:0 0 0 2px var(--background),0 0 0 4px var(--blue);
+    }
+
+    .shape.circle{border-radius:50%}
+    .shape.square{border-radius:8px}
+    .shape.triangle{
+      width:96px;
+      height:84px;
+      clip-path:polygon(50% 0,100% 100%,0 100%);
+    }
+
+    .shape.wave{
+      width:110px;
+      height:34px;
+      border-radius:999px;
+      clip-path:polygon(
+        0 45%,10% 20%,20% 45%,30% 70%,40% 45%,50% 20%,
+        60% 45%,70% 70%,80% 45%,90% 20%,100% 45%,
+        100% 70%,90% 45%,80% 70%,70% 95%,60% 70%,50% 45%,
+        40% 70%,30% 95%,20% 70%,10% 45%,0 70%
+      );
+    }
+
+    .shape.line{
+      width:120px;
+      height:10px;
+      border-radius:999px;
+    }
+
+    .shape.bubble{
+      border:8px solid var(--shape-color);
+      border-radius:50%;
+      background:transparent !important;
+      background-image:none !important;
+    }
+
+    /* STUREN */
+
+    .send-area{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+
+    .name-input{
+      width:min(100%,260px);
+      padding:12px 0;
+      border:0;
+      border-bottom:2px solid rgba(0,71,255,.3);
+      color:var(--blue);
+      background:transparent;
+      outline:none;
+    }
+
+    .send-button,
+    .reset-button{
+      padding:11px 18px;
+      border:2px solid var(--blue);
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .send-button{
+      color:white;
+      background:var(--blue);
+    }
+
+    .reset-button{
+      color:var(--blue);
+      background:transparent;
+    }
+
+    .arrival{
+      min-height:28px;
+      margin-top:18px;
+      font-size:.95rem;
+      font-weight:700;
+    }
+
+    /* ONDERWATERPOST */
+
+    .ocean-wall{
+      position:relative;
+      min-height:640px;
+      overflow:hidden;
+      margin-top:38px;
+      border:1px solid rgba(0,71,255,.18);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 10% 20%,rgba(32,211,74,.08),transparent 20%),
+        radial-gradient(circle at 82% 72%,rgba(255,230,0,.11),transparent 22%),
+        linear-gradient(180deg,rgba(0,71,255,.025),rgba(0,71,255,.07));
+    }
+
+    .ocean-wall::before{
+      content:"ONDERWATERPOST";
+      position:absolute;
+      right:24px;
+      top:20px;
+      font-size:.62rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      opacity:.45;
+    }
+
+    .post-item{
+      position:absolute;
+      left:var(--x);
+      top:var(--y);
+      width:clamp(120px,17vw,220px);
+      transform:translate(-50%,-50%) rotate(var(--r));
+      animation:float-post var(--d) ease-in-out infinite alternate;
+    }
+
+    .post-item img{
+      display:block;
+      width:100%;
+      height:auto;
+      border:1px solid rgba(0,71,255,.2);
+      border-radius:14px;
+      background:var(--background);
+      box-shadow:0 10px 26px rgba(0,71,255,.08);
+    }
+
+    .post-credit{
+      display:block;
+      margin-top:6px;
+      font-size:.62rem;
+      opacity:.5;
+    }
+
+    @keyframes float-post{
+      from{translate:0 -4px}
+      to{translate:0 6px}
+    }
+
+    /* FOOTER */
+
+    .site-footer{
+      position:fixed;
+      left:18px;
+      bottom:18px;
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      font-size:.7rem;
+      letter-spacing:.03em;
+      opacity:.45;
+      pointer-events:none;
+    }
+
+    @media(max-width:900px){
+      .top-nav{
+        position:relative;
+        top:0;right:0;
+        justify-content:center;
+        padding:30px 20px 0;
+      }
+
+      .top-nav a{
+        padding:8px 15px;
+        border-width:2px;
+      }
+
+      .page{
+        width:auto;
+        padding:80px 24px 96px;
+      }
+
+      p{font-size:1.05rem;line-height:1.75}
+
+      .atelier{grid-template-columns:1fr;gap:34px}
+
+      .card-stage{min-height:420px}
+
+      .postcard{width:90%}
+
+      .postcard[data-format="portrait"]{width:64%}
+      .postcard[data-format="round"]{width:72%}
+
+      .site-footer{
+        position:static;
+        writing-mode:horizontal-tb;
+        transform:none;
+        padding:8px 24px 14px;
+        text-align:center;
+        font-size:.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="top-nav" aria-label="Hoofdnavigatie">
+    <a href="index.html">Home</a>
+    <a href="de-film.html">De film</a>
+    <a href="educatieprogramma.html">Educatie</a>
+    <a href="over-ons.html">Over ons</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="page">
+
+    <header class="intro">
+      <p class="eyebrow">Een interactieve installatie van Het Onderwater Theater</p>
+      <h1>Een bericht voor Billy</h1>
+
+      <p>
+        <strong>Onder water werken woorden soms niet zo goed.</strong>
+        Misschien kunnen vormen, kleuren en lijnen iets vertellen wat woorden niet kunnen.
+        <strong>Wat wil jij Billy laten zien?</strong>
+      </p>
+    </header>
+
+    <section class="step">
+      <div class="step-heading">
+        <span class="step-number">01</span>
+        <div>
+          <h2>Kies je kaart</h2>
+          <p>Iedere kaart begint leeg. Kies alleen de vorm waarop je wilt werken.</p>
+        </div>
+      </div>
+
+      <div class="card-shapes" aria-label="Kaartvorm kiezen">
+        <button class="card-choice is-active" type="button" data-card="landscape">Liggend</button>
+        <button class="card-choice" type="button" data-card="portrait">Staand</button>
+        <button class="card-choice" type="button" data-card="round">Rond</button>
+      </div>
+    </section>
+
+    <section class="step">
+
+      <div class="step-heading">
+        <span class="step-number">02</span>
+        <div>
+          <h2>Maak je bericht</h2>
+          <p>
+            Kies vormen en kleuren. Sleep ze over de kaart, maak ze groter,
+            kleiner of draai ze. Er is geen goede uitkomst.
+          </p>
+        </div>
+      </div>
+
+      <div class="atelier">
+
+        <aside class="tools">
+
+          <div class="tool-group">
+            <h3>Vormen</h3>
+            <div class="shape-tray">
+              <button class="tool" type="button" data-shape="circle">●</button>
+              <button class="tool" type="button" data-shape="square">■</button>
+              <button class="tool" type="button" data-shape="triangle">▲</button>
+              <button class="tool" type="button" data-shape="wave">Golf</button>
+              <button class="tool" type="button" data-shape="line">Lijn</button>
+              <button class="tool" type="button" data-shape="bubble">Bubbel</button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Kleur</h3>
+            <div class="palette">
+              <button class="color is-active" type="button" data-color="#0047ff" style="--swatch:#0047ff" aria-label="Blauw"></button>
+              <button class="color" type="button" data-color="#E3170A" style="--swatch:#E3170A" aria-label="Rood"></button>
+              <button class="color" type="button" data-color="#FFE600" style="--swatch:#FFE600" aria-label="Geel"></button>
+              <button class="color" type="button" data-color="#20D34A" style="--swatch:#20D34A" aria-label="Groen"></button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Patroon</h3>
+            <p>
+              Geef een geselecteerde vorm een patroon.
+            </p>
+
+            <div class="pattern-choices" aria-label="Patroon kiezen">
+              <button class="pattern-choice is-active" type="button"
+                data-pattern="solid" aria-label="Effen" title="Effen"></button>
+
+              <button class="pattern-choice" type="button"
+                data-pattern="dots" aria-label="Stippen" title="Stippen"></button>
+
+              <button class="pattern-choice" type="button"
+                data-pattern="stripes" aria-label="Strepen" title="Strepen"></button>
+
+              <button class="pattern-choice" type="button"
+                data-pattern="waves" aria-label="Golven" title="Golven"></button>
+
+              <button class="pattern-choice" type="button"
+                data-pattern="checks" aria-label="Ruitjes" title="Ruitjes"></button>
+
+              <button class="pattern-choice" type="button"
+                data-pattern="speckles" aria-label="Spikkels" title="Spikkels"></button>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h3>Vormgeven</h3>
+            <p>Klik op een vorm op je kaart en verander hem.</p>
+            <div class="small-tools">
+              <button class="tool" id="bigger" type="button">Groter</button>
+              <button class="tool" id="smaller" type="button">Kleiner</button>
+              <button class="tool" id="rotateLeft" type="button">↺</button>
+              <button class="tool" id="rotateRight" type="button">↻</button>
+              <button class="tool" id="duplicate" type="button">Dubbel</button>
+              <button class="tool" id="remove" type="button">Weg</button>
+            </div>
+          </div>
+
+        </aside>
+
+        <div>
+          <div class="card-stage">
+            <div class="postcard" id="postcard" data-format="landscape" aria-label="Jouw kaart"></div>
+          </div>
+
+          <div class="send-area">
+            <input
+              class="name-input"
+              id="nameInput"
+              type="text"
+              maxlength="15"
+              placeholder="jouw naam"
+              aria-label="Jouw naam">
+
+            <button class="send-button" id="sendButton" type="button">
+              Stuur naar Billy →
+            </button>
+
+            <button class="reset-button" id="resetButton" type="button">
+              Opnieuw
+            </button>
+          </div>
+
+          <div class="arrival" id="arrival" aria-live="polite"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="step">
+      <div class="step-heading">
+        <span class="step-number">03</span>
+        <div>
+          <h2>Onderwaterpost</h2>
+          <p>
+            Hier drijven de berichten die voor Billy zijn achtergelaten.
+          </p>
+        </div>
+      </div>
+
+      <div class="ocean-wall" id="oceanWall"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    © Esther Frank 2026
+  </footer>
+
+  <script>
+    const STORAGE_KEY = "onderwaterpost-v1";
+
+    const postcard = document.querySelector("#postcard");
+    const cardChoices = document.querySelectorAll(".card-choice");
+    const shapeButtons = document.querySelectorAll("[data-shape]");
+    const colorButtons = document.querySelectorAll(".color");
+    const patternButtons = document.querySelectorAll(".pattern-choice");
+
+    const bigger = document.querySelector("#bigger");
+    const smaller = document.querySelector("#smaller");
+    const rotateLeft = document.querySelector("#rotateLeft");
+    const rotateRight = document.querySelector("#rotateRight");
+    const duplicate = document.querySelector("#duplicate");
+    const remove = document.querySelector("#remove");
+
+    const nameInput = document.querySelector("#nameInput");
+    const sendButton = document.querySelector("#sendButton");
+    const resetButton = document.querySelector("#resetButton");
+    const arrival = document.querySelector("#arrival");
+    const oceanWall = document.querySelector("#oceanWall");
+
+    let selectedColor = "#0047ff";
+    let selectedPattern = "solid";
+    let selectedShape = null;
+    let shapeCounter = 0;
+
+    function selectShape(shape){
+      if(selectedShape){
+        selectedShape.classList.remove("is-selected");
+      }
+
+      selectedShape = shape;
+
+      if(selectedShape){
+        selectedShape.classList.add("is-selected");
+      }
+    }
+
+    function patternStyle(pattern,color){
+      const cream = "#fffdf6";
+
+      if(pattern === "dots"){
+        return {
+          backgroundColor:cream,
+          backgroundImage:
+            `radial-gradient(circle, ${color} 0 28%, transparent 30%)`,
+          backgroundSize:"18px 18px"
+        };
+      }
+
+      if(pattern === "stripes"){
+        return {
+          backgroundColor:cream,
+          backgroundImage:
+            `repeating-linear-gradient(45deg, ${color} 0 9px, ${cream} 9px 18px)`,
+          backgroundSize:"auto"
+        };
+      }
+
+      if(pattern === "waves"){
+        return {
+          backgroundColor:cream,
+          backgroundImage:
+            `radial-gradient(ellipse at 50% 100%, transparent 0 42%, ${color} 44% 54%, transparent 56%)`,
+          backgroundSize:"28px 18px"
+        };
+      }
+
+      if(pattern === "checks"){
+        return {
+          backgroundColor:cream,
+          backgroundImage:
+            `conic-gradient(${color} 25%, ${cream} 0 50%, ${color} 0 75%, ${cream} 0)`,
+          backgroundSize:"22px 22px"
+        };
+      }
+
+      if(pattern === "speckles"){
+        return {
+          backgroundColor:cream,
+          backgroundImage:[
+            `radial-gradient(circle at 20% 28%, ${color} 0 3px, transparent 3.4px)`,
+            `radial-gradient(circle at 72% 34%, ${color} 0 2.2px, transparent 2.7px)`,
+            `radial-gradient(circle at 42% 76%, ${color} 0 2.7px, transparent 3.1px)`,
+            `radial-gradient(circle at 84% 82%, ${color} 0 1.8px, transparent 2.4px)`
+          ].join(","),
+          backgroundSize:"34px 34px"
+        };
+      }
+
+      return {
+        backgroundColor:color,
+        backgroundImage:"none",
+        backgroundSize:"auto"
+      };
+    }
+
+    function applyPattern(shape,pattern,color){
+      shape.dataset.pattern = pattern;
+      shape.dataset.color = color;
+      shape.style.setProperty("--shape-color",color);
+
+      if(shape.dataset.type === "bubble"){
+        shape.style.backgroundColor = "transparent";
+        shape.style.backgroundImage = "none";
+        shape.style.backgroundSize = "auto";
+        return;
+      }
+
+      const style = patternStyle(pattern,color);
+      shape.style.backgroundColor = style.backgroundColor;
+      shape.style.backgroundImage = style.backgroundImage;
+      shape.style.backgroundSize = style.backgroundSize;
+    }
+
+    function createShape(type, options = {}){
+      const shape = document.createElement("div");
+
+      shape.className = `shape ${type}`;
+      shape.dataset.type = type;
+      shape.dataset.id = `shape-${shapeCounter++}`;
+
+      const shapeColor = options.color || selectedColor;
+      const shapePattern = options.pattern || selectedPattern;
+
+      applyPattern(shape,shapePattern,shapeColor);
+
+      shape.dataset.x = options.x ?? 0;
+      shape.dataset.y = options.y ?? 0;
+      shape.dataset.scale = options.scale ?? 1;
+      shape.dataset.rotation = options.rotation ?? 0;
+
+      function updateTransform(){
+        shape.style.setProperty("--dx", `${shape.dataset.x}px`);
+        shape.style.setProperty("--dy", `${shape.dataset.y}px`);
+        shape.style.setProperty("--scale", shape.dataset.scale);
+        shape.style.setProperty("--rot", `${shape.dataset.rotation}deg`);
+      }
+
+      updateTransform();
+
+      shape.addEventListener("pointerdown", (event) => {
+        selectShape(shape);
+        shape.setPointerCapture(event.pointerId);
+
+        const startX = event.clientX;
+        const startY = event.clientY;
+
+        const originalX = Number(shape.dataset.x);
+        const originalY = Number(shape.dataset.y);
+
+        function move(moveEvent){
+          shape.dataset.x =
+            originalX + (moveEvent.clientX - startX);
+
+          shape.dataset.y =
+            originalY + (moveEvent.clientY - startY);
+
+          updateTransform();
+        }
+
+        function stop(){
+          shape.removeEventListener("pointermove", move);
+          shape.removeEventListener("pointerup", stop);
+          shape.removeEventListener("pointercancel", stop);
+        }
+
+        shape.addEventListener("pointermove", move);
+        shape.addEventListener("pointerup", stop);
+        shape.addEventListener("pointercancel", stop);
+      });
+
+      shape.updateTransform = updateTransform;
+
+      postcard.appendChild(shape);
+      selectShape(shape);
+      return shape;
+    }
+
+    shapeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        createShape(button.dataset.shape, {
+          x: (Math.random() - .5) * 120,
+          y: (Math.random() - .5) * 80,
+          rotation: (Math.random() - .5) * 16
+        });
+      });
+    });
+
+    colorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        colorButtons.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+        selectedColor = button.dataset.color;
+
+        if(selectedShape){
+          applyPattern(
+            selectedShape,
+            selectedShape.dataset.pattern || selectedPattern,
+            selectedColor
+          );
+        }
+      });
+    });
+
+    patternButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        patternButtons.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+        selectedPattern = button.dataset.pattern;
+
+        if(selectedShape){
+          applyPattern(
+            selectedShape,
+            selectedPattern,
+            selectedShape.dataset.color || selectedColor
+          );
+        }
+      });
+    });
+
+    cardChoices.forEach((button) => {
+      button.addEventListener("click", () => {
+        cardChoices.forEach((choice) =>
+          choice.classList.remove("is-active")
+        );
+
+        button.classList.add("is-active");
+        postcard.dataset.format = button.dataset.card;
+      });
+    });
+
+    bigger.addEventListener("click", () => {
+      if(!selectedShape) return;
+      selectedShape.dataset.scale =
+        Math.min(2.4, Number(selectedShape.dataset.scale) + .12);
+      selectedShape.updateTransform();
+    });
+
+    smaller.addEventListener("click", () => {
+      if(!selectedShape) return;
+      selectedShape.dataset.scale =
+        Math.max(.35, Number(selectedShape.dataset.scale) - .12);
+      selectedShape.updateTransform();
+    });
+
+    rotateLeft.addEventListener("click", () => {
+      if(!selectedShape) return;
+      selectedShape.dataset.rotation =
+        Number(selectedShape.dataset.rotation) - 12;
+      selectedShape.updateTransform();
+    });
+
+    rotateRight.addEventListener("click", () => {
+      if(!selectedShape) return;
+      selectedShape.dataset.rotation =
+        Number(selectedShape.dataset.rotation) + 12;
+      selectedShape.updateTransform();
+    });
+
+    duplicate.addEventListener("click", () => {
+      if(!selectedShape) return;
+
+      createShape(selectedShape.dataset.type, {
+        color:selectedShape.dataset.color || selectedColor,
+        pattern:selectedShape.dataset.pattern || "solid",
+        x:Number(selectedShape.dataset.x) + 28,
+        y:Number(selectedShape.dataset.y) + 20,
+        scale:Number(selectedShape.dataset.scale),
+        rotation:Number(selectedShape.dataset.rotation)
+      });
+    });
+
+    remove.addEventListener("click", () => {
+      if(!selectedShape) return;
+      selectedShape.remove();
+      selectedShape = null;
+    });
+
+    function resetCard(){
+      postcard.innerHTML = "";
+      postcard.classList.remove("is-sent");
+      selectedShape = null;
+      arrival.textContent = "";
+    }
+
+    resetButton.addEventListener("click", resetCard);
+
+    function cleanName(value){
+      return value
+        .replace(/[^a-zA-ZÀ-ÿ' -]/g,"")
+        .replace(/\s+/g," ")
+        .trim()
+        .slice(0,15);
+    }
+
+    nameInput.addEventListener("input", () => {
+      nameInput.value = cleanName(nameInput.value);
+    });
+
+    function serializeCard(){
+      const clone = postcard.cloneNode(true);
+
+      clone.querySelectorAll(".shape").forEach((shape) => {
+        shape.classList.remove("is-selected");
+      });
+
+      const width = 720;
+      const height =
+        postcard.dataset.format === "portrait"
+          ? 900
+          : 480;
+
+      const content = clone.innerHTML;
+
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="${width}"
+             height="${height}"
+             viewBox="0 0 ${width} ${height}">
+          <foreignObject width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="
+                   position:relative;
+                   width:${width}px;
+                   height:${height}px;
+                   overflow:hidden;
+                   background:#fffdf6;
+                   border:3px solid #0047ff;
+                   border-radius:28px;
+                 ">
+              <style>
+                .shape{
+                  position:absolute;
+                  left:50%;
+                  top:50%;
+                  width:90px;
+                  height:90px;
+                  transform:
+                    translate(-50%,-50%)
+                    translate(var(--dx,0px),var(--dy,0px))
+                    rotate(var(--rot,0deg))
+                    scale(var(--scale,1));
+                }
+                .circle{border-radius:50%}
+                .square{border-radius:8px}
+                .triangle{
+                  width:104px;height:92px;
+                  clip-path:polygon(50% 0,100% 100%,0 100%);
+                }
+                .wave{
+                  width:120px;height:36px;border-radius:999px;
+                  clip-path:polygon(
+                    0 45%,10% 20%,20% 45%,30% 70%,40% 45%,50% 20%,
+                    60% 45%,70% 70%,80% 45%,90% 20%,100% 45%,
+                    100% 70%,90% 45%,80% 70%,70% 95%,60% 70%,50% 45%,
+                    40% 70%,30% 95%,20% 70%,10% 45%,0 70%
+                  );
+                }
+                .line{
+                  width:130px;height:10px;border-radius:999px;
+                }
+                .bubble{
+                  border:8px solid var(--shape-color);
+                  border-radius:50%;
+                  background:transparent !important;
+                  background-image:none !important;
+                }
+              </style>
+              ${content}
+            </div>
+          </foreignObject>
+        </svg>
+      `;
+
+      return "data:image/svg+xml;charset=utf-8," +
+        encodeURIComponent(svg);
+    }
+
+    function loadPosts(){
+      try{
+        return JSON.parse(
+          localStorage.getItem(STORAGE_KEY) || "[]"
+        );
+      }catch{
+        return [];
+      }
+    }
+
+    function savePosts(posts){
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(posts)
+      );
+    }
+
+    function renderWall(){
+      const posts = loadPosts();
+      oceanWall.innerHTML = "";
+
+      if(!posts.length){
+        const empty = document.createElement("div");
+        empty.style.cssText =
+          "position:absolute;inset:0;display:grid;place-items:center;" +
+          "padding:30px;text-align:center;opacity:.42;font-size:.9rem;";
+        empty.textContent =
+          "Er is nog geen post voor Billy.";
+        oceanWall.appendChild(empty);
+        return;
+      }
+
+      posts.forEach((post,index) => {
+        const item = document.createElement("div");
+        item.className = "post-item";
+
+        item.style.setProperty(
+          "--x",
+          `${12 + ((index * 29 + 9) % 76)}%`
+        );
+
+        item.style.setProperty(
+          "--y",
+          `${14 + ((index * 37 + 13) % 72)}%`
+        );
+
+        item.style.setProperty(
+          "--r",
+          `${((index * 7) % 9) - 4}deg`
+        );
+
+        item.style.setProperty(
+          "--d",
+          `${5 + ((index * .7) % 4)}s`
+        );
+
+        const img = document.createElement("img");
+        img.src = post.art;
+        img.alt = "Een bericht voor Billy";
+
+        const credit = document.createElement("span");
+        credit.className = "post-credit";
+        credit.textContent =
+          post.name ? `van ${post.name}` : "anoniem";
+
+        item.appendChild(img);
+        item.appendChild(credit);
+        oceanWall.appendChild(item);
+      });
+    }
+
+    sendButton.addEventListener("click", () => {
+      if(!postcard.querySelector(".shape")){
+        arrival.textContent =
+          "Voeg eerst één vorm toe aan je kaart.";
+        return;
+      }
+
+      const posts = loadPosts();
+
+      posts.push({
+        name:cleanName(nameInput.value),
+        art:serializeCard()
+      });
+
+      savePosts(posts);
+
+      postcard.classList.add("is-sent");
+      arrival.textContent =
+        "Billy heeft je kaart ontvangen.";
+
+      setTimeout(() => {
+        renderWall();
+        resetCard();
+        nameInput.value = "";
+
+        document.querySelector(".ocean-wall")
+          .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+          });
+      },800);
+    });
+
+    renderWall();
+  </script>
+
+</body>
+</html>
