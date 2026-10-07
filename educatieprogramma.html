@@ -1,569 +1,691 @@
 <!DOCTYPE html>
-
 <html lang="nl">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Educatie | Het Onderwater Theater</title>
+
 <link href="favicon.ico" rel="icon" sizes="any"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
+
 <style>
-    :root {
-      --background: #fffdf6;
-      --blue: #0047ff;
+  :root {
+    --background: #fffdf6;
+    --blue: #0047ff;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--background);
+    color: var(--blue);
+    font-family: Arial, sans-serif;
+  }
+
+
+  /* --------------------------------
+     NAVIGATIE
+  -------------------------------- */
+
+  .top-nav {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 100;
+
+    display: flex;
+    gap: 15px;
+  }
+
+  .top-nav a {
+    padding: 10px 20px;
+
+    border: 3px solid var(--blue);
+    border-radius: 40px;
+
+    color: var(--blue);
+    font-weight: bold;
+    text-decoration: none;
+
+    background: rgba(255, 253, 246, 0.88);
+
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .top-nav a:hover,
+  .top-nav a:focus-visible {
+    color: white;
+    background: var(--blue);
+    transform: translateY(-2px);
+  }
+
+  .top-nav .games-link {
+    border-color: #FFC83D;
+    color: #FFC83D;
+  }
+
+  .top-nav .games-link:hover,
+  .top-nav .games-link:focus-visible {
+    background: #FFC83D;
+    color: #fffdf6;
+    border-color: #FFC83D;
+  }
+
+
+  /* --------------------------------
+     PAGINA
+  -------------------------------- */
+
+  .page {
+    position: relative;
+    z-index: 2;
+
+    width: min(980px, calc(100% - 80px));
+    margin: 0 auto;
+
+    padding: 140px 0 120px;
+  }
+
+
+  /* --------------------------------
+     TITEL ALS AFBEELDING
+  -------------------------------- */
+
+  .page-title {
+    width: min(78vw, 730px);
+    margin: 0 0 34px;
+    line-height: 0;
+  }
+
+  .page-title picture,
+  .page-title img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+
+  /* --------------------------------
+     FOTO'S
+  -------------------------------- */
+
+  .education-photos {
+    position: relative;
+
+    width: min(760px, 88%);
+    height: 230px;
+
+    margin: 0 0 52px;
+  }
+
+  .education-photo-main {
+    display: block;
+
+    width: 78%;
+    height: 100%;
+
+    object-fit: cover;
+    border-radius: 22px;
+  }
+
+  .education-photo-small {
+    position: absolute;
+    right: 0;
+    bottom: -24px;
+
+    width: 34%;
+    height: 150px;
+
+    object-fit: cover;
+    border-radius: 18px;
+
+    transform: rotate(2deg);
+
+    box-shadow: 0 8px 24px rgba(0, 71, 255, 0.10);
+
+    transition: transform 0.3s ease;
+  }
+
+  .education-photos:hover .education-photo-small {
+    transform: rotate(0deg) translateY(-3px);
+  }
+
+
+  /* --------------------------------
+     TEKST
+  -------------------------------- */
+
+  h2 {
+    margin: 72px 0 24px;
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    margin: 0 0 14px;
+    font-size: 1.45rem;
+    line-height: 1.3;
+  }
+
+  p {
+    max-width: 920px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.9;
+  }
+
+  p + p {
+    margin-top: 24px;
+  }
+
+
+  /* --------------------------------
+     PROGRAMMAONDERDELEN
+  -------------------------------- */
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .program-item {
+    padding: 28px;
+
+    border: 3px solid var(--blue);
+    border-radius: 28px;
+
+    background: rgba(255, 253, 246, 0.82);
+
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .program-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .program-item p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+
+  /* --------------------------------
+     WOORDEXPERIMENT
+  -------------------------------- */
+
+  .wordexperiment-note {
+    position: absolute;
+    top: 700px;
+    right: -120px;
+    z-index: 3;
+
+    width: 220px;
+    padding: 22px 24px 20px;
+
+    border: 1.5px solid var(--blue);
+    border-radius: 14px;
+
+    color: var(--blue);
+    text-decoration: none;
+    background: var(--background);
+
+    box-shadow: 0 10px 28px rgba(0, 71, 255, 0.08);
+
+    transform: rotate(2deg);
+    transform-origin: center;
+
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .wordexperiment-note:hover,
+  .wordexperiment-note:focus-visible {
+    transform: rotate(0deg) translateY(-3px);
+
+    box-shadow: 0 14px 34px rgba(0, 71, 255, 0.12);
+    outline: none;
+  }
+
+  .wordexperiment-note strong {
+    display: block;
+    margin-bottom: 14px;
+
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+
+  .wordexperiment-note .letters {
+    display: block;
+    margin-bottom: 16px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  .wordexperiment-note .discover {
+    display: block;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+
+  /* --------------------------------
+     PARTNERS
+  -------------------------------- */
+
+  .partners-heading {
+    margin-top: 72px;
+    margin-bottom: 14px;
+    padding-top: 28px;
+
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+
+    border-top: 1px solid rgba(0, 71, 255, 0.18);
+  }
+
+  .partners-intro {
+    max-width: 760px;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .partners {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 34px;
+
+    margin: 30px 0 12px;
+  }
+
+  .partner {
+    padding: 0;
+  }
+
+  .partner-role {
+    display: block;
+    margin-bottom: 6px;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0.62;
+  }
+
+  .partner strong {
+    display: block;
+    margin-bottom: 3px;
+
+    font-size: 1rem;
+  }
+
+  .partner span {
+    display: block;
+
+    font-size: 0.88rem;
+    line-height: 1.5;
+
+    opacity: 0.78;
+  }
+
+
+  /* --------------------------------
+     INSTAGRAM
+  -------------------------------- */
+
+  .instagram-corner {
+    position: absolute;
+    right: 22px;
+    bottom: 18px;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+
+    color: var(--blue);
+    text-align: right;
+    text-decoration: none;
+
+    opacity: 0.68;
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .instagram-corner:hover,
+  .instagram-corner:focus-visible {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .instagram-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: .65;
+  }
+
+  .instagram-handle {
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+
+  /* --------------------------------
+     FOOTER
+  -------------------------------- */
+
+  .site-footer {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    color: var(--blue);
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    opacity: 0.45;
+
+    z-index: 1000;
+    pointer-events: none;
+    user-select: none;
+  }
+
+
+  /* --------------------------------
+     TABLET
+  -------------------------------- */
+
+  @media (max-width: 1050px) {
+
+    .page {
+      width: min(920px, calc(100% - 56px));
     }
 
-    * {
-      box-sizing: border-box;
+    .wordexperiment-note {
+      top: 700px;
+      right: -20px;
+      width: 190px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      background: var(--background);
-      color: var(--blue);
-      font-family: Arial, sans-serif;
-    }
+  }
 
 
-    /* --------------------------------
-       NAVIGATIE
-    -------------------------------- */
+  /* --------------------------------
+     MOBIEL
+  -------------------------------- */
+
+  @media (max-width: 800px) {
 
     .top-nav {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      z-index: 100;
+      position: relative;
+      top: 0;
+      right: 0;
 
-      display: flex;
-      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      padding: 30px 20px 0;
     }
 
     .top-nav a {
-      padding: 10px 20px;
-
-      border: 3px solid var(--blue);
-      border-radius: 40px;
-
-      color: var(--blue);
-      font-weight: bold;
-      text-decoration: none;
-
-      background: rgba(255, 253, 246, 0.88);
-
-      transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
+      padding: 8px 15px;
+      border-width: 2px;
     }
-
-    .top-nav a:hover,
-    .top-nav a:focus-visible {
-      color: white;
-      background: var(--blue);
-      transform: translateY(-2px);
-    }
-
-
-    .top-nav .games-link{
-      border-color:#FFC83D;
-      color:#FFC83D;
-    }
-    .top-nav .games-link:hover,
-    .top-nav .games-link:focus-visible{
-      background:#FFC83D;
-      color:#fffdf6;
-      border-color:#FFC83D;
-    }
-
-    /* --------------------------------
-       PAGINA
-    -------------------------------- */
 
     .page {
-      position: relative;
-      z-index: 2;
-
-      width: min(980px, calc(100% - 80px));
-      margin: 0 auto;
-
-      padding: 140px 0 120px;
+      width: auto;
+      padding: 80px 24px 96px;
     }
-
-    /* --------------------------------
-       TITEL ALS AFBEELDING
-    -------------------------------- */
 
     .page-title {
-      width: min(78vw, 730px);
-      margin: 0 0 48px;
-      line-height: 0;
-    }
-
-    .page-title picture,
-    .page-title img {
-      display: block;
       width: 100%;
-      height: auto;
+      margin-bottom: 28px;
     }
 
-    /* --------------------------------
-       TEKST
-    -------------------------------- */
 
-    h2 {
-      margin: 72px 0 24px;
-      font-size: 2.2rem;
-      line-height: 1.2;
+    /* foto's compact houden */
+
+    .education-photos {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 46px;
     }
 
-    .partners-heading {
-      margin-top: 72px;
-      margin-bottom: 14px;
-      padding-top: 28px;
-      font-size: 1.2rem;
-      letter-spacing: 0.04em;
-      border-top: 1px solid rgba(0,71,255,0.18);
+    .education-photo-main {
+      width: 82%;
+      border-radius: 18px;
     }
 
-    h3 {
-      margin: 0 0 14px;
-      font-size: 1.45rem;
-      line-height: 1.3;
+    .education-photo-small {
+      width: 38%;
+      height: 112px;
+      bottom: -18px;
+      border-radius: 14px;
     }
+
 
     p {
-      max-width: 920px;
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 400;
-      line-height: 1.9;
-    }
-
-    p + p {
-      margin-top: 24px;
-    }
-
-    /* --------------------------------
-       PROGRAMMAONDERDELEN
-    -------------------------------- */
-
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    .program-item {
-      padding: 28px;
-
-      border: 3px solid var(--blue);
-      border-radius: 28px;
-
-      background: rgba(255, 253, 246, 0.82);
-
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    .program-item:hover {
-      transform: translateY(-4px);
-    }
-
-    .program-item p {
-      margin: 0;
       font-size: 1.05rem;
       line-height: 1.75;
     }
 
-    /* --------------------------------
-       WOORDEXPERIMENT
-    -------------------------------- */
-
-    .wordexperiment-note {
-      position: absolute;
-      top: 700px;
-      right: -120px;
-      z-index: 3;
-
-      width: 220px;
-      padding: 22px 24px 20px;
-
-      border: 1.5px solid var(--blue);
-      border-radius: 14px;
-
-      color: var(--blue);
-      text-decoration: none;
-      background: var(--background);
-
-      box-shadow: 0 10px 28px rgba(0, 71, 255, 0.08);
-
-      transform: rotate(2deg);
-      transform-origin: center;
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    h2 {
+      margin-top: 52px;
+      font-size: 1.9rem;
     }
 
-    .wordexperiment-note:hover,
-    .wordexperiment-note:focus-visible {
-      transform:
-        rotate(0deg)
-        translateY(-3px);
-
-      box-shadow: 0 14px 34px rgba(0, 71, 255, 0.12);
-      outline: none;
+    h3 {
+      font-size: 1.3rem;
     }
-
-    .wordexperiment-note strong {
-      display: block;
-      margin-bottom: 14px;
-
-      font-size: 1.05rem;
-      line-height: 1.25;
-    }
-
-    .wordexperiment-note .letters {
-      display: block;
-      margin-bottom: 16px;
-
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-    }
-
-    .wordexperiment-note .discover {
-      display: block;
-
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    /* --------------------------------
-       PARTNERS
-    -------------------------------- */
 
     .partners-heading {
-      margin-top: 72px;
-      margin-bottom: 14px;
-      padding-top: 28px;
-
-      font-size: 1.2rem;
-      letter-spacing: 0.04em;
-
-      border-top: 1px solid rgba(0, 71, 255, 0.18);
+      font-size: 1.05rem;
+      margin-top: 56px;
+      padding-top: 22px;
     }
 
-    .partners-intro {
-      max-width: 760px;
-      font-size: 1rem;
-      line-height: 1.7;
+    .program-item {
+      padding: 24px;
     }
 
     .partners {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 34px;
-
-      margin: 30px 0 12px;
+      grid-template-columns: 1fr;
+      gap: 24px;
     }
 
-    .partner {
-      padding: 0;
+    .wordexperiment-note {
+      position: relative;
+      top: auto;
+      right: auto;
+
+      display: inline-block;
+      width: min(240px, 100%);
+      margin: 46px 0 10px;
+
+      transform: rotate(1deg);
     }
 
-    .partner-role {
-      display: block;
-      margin-bottom: 6px;
-
-      font-size: 0.9rem;
-      font-weight: bold;
-      letter-spacing: 0;
-      text-transform: none;
-
-      opacity: 0.62;
-    }
-
-    .partner strong {
-      display: block;
-      margin-bottom: 3px;
-
-      font-size: 1rem;
-    }
-
-    .partner span {
-      display: block;
-
-      font-size: 0.88rem;
-      line-height: 1.5;
-
-      opacity: 0.78;
-    }
-
-    
-    /* --------------------------------
-       INSTAGRAM
-    -------------------------------- */
-
+    .site-footer,
     .instagram-corner {
-      position: absolute;
-      right: 22px;
-      bottom: 18px;
-      z-index: 10;
+      display: none;
+    }
+  }
 
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
 
-      color: var(--blue);
-      text-align: right;
-      text-decoration: none;
+  /* --------------------------------
+     MINDER BEWEGING
+  -------------------------------- */
 
-      opacity: 0.68;
+  @media (prefers-reduced-motion: reduce) {
 
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+    html {
+      scroll-behavior: auto;
     }
 
-    .instagram-corner:hover,
-    .instagram-corner:focus-visible {
-      opacity: 1;
-      transform: translateY(-2px);
+    .top-nav a,
+    .wordexperiment-note,
+    .education-photo-small {
+      animation: none;
+      transition: none;
     }
 
-    .instagram-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: .65;
-    }
+  }
 
-    .instagram-handle {
-      font-size: 0.78rem;
-      font-weight: 500;
-    }
-
-    /* --------------------------------
-       KLEINE FOOTER
-    -------------------------------- */
-
-    .site-footer {
-      position: fixed;
-      left: 18px;
-      bottom: 18px;
-
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-
-      color: var(--blue);
-      font-size: 0.7rem;
-      letter-spacing: 0.03em;
-      opacity: 0.45;
-
-      z-index: 1000;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* --------------------------------
-       TABLET
-    -------------------------------- */
-
-    @media (max-width: 1050px) {
-      .page {
-        width: min(920px, calc(100% - 56px));
-        padding-right: 0;
-      }
-
-      .wordexperiment-note {
-        top: 700px;
-        right: -20px;
-        width: 190px;
-      }
-
-    }
-
-    /* --------------------------------
-       MOBIEL
-    -------------------------------- */
-
-    @media (max-width: 800px) {
-      .top-nav {
-        position: relative;
-        top: 0;
-        right: 0;
-
-        justify-content: center;
-        flex-wrap: wrap;
-
-        padding: 30px 20px 0;
-      }
-
-      .top-nav a {
-        padding: 8px 15px;
-        border-width: 2px;
-      }
-
-
-      .page {
-        width: auto;
-        padding: 80px 24px 96px;
-      }
-
-      .page-title {
-        width: 100%;
-        margin-bottom: 40px;
-      }
-
-      p {
-        font-size: 1.05rem;
-        line-height: 1.75;
-      }
-
-      h2 {
-        margin-top: 52px;
-        font-size: 1.9rem;
-      }
-
-      h3 {
-        font-size: 1.3rem;
-      }
-
-      .partners-heading {
-        font-size: 1.05rem;
-        margin-top: 56px;
-        padding-top: 22px;
-      }
-
-      .contact-cta {
-        margin-top: 40px;
-        padding: 24px;
-        border-radius: 22px;
-      }
-
-
-      .program-item {
-        padding: 24px;
-      }
-
-
-      .wordexperiment-card {
-        width: 100%;
-        margin-top: 40px;
-        padding: 22px 24px;
-      }
-
-      .partners {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .wordexperiment-note {
-        position: relative;
-        top: auto;
-        right: auto;
-
-        display: inline-block;
-        width: min(240px, 100%);
-        margin: 46px 0 10px;
-
-        transform: rotate(1deg);
-      }
-
-      .site-footer,
-      .instagram-corner {
-        display: none;
-      }
-    }
-
-    /* --------------------------------
-       MINDER BEWEGING
-    -------------------------------- */
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-
-      .top-nav a,
-      .wordexperiment-note {
-        animation: none;
-        transition: none;
-      }
-    }
-  </style>
+</style>
 </head>
-<body style="position:relative;">
-<nav aria-label="Hoofdnavigatie" class="top-nav">
-<a href="index.html">Home</a>
-<a href="de-film.html">De film</a>
-<a href="over-ons.html">Over ons</a>
-<a href="contact.html">Contact</a>
-<a class="games-link" href="spellen.html">Spellen</a></nav>
-<main class="page">
-<h1 class="page-title">
-<picture>
-<source srcset="OT_EDUCATIE-lossless.webp" type="image/webp"/>
-<img alt="Educatie" decoding="async" loading="eager" src="OT_EDUCATIE-optimized.png"/>
-</picture>
-</h1>
-<p>
-      Het educatieprogramma sluit aan bij de thema’s uit Het Onderwater Theater en nodigt uit om na te denken over identiteit en expressie. Kinderen krijgen al vroeg woorden en verwachtingen mee over hoe zij
-      zouden moeten zijn. Zo wordt een kind dat stil, voorzichtig of observerend is, al snel verlegen genoemd. De film en de lessen onderzoeken bevragen de functie van dat label en laten
-      kinderen onderzoeken wat passende expressievormen zijn voor hun individu. 
-    </p>
-<h2>Het programma</h2>
-<p>
-      De lessen uit het afneembaar educatieprogramma zijn ontwikkeld in samenwerking met kunsteducatoren uit verschillende disciplines en sluiten aan bij de thema's uit de film. Vanuit dans, theater, schrijfkunst, muziek en beeldende kunst krijgen kinderen van 6-11 jaar handvatten aangereikt om te onderzoeken welke expressievormen bij hun passen. De opdrachten zijn kort, eenvoudig uit te voeren en geschikt voor
-      gebruik in de klas of thuis. 
-    </p>
-<h2>Workshops op locatie</h2>
-<p>
-      Naast de lessen verzorgen de makers workshops op scholen en bij culturele instellingen. Denk aan een stop-motion animatie workshop waarin kinderen hun eigen denkbeeldige vrienden bedenken en animeren, of een schrijfsessie waarin zij ontdekken hoe een idee uitgroeit tot een verhaal. De workshops sluiten aan bij de thema’s van de film, maar kunnen ook
-      zelfstandig worden aangeboden.
-    </p>
 
-<h2 class="partners-heading">Ontwikkeld met</h2>
-<p class="partners-intro">
-      De kunsteducatieve lessen zijn ontwikkeld in samenwerking met
-      kunsteducatoren uit verschillende disciplines. Bij het bouwen van
-      deze samenwerkingen werden we ondersteund door <strong>Noordje</strong>.
-    </p>
-<div class="partners">
-<div class="partner">
-<span class="partner-role">Schrijven</span>
-<strong>Sarah Oortgijs</strong>
-<span>Taalrijk Kunsteducatie</span>
-</div>
-<div class="partner">
-<span class="partner-role">Theater</span>
-<strong>Dominique Leensen</strong>
-<span>Dwarswerk</span>
-</div>
-<div class="partner">
-<span class="partner-role">Dans</span>
-<strong>Kim Tuerlings</strong>
-<span>Danscollectief Arnhemse Meisjes</span>
-</div>
-</div>
+
+<body style="position:relative;">
+
+<nav aria-label="Hoofdnavigatie" class="top-nav">
+  <a href="index.html">Home</a>
+  <a href="de-film.html">De film</a>
+  <a href="over-ons.html">Over ons</a>
+  <a href="contact.html">Contact</a>
+  <a class="games-link" href="spellen.html">Spellen</a>
+</nav>
+
+
+<main class="page">
+
+  <h1 class="page-title">
+    <picture>
+      <source srcset="OT_EDUCATIE-lossless.webp" type="image/webp"/>
+      <img
+        alt="Educatie"
+        decoding="async"
+        loading="eager"
+        src="OT_EDUCATIE-optimized.png"
+      />
+    </picture>
+  </h1>
+
+
+  <!-- FOTO'S -->
+  <div class="education-photos">
+    <img
+      class="education-photo-main"
+      src="educatie_pluk_1.jpg"
+      alt="Educatie bij Het Onderwater Theater"
+    />
+
+    <img
+      class="education-photo-small"
+      src="educatie_pluk_2.jpg"
+      alt="Workshop van Het Onderwater Theater"
+    />
+  </div>
+
+
+  <p>
+    Het educatieprogramma sluit aan bij de thema’s uit Het Onderwater Theater
+    en nodigt uit om na te denken over identiteit en expressie. Kinderen krijgen
+    al vroeg woorden en verwachtingen mee over hoe zij zouden moeten zijn. Zo
+    wordt een kind dat stil, voorzichtig of observerend is, al snel verlegen
+    genoemd. De film en de lessen onderzoeken bevragen de functie van dat label
+    en laten kinderen onderzoeken wat passende expressievormen zijn voor hun
+    individu.
+  </p>
+
+
+  <h2>Het programma</h2>
+
+  <p>
+    De lessen uit het afneembaar educatieprogramma zijn ontwikkeld in
+    samenwerking met kunsteducatoren uit verschillende disciplines en sluiten
+    aan bij de thema's uit de film. Vanuit dans, theater, schrijfkunst, muziek
+    en beeldende kunst krijgen kinderen van 6-11 jaar handvatten aangereikt om
+    te onderzoeken welke expressievormen bij hun passen. De opdrachten zijn
+    kort, eenvoudig uit te voeren en geschikt voor gebruik in de klas of thuis.
+  </p>
+
+
+  <h2>Workshops op locatie</h2>
+
+  <p>
+    Naast de lessen verzorgen de makers workshops op scholen en bij culturele
+    instellingen. Denk aan een stop-motion animatie workshop waarin kinderen
+    hun eigen denkbeeldige vrienden bedenken en animeren, of een schrijfsessie
+    waarin zij ontdekken hoe een idee uitgroeit tot een verhaal. De workshops
+    sluiten aan bij de thema’s van de film, maar kunnen ook zelfstandig worden
+    aangeboden.
+  </p>
+
+
+  <h2 class="partners-heading">Ontwikkeld met</h2>
+
+  <p class="partners-intro">
+    De kunsteducatieve lessen zijn ontwikkeld in samenwerking met
+    kunsteducatoren uit verschillende disciplines. Bij het bouwen van deze
+    samenwerkingen werden we ondersteund door <strong>Noordje</strong>.
+  </p>
+
+
+  <div class="partners">
+
+    <div class="partner">
+      <span class="partner-role">Schrijven</span>
+      <strong>Sarah Oortgijs</strong>
+      <span>Taalrijk Kunsteducatie</span>
+    </div>
+
+    <div class="partner">
+      <span class="partner-role">Theater</span>
+      <strong>Dominique Leensen</strong>
+      <span>Dwarswerk</span>
+    </div>
+
+    <div class="partner">
+      <span class="partner-role">Dans</span>
+      <strong>Kim Tuerlings</strong>
+      <span>Danscollectief Arnhemse Meisjes</span>
+    </div>
+
+  </div>
+
 </main>
-<a aria-label="Volg Het Onderwater Theater op Instagram" class="instagram-corner" href="https://www.instagram.com/het_onderwater_theater/" rel="noopener noreferrer" target="_blank">
-<span class="instagram-label">Instagram</span>
-<span class="instagram-handle">@het_onderwater_theater ↗</span>
+
+
+<a
+  aria-label="Volg Het Onderwater Theater op Instagram"
+  class="instagram-corner"
+  href="https://www.instagram.com/het_onderwater_theater/"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span class="instagram-label">Instagram</span>
+  <span class="instagram-handle">@het_onderwater_theater ↗</span>
 </a>
+
+
 <footer class="site-footer">
-    © Esther Frank 2026
-  </footer>
+  © Esther Frank 2026
+</footer>
+
 </body>
 </html>
